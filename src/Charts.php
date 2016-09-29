@@ -13,7 +13,6 @@ namespace ConsoleTVs\Charts;
 
 use Illuminate\Support\Facades\Facade;
 
-
 /**
  * This is the charts facade class.
  *
@@ -33,8 +32,7 @@ class Charts extends Facade
     }
 
     /**
-     *
-     * @param mixed $data
+     * @param mixed  $data
      * @param string $type
      * @param string $library
      */

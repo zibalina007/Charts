@@ -53,7 +53,7 @@ class Database extends Chart
      *
      * @param string $year
      * @param string $month
-     * @param boolean $fancy
+     * @param bool   $fancy
      */
     public function groupByDay($month = null, $year = null, $fancy = false)
     {
@@ -63,11 +63,10 @@ class Database extends Chart
         $month = $month ? $month : date('m');
         $year = $year ? $year : date('Y');
 
-        $days = date("t", strtotime("$year-$month-01"));
+        $days = date('t', strtotime("$year-$month-01"));
 
-        for($i = 1; $i <= $days; $i++){
-
-            if($i < 10){
+        for ($i = 1; $i <= $days; $i++) {
+            if ($i < 10) {
                 $day = "0$i";
             } else {
                 $day = "$i";
@@ -77,18 +76,17 @@ class Database extends Chart
 
             $value = 0;
 
-            foreach($this->data as $data){
-                if(date('Y-m-d', strtotime($data->created_at)) == $date){
+            foreach ($this->data as $data) {
+                if (date('Y-m-d', strtotime($data->created_at)) == $date) {
                     $value++;
                 }
             }
 
-            $date_get = $fancy ? "l dS M, Y" : "d-m-Y";
+            $date_get = $fancy ? 'l dS M, Y' : 'd-m-Y';
             $label = date($date_get, strtotime("$year-$month-$day"));
 
             array_push($labels, $label);
             array_push($values, $value);
-
         }
         $this->labels = $labels;
         $this->values = $values;
@@ -108,31 +106,29 @@ class Database extends Chart
 
         $year = $year ? $year : date('Y');
 
-        for($i = 1; $i <= 12; $i++){
-
-            if($i < 10){
+        for ($i = 1; $i <= 12; $i++) {
+            if ($i < 10) {
                 $month = "0$i";
             } else {
                 $month = "$i";
             }
 
-            $date_get = $fancy ? "F, Y" : "m-Y";
+            $date_get = $fancy ? 'F, Y' : 'm-Y';
             $label = date($date_get, strtotime("$year-$month-01"));
 
             array_push($labels, $label);
 
             $value = 0;
-            foreach($this->data as $data){
-                if($year == date('Y', strtotime($data->created_at))){
+            foreach ($this->data as $data) {
+                if ($year == date('Y', strtotime($data->created_at))) {
                     // Same year
-                    if($month == date('m', strtotime($data->created_at))){
+                    if ($month == date('m', strtotime($data->created_at))) {
                         // Same month
                         $value++;
                     }
                 }
             }
             array_push($values, $value);
-
         }
 
         $this->labels = $labels;
@@ -150,18 +146,18 @@ class Database extends Chart
     {
         $labels = [];
         $values = [];
-        for($i = 0; $i < $number; $i++){
-            if($i == 0){
+        for ($i = 0; $i < $number; $i++) {
+            if ($i == 0) {
                 $year = date('Y');
             } else {
-                $year = date('Y', strtotime("-".$i." Year"));
+                $year = date('Y', strtotime('-'.$i.' Year'));
             }
 
             array_push($labels, $year);
             // Check the value
             $value = 0;
-            foreach($this->data as $data){
-                if($year == date('Y', strtotime($data->created_at))){
+            foreach ($this->data as $data) {
+                if ($year == date('Y', strtotime($data->created_at))) {
                     $value++;
                 }
             }
@@ -182,7 +178,7 @@ class Database extends Chart
     {
         $labels = [];
         $values = [];
-        foreach($this->data->groupBy($column) as $data){
+        foreach ($this->data->groupBy($column) as $data) {
             array_push($labels, $data[0]->$column);
             array_push($values, count($data));
         }
@@ -192,10 +188,9 @@ class Database extends Chart
         return $this;
     }
 
-    /**
+    /*
      * .
      *
      * @param string $color
      */
-
 }
