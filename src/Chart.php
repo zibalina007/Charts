@@ -28,9 +28,10 @@ class Chart
     public $responsive;
 
     /**
-     * Return a new chart instance.
+     * Create a new chart instance.
      *
-     * @param $library
+     * @param string $type
+     * @param string $library
      */
     public function __construct($type = null, $library = null)
     {

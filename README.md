@@ -8,6 +8,12 @@
 
 ![Example Chart](https://i.gyazo.com/2ea6d7af4f467e882c38af88095cb062.png)
 
+## News
+
+**September 29, 2016**
+
+You can now generate a new chart using the database data without building it manually. See *Database Charts* section for more information!
+
 ## Libraries & Types
 
 Charts include the following libraries & types by default:
@@ -238,6 +244,107 @@ Charts::new('geo', 'highcharts')
 
 ![Example Geo](https://i.gyazo.com/f7a76582e80912864c6cfb23f688e43e.png)
 
+## Database Charts
+
+You can also generate database charts with simple setup!
+
+```
+$chart = Charts::database(User::all(), 'bar', 'highcharts');
+```
+
+Example data:
+![Example Data](https://i.gyazo.com/e41f0117845230edc5189cd7b5821933.png)
+
+**Note:** You are required to use a specific group method before rendering the chart!
+
+*Important:* To work with the GroupByYear, GroupByMonth & GroupByDay You'll need the column ```created_at``` in the data rows.
+
+The available methods are:
+
+- setData(required mixed $data)
+
+	Setup the data again.
+
+	```
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')->setData(Role::all());
+	```
+
+- groupBy(required string $column)
+
+	Groups the data based on a column.
+
+	```
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->groupBy('game');
+	```
+
+	![Example GroupBy](https://i.gyazo.com/30183fa75f6bee6848898c4dbe487491.png)
+
+- groupByYear(optional int $years)
+
+	Groups the data based in years.
+
+	```
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->groupByYear();
+
+	// to display a number of years behind, pass a int parameter. For example to display the last 10 years:
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->groupByYear(10);
+	```
+
+	![Example GroupByYear](https://i.gyazo.com/5d992b6ce858fee8ed455c61e3bec546.png)
+
+- groupByMonth(optional string $year, optional boolean $fancy)
+
+	Groups the data in months (if no year set, the current one will be used).
+
+	```
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->groupByMonth();
+
+	// to display a specific year, pass the parameter. For example to display the months of 2016 and display a fancy output label:
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->groupByMonth('2016', true);
+	```
+
+	![Example GroupByYear](https://i.gyazo.com/8d93b2f74857047339317d54b5082868.png)
+
+- groupByDay(optional string $month, optional string $year, optional boolean $fancy)
+
+	Groups the data in days (if no year/month set, the current one will be used).
+
+	```
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->groupByDay();
+
+	// to display a specific month and/or year, pass the parameters. For example to display the days of september 2016 and display a fancy output label:
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->groupByDay('09', '2016', true);
+	```
+
+	![Example GroupByYear](https://i.gyazo.com/b461f29f41a0a5ac046f1cea79083dcc.png)
 
 ## Charts Functions
 
@@ -246,9 +353,18 @@ Charts::new('geo', 'highcharts')
   Returns a new chart instance, if no library is specified, the default one will be used.
 
   ```
-  Charts::new('line'');
+  Charts::new('line');
   Charts::new('line', 'highcharts');
   ```
+
+- database()
+
+	Returns a new database chart instance that extends the base one.
+
+	```
+    Charts::database(User::all());
+    Charts::new(User::all(), 'line', 'highcharts');
+    ```
 
 - assets()
 
