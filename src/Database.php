@@ -97,8 +97,8 @@ class Database extends Chart
     /**
      * Group the data monthly based on the creation date.
      *
-     * @param int   $year
-     * @param bool  $fancy
+     * @param int  $year
+     * @param bool $fancy
      */
     public function groupByMonth($year = null, $fancy = false)
     {
@@ -192,8 +192,8 @@ class Database extends Chart
     /**
      * Group the data based on the latest days.
      *
-     * @param int   $number
-     * @param bool  $number
+     * @param int  $number
+     * @param bool $number
      */
     public function lastByDay($number = 7, $fancy = false)
     {
@@ -220,8 +220,8 @@ class Database extends Chart
     /**
      * Group the data based on the latest months.
      *
-     * @param int   $number
-     * @param bool  $number
+     * @param int  $number
+     * @param bool $number
      */
     public function lastByMonth($number = 6, $fancy = false)
     {
@@ -246,7 +246,7 @@ class Database extends Chart
     }
 
     /**
-     * Alias for groupByYear()
+     * Alias for groupByYear().
      *
      * @param int $number
      */
