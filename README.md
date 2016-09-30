@@ -257,7 +257,7 @@ Example data:
 
 **Note:** You are required to use a specific group method before rendering the chart!
 
-*Important:* To work with the GroupByYear, GroupByMonth & GroupByDay You'll need the column ```created_at``` in the data rows.
+*Important:* To work with the *GroupByYear, GroupByMonth, GroupByDay, lastByYear, lastByMonth & lastByDay* you'll need the column ```created_at``` in the data rows.
 
 The available methods are:
 
@@ -287,6 +287,8 @@ The available methods are:
 
 	Groups the data based in years.
 
+	*Default:* ```$years = 4```
+
 	```
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')
 		->setElementLabel("Total")
@@ -307,6 +309,8 @@ The available methods are:
 - groupByMonth(optional string $year, optional boolean $fancy)
 
 	Groups the data in months (if no year set, the current one will be used).
+
+	*Default:* ```$year = 7, $fancy = false```
 
 	```
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')
@@ -329,6 +333,8 @@ The available methods are:
 
 	Groups the data in days (if no year/month set, the current one will be used).
 
+	*Default:* ```$month = date('m'), $year = date('Y'), $fancy = false```
+
 	```
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')
 		->setElementLabel("Total")
@@ -345,6 +351,75 @@ The available methods are:
 	```
 
 	![Example GroupByYear](https://i.gyazo.com/b461f29f41a0a5ac046f1cea79083dcc.png)
+
+- lastByYear(optional int $number)
+
+	Alias for groupByYear() method. Does the same.
+
+	*Default:* ```$number = 4```
+
+	```
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->lastByYear();
+
+	// to display a number of years behind, pass a int parameter. For example to display the last 3 years:
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->lastByYear(3);
+	```
+
+	![Example LastByYear](https://i.gyazo.com/7f85bec0fb49f5729608aa87b8657fc1.png)
+
+- lastByMonth(optional int $number, optional boolean $fancy)
+
+	Display the numbers of months behind (relative to the current date).
+
+	*Default:* ```$number = 6, $fancy = false```
+
+	```
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->lastByMonth();
+
+	// to display a number of months behind, pass a int parameter. For example to display the last 6 months and use a fancy output:
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->lastByMonth(6, true);
+	```
+
+	![Example LastByMonth](https://i.gyazo.com/7c7df6503749fda8d96807d6bc2861aa.png)
+
+- lastByDay(optional int $number, optional boolean $fancy)
+
+	Display the numbers of days behind (relative to the current date).
+
+	*Default:* ```$number = 7, $fancy = false```
+
+	```
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->lastByDay();
+
+	// to display a number of days behind, pass a int parameter. For example to display the last 14 days and use a fancy output:
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')
+		->setElementLabel("Total")
+		->setDimensions(1000, 500)
+		->setResponsive(false)
+		->lastByDay(14, true);
+	```
+
+	![Example LastByDay](https://gyazo.com/eeac8c7551ed681ef3728454ba4be9f0)
 
 ## Charts Functions
 

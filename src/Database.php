@@ -97,7 +97,8 @@ class Database extends Chart
     /**
      * Group the data monthly based on the creation date.
      *
-     * @param int $year
+     * @param int   $year
+     * @param bool  $fancy
      */
     public function groupByMonth($year = null, $fancy = false)
     {
@@ -142,7 +143,7 @@ class Database extends Chart
      *
      * @param int $number
      */
-    public function groupByYear($number = 5)
+    public function groupByYear($number = 4)
     {
         $labels = [];
         $values = [];
@@ -188,9 +189,69 @@ class Database extends Chart
         return $this;
     }
 
-    /*
-     * .
+    /**
+     * Group the data based on the latest days.
      *
-     * @param string $color
+     * @param int   $number
+     * @param bool  $number
      */
+    public function lastByDay($number = 7, $fancy = false)
+    {
+        $labels = [];
+        $values = [];
+        for ($i = 0; $i < $number; $i++) {
+            $date = $i == 0 ? date('d-m-Y') : date('d-m-Y', strtotime("-$i Day"));
+            $date_f = $fancy ? date('l dS M, Y', strtotime($date)) : $date;
+            array_push($labels, $date_f);
+            $value = 0;
+            foreach ($this->data as $data) {
+                if ($date == date('d-m-Y', strtotime($data->created_at))) {
+                    $value++;
+                }
+            }
+            array_push($values, $value);
+        }
+        $this->labels = array_reverse($labels);
+        $this->values = array_reverse($values);
+
+        return $this;
+    }
+
+    /**
+     * Group the data based on the latest months.
+     *
+     * @param int   $number
+     * @param bool  $number
+     */
+    public function lastByMonth($number = 6, $fancy = false)
+    {
+        $labels = [];
+        $values = [];
+        for ($i = 0; $i < $number; $i++) {
+            $date = $i == 0 ? date('m-Y') : date('m-Y', strtotime("-$i Month"));
+            $date_f = $fancy ? date('F, Y', strtotime("01-$date")) : $date;
+            array_push($labels, $date_f);
+            $value = 0;
+            foreach ($this->data as $data) {
+                if ($date == date('m-Y', strtotime($data->created_at))) {
+                    $value++;
+                }
+            }
+            array_push($values, $value);
+        }
+        $this->labels = array_reverse($labels);
+        $this->values = array_reverse($values);
+
+        return $this;
+    }
+
+    /**
+     * Alias for groupByYear()
+     *
+     * @param int $number
+     */
+    public function lastByYear($number = 4)
+    {
+        return $this->groupByYear($number);
+    }
 }
