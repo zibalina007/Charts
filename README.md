@@ -419,7 +419,7 @@ The available methods are:
 		->lastByDay(14, true);
 	```
 
-	![Example LastByDay](https://gyazo.com/eeac8c7551ed681ef3728454ba4be9f0)
+	![Example LastByDay](https://i.gyazo.com/eeac8c7551ed681ef3728454ba4be9f0.png)
 
 ## Charts Functions
 
