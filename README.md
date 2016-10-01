@@ -55,6 +55,18 @@ Charts include the following libraries & types by default:
 	- Line Chart  ```line```
 	- Bar Chart  ```bar```
 	- Donut / Doughnut Chart ```donut```
+- Plottable JS  ```plottablejs```
+	- Area Chart ```area```
+	- Line Chart  ```line```
+	- Bar Chart  ```bar```
+	- Pie Chart ```pie```
+	- Donut / Doughnut Chart ```donut```
+- Minimalist  ```minimalist```
+	- Area Chart ```area```
+	- Line Chart  ```line```
+	- Bar Chart  ```bar```
+	- Pie Chart ```pie```
+	- Donut / Doughnut Chart ```donut```
 
 ## Installation
 

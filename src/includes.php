@@ -24,5 +24,9 @@ return "
 	<link rel='stylesheet' href='".asset('/vendor/consoletvs/charts/morris/morris.css')."'>
 	<script type='text/javascript' src='".asset('/vendor/consoletvs/charts/morris/raphael.min.js')."'></script>
 	<script type='text/javascript' src='".asset('/vendor/consoletvs/charts/morris/morris.min.js')."'></script>
+	
+	<script src='".asset('/vendor/consoletvs/charts/d3/d3.js')."'></script>
+	<link rel='stylesheet' href='".asset('/vendor/consoletvs/charts/plottable/plottable.css')."'>
+	<script src='".asset('/vendor/consoletvs/charts/plottable/plottable.js')."'></script>
 
 ";
