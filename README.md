@@ -38,6 +38,9 @@ Charts include the following libraries & types by default:
 	- Pie Chart ```pie```
 	- Donut / Doughnut Chart ```donut```
 	- Geo Chart  ```geo```
+- Google Material  ```material```
+	- Line Chart  ```line```
+	- Bar Chart  ```bar```
 - Chartist  ```chartist```
 	- Area Chart ```area```
 	- Line Chart  ```line```
