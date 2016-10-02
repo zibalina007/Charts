@@ -8,7 +8,7 @@ $graph = "
         var data = google.visualization.arrayToDataTable([
           ['', \"$this->element_label\"],
           ";
-          for($i = 0; $i < count($this->values); $i++){
+          for ($i = 0; $i < count($this->values); $i++) {
               $e = $this->labels[$i];
               $v = $this->values[$i];
               $graph .= "[\"$e\", $v],";
@@ -21,7 +21,7 @@ $graph = "
             title: \"$this->title\",
           },
           ";
-          $graph .= $this->colors ? "colors: ['" . $this->colors[0] . "']" : "";
+          $graph .= $this->colors ? "colors: ['".$this->colors[0]."']" : '';
           $graph .= "
         };
 
@@ -30,7 +30,7 @@ $graph = "
         chart.draw(data, options);
       }
     </script>
-    <div "; $graph .= $this->responsive ? "" : "style='width: " . $this->width ."px; height: " . $this->height . "px;'"; $graph .= " id='$this->id'></div>
+    <div "; $graph .= $this->responsive ? '' : "style='width: ".$this->width.'px; height: '.$this->height."px;'"; $graph .= " id='$this->id'></div>
 ";
 
 return $graph;
