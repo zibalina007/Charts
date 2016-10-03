@@ -2,9 +2,9 @@
 
 $graph = "
     <canvas id='$this->id' ";
-    if(!$this->responsive){
-        $graph .= $this->height ? "height='$this->height' " : "";
-        $graph .= $this->width ? "width='$this->width' " : "";
+    if (!$this->responsive) {
+        $graph .= $this->height ? "height='$this->height' " : '';
+        $graph .= $this->width ? "width='$this->width' " : '';
     }
     $graph .= " ></canvas>
     <script>
@@ -13,8 +13,8 @@ $graph = "
             type: 'bar',
             data: {
                 labels: ["; foreach ($this->labels as $label) {
-    $graph .= '"'.$label.'",';
-} $graph .= "],
+        $graph .= '"'.$label.'",';
+    } $graph .= "],
                 datasets: [
                     {
                         label: \"$this->element_label\",
@@ -31,12 +31,12 @@ $graph = "
                         $graph .= '],
                         data: ['; foreach ($this->values as $dta) {
                             $graph .= $dta.',';
-                        } $graph .= "],
+                        } $graph .= '],
                     }
                 ]
             },
             options: {
-                responsive: "; $graph .= ($this->responsive or !$this->width) ? 'true' : 'false'; $graph .= ",
+                responsive: '; $graph .= ($this->responsive or !$this->width) ? 'true' : 'false'; $graph .= ",
                 maintainAspectRatio: false,
                 title: {
                     display: true,

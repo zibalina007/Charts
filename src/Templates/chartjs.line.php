@@ -2,28 +2,28 @@
 
 $graph = "
     <canvas id='$this->id' ";
-    if(!$this->responsive){
-        $graph .= $this->height ? "height='$this->height' " : "";
-        $graph .= $this->width ? "width='$this->width' " : "";
+    if (!$this->responsive) {
+        $graph .= $this->height ? "height='$this->height' " : '';
+        $graph .= $this->width ? "width='$this->width' " : '';
     }
     $graph .= " ></canvas>
     <script>
     	var ctx = document.getElementById('$this->id');
     	var data = {
     	    labels: ["; foreach ($this->labels as $label) {
-    $graph .= "'".$label."',";
-} $graph .= "],
+        $graph .= "'".$label."',";
+    } $graph .= "],
     	    datasets: [
     	        {
 					fill: false,
     	            label: \"$this->element_label\",
     	            lineTension: 0.3,
                     "; if ($this->colors) {
-    $graph .= 'borderColor: "'.$this->colors[0].'", backgroundColor: "'.$this->colors[0].'",';
-} $graph .= '
+        $graph .= 'borderColor: "'.$this->colors[0].'", backgroundColor: "'.$this->colors[0].'",';
+    } $graph .= '
     	            data: ['; foreach ($this->values as $dta) {
-    $graph .= $dta.',';
-} $graph .= "],
+        $graph .= $dta.',';
+    } $graph .= "],
     	        }
     	    ]
     	};

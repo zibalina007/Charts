@@ -8,8 +8,8 @@ $graph = "
                     type: 'area',
                     renderTo: \"$this->id\",
                 "; if (!$this->responsive) {
-                    $graph .= $this->width ? "width: $this->width," : "";
-                    $graph .= $this->height ? "height: $this->height," : "";
+    $graph .= $this->width ? "width: $this->width," : '';
+    $graph .= $this->height ? "height: $this->height," : '';
 }
                 $graph .= "
                 },
