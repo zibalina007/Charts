@@ -2,17 +2,17 @@
 
 $graph = "
     <canvas id='$this->id' ";
-    if(!$this->responsive){
-        $graph .= $this->height ? "height='$this->height' " : "";
-        $graph .= $this->width ? "width='$this->width' " : "";
+    if (!$this->responsive) {
+        $graph .= $this->height ? "height='$this->height' " : '';
+        $graph .= $this->width ? "width='$this->width' " : '';
     }
     $graph .= " ></canvas>
     <script>
     	var ctx = document.getElementById('$this->id');
     	var data = {
     	    labels: ["; foreach ($this->labels as $label) {
-    $graph .= "'".$label."',";
-} $graph .= '],
+        $graph .= "'".$label."',";
+    } $graph .= '],
     	    datasets: [
     	        {
 					fill: true,

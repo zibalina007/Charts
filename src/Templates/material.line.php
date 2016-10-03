@@ -31,9 +31,9 @@ $graph = "
       }
     </script>
     <div style='";
-    if(!$this->responsive){
-        $graph .= $this->height ? "height: ".$this->height."px;" : "";
-        $graph .= $this->width ? "width: ".$this->width."px;" : "";
+    if (!$this->responsive) {
+        $graph .= $this->height ? 'height: '.$this->height.'px;' : '';
+        $graph .= $this->width ? 'width: '.$this->width.'px;' : '';
     }
     $graph .= "' id='$this->id'></div>
 ";
