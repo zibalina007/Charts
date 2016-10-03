@@ -12,10 +12,8 @@ $graph = "
 							height: '100%',
 						";
 } else {
-    $graph .= "
-							width: '$this->width',
-							height: '$this->height',
-						";
+    $graph .= $this->width ? "width: '$this->width'," : "width: '100%',";
+    $graph .= $this->height ? "height: '$this->height'," : "height: '100%',";
 }
                 $graph .= "
 				dataFormat: 'json',
@@ -30,15 +28,15 @@ $graph = "
 						'usePlotGradientColor': '0',
 						'plotBorderAlpha': '10',
 						'rotatevalues': '1',
-						'valueFontColor': '#ffffff',                
+						'valueFontColor': '#ffffff',
 						'showXAxisLine': '1',
 						'xAxisLineColor': '#999999',
-						'divlineColor': '#999999',               
+						'divlineColor': '#999999',
 						'divLineIsDashed': '1',
 						'showAlternateHGridColor': '0',
 						'subcaptionFontBold': '0',
 						'subcaptionFontSize': '14'
-					},            
+					},
 					'data': [
 						";
                             $i = 0;
@@ -55,7 +53,7 @@ $graph = "
 											';
                                 }
                                 $graph .= '
-									}, 
+									},
 								';
                                 $i++;
                             }

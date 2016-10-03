@@ -1,7 +1,14 @@
 <?php
 
 $graph = '
-	<svg '; $graph .= $this->responsive ? "width='100%' height='100%'" : "width='$this->width' height='$this->height'"; $graph .= " id='$this->id'></svg>
+<svg ';
+if ($this->responsive) {
+	$graph .= "width='100%' height='100%'";
+} else {
+	$graph .= $this->height ? "height='$this->height' " : "";
+	$graph .= $this->width ? "width='$this->width' " : "";
+}
+$graph .= " id='$this->id'></svg>
 	<script>
 		$(function() {
 			var data = [
@@ -29,10 +36,9 @@ $graph = '
   			  .yAlignment('center');;
 
 			  var label = new Plottable.Components.AxisLabel(\"$this->element_label\")
-			  .yAlignment('center')
-			  .angle(-90);
+			  .yAlignment('center');
 
-			 var table = new Plottable.Components.Table([[null, null, title],[label, yAxis, plot],[null, null, xAxis]]);
+			 var table = new Plottable.Components.Table([[label, title],[yAxis, plot],[null, xAxis]]);
 		 	table.renderTo('svg#$this->id');
 
 

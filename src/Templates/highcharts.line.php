@@ -4,15 +4,13 @@ $graph = "
     <script type='text/javascript'>
         $(function () {
             var chart = new Highcharts.Chart({
-                
+
                     chart: {
                         renderTo: \"$this->id\",
                 "; if (!$this->responsive) {
-    $graph .= "
-                        width: $this->width,
-                        height: $this->height,
-                    ";
-}
+                    $graph .= $this->width ? "width: $this->width," : "";
+                    $graph .= $this->height ? "height: $this->height," : "";
+                }
                 $graph .= "
                 },
                 title: {

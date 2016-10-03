@@ -10,6 +10,10 @@
 
 ## News
 
+**October 3, 2016**
+
+Charts are now even more responsive, if you want a fixed height and a responsive width, simple set responsive to false, and then set width to 0 and height to the one you like!
+
 **September 29, 2016**
 
 You can now generate a new chart using the database data without building it manually. See *Database Charts* section for more information!
@@ -469,7 +473,7 @@ The available methods are:
 
 - libraries()
 
-  Returns an array of all the libraries available (can be filtered)
+  Returns an array of all the libraries available (can be filtered).
 
   ```
   // Return all the libraries available
@@ -481,7 +485,7 @@ The available methods are:
 
 - types()
 
-  Returns an array of all the chart types available (can be filtered)
+  Returns an array of all the chart types available (can be filtered).
 
   ```
   // Return all the chart types available
@@ -495,7 +499,7 @@ The available methods are:
 
 - setType()
 
-  Set the chart type after creation (Example: from line to pie)
+  Set the chart type after creation (Example: from line to pie).
 
   ```
   Charts::new('line', 'highcharts')->setType('pie');
@@ -503,7 +507,7 @@ The available methods are:
 
 - setLibrary()
 
-  Set the chart library after creation (Example: from highcharts to google)
+  Set the chart library after creation (Example: from highcharts to google).
 
   ```
   Charts::new('line', 'highcharts')->setLibrary('google');
@@ -511,7 +515,7 @@ The available methods are:
 
 - setLabels()
 
-  The labels of the chart
+  The labels of the chart.
 
   ```
   Charts::new('line', 'highcharts')->setLabels(['First', 'Second', 'Third']);
@@ -519,7 +523,7 @@ The available methods are:
 
 - setValues()
 
-  The values of the chart respectively
+  The values of the chart respectively.
 
   ```
   Charts::new('line', 'highcharts')->setValues([10, 50, 100]);
@@ -527,7 +531,7 @@ The available methods are:
 
 - setElementLabel()
 
-  The element label for line / bar / geo charts
+  The element label for line / bar / geo charts.
 
   ```
   Charts::new('line', 'highcharts')->setElementLabel('Total Views');
@@ -535,7 +539,7 @@ The available methods are:
 
 - setTitle()
 
-  The chart title
+  The chart title.
 
   ```
   Charts::new('line', 'highcharts')->setTitle('My Chart');
@@ -543,7 +547,7 @@ The available methods are:
 
 - setColors()
 
-  The colors of the charts respectively
+  The colors of the charts respectively.
 
   ```
   Charts::new('line', 'highcharts')->setColors(['#ff0000', '#00ff00', '#0000ff']);
@@ -551,7 +555,7 @@ The available methods are:
 
 - setWidth()
 
-  The chart width if non-responsive
+  The chart width if non-responsive. 0 = responsive width.
 
   ```
   Charts::new('line', 'highcharts')->setWidth(1000);
@@ -559,7 +563,7 @@ The available methods are:
 
 - setHeight()
 
-  The chart height if non-responsive
+  The chart height if non-responsive. 0 = responsive height.
 
   ```
   Charts::new('line', 'highcharts')->setHeight(500);
@@ -567,7 +571,7 @@ The available methods are:
 
 - setDimensions()
 
-  The chart dimensions (shortcut to set width, height with one funcion)
+  The chart dimensions (shortcut to set width, height with one funcion).
 
   ```
   Charts::new('line', 'highcharts')->setHeight(1000, 500);
@@ -583,7 +587,7 @@ The available methods are:
 
 - settings()
 
-  Return the chart settings
+  Return the chart settings.
 
   ```
   print_r(Charts::new('line', 'highcharts')->settings());
@@ -591,7 +595,7 @@ The available methods are:
 
 - render()
 
-  Render the chat!
+  Render the chat.
 
   ```
   echo Charts::new('line', 'highcharts')->setLabels(['One', 'Two'])->setValues([10, 20])->render();
@@ -615,5 +619,7 @@ To call it later, just use:
 ```
 $chart = Charts::new('line', 'mylib');
 ```
+
+You will need to add the CSS / JS to the includes.php file found in the ```/src``` folder.
 
 You have plenty of examples to see how to put the data so just take a closer look at all the included templates before doing yours!

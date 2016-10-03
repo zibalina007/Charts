@@ -12,10 +12,8 @@ $graph = "
 							height: '100%',
 						";
 } else {
-    $graph .= "
-							width: '$this->width',
-							height: '$this->height',
-						";
+    $graph .= $this->width ? "width: '$this->width'," : "width: '100%',";
+    $graph .= $this->height ? "height: '$this->height'," : "height: '100%',";
 }
                 $graph .= "
 				dataFormat: 'json',
@@ -49,7 +47,7 @@ $graph = "
 						'legendShadow': '0',
 						'legendItemFontSize': '10',
 						'legendItemFontColor': '#666666'
-					},            
+					},
 					'data': [
 						";
                             $i = 0;
@@ -66,7 +64,7 @@ $graph = "
 											';
                                 }
                                 $graph .= '
-									}, 
+									},
 								';
                                 $i++;
                             }

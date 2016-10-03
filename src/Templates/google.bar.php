@@ -27,10 +27,8 @@ $graph = "
         var options = {
             ';
             if (!$this->responsive) {
-                $graph .= "
-                height: $this->height,
-                width: $this->width,
-            ";
+                $graph .= $this->width ? "width: $this->width," : "";
+                $graph .= $this->height ? "height: $this->height," : "";
             }
             $graph .= "
             legend: { position: 'top', alignment: 'end' },

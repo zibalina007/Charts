@@ -30,7 +30,12 @@ $graph = "
         chart.draw(data, options);
       }
     </script>
-    <div "; $graph .= $this->responsive ? '' : "style='width: ".$this->width.'px; height: '.$this->height."px;'"; $graph .= " id='$this->id'></div>
+    <div style='";
+    if(!$this->responsive){
+        $graph .= $this->height ? "height: ".$this->height."px;" : "";
+        $graph .= $this->width ? "width: ".$this->width."px;" : "";
+    }
+    $graph .= "' id='$this->id'></div>
 ";
 
 return $graph;
