@@ -8,6 +8,29 @@
 
 ![Example Chart](https://i.gyazo.com/2ea6d7af4f467e882c38af88095cb062.png)
 
+## Table Of Contents
+
+-	[News](#news)
+-	[Libraries & Types](#libraries--types)
+-	[Installation](#installation)
+	-	[Video Tutorial](#video-tutorial)
+	-	[Download](#download)
+	-	[Add service provider & alias](#add-service-provider--alias)
+	-	[Publish the assets](#publish-the-assets)
+-	[Default Settings](#default-settings)
+-	[Usage](#usage)
+-	[Chart Examples](#chart-examples)
+	-	[Pie](#pie)
+	-	[Donut / Doughnut](#donut--doughnut)
+	-	[Line](#line)
+	-	[Area](#area)
+	-	[Bar](#bar)
+	-	[Geo](#geo)
+-	[Database Charts](#database-charts)
+-	[Charts Functions](#charts-functions)
+-	[Available Chart Settings](#available-chart-settings)
+-	[Extend your way](#extend-your-way)
+
 ## News
 
 **October 3, 2016**
