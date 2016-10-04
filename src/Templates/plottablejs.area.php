@@ -14,7 +14,6 @@ $graph .= " id='$this->id'></svg>
 			var data = [
 				"; for ($i = 0; $i < count($this->values); $i++) {
     $graph .= '{x: "'.$this->labels[$i].'", y: '.$this->values[$i];
-    $graph .= $this->colors ? ', color: "'.$this->colors[$i].'" ' : '';
     $graph .= ' },';
 }
                 $graph .= "
