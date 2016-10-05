@@ -36,6 +36,16 @@ class Charts extends Facade
      * @param string $type
      * @param string $library
      */
+    public static function realtime($url, $interval, $type = null, $library = null)
+    {
+        return new Realtime($url, $interval, $type, $library);
+    }
+
+    /**
+     * @param mixed  $data
+     * @param string $type
+     * @param string $library
+     */
     public static function database($data, $type = null, $library = null)
     {
         return new Database($data, $type, $library);

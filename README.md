@@ -26,7 +26,10 @@
 	-	[Area](#area)
 	-	[Bar](#bar)
 	-	[Geo](#geo)
+	-	[Gauge](#gauge)
+	-	[Temperature](#temperature)
 -	[Database Charts](#database-charts)
+-	[Realtime Charts](#realtime-charts)
 -	[Charts Functions](#charts-functions)
 -	[Available Chart Settings](#available-chart-settings)
 -	[Extend your way](#extend-your-way)
@@ -65,6 +68,7 @@ Charts include the following libraries & types by default:
 	- Pie Chart ```pie```
 	- Donut / Doughnut Chart ```donut```
 	- Geo Chart  ```geo```
+	- Gauge Chart  ```gauge``` *Realtime Available*
 - Google Material  ```material```
 	- Line Chart  ```line```
 	- Bar Chart  ```bar```
@@ -97,6 +101,9 @@ Charts include the following libraries & types by default:
 	- Bar Chart  ```bar```
 	- Pie Chart ```pie```
 	- Donut / Doughnut Chart ```donut```
+- Canvas Gauges ```canvas-gauges```
+	- Gauge Chart ```gauge``` *Realtime Available*
+	- Temperature Chart ```temp``` *Realtime Available*
 
 ## Installation
 
@@ -286,6 +293,38 @@ Charts::new('geo', 'highcharts')
 
 ![Example Geo](https://i.gyazo.com/f7a76582e80912864c6cfb23f688e43e.png)
 
+### Gauge
+
+Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
+
+```
+Charts::new('gauge', 'canvas-gauges')
+	->setTitle('My nice chart')
+	->setElementLabel('My nice label')
+	->setValues([65,0,100])
+	->setResponsive(false)
+	->setHeight(300)
+	->setWidth(0);
+```
+
+![Example Gauge](https://i.gyazo.com/a9bc88c6550d39a15b5a686ea66df0ea.png)
+
+### Temperature
+
+Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
+
+```
+Charts::new('temp', 'canvas-gauges')
+	->setTitle('My nice chart')
+	->setElementLabel('My nice label')
+	->setValues([65,0,100])
+	->setResponsive(false)
+	->setHeight(300)
+	->setWidth(0);
+```
+
+![Example Temperature](https://i.gyazo.com/1a8f264ffd9746da06d67c3624eaac81.png)
+
 ## Database Charts
 
 You can also generate database charts with simple setup!
@@ -463,6 +502,79 @@ The available methods are:
 
 	![Example LastByDay](https://i.gyazo.com/eeac8c7551ed681ef3728454ba4be9f0.png)
 
+## Realtime Charts
+
+You can create realtime charts (currently limited to gauge/temperature charts)
+
+Example json:
+
+```
+{"value":31}
+```
+
+'value' can be changed to diferent index name with ```setValueName($string)```
+
+```
+$chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
+            ->setValues([65, 0, 100])
+            ->setLabels(['First', 'Second', 'Third'])
+            ->setResponsive(false)
+            ->setHeight(300)
+            ->setWidth(0)
+            ->setTitle("Permissions Chart")
+			->setValueName('value'); //This determines the json index for the value
+```
+
+**Note:** The interval is set in ms
+
+The available methods are:
+
+-	setValueName(required string $string)
+
+	Sets the value json index
+
+	*Default:* ```value```
+
+	```
+	$chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
+				->setValues([65, 0, 100])
+				->setLabels(['First', 'Second', 'Third'])
+				->setResponsive(false)
+				->setHeight(300)
+				->setWidth(0)
+				->setTitle("Permissions Chart")
+				->setValueName('value'); //This determines the json index for the value
+	```
+
+-	setUrl(required string $url)
+
+	Sets the url after chart object creation
+
+	```
+	$chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
+				->setValues([65, 0, 100])
+				->setLabels(['First', 'Second', 'Third'])
+				->setResponsive(false)
+				->setHeight(300)
+				->setWidth(0)
+				->setTitle("Permissions Chart")
+				->setUrl(url('/new/json'));
+	```
+
+-	setInterval(required int $interval)
+
+	Sets the interval after chart object creation (ms)
+
+	```
+	$chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
+				->setValues([65, 0, 100])
+				->setLabels(['First', 'Second', 'Third'])
+				->setResponsive(false)
+				->setHeight(300)
+				->setWidth(0)
+				->setTitle("Permissions Chart")
+				->setInterval(3000); // in ms
+	```
 ## Charts Functions
 
 - new()
@@ -474,13 +586,23 @@ The available methods are:
   Charts::new('line', 'highcharts');
   ```
 
-- database()
+
+
+- database(required mixed $object, optional string $type, optional string $library)
 
 	Returns a new database chart instance that extends the base one.
 
 	```
     Charts::database(User::all());
     Charts::new(User::all(), 'line', 'highcharts');
+    ```
+
+- realtime(required string $url, required int $interval, optional string $type, optional string $library)
+
+	Returns a new database chart instance that extends the base one.
+
+	```
+    Charts::realtime(url('/json/data'), 2000, 'gauge', 'google')
     ```
 
 - assets()
@@ -519,6 +641,18 @@ The available methods are:
   ```
 
 ## Available Chart Settings:
+
+- setGaugeStyle($style)
+
+	Set the gauge style
+
+	*Default:* ```left```
+
+	*Available options:* ```left``` ```right``` ```center```
+
+	```
+	Charts::new('gauge', 'google')->setGaugeStyle('right');
+	```
 
 - setType()
 

@@ -5,7 +5,7 @@ return "
 
     <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
     <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-    <script type='text/javascript'>google.charts.load('current', {'packages':['corechart', 'geochart', 'bar', 'line']});</script>
+    <script type='text/javascript'>google.charts.load('current', {'packages':['corechart', 'gauge', 'geochart', 'bar', 'line']});</script>
 
     <script src='".asset('/vendor/consoletvs/charts/highcharts/js/highcharts.js')."'></script>
     <script src='".asset('/vendor/consoletvs/charts/highcharts/js/modules/exporting.js')."'></script>
@@ -28,5 +28,7 @@ return "
 	<script src='".asset('/vendor/consoletvs/charts/d3/d3.js')."'></script>
 	<link rel='stylesheet' href='".asset('/vendor/consoletvs/charts/plottable/plottable.css')."'>
 	<script src='".asset('/vendor/consoletvs/charts/plottable/plottable.js')."'></script>
+	
+	<script src='".asset('/vendor/consoletvs/charts/canvas-gauges/gauge.min.js')."'></script>
 
 ";

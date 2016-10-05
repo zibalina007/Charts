@@ -26,6 +26,8 @@ class Chart
     public $values;
     public $colors;
     public $responsive;
+    public $gauge_style;
+    protected $sufix;
 
     /**
      * Create a new chart instance.
@@ -43,6 +45,8 @@ class Chart
         $this->labels = [];
         $this->values = [];
         $this->colors = [];
+        $this->sufix = '';
+        $this->gauge_style = 'left';
         $this->responsive = config('charts.default.responsive');
         $length = 10; // The random identifier length.
 
@@ -51,6 +55,18 @@ class Chart
 
         // Set the chart library
         $this->library = $library ? $library : config('charts.default.library');
+    }
+
+    /**
+     * Set gauge style.
+     *
+     * @param string $style
+     */
+    public function setGaugeStyle($style)
+    {
+        $this->gauge_style = $style;
+
+        return $this;
     }
 
     /**
@@ -202,7 +218,7 @@ class Chart
     {
         $this->id = $this->randomString();
         try {
-            return include __DIR__."/Templates/$this->library.$this->type.php";
+            return include $this->sufix ? __DIR__."/Templates/$this->library.$this->type.$this->sufix.php" : __DIR__."/Templates/$this->library.$this->type.php";
         } catch (Exception $e) {
             throw new \Exception($e->getMessage());
         }
