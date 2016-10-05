@@ -575,6 +575,7 @@ The available methods are:
 				->setTitle("Permissions Chart")
 				->setInterval(3000); // in ms
 	```
+	
 ## Charts Functions
 
 - new()
