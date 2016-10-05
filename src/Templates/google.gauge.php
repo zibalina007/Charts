@@ -7,7 +7,7 @@ $graph = "
         var data = google.visualization.arrayToDataTable([
           ['Element', 'Value'],
           ";
-            $graph .= "[\"".$this->element_label."\", ".$this->values[0]."],";
+            $graph .= '["'.$this->element_label.'", '.$this->values[0].'],';
             $graph .= '
         ]);
         var options = {
@@ -17,13 +17,13 @@ $graph = "
                 $graph .= $this->height ? "height: $this->height," : '';
             }
 
-            if(count($this->values) >= 2 and $this->values[1] <= $this->values[0]){
+            if (count($this->values) >= 2 and $this->values[1] <= $this->values[0]) {
                 $min = $this->values[1];
                 $graph .= "min: $min,";
             } else {
                 $min = 0;
             }
-            if(count($this->values) >= 3 and $this->values[2] >= $this->values[0]){
+            if (count($this->values) >= 3 and $this->values[2] >= $this->values[0]) {
                 $max = $this->values[2];
                 $graph .= "max: $max,";
             } else {
@@ -43,7 +43,7 @@ $graph = "
                     yellowFrom: $max_warning, yellowTo: $low_warning,
                     redFrom: $min, redTo: $max_warning,
                 ";
-            } elseif($this->gauge_style == 'center') {
+            } elseif ($this->gauge_style == 'center') {
                 // Calculate warning area
                 $warning = round(0.25 * $max, 2);
                 $warning2 = round(0.75 * $max, 2);
@@ -77,8 +77,8 @@ $graph = "
       }
     </script>
     <div "; if (!$this->responsive) {
-              $graph .= $this->width ? "style='width: $this->width'" : '';
-          } $graph .= "><center><b style='font-family: Arial, Helvetica, sans-serif;font-size: 18px;'>$this->title</b><br></center></div>
+                $graph .= $this->width ? "style='width: $this->width'" : '';
+            } $graph .= "><center><b style='font-family: Arial, Helvetica, sans-serif;font-size: 18px;'>$this->title</b><br></center></div>
     <center><div id='$this->id'></div></center>
 ";
 
