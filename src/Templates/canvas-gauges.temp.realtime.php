@@ -6,19 +6,19 @@ $graph = "
         $(function (){
             var $this->id = new LinearGauge({
               renderTo: \"$this->id\",
-              "; $graph .= $this->colors ? "colorNumbers: \"".$this->colors[0]."\"," : ""; $graph .= "
-              "; $graph .= $this->width ? "width: $this->width," : ""; $graph .= $this->height ? "height: $this->height," : ""; $graph .= "
+              "; $graph .= $this->colors ? 'colorNumbers: "'.$this->colors[0].'",' : ''; $graph .= '
+              '; $graph .= $this->width ? "width: $this->width," : ''; $graph .= $this->height ? "height: $this->height," : ''; $graph .= "
               title: \"$this->title\",
               value: ".$this->values[0].",
               units: \"$this->element_label\",
               ";
-                if(count($this->values) >= 2 and $this->values[1] <= $this->values[0]){
+                if (count($this->values) >= 2 and $this->values[1] <= $this->values[0]) {
                     $min = $this->values[1];
                     $graph .= "minValue: $min,";
                 } else {
                     $min = 0;
                 }
-                if(count($this->values) >= 3 and $this->values[2] >= $this->values[0]){
+                if (count($this->values) >= 3 and $this->values[2] >= $this->values[0]) {
                     $max = $this->values[2];
                     $graph .= "maxValue: $max,";
                 } else {
@@ -32,22 +32,22 @@ $graph = "
 
                 $interval = 10;
                 $interval_adder = round($max / $interval, 2);
-                $graph .= "majorTicks: [";
+                $graph .= 'majorTicks: [';
                     $r = $min;
-                    for($i = 0; $i <= $interval; $i++){
-                        if($i == 0){
+                    for ($i = 0; $i <= $interval; $i++) {
+                        if ($i == 0) {
                             $graph .= "$min,";
-                        } elseif($i == $interval) {
+                        } elseif ($i == $interval) {
                             $graph .= "$max,";
                         } else {
-                            $graph .= $r + $interval_adder . ",";
+                            $graph .= $r + $interval_adder.',';
                             $r = $r + $interval_adder;
                         }
                     }
-                $graph .= "],";
-              $graph .= "
+                $graph .= '],';
+              $graph .= '
               highlights: [
-                    ";
+                    ';
 
                     if ($this->gauge_style == 'right') {
                         // Calculate warning area
@@ -61,7 +61,7 @@ $graph = "
                             { from: $max_warning, to: $warning, color: 'rgba(255,69,0,.40)' },
                             { from: $min, to: $max_warning, color: 'rgba(255,0,0,.5)' },
                         ";
-                    } elseif($this->gauge_style == 'center') {
+                    } elseif ($this->gauge_style == 'center') {
                         // Calculate warning area
                         $warning = round(0.10 * $max, 2);
 
