@@ -3,8 +3,8 @@
 $graph = "<div id=\"$this->id\" style=\"
     ";
         if (!$this->responsive) {
-            $graph .= $this->height ? "height: ".$this->height."px;" : "";
-            $graph .= $this->width ? "width: ".$this->width."px;" : "";
+            $graph .= $this->height ? 'height: '.$this->height.'px;' : '';
+            $graph .= $this->width ? 'width: '.$this->width.'px;' : '';
         }
     $graph .= "
 \"></div>
@@ -13,8 +13,8 @@ $graph = "<div id=\"$this->id\" style=\"
     $(function() {
         var $this->id = new JustGage({
             id: \"$this->id\",
-            value: ".$this->values[0].",
-            ";
+            value: ".$this->values[0].',
+            ';
 
             if (count($this->values) >= 2 and $this->values[1] <= $this->values[0]) {
                 $min = $this->values[1];
