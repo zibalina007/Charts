@@ -8,10 +8,10 @@ $graph = "
     ";
         if (!$this->responsive) {
             if ($this->height) {
-                $graph .= "height: ".$this->height."px;";
+                $graph .= 'height: '.$this->height.'px;';
                 $this->width = $this->height;
             }
-            $graph .= $this->width ? "width: ".$this->width."px;" : "";
+            $graph .= $this->width ? 'width: '.$this->width.'px;' : '';
         }
     $graph .= "
 \"></div>
@@ -19,7 +19,7 @@ $graph = "
 <script>
     $(function() {
         var $this->id = new ProgressBar.Circle('#$this->id', {
-            color: '"; $graph .= ($this->colors and count($this->colors) >= 2) ? $this->colors[1] : "#000"; $graph .= "',
+            color: '"; $graph .= ($this->colors and count($this->colors) >= 2) ? $this->colors[1] : '#000'; $graph .= "',
             // This has to be the same size as the maximum width to
             // prevent clipping
             strokeWidth: 4,
@@ -30,7 +30,7 @@ $graph = "
                 autoStyleContainer: false
             },
             from: { color: '#aaa', width: 4 },
-            to: { color: '"; $graph .= $this->colors ? $this->colors[0] : "#333"; $graph .= "', width: 4 },
+            to: { color: '"; $graph .= $this->colors ? $this->colors[0] : '#333'; $graph .= "', width: 4 },
             // Set default step function for all animate calls
             step: function(state, circle) {
             circle.path.setAttribute('stroke', state.color);
@@ -45,9 +45,9 @@ $graph = "
 
             }
         });
-        $this->id.animate(".($this->values[0] - $min)/($max - $min).");  // Number from 0.0 to 1.0
+        $this->id.animate(".($this->values[0] - $min) / ($max - $min).');  // Number from 0.0 to 1.0
     });
 </script>
-";
+';
 
 return $graph;
