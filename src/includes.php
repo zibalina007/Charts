@@ -28,7 +28,12 @@ return "
 	<script src='".asset('/vendor/consoletvs/charts/d3/d3.js')."'></script>
 	<link rel='stylesheet' href='".asset('/vendor/consoletvs/charts/plottable/plottable.css')."'>
 	<script src='".asset('/vendor/consoletvs/charts/plottable/plottable.js')."'></script>
-	
+
 	<script src='".asset('/vendor/consoletvs/charts/canvas-gauges/gauge.min.js')."'></script>
+
+    <script src='".asset('/vendor/consoletvs/charts/justgage/raphael-2.1.4.min.js')."'></script>
+    <script src='".asset('/vendor/consoletvs/charts/justgage/justgage.js')."'></script>
+	
+	<script src='".asset('/vendor/consoletvs/charts/progressbar/progressbar.min.js')."'></script>
 
 ";

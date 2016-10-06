@@ -28,6 +28,8 @@
 	-	[Geo](#geo)
 	-	[Gauge](#gauge)
 	-	[Temperature](#temperature)
+	-	[Percentage](#percentage)
+	-	[Progressbar](#progressbar)
 -	[Database Charts](#database-charts)
 -	[Realtime Charts](#realtime-charts)
 -	[Charts Functions](#charts-functions)
@@ -104,6 +106,12 @@ Charts include the following libraries & types by default:
 - Canvas Gauges ```canvas-gauges```
 	- Gauge Chart ```gauge``` *Realtime Available*
 	- Temperature Chart ```temp``` *Realtime Available*
+- JustGage ```justgage```
+	- Gauge Chart ```gauge``` *Realtime Available*
+	- Percentage Chart ```percentage``` *Realtime Available*
+- Progressbar JS ```progressbarjs```
+	- Percentage Chart ```percentage``` *Realtime Available*
+	- Progressbar Chart ```progressbar``` *Realtime Available*
 
 ## Installation
 
@@ -324,6 +332,36 @@ Charts::new('temp', 'canvas-gauges')
 ```
 
 ![Example Temperature](https://i.gyazo.com/1a8f264ffd9746da06d67c3624eaac81.png)
+
+### Percentage
+
+Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
+
+```
+Charts::new('percentage', 'justgage')
+	->setTitle('My nice chart')
+	->setElementLabel('My nice label')
+	->setValues([65,0,100])
+	->setResponsive(false)
+	->setHeight(300)
+	->setWidth(0);
+```
+
+![Example Percentage](https://i.gyazo.com/d39af8739c12eae6558046aa2031e6c0.png)
+
+### Progressbar
+
+Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
+
+```
+Charts::new('progressbar', 'progressbarjs')
+	->setValues([65,0,100])
+	->setResponsive(false)
+	->setHeight(50)
+	->setWidth(0);
+```
+
+![Example Progressbar](https://i.gyazo.com/ecd6a20344939ab75767739d32780104.png)
 
 ## Database Charts
 
@@ -575,7 +613,7 @@ The available methods are:
 				->setTitle("Permissions Chart")
 				->setInterval(3000); // in ms
 	```
-	
+
 ## Charts Functions
 
 - new()

@@ -217,10 +217,21 @@ class Chart
     public function render()
     {
         $this->id = $this->randomString();
-        try {
-            return include $this->sufix ? __DIR__."/Templates/$this->library.$this->type.$this->sufix.php" : __DIR__."/Templates/$this->library.$this->type.php";
-        } catch (Exception $e) {
-            throw new \Exception($e->getMessage());
+        $file = $this->sufix ? __DIR__."/Templates/$this->library.$this->type.$this->sufix.php" : __DIR__."/Templates/$this->library.$this->type.php";
+
+        if (file_exists($file)) {
+            return include $file;
+        } else {
+            $error_msg = "Unknown chart library / type combination";
+            $img_url = file_exists(public_path() . "/vendor/consoletvs/charts/error.png") ? asset('/vendor/consoletvs/charts/error.png') : "http://www.iconsfind.com/wp-content/uploads/2015/12/20151208_56663ed552e5d.png";
+
+            $error = "<div style='position: relative;";
+            if(!$this->responsive) {
+                $error .= $this->height ? "height: ".$this->height."px" : "";
+                $error .= $this->width ? "width: ".$this->width."px" : "";
+            }
+            $error .= "'><center><div style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'><img style='width: 75px; height: 75px;' src='$img_url'><br><br><b>$error_msg</b></div></center><div>";
+            return $error;
         }
     }
 
