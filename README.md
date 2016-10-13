@@ -38,6 +38,10 @@
 
 ## News
 
+**October 13, 2016**
+
+Realtime charts are in a stable release! You can start using the highcharts realtime charts or the gauges!
+
 **October 3, 2016**
 
 Charts are now even more responsive, if you want a fixed height and a responsive width, simple set responsive to false, and then set width to 0 and height to the one you like!
