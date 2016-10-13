@@ -20,6 +20,8 @@ class Realtime extends Chart
 {
     public $url;
     public $interval;
+    public $value_name;
+    public $max_values;
 
     /**
      * Create a new database instance.
@@ -38,6 +40,19 @@ class Realtime extends Chart
         $this->interval = $interval;
         $this->sufix = 'realtime';
         $this->value_name = 'value';
+        $this->max_values = 20;
+    }
+
+    /**
+     * Set the max values in the chart.
+     *
+     * @param int $number
+     */
+    public function setMaxValues($number)
+    {
+        $this->max_values = $number;
+
+        return $this;
     }
 
     /**

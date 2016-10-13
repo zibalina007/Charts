@@ -57,9 +57,9 @@ Charts include the following libraries & types by default:
 	- Pie Chart ```pie```
 	- Donut / Doughnut Chart ```donut```
 - Highcharts  ```highcharts```
-	- Area Chart ```area```
-	- Line Chart  ```line```
-	- Bar Chart  ```bar```
+	- Area Chart ```area``` *Realtime Available*
+	- Line Chart  ```line``` *Realtime Available*
+	- Bar Chart  ```bar``` *Realtime Available*
 	- Pie Chart ```pie```
 	- Donut / Doughnut Chart ```donut```
 	- Geo Chart  ```geo```
@@ -542,7 +542,7 @@ The available methods are:
 
 ## Realtime Charts
 
-You can create realtime charts (currently limited to gauge/temperature charts)
+You can create realtime charts (currently limited to gauge/temperature charts).
 
 Example json:
 
@@ -569,7 +569,7 @@ The available methods are:
 
 -	setValueName(required string $string)
 
-	Sets the value json index
+	Sets the value json index.
 
 	*Default:* ```value```
 
@@ -586,7 +586,7 @@ The available methods are:
 
 -	setUrl(required string $url)
 
-	Sets the url after chart object creation
+	Sets the url after chart object creation.
 
 	```
 	$chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
@@ -601,7 +601,7 @@ The available methods are:
 
 -	setInterval(required int $interval)
 
-	Sets the interval after chart object creation (ms)
+	Sets the interval after chart object creation (ms).
 
 	```
 	$chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
@@ -612,6 +612,19 @@ The available methods are:
 				->setWidth(0)
 				->setTitle("Permissions Chart")
 				->setInterval(3000); // in ms
+	```
+
+-	setMaxValues(required int $number)
+
+	Sets the max ammount of values to be seen before removing the first one.
+
+	```
+	$chart = Charts::realtime(url('/path/to/json'), 1000, 'area', 'highcharts')
+				->setResponsive(false)
+				->setHeight(300)
+				->setWidth(0)
+				->setTitle("Permissions Chart")
+				->setMaxValues(10);
 	```
 
 ## Charts Functions
