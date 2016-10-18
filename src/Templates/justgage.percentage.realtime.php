@@ -13,8 +13,8 @@ $graph = "<div id=\"$this->id\" style=\"
     $(function() {
         var $this->id = new JustGage({
             id: \"$this->id\",
-            value: "; $graph .= $this->values ? $this->values[0] : '0'; $graph .= ",
-            ";
+            value: "; $graph .= $this->values ? $this->values[0] : '0'; $graph .= ',
+            ';
 
             if (count($this->values) >= 2 and $this->values[1] <= $this->values[0]) {
                 $min = $this->values[1];

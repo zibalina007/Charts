@@ -8,10 +8,10 @@ $graph = "
           ['Element', 'Value'],
           ";
             $graph .= $this->values ? '["'.$this->element_label.'", '.$this->values[0].'],' : '["'.$this->element_label.'", 0],';
-            $graph .= "
+            $graph .= '
         ]);
         var options = {
-            ";
+            ';
             if (!$this->responsive) {
                 $graph .= $this->width ? "width: $this->width," : '';
                 $graph .= $this->height ? "height: $this->height," : '';
