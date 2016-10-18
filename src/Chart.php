@@ -18,6 +18,7 @@ namespace ConsoleTVs\Charts;
  */
 class Chart
 {
+    public $id;
     public $type;
     public $library;
     public $title;

@@ -9,7 +9,7 @@ $graph = "
               "; $graph .= $this->colors ? 'colorNumbers: "'.$this->colors[0].'",' : ''; $graph .= '
               '; $graph .= $this->width ? "width: $this->width," : ''; $graph .= $this->height ? "height: $this->height," : ''; $graph .= "
               title: \"$this->title\",
-              value: ".$this->values[0].",
+              value: "; $graph .= $this->values ? $this->values[0] : '0'; $graph .= ",
               units: \"$this->element_label\",
               ";
                 if (count($this->values) >= 2 and $this->values[1] <= $this->values[0]) {

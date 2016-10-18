@@ -392,6 +392,16 @@ The available methods are:
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')->setData(Role::all());
 	```
 
+- setDateColumn(required string $column)
+
+	Set the column to group the data.
+
+	*Default:* ```created_at```
+
+	```
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')->setDateColumn('my_date_column');
+	```
+
 - groupBy(required string $column)
 
 	Groups the data based on a column.

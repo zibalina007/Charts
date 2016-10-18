@@ -19,7 +19,7 @@ namespace ConsoleTVs\Charts;
 class Database extends Chart
 {
     public $data;
-    public $column;
+    public $date_column;
 
     /**
      * Create a new database instance.
@@ -33,6 +33,7 @@ class Database extends Chart
         parent::__construct($type, $library);
 
         // Set the data
+        $this->date_column = 'created_at';
         $this->data = $data;
     }
 
@@ -49,6 +50,18 @@ class Database extends Chart
     }
 
     /**
+     * Set date column to filter the data.
+     *
+     * @param string $column
+     */
+    public function setDateColumn($column)
+    {
+        $this->date_column = $column;
+
+        return $this;
+    }
+
+    /**
      * Group the data monthly based on the creation date.
      *
      * @param string $year
@@ -59,6 +72,8 @@ class Database extends Chart
     {
         $labels = [];
         $values = [];
+
+        $date_column = $this->date_column;
 
         $month = $month ? $month : date('m');
         $year = $year ? $year : date('Y');
@@ -77,7 +92,7 @@ class Database extends Chart
             $value = 0;
 
             foreach ($this->data as $data) {
-                if (date('Y-m-d', strtotime($data->created_at)) == $date) {
+                if (date('Y-m-d', strtotime($data->$date_column)) == $date) {
                     $value++;
                 }
             }
@@ -105,6 +120,8 @@ class Database extends Chart
         $labels = [];
         $values = [];
 
+        $date_column = $this->date_column;
+
         $year = $year ? $year : date('Y');
 
         for ($i = 1; $i <= 12; $i++) {
@@ -121,9 +138,9 @@ class Database extends Chart
 
             $value = 0;
             foreach ($this->data as $data) {
-                if ($year == date('Y', strtotime($data->created_at))) {
+                if ($year == date('Y', strtotime($data->$date_column))) {
                     // Same year
-                    if ($month == date('m', strtotime($data->created_at))) {
+                    if ($month == date('m', strtotime($data->$date_column))) {
                         // Same month
                         $value++;
                     }
@@ -147,6 +164,9 @@ class Database extends Chart
     {
         $labels = [];
         $values = [];
+
+        $date_column = $this->date_column;
+
         for ($i = 0; $i < $number; $i++) {
             if ($i == 0) {
                 $year = date('Y');
@@ -158,7 +178,7 @@ class Database extends Chart
             // Check the value
             $value = 0;
             foreach ($this->data as $data) {
-                if ($year == date('Y', strtotime($data->created_at))) {
+                if ($year == date('Y', strtotime($data->$date_column))) {
                     $value++;
                 }
             }
@@ -199,13 +219,16 @@ class Database extends Chart
     {
         $labels = [];
         $values = [];
+
+        $date_column = $this->date_column;
+
         for ($i = 0; $i < $number; $i++) {
             $date = $i == 0 ? date('d-m-Y') : date('d-m-Y', strtotime("-$i Day"));
             $date_f = $fancy ? date('l dS M, Y', strtotime($date)) : $date;
             array_push($labels, $date_f);
             $value = 0;
             foreach ($this->data as $data) {
-                if ($date == date('d-m-Y', strtotime($data->created_at))) {
+                if ($date == date('d-m-Y', strtotime($data->$date_column))) {
                     $value++;
                 }
             }
@@ -227,13 +250,16 @@ class Database extends Chart
     {
         $labels = [];
         $values = [];
+
+        $date_column = $this->date_column;
+
         for ($i = 0; $i < $number; $i++) {
             $date = $i == 0 ? date('m-Y') : date('m-Y', strtotime("-$i Month"));
             $date_f = $fancy ? date('F, Y', strtotime("01-$date")) : $date;
             array_push($labels, $date_f);
             $value = 0;
             foreach ($this->data as $data) {
-                if ($date == date('m-Y', strtotime($data->created_at))) {
+                if ($date == date('m-Y', strtotime($data->$date_column))) {
                     $value++;
                 }
             }
