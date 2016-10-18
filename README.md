@@ -556,7 +556,7 @@ The available methods are:
 
 ## Realtime Charts
 
-You can create realtime charts (currently limited to gauge/temperature charts).
+You can create realtime charts.
 
 Example json:
 
