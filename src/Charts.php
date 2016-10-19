@@ -104,13 +104,14 @@ class Charts extends Facade
      */
     public static function assets($libs = null)
     {
-        $includes = include(__DIR__.'/includes.php');
+        $includes = include __DIR__.'/includes.php';
 
         if ($libs && is_array($libs)) {
             $template = $includes['global'];
             foreach ($libs as $lib) {
                 $template .= $includes[$lib]."\n";
             }
+
             return $template;
         }
 
