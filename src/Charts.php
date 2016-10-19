@@ -98,10 +98,22 @@ class Charts extends Facade
     }
 
     /**
-     * Return all the library assets.
+     * Return the library assets.
+     *
+     * @param array $libs
      */
-    public static function assets()
+    public static function assets($libs = null)
     {
-        return include __DIR__.'/includes.php';
+        $includes = include(__DIR__.'/includes.php');
+
+        if ($libs && is_array($libs)) {
+            $template = $includes['global'];
+            foreach ($libs as $lib) {
+                $template .= $includes[$lib]."\n";
+            }
+            return $template;
+        }
+
+        return implode("\n", $includes);
     }
 }
