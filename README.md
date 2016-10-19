@@ -671,15 +671,20 @@ The available methods are:
     Charts::realtime(url('/json/data'), 2000, 'gauge', 'google')
     ```
 
-- assets()
+- assets(optional array $libraries)
 
   Returns all the assets to generate the graphs.
+  
+  To output only certain libraries, add an array to it with the libraries you want
 
   ```
   <?php echo Charts::assets(); ?>
 
-  // using blade
+  // Using blade
   {!! Charts::assets() !!}
+  
+  // Only certain libraries
+  {!! Charts::assets(['google', 'chartjs']) !!}
   ```
 
 - libraries()
