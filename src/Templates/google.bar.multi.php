@@ -6,11 +6,17 @@ $graph = "
       function drawPieChart() {
 
           var data = google.visualization.arrayToDataTable([
-              ['Element', "; foreach($this->datasets as $el => $ds){ $graph .= "\"$el\","; } $graph .="],
-              ";
+              ['Element', "; foreach ($this->datasets as $el => $ds) {
+    $graph .= "\"$el\",";
+} $graph .= '],
+              ';
                 $i = 0;
                 foreach ($this->labels as $l) {
-                    $graph .= "[\"$l\",";foreach($this->datasets as $el => $ds){ $graph .= $ds['values'][$i].","; } $graph .= "],";
+                    $graph .= "[\"$l\",";
+                    foreach ($this->datasets as $el => $ds) {
+                        $graph .= $ds['values'][$i].',';
+                    }
+                    $graph .= '],';
                     $i++;
                 }
                 $graph .= '

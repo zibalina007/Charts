@@ -14,9 +14,9 @@ $graph = "
             data: {
                 labels: ["; foreach ($this->labels as $label) {
         $graph .= '"'.$label.'",';
-    } $graph .= "],
+    } $graph .= '],
                 datasets: [
-                    ";
+                    ';
                     $i = 0;
                     foreach ($this->datasets as $el => $ds) {
                         $graph .= "
@@ -24,18 +24,19 @@ $graph = "
         					fill: true,
             	            label: \"$el\",
             	            lineTension: 0.3,
-                            "; if ($this->colors and count($this->colors) > $i) {
-                                $graph .= 'borderColor: "'.$this->colors[$i].'", backgroundColor: "'.$this->colors[$i].'",';
-                            } else {
-                                $c = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
-                                $graph .= 'borderColor: "'.$c.'", backgroundColor: "'.$c.'",';
-                            }
-                            $graph .= 'data: [';
-                            foreach ($ds['values'] as $dta) {
-                                $graph .= $dta.',';
-                            }
-                            $graph .= "],
-            	        },";
+                            ";
+                        if ($this->colors and count($this->colors) > $i) {
+                            $graph .= 'borderColor: "'.$this->colors[$i].'", backgroundColor: "'.$this->colors[$i].'",';
+                        } else {
+                            $c = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+                            $graph .= 'borderColor: "'.$c.'", backgroundColor: "'.$c.'",';
+                        }
+                        $graph .= 'data: [';
+                        foreach ($ds['values'] as $dta) {
+                            $graph .= $dta.',';
+                        }
+                        $graph .= '],
+            	        },';
                         $i++;
                     }
                     $graph .= '

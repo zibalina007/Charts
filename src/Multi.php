@@ -23,11 +23,11 @@ class Multi extends Chart
     /**
      * Create a new multi chart instance.
      *
-     * @param string    $function
-     * @param array     $interval
-     * @param int       $amplitude
-     * @param string    $type
-     * @param string    $library
+     * @param string $function
+     * @param array  $interval
+     * @param int    $amplitude
+     * @param string $type
+     * @param string $library
      */
     public function __construct($type = null, $library = null)
     {
@@ -48,6 +48,4 @@ class Multi extends Chart
 
         return $this;
     }
-
-
 }

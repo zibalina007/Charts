@@ -17,13 +17,13 @@ $graph = '
 } $graph .= '],
 			series: [['; foreach ($this->values as $value) {
     $graph .= $value.',';
-} $graph .= "]]
+} $graph .= ']]
 
 		};
 
         var options = {
             showArea: true,
-            ";
+            ';
             if (!$this->responsive) {
                 $graph .= $this->height ? 'height: "'.$this->height.'px",' : '';
                 $graph .= $this->width ? 'width: "'.$this->width.'px",' : '';

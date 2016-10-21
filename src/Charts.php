@@ -58,11 +58,11 @@ class Charts extends Facade
     /**
      * Return a new math chart instance.
      *
-     * @param string    $function
-     * @param array     $interval
-     * @param int       $amplitude
-     * @param string    $type
-     * @param string    $library
+     * @param string $function
+     * @param array  $interval
+     * @param int    $amplitude
+     * @param string $type
+     * @param string $library
      */
     public static function math($function, $interval, $amplitude, $type = null, $library = null)
     {
@@ -72,8 +72,8 @@ class Charts extends Facade
     /**
      * Return a new multi chart instance.
      *
-     * @param string    $type
-     * @param string    $library
+     * @param string $type
+     * @param string $library
      */
     public static function multi($type = null, $library = null)
     {
@@ -133,13 +133,14 @@ class Charts extends Facade
      */
     public static function assets($libs = null)
     {
-        $includes = include(__DIR__.'/includes.php');
+        $includes = include __DIR__.'/includes.php';
 
         if ($libs && is_array($libs)) {
             $template = $includes['global'];
             foreach ($libs as $lib) {
                 $template .= $includes[$lib]."\n";
             }
+
             return $template;
         }
 

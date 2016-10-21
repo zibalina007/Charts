@@ -17,28 +17,28 @@ $graph .= " id='$this->id'></svg>
                 $graph .= "
                     var s$i = [
                         ";
-                        for ($k = 0; $k < count($ds['values']); $k++) {
-                            $graph .= '{x: "'.$this->labels[$k].'", y: '.$ds['values'][$k] . ' },';
-                        }
-                        $graph .= "
+                for ($k = 0; $k < count($ds['values']); $k++) {
+                    $graph .= '{x: "'.$this->labels[$k].'", y: '.$ds['values'][$k].' },';
+                }
+                $graph .= '
                     ];
-                ";
+                ';
                 $i++;
             }
-            $graph .= "
+            $graph .= '
 
 			var xScale = new Plottable.Scales.Category();
 			var yScale = new Plottable.Scales.Linear();
 
 			var plot = new Plottable.Plots.ClusteredBar()
-                ";
+                ';
                 for ($i = 0; $i < count($this->datasets); $i++) {
                     $graph .= ".addDataset(new Plottable.Dataset(s$i))";
                 }
-                $graph .= "
+                $graph .= '
 			  .x(function(d) { return d.x; }, xScale)
 			  .y(function(d) { return d.y; }, yScale)
-			  "; $graph .= $this->colors ? ".attr('stroke', \"".$this->colors[0]."\").attr('fill', \"".$this->colors[0].'")' : ''; $graph .= "
+			  '; $graph .= $this->colors ? ".attr('stroke', \"".$this->colors[0]."\").attr('fill', \"".$this->colors[0].'")' : ''; $graph .= "
 			  .renderTo('svg#$this->id');
 
 			window.addEventListener('resize', function() {

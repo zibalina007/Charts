@@ -9,12 +9,18 @@ $graph = '
 		var data = {
 			labels: ["; foreach ($this->labels as $label) {
     $graph .= '"'.$label.'",';
-} $graph .= "],
-			series: ["; foreach ($this->datasets as $ds) { $graph .= "["; foreach ($ds['values'] as $value) { $graph .= $value.','; } $graph .= "],"; } $graph .= "]
+} $graph .= '],
+			series: ['; foreach ($this->datasets as $ds) {
+    $graph .= '[';
+    foreach ($ds['values'] as $value) {
+        $graph .= $value.',';
+    }
+    $graph .= '],';
+} $graph .= ']
 		};
 
         var options = {
-            ";
+            ';
             if (!$this->responsive) {
                 $graph .= $this->height ? 'height: "'.$this->height.'px",' : '';
                 $graph .= $this->width ? 'width: "'.$this->width.'px",' : '';

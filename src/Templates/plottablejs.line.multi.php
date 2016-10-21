@@ -17,12 +17,12 @@ $graph .= " id='$this->id'></svg>
                 $graph .= "
                     var s$i = [
                         ";
-                        for ($k = 0; $k < count($ds['values']); $k++) {
-                            $graph .= '{x: "'.$this->labels[$k].'", y: '.$ds['values'][$k] . ' },';
-                        }
-                        $graph .= "
+                for ($k = 0; $k < count($ds['values']); $k++) {
+                    $graph .= '{x: "'.$this->labels[$k].'", y: '.$ds['values'][$k].' },';
+                }
+                $graph .= '
                     ];
-                ";
+                ';
                 $i++;
             }
             $graph .= "
@@ -38,10 +38,10 @@ $graph .= " id='$this->id'></svg>
               for ($i = 0; $i < count($this->datasets); $i++) {
                   $graph .= ".addDataset(new Plottable.Dataset(s$i))";
               }
-              $graph .= "
+              $graph .= '
 			  .x(function(d) { return d.x; }, xScale)
 			  .y(function(d) { return d.y; }, yScale)
-			  "; $graph .= $this->colors ? ".attr('stroke', \"".$this->colors[0].'")' : ''; $graph .= "
+			  '; $graph .= $this->colors ? ".attr('stroke', \"".$this->colors[0].'")' : ''; $graph .= "
 			  .animated(true);
 
 			  var title = new Plottable.Components.TitleLabel(\"$this->title\")
