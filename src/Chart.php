@@ -119,7 +119,7 @@ class Chart
     }
 
     /**
-     * Set uf chart is responsive (will ignore dimensions if true).
+     * Set the chart element label.
      *
      * @param string $label
      */

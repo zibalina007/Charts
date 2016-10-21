@@ -6,116 +6,24 @@
 ![StyleCI](https://img.shields.io/badge/Built_for-Laravel-green.svg?style=flat-square)
 ![StyleCI](https://img.shields.io/github/license/consoletvs/charts.svg?style=flat-square)
 
-![Example Chart](https://i.gyazo.com/2ea6d7af4f467e882c38af88095cb062.png)
+![Charts Logo](http://i.imgur.com/zylVNhI.png)
 
 ## Table Of Contents
 
--	[News](#news)
--	[Libraries & Types](#libraries--types)
 -	[Installation](#installation)
 	-	[Video Tutorial](#video-tutorial)
-	-	[Download](#download)
-	-	[Add service provider & alias](#add-service-provider--alias)
-	-	[Publish the assets](#publish-the-assets)
 -	[Default Settings](#default-settings)
--	[Usage](#usage)
--	[Chart Examples](#chart-examples)
-	-	[Pie](#pie)
-	-	[Donut / Doughnut](#donut--doughnut)
-	-	[Line](#line)
-	-	[Area](#area)
-	-	[Bar](#bar)
-	-	[Geo](#geo)
-	-	[Gauge](#gauge)
-	-	[Temperature](#temperature)
-	-	[Percentage](#percentage)
-	-	[Progressbar](#progressbar)
+-	[Example Usage](#example-usage)
+-	[Create Charts](#create-charts)
+-	[Multi Datasets Chart](#multi-datasets-charts)
 -	[Database Charts](#database-charts)
 -	[Realtime Charts](#realtime-charts)
+-	[Math Functions Charts](#math-functions-charts)
 -	[Charts Functions](#charts-functions)
 -	[Available Chart Settings](#available-chart-settings)
+-	[Chart Examples](#chart-examples)
 -	[Extend your way](#extend-your-way)
 
-## News
-
-**October 13, 2016**
-
-Realtime charts are in a stable release! You can start using the highcharts realtime charts or the gauges!
-
-**October 3, 2016**
-
-Charts are now even more responsive, if you want a fixed height and a responsive width, simple set responsive to false, and then set width to 0 and height to the one you like!
-
-**September 29, 2016**
-
-You can now generate a new chart using the database data without building it manually. See *Database Charts* section for more information!
-
-## Libraries & Types
-
-Charts include the following libraries & types by default:
-
-- ChartJS  ```chartjs```
-	- Area Chart ```area```
-	- Line Chart  ```line```
-	- Bar Chart  ```bar```
-	- Pie Chart ```pie```
-	- Donut / Doughnut Chart ```donut```
-- Highcharts  ```highcharts```
-	- Area Chart ```area``` *Realtime Available*
-	- Line Chart  ```line``` *Realtime Available*
-	- Bar Chart  ```bar``` *Realtime Available*
-	- Pie Chart ```pie```
-	- Donut / Doughnut Chart ```donut```
-	- Geo Chart  ```geo```
-- Google Charts ```google```
-	- Area Chart ```area```
-	- Line Chart  ```line```
-	- Bar Chart  ```bar```
-	- Pie Chart ```pie```
-	- Donut / Doughnut Chart ```donut```
-	- Geo Chart  ```geo```
-	- Gauge Chart  ```gauge``` *Realtime Available*
-- Google Material  ```material```
-	- Line Chart  ```line```
-	- Bar Chart  ```bar```
-- Chartist  ```chartist```
-	- Area Chart ```area```
-	- Line Chart  ```line```
-	- Bar Chart  ```bar```
-	- Pie Chart ```pie```
-	- Donut / Doughnut Chart ```donut```
-- FusionCharts  ```fusioncharts```
-	- Area Chart ```area```
-	- Line Chart  ```line```
-	- Bar Chart  ```bar```
-	- Pie Chart ```pie```
-	- Donut / Doughnut Chart ```donut```
-- Morris JS  ```morris```
-	- Area Chart ```area```
-	- Line Chart  ```line```
-	- Bar Chart  ```bar```
-	- Donut / Doughnut Chart ```donut```
-- Plottable JS  ```plottablejs```
-	- Area Chart ```area```
-	- Line Chart  ```line```
-	- Bar Chart  ```bar```
-	- Pie Chart ```pie```
-	- Donut / Doughnut Chart ```donut```
-- Minimalist  ```minimalist```
-	- Area Chart ```area```
-	- Line Chart  ```line```
-	- Bar Chart  ```bar```
-	- Pie Chart ```pie```
-	- Donut / Doughnut Chart ```donut```
-- Canvas Gauges ```canvas-gauges```
-	- Gauge Chart ```gauge``` *Realtime Available*
-	- Temperature Chart ```temp``` *Realtime Available*
-- JustGage ```justgage```
-	- Gauge Chart ```gauge``` *Realtime Available*
-	- Percentage Chart ```percentage``` *Realtime Available*
-- Progressbar JS ```progressbarjs```
-	- Percentage Chart ```percentage``` *Realtime Available*
-	- Progressbar Chart ```progressbar``` *Realtime Available*
 
 ## Installation
 
@@ -135,13 +43,13 @@ composer require consoletvs/charts
 
 Add the following service provider to the array in: ```config/app.php```
 
-```
+```php
 ConsoleTVs\Charts\ChartsServiceProvider::class,
 ```
 
 Add the following alias to the array in: ```config/app.php```
 
-```
+```php
 'Charts' => ConsoleTVs\Charts\Charts::class,
 ```
 ### Publish the assets
@@ -155,11 +63,11 @@ php artisan vendor:publish --tag=charts_assets --force
 
 The file in: ```config/charts.php``` contains an array of settings, you can find the default settings in there.
 
-## Usage
+## Example Usage
 
 Example Controller:
 
-```
+```php
 <?php
 
 namespace App\Http\Controllers;
@@ -173,7 +81,7 @@ class TestController extends Controller
 {
     public function index()
     {
-		$chart = Charts::new('line', 'highcharts')
+		$chart = Charts::create('line', 'highcharts')
 			->setTitle('My nice chart')
 			->setLabels(['First', 'Second', 'Third'])
 			->setValues([5,10,20])
@@ -186,7 +94,7 @@ class TestController extends Controller
 
 Example View:
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -208,14 +116,27 @@ Example View:
 
 ```
 
-## Chart Examples
+## Create Charts
 
-### Pie
+| Create Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar |
+|---------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|
+| chartjs       | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           |
+| highcharts    | x    | x    | x   | x   | x     | x   | -     | -    | -          | -           |
+| google        | x    | x    | x   | x   | x     | x   | x     | -    | -          | -           |
+| material      | x    | -    | x   | -   | -     | -   | -     | -    | -          | -           |
+| chartist      | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           |
+| fusioncharts  | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           |
+| morris        | x    | x    | x   | -   | x     | -   | -     | -    | -          | -           |
+| plottablejs   | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           |
+| minimalist    | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           |
+| canvas-gauges | -    | -    | -   | -   | -     | -   | x     | x    | -          | -           |
+| justgage      | -    | -    | -   | -   | -     | -   | x     | -    | x          | -           |
+| progressbarjs | -    | -    | -   | -   | -     | -   | -     | -    | x          | x           |
 
-Note: ```highcharts``` can't change the color of this chart. Well it can but it's complicated, so I leave it here.
+The first argument of the create method is the chart type, and the second is the library
 
-```
-Charts::new('pie', 'highcharts')
+```php
+Charts::create('line', 'highcharts')
 	->setTitle('My nice chart')
 	->setLabels(['First', 'Second', 'Third'])
 	->setValues([5,10,20])
@@ -223,155 +144,52 @@ Charts::new('pie', 'highcharts')
 	->setResponsive(false);
 ```
 
-![Example Pie](https://i.gyazo.com/b61a0a5786a8f70daf61398d256366b8.png)
+## Multi Datasets Chart
 
-### Donut / Doughnut
+| Multi Dataset Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar |
+|----------------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|
+| chartjs              | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
+| highcharts           | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
+| google               | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
+| material             | x    | -    | x   | -   | -     | -   | -     | -    | -          | -           |
+| chartist             | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
+| fusioncharts         | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
+| morris               | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
+| plottablejs          | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
+| minimalist           | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
+| canvas-gauges        | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
+| justgage             | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
+| progressbarjs        | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
 
-Note: ```highcharts``` and ```chartist``` can't change the color of this chart. Well they can but it's complicated, so I leave it here.
+To create multi-dataset charts simply add the values using the ```setDataset()``` function!
 
-```
-Charts::new('donut', 'highcharts')
-	->setTitle('My nice chart')
-	->setLabels(['First', 'Second', 'Third'])
-	->setValues([5,10,20])
-	->setDimensions(1000,500)
-	->setResponsive(false);
-```
-
-![Example Donut](https://i.gyazo.com/fecef4a102cb348d0f7f3681120a600f.png)
-
-
-### Line
-
-```
-Charts::new('line', 'highcharts')
-	->setTitle('My nice chart')
-	->setElementLabel('My nice label')
-	->setLabels(['First', 'Second', 'Third'])
-	->setValues([5,10,20])
-	->setDimensions(1000,500)
-	->setResponsive(false);
+```php
+Charts::multi('line', 'highcharts')
+	->setColors(['#ff0000', '#00ff00', '#0000ff'])
+	->setLabels(['One', 'Two', 'Three'])
+	->setDataset('Test 1', [1,2,3])
+	->setDataset('Test 2', [0,6,0])
+	->setDataset('Test 3', [3,4,1]);
 ```
 
-![Example Line](https://i.gyazo.com/121736e3b8aa7f22ad17a7c0ceecac02.png)
+-	setDataset(required string $element_label, required array $values)
 
-### Area
-
-```
-Charts::new('area', 'highcharts')
-	->setTitle('My nice chart')
-	->setElementLabel('My nice label')
-	->setLabels(['First', 'Second', 'Third'])
-	->setValues([5,10,20])
-	->setDimensions(1000,500)
-	->setResponsive(false);
-```
-
-![Example Area](https://i.gyazo.com/f6c500cf9bfc2e449d64ee19b7bb809c.png)
-
-
-### Bar
-
-Note: ```highcharts``` can't change the color of this chart. Well it can but it's complicated, so I leave it here.
-
-```
-Charts::new('bar', 'highcharts')
-	->setTitle('My nice chart')
-	->setElementLabel('My nice label')
-	->setLabels(['First', 'Second', 'Third'])
-	->setValues([5,10,20])
-	->setDimensions(1000,500)
-	->setResponsive(false);
-```
-
-![Example Bar](https://i.gyazo.com/94ada1aac091ef3cbc84433a3425a9aa.png)
-
-### Geo
-
-Note: The labels must have the country codes, not the name.
-
-Note 2: To add color to the chart, you'll need to provide an array of at least 2 colors. The first is the min and the second the max.
-
-```
-Charts::new('geo', 'highcharts')
-	->setTitle('My nice chart')
-	->setElementLabel('My nice label')
-	->setLabels(['ES', 'FR', 'RU'])
-	->setColors(['#C5CAE9', '#283593'])
-	->setValues([5,10,20])
-	->setDimensions(1000,500)
-	->setResponsive(false);
-```
-
-![Example Geo](https://i.gyazo.com/f7a76582e80912864c6cfb23f688e43e.png)
-
-### Gauge
-
-Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
-
-```
-Charts::new('gauge', 'canvas-gauges')
-	->setTitle('My nice chart')
-	->setElementLabel('My nice label')
-	->setValues([65,0,100])
-	->setResponsive(false)
-	->setHeight(300)
-	->setWidth(0);
-```
-
-![Example Gauge](https://i.gyazo.com/a9bc88c6550d39a15b5a686ea66df0ea.png)
-
-### Temperature
-
-Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
-
-```
-Charts::new('temp', 'canvas-gauges')
-	->setTitle('My nice chart')
-	->setElementLabel('My nice label')
-	->setValues([65,0,100])
-	->setResponsive(false)
-	->setHeight(300)
-	->setWidth(0);
-```
-
-![Example Temperature](https://i.gyazo.com/1a8f264ffd9746da06d67c3624eaac81.png)
-
-### Percentage
-
-Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
-
-```
-Charts::new('percentage', 'justgage')
-	->setTitle('My nice chart')
-	->setElementLabel('My nice label')
-	->setValues([65,0,100])
-	->setResponsive(false)
-	->setHeight(300)
-	->setWidth(0);
-```
-
-![Example Percentage](https://i.gyazo.com/d39af8739c12eae6558046aa2031e6c0.png)
-
-### Progressbar
-
-Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
-
-```
-Charts::new('progressbar', 'progressbarjs')
-	->setValues([65,0,100])
-	->setResponsive(false)
-	->setHeight(50)
-	->setWidth(0);
-```
-
-![Example Progressbar](https://i.gyazo.com/ecd6a20344939ab75767739d32780104.png)
+	```php
+		Charts::multi('bar', 'minimalist')
+		            ->setResponsive(false)
+		            ->setDimensions(0, 500)
+		            ->setColors(['#ff0000', '#00ff00', '#0000ff'])
+		            ->setLabels(['One', 'Two', 'Three'])
+		            ->setDataset('Test 1', [1,2,3])
+		            ->setDataset('Test 2', [0,6,0])
+		            ->setDataset('Test 3', [3,4,1]);
+	```
 
 ## Database Charts
 
 You can also generate database charts with simple setup!
 
-```
+```php
 $chart = Charts::database(User::all(), 'bar', 'highcharts');
 ```
 
@@ -388,7 +206,7 @@ The available methods are:
 
 	Setup the data again.
 
-	```
+	```php
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')->setData(Role::all());
 	```
 
@@ -398,7 +216,7 @@ The available methods are:
 
 	*Default:* ```created_at```
 
-	```
+	```php
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')->setDateColumn('my_date_column');
 	```
 
@@ -406,7 +224,7 @@ The available methods are:
 
 	Groups the data based on a column.
 
-	```
+	```php
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')
 		->setElementLabel("Total")
 		->setDimensions(1000, 500)
@@ -422,7 +240,7 @@ The available methods are:
 
 	*Default:* ```$years = 4```
 
-	```
+	```php
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')
 		->setElementLabel("Total")
 		->setDimensions(1000, 500)
@@ -445,7 +263,7 @@ The available methods are:
 
 	*Default:* ```$year = 7, $fancy = false```
 
-	```
+	```php
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')
 		->setElementLabel("Total")
 		->setDimensions(1000, 500)
@@ -468,7 +286,7 @@ The available methods are:
 
 	*Default:* ```$month = date('m'), $year = date('Y'), $fancy = false```
 
-	```
+	```php
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')
 		->setElementLabel("Total")
 		->setDimensions(1000, 500)
@@ -491,7 +309,7 @@ The available methods are:
 
 	*Default:* ```$number = 4```
 
-	```
+	```php
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')
 		->setElementLabel("Total")
 		->setDimensions(1000, 500)
@@ -514,7 +332,7 @@ The available methods are:
 
 	*Default:* ```$number = 6, $fancy = false```
 
-	```
+	```php
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')
 		->setElementLabel("Total")
 		->setDimensions(1000, 500)
@@ -537,7 +355,7 @@ The available methods are:
 
 	*Default:* ```$number = 7, $fancy = false```
 
-	```
+	```php
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')
 		->setElementLabel("Total")
 		->setDimensions(1000, 500)
@@ -556,17 +374,32 @@ The available methods are:
 
 ## Realtime Charts
 
+| Realtime Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar |
+|-----------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|
+| chartjs         | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
+| highcharts      | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
+| google          | -    | -    | -   | -   | -     | -   | x     | -    | -          | -           |
+| material        | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
+| chartist        | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
+| fusioncharts    | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
+| morris          | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
+| plottablejs     | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
+| minimalist      | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
+| canvas-gauges   | -    | -    | -   | -   | -     | -   | x     | x    | -          | -           |
+| justgage        | -    | -    | -   | -   | -     | -   | x     | -    | x          | -           |
+| progressbarjs   | -    | -    | -   | -   | -     | -   | -     | -    | x          | x           |
+
 You can create realtime charts.
 
 Example json:
 
-```
+```json
 {"value":31}
 ```
 
 'value' can be changed to diferent index name with ```setValueName($string)```
 
-```
+```php
 $chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
             ->setValues([65, 0, 100])
             ->setLabels(['First', 'Second', 'Third'])
@@ -587,7 +420,7 @@ The available methods are:
 
 	*Default:* ```value```
 
-	```
+	```php
 	$chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
 				->setValues([65, 0, 100])
 				->setLabels(['First', 'Second', 'Third'])
@@ -602,7 +435,7 @@ The available methods are:
 
 	Sets the url after chart object creation.
 
-	```
+	```php
 	$chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
 				->setValues([65, 0, 100])
 				->setLabels(['First', 'Second', 'Third'])
@@ -617,7 +450,7 @@ The available methods are:
 
 	Sets the interval after chart object creation (ms).
 
-	```
+	```php
 	$chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
 				->setValues([65, 0, 100])
 				->setLabels(['First', 'Second', 'Third'])
@@ -632,7 +465,7 @@ The available methods are:
 
 	Sets the max ammount of values to be seen before removing the first one.
 
-	```
+	```php
 	$chart = Charts::realtime(url('/path/to/json'), 1000, 'area', 'highcharts')
 				->setResponsive(false)
 				->setHeight(300)
@@ -641,15 +474,62 @@ The available methods are:
 				->setMaxValues(10);
 	```
 
+## Math Functions Charts
+
+You can create math function charts.
+
+![Math Functions Example](https://gyazo.com/0dc9c2bd8ce55f16ff2c217afc9614dd)
+
+```php
+Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts');
+```
+
+The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` amplitude is ```0.2```
+
+- setFunction(required string $function)
+
+  Sets the function.
+
+  ```php
+  Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts')->setFunction('x+1');
+  ```
+
+- setInterval(required array $interval)
+
+	Sets the function / chart interval.
+
+	```php
+	Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts')->setInterval([2, 8]);
+	```
+
+- setAmplitude(required int $amplitude)
+
+	Sets the function amplitude between x points.
+
+	```php
+	Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts')->setAmplitude(0.5);
+	```
+
+- calculate()
+
+	Calculates the valeus / labels for the chart.
+
+	**Note:** This function is called every time a modification is made in the chart function, interval or amplitude
+	so you don't need to call it every time you change the values. It's just an auxiliary function.
+
+	```php
+	Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts')->calculate();
+	```
+
 ## Charts Functions
 
-- new()
+- create(optional string $type, optional string $library)
 
   Returns a new chart instance, if no library is specified, the default one will be used.
 
-  ```
-  Charts::new('line');
-  Charts::new('line', 'highcharts');
+  ```php
+  Charts::create('line');
+  Charts::create('line', 'highcharts');
   ```
 
 
@@ -658,40 +538,49 @@ The available methods are:
 
 	Returns a new database chart instance that extends the base one.
 
-	```
+	```php
     Charts::database(User::all());
-    Charts::new(User::all(), 'line', 'highcharts');
+    Charts::create(User::all(), 'line', 'highcharts');
     ```
 
 - realtime(required string $url, required int $interval, optional string $type, optional string $library)
 
 	Returns a new database chart instance that extends the base one.
 
-	```
+	```php
     Charts::realtime(url('/json/data'), 2000, 'gauge', 'google')
+    ```
+
+- realtime(required string $function, required array $interval, required int $amplitude, optional string $type, optional string $library)
+
+	Returns a new math function chart instance that extends the base one.
+
+	```php
+    Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts');
     ```
 
 - assets(optional array $libraries)
 
-  Returns all the assets to generate the graphs.
-  
-  To output only certain libraries, add an array to it with the libraries you want
+	Returns all the assets to generate the graphs.
 
-  ```
-  <?php echo Charts::assets(); ?>
+	To output only certain libraries, add an array to it with the libraries you want
 
-  // Using blade
-  {!! Charts::assets() !!}
-  
-  // Only certain libraries
-  {!! Charts::assets(['google', 'chartjs']) !!}
-  ```
+	```php
+	<?php echo Charts::assets(); ?>
 
-- libraries()
+	// Using blade
+	{!! Charts::assets() !!}
+
+	// Only certain libraries
+	{!! Charts::assets(['google', 'chartjs']) !!}
+	```
+
+
+- libraries(optional string $type)
 
   Returns an array of all the libraries available (can be filtered).
 
-  ```
+  ```php
   // Return all the libraries available
   print_r(Charts::libraries());
 
@@ -699,11 +588,11 @@ The available methods are:
   print_r(Charts::libraries('line'));
   ```
 
-- types()
+- types(optional string $library)
 
   Returns an array of all the chart types available (can be filtered).
 
-  ```
+  ```php
   // Return all the chart types available
   print_r(Charts::types());
 
@@ -713,7 +602,7 @@ The available methods are:
 
 ## Available Chart Settings:
 
-- setGaugeStyle($style)
+- setGaugeStyle(required string $style)
 
 	Set the gauge style
 
@@ -721,113 +610,273 @@ The available methods are:
 
 	*Available options:* ```left``` ```right``` ```center```
 
-	```
-	Charts::new('gauge', 'google')->setGaugeStyle('right');
+	```php
+	Charts::create('gauge', 'google')->setGaugeStyle('right');
 	```
 
-- setType()
+- setType(required string $type)
 
   Set the chart type after creation (Example: from line to pie).
 
-  ```
-  Charts::new('line', 'highcharts')->setType('pie');
+  ```php
+  Charts::create('line', 'highcharts')->setType('pie');
   ```
 
-- setLibrary()
+- setLibrary(required string $library)
 
   Set the chart library after creation (Example: from highcharts to google).
 
-  ```
-  Charts::new('line', 'highcharts')->setLibrary('google');
+  ```php
+  Charts::create('line', 'highcharts')->setLibrary('google');
   ```
 
-- setLabels()
+- setLabels(required array $labels)
 
   The labels of the chart.
 
-  ```
-  Charts::new('line', 'highcharts')->setLabels(['First', 'Second', 'Third']);
+  ```php
+  Charts::create('line', 'highcharts')->setLabels(['First', 'Second', 'Third']);
   ```
 
-- setValues()
+- setValues(required array $values)
 
   The values of the chart respectively.
 
-  ```
-  Charts::new('line', 'highcharts')->setValues([10, 50, 100]);
+  ```php
+  Charts::create('line', 'highcharts')->setValues([10, 50, 100]);
   ```
 
-- setElementLabel()
+- setElementLabel(required string $element_label)
 
   The element label for line / bar / geo charts.
 
-  ```
-  Charts::new('line', 'highcharts')->setElementLabel('Total Views');
+  ```php
+  Charts::create('line', 'highcharts')->setElementLabel('Total Views');
   ```
 
-- setTitle()
+- setTitle(required string $title)
 
   The chart title.
 
-  ```
-  Charts::new('line', 'highcharts')->setTitle('My Chart');
+  ```php
+  Charts::create('line', 'highcharts')->setTitle('My Chart');
   ```
 
-- setColors()
+- setColors(required array $colors)
 
   The colors of the charts respectively.
 
-  ```
-  Charts::new('line', 'highcharts')->setColors(['#ff0000', '#00ff00', '#0000ff']);
+  ```php
+  Charts::create('line', 'highcharts')->setColors(['#ff0000', '#00ff00', '#0000ff']);
   ```
 
-- setWidth()
+- setWidth(required int $width)
 
   The chart width if non-responsive. 0 = responsive width.
 
-  ```
-  Charts::new('line', 'highcharts')->setWidth(1000);
+  ```php
+  Charts::create('line', 'highcharts')->setWidth(1000);
   ```
 
-- setHeight()
+- setHeight(required int $height)
 
   The chart height if non-responsive. 0 = responsive height.
 
-  ```
-  Charts::new('line', 'highcharts')->setHeight(500);
+  ```php
+  Charts::create('line', 'highcharts')->setHeight(500);
   ```
 
-- setDimensions()
+- setDimensions(required int $width, required int $height)
 
   The chart dimensions (shortcut to set width, height with one funcion).
 
-  ```
-  Charts::new('line', 'highcharts')->setHeight(1000, 500);
+  ```php
+  Charts::create('line', 'highcharts')->setHeight(1000, 500);
   ```
 
-- setResponsive()
+- setResponsive(required boolean $responsive)
 
   Set if the chart is responsive or not. If not, the chart dimensions will be used.
 
-  ```
-  Charts::new('line', 'highcharts')->setResponsive(false);
+  ```php
+  Charts::create('line', 'highcharts')->setResponsive(false);
   ```
 
 - settings()
 
   Return the chart settings.
 
-  ```
-  print_r(Charts::new('line', 'highcharts')->settings());
+  ```php
+  print_r(Charts::create('line', 'highcharts')->settings());
   ```
 
 - render()
 
   Render the chat.
 
+  ```php
+  echo Charts::create('line', 'highcharts')->setLabels(['One', 'Two'])->setValues([10, 20])->render();
   ```
-  echo Charts::new('line', 'highcharts')->setLabels(['One', 'Two'])->setValues([10, 20])->render();
+
+  ## Chart Examples
+
+  ### Pie
+
+  Note: ```highcharts``` can't change the color of this chart. Well it can but it's complicated, so I leave it here.
+
+  ```php
+  Charts::create('pie', 'highcharts')
+  	->setTitle('My nice chart')
+  	->setLabels(['First', 'Second', 'Third'])
+  	->setValues([5,10,20])
+  	->setDimensions(1000,500)
+  	->setResponsive(false);
   ```
+
+  ![Example Pie](https://i.gyazo.com/b61a0a5786a8f70daf61398d256366b8.png)
+
+  ### Donut / Doughnut
+
+  Note: ```highcharts``` and ```chartist``` can't change the color of this chart. Well they can but it's complicated, so I leave it here.
+
+  ```php
+  Charts::create('donut', 'highcharts')
+  	->setTitle('My nice chart')
+  	->setLabels(['First', 'Second', 'Third'])
+  	->setValues([5,10,20])
+  	->setDimensions(1000,500)
+  	->setResponsive(false);
+  ```
+
+  ![Example Donut](https://i.gyazo.com/fecef4a102cb348d0f7f3681120a600f.png)
+
+
+  ### Line
+
+  ```php
+  Charts::create('line', 'highcharts')
+  	->setTitle('My nice chart')
+  	->setElementLabel('My nice label')
+  	->setLabels(['First', 'Second', 'Third'])
+  	->setValues([5,10,20])
+  	->setDimensions(1000,500)
+  	->setResponsive(false);
+  ```
+
+  ![Example Line](https://i.gyazo.com/121736e3b8aa7f22ad17a7c0ceecac02.png)
+
+  ### Area
+
+  ```php
+  Charts::create('area', 'highcharts')
+  	->setTitle('My nice chart')
+  	->setElementLabel('My nice label')
+  	->setLabels(['First', 'Second', 'Third'])
+  	->setValues([5,10,20])
+  	->setDimensions(1000,500)
+  	->setResponsive(false);
+  ```
+
+  ![Example Area](https://i.gyazo.com/f6c500cf9bfc2e449d64ee19b7bb809c.png)
+
+
+  ### Bar
+
+  Note: ```highcharts``` can't change the color of this chart. Well it can but it's complicated, so I leave it here.
+
+  ```php
+  Charts::create('bar', 'highcharts')
+  	->setTitle('My nice chart')
+  	->setElementLabel('My nice label')
+  	->setLabels(['First', 'Second', 'Third'])
+  	->setValues([5,10,20])
+  	->setDimensions(1000,500)
+  	->setResponsive(false);
+  ```
+
+  ![Example Bar](https://i.gyazo.com/94ada1aac091ef3cbc84433a3425a9aa.png)
+
+  ### Geo
+
+  Note: The labels must have the country codes, not the name.
+
+  Note 2: To add color to the chart, you'll need to provide an array of at least 2 colors. The first is the min and the second the max.
+
+  ```php
+  Charts::create('geo', 'highcharts')
+  	->setTitle('My nice chart')
+  	->setElementLabel('My nice label')
+  	->setLabels(['ES', 'FR', 'RU'])
+  	->setColors(['#C5CAE9', '#283593'])
+  	->setValues([5,10,20])
+  	->setDimensions(1000,500)
+  	->setResponsive(false);
+  ```
+
+  ![Example Geo](https://i.gyazo.com/f7a76582e80912864c6cfb23f688e43e.png)
+
+  ### Gauge
+
+  Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
+
+  ```php
+  Charts::create('gauge', 'canvas-gauges')
+  	->setTitle('My nice chart')
+  	->setElementLabel('My nice label')
+  	->setValues([65,0,100])
+  	->setResponsive(false)
+  	->setHeight(300)
+  	->setWidth(0);
+  ```
+
+  ![Example Gauge](https://i.gyazo.com/a9bc88c6550d39a15b5a686ea66df0ea.png)
+
+  ### Temperature
+
+  Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
+
+  ```php
+  Charts::create('temp', 'canvas-gauges')
+  	->setTitle('My nice chart')
+  	->setElementLabel('My nice label')
+  	->setValues([65,0,100])
+  	->setResponsive(false)
+  	->setHeight(300)
+  	->setWidth(0);
+  ```
+
+  ![Example Temperature](https://i.gyazo.com/1a8f264ffd9746da06d67c3624eaac81.png)
+
+  ### Percentage
+
+  Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
+
+  ```php
+  Charts::create('percentage', 'justgage')
+  	->setTitle('My nice chart')
+  	->setElementLabel('My nice label')
+  	->setValues([65,0,100])
+  	->setResponsive(false)
+  	->setHeight(300)
+  	->setWidth(0);
+  ```
+
+  ![Example Percentage](https://i.gyazo.com/d39af8739c12eae6558046aa2031e6c0.png)
+
+  ### Progressbar
+
+  Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
+
+  ```php
+  Charts::create('progressbar', 'progressbarjs')
+  	->setValues([65,0,100])
+  	->setResponsive(false)
+  	->setHeight(50)
+  	->setWidth(0);
+  ```
+
+  ![Example Progressbar](https://i.gyazo.com/ecd6a20344939ab75767739d32780104.png)
+
 
 ## Extend your way!
 
@@ -844,8 +893,8 @@ Then you create a file like this: ```mylib.line.php```
 
 To call it later, just use:
 
-```
-$chart = Charts::new('line', 'mylib');
+```php
+$chart = Charts::create('line', 'mylib');
 ```
 
 You will need to add the CSS / JS to the includes.php file found in the ```/src``` folder.

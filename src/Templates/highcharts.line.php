@@ -50,7 +50,7 @@ $graph = "
                     borderWidth: 0
                 },
                 series: [{
-                    name: '$this->element_label',
+                    name: \"$this->element_label\",
                     data: ["; foreach ($this->values as $dta) {
                     $graph .= $dta.',';
                 } $graph .= "]

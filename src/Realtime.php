@@ -24,7 +24,7 @@ class Realtime extends Chart
     public $max_values;
 
     /**
-     * Create a new database instance.
+     * Create a new realtime instance.
      *
      * @param string $url
      * @param int    $interval

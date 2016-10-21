@@ -23,6 +23,12 @@ $graph = '
 
         var options = {
             showArea: true,
+            ";
+            if (!$this->responsive) {
+                $graph .= $this->height ? 'height: "'.$this->height.'px",' : '';
+                $graph .= $this->width ? 'width: "'.$this->width.'px",' : '';
+            }
+            $graph .= "
         };
 
 		new Chartist.Line('#$this->id', data, options);

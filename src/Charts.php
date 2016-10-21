@@ -26,12 +26,14 @@ class Charts extends Facade
      * @param string $type
      * @param string $library
      */
-    public static function new($type = null, $library = null)
+    public static function create($type = null, $library = null)
     {
         return new Chart($type, $library);
     }
 
     /**
+     * Return a new realtime chart instance.
+     *
      * @param mixed  $data
      * @param string $type
      * @param string $library
@@ -42,6 +44,8 @@ class Charts extends Facade
     }
 
     /**
+     * Return a new database chart instance.
+     *
      * @param mixed  $data
      * @param string $type
      * @param string $library
@@ -49,6 +53,31 @@ class Charts extends Facade
     public static function database($data, $type = null, $library = null)
     {
         return new Database($data, $type, $library);
+    }
+
+    /**
+     * Return a new math chart instance.
+     *
+     * @param string    $function
+     * @param array     $interval
+     * @param int       $amplitude
+     * @param string    $type
+     * @param string    $library
+     */
+    public static function math($function, $interval, $amplitude, $type = null, $library = null)
+    {
+        return new Math($function, $interval, $amplitude, $type, $library);
+    }
+
+    /**
+     * Return a new multi chart instance.
+     *
+     * @param string    $type
+     * @param string    $library
+     */
+    public static function multi($type = null, $library = null)
+    {
+        return new Multi($type, $library);
     }
 
     /**
@@ -104,14 +133,13 @@ class Charts extends Facade
      */
     public static function assets($libs = null)
     {
-        $includes = include __DIR__.'/includes.php';
+        $includes = include(__DIR__.'/includes.php');
 
         if ($libs && is_array($libs)) {
             $template = $includes['global'];
             foreach ($libs as $lib) {
                 $template .= $includes[$lib]."\n";
             }
-
             return $template;
         }
 

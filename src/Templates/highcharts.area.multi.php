@@ -33,28 +33,27 @@ $graph = "
                         color: '#808080'
                     }]
                 },
-                "; if ($this->colors) {
-                    $graph .= '
-                        plotOptions: {
-                            series: {
-                                color: "'.$this->colors[0].'"
-                            }
-                        },
-                    ';
-                }
-                $graph .= "
                 legend: {
                     layout: 'vertical',
                     align: 'right',
                     verticalAlign: 'middle',
                     borderWidth: 0
                 },
-                series: [{
-                    name: \"$this->element_label\",
-                    data: ["; foreach ($this->values as $dta) {
-                    $graph .= $dta.',';
-                } $graph .= "]
-                }]
+                series: [
+                    ";
+                    $i = 0;
+                    foreach ($this->datasets as $el => $ds) {
+                        $graph .= "{
+                            name: \"$el\",
+                            "; $graph .= ($this->colors && count($this->colors) > $i) ? "color: \"".$this->colors[$i]."\"," : ""; $graph .= "
+                            data: ["; foreach ($ds['values'] as $dta) {
+                                $graph .= $dta.',';
+                                } $graph .= "]
+                            },";
+                        $i++;
+                    }
+                    $graph .= "
+                ]
             });
         });
     </script>

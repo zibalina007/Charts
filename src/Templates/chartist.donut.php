@@ -26,6 +26,12 @@ $graph = '
             labelOffset: 50,
 			chartPadding: 20,
 			labelDirection: 'explode',
+            ";
+            if (!$this->responsive) {
+                $graph .= $this->height ? 'height: "'.$this->height.'px",' : '';
+                $graph .= $this->width ? 'width: "'.$this->width.'px",' : '';
+            }
+            $graph .= "
         };
 
 		new Chartist.Pie('#$this->id', data, options);

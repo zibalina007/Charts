@@ -52,7 +52,7 @@ $graph = "
                     borderWidth: 0
                 },
                 series: [{
-                    name: '$this->element_label',
+                    name: \"$this->element_label\",
                     data: [],
                     pointStart: new Date().getTime(),
                     pointInterval: ($this->interval/1000) * 1000 // one day

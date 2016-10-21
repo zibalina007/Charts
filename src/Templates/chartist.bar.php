@@ -16,17 +16,15 @@ $graph = '
     $graph .= $value.',';
 } $graph .= ']]
 		};
-	
-		var options = {
-		  ';
-          if (!$this->responsive) {
-              $graph .= "
-				width: $this->width,
-				height: $this->height,
-			";
-          }
-          $graph .= "
-		};
+
+        var options = {
+            ';
+            if (!$this->responsive) {
+                $graph .= $this->height ? 'height: "'.$this->height.'px",' : '';
+                $graph .= $this->width ? 'width: "'.$this->width.'px",' : '';
+            }
+            $graph .= "
+        }
 		new Chartist.Bar('#$this->id', data, options);
     </script>
 ";
