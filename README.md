@@ -478,7 +478,7 @@ The available methods are:
 
 You can create math function charts.
 
-![Math Functions Example](https://gyazo.com/0dc9c2bd8ce55f16ff2c217afc9614dd)
+![Math Functions Example](https://i.gyazo.com/0dc9c2bd8ce55f16ff2c217afc9614dd.png)
 
 ```php
 Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts');
