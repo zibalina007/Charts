@@ -6,11 +6,17 @@ $graph = "
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
           var data = google.visualization.arrayToDataTable([
-              ['Element', "; foreach($this->datasets as $el => $ds){ $graph .= "\"$el\","; } $graph .="],
-              ";
+              ['Element', "; foreach ($this->datasets as $el => $ds) {
+    $graph .= "\"$el\",";
+} $graph .= '],
+              ';
                 $i = 0;
                 foreach ($this->labels as $l) {
-                    $graph .= "[\"$l\",";foreach($this->datasets as $el => $ds){ $graph .= $ds['values'][$i].","; } $graph .= "],";
+                    $graph .= "[\"$l\",";
+                    foreach ($this->datasets as $el => $ds) {
+                        $graph .= $ds['values'][$i].',';
+                    }
+                    $graph .= '],';
                     $i++;
                 }
                 $graph .= "
@@ -22,9 +28,11 @@ $graph = "
           },
           ";
           if ($this->colors) {
-              $graph .= "colors: [";
-              foreach ($this->colors as $c){ $graph .= "'". $c . "',"; }
-              $graph .= "],";
+              $graph .= 'colors: [';
+              foreach ($this->colors as $c) {
+                  $graph .= "'".$c."',";
+              }
+              $graph .= '],';
           } $graph .= "
         };
 

@@ -45,11 +45,15 @@ $graph = "
                     foreach ($this->datasets as $el => $ds) {
                         $graph .= "{
                             name: \"$el\",
-                            "; $graph .= ($this->colors && count($this->colors) > $i) ? "color: \"".$this->colors[$i]."\"," : ""; $graph .= "
-                            data: ["; foreach ($ds['values'] as $dta) {
-                                $graph .= $dta.',';
-                                } $graph .= "]
-                            },";
+                            ";
+                        $graph .= ($this->colors && count($this->colors) > $i) ? 'color: "'.$this->colors[$i].'",' : '';
+                        $graph .= '
+                            data: [';
+                        foreach ($ds['values'] as $dta) {
+                            $graph .= $dta.',';
+                        }
+                        $graph .= ']
+                            },';
                         $i++;
                     }
                     $graph .= "

@@ -24,7 +24,7 @@ $graph = '
                         $graph .= "{x: \"$l\",";
                         $i = 0;
                         foreach ($this->datasets as $ds) {
-                            $graph .= "s$i: " . $ds['values'][$k] . ", ";
+                            $graph .= "s$i: ".$ds['values'][$k].', ';
                             $i++;
                         }
                         $graph .= "},\n";
@@ -37,8 +37,8 @@ $graph = '
               foreach ($this->datasets as $el => $ds) {
                   $graph .= "\"$el\", ";
               }
-              $graph .= "],
-			  ykeys: [";
+              $graph .= '],
+			  ykeys: [';
                   for ($i = 0; $i < count($this->datasets); $i++) {
                       $graph .= "\"s$i\", ";
                   }
@@ -47,13 +47,13 @@ $graph = '
 			  parseTime: false,
 			  ";
                 if ($this->colors) {
-                    $graph .= "barColors: [
-                        ";
-                        foreach ($this->colors as $c) {
-                            $graph .= "'$c', ";
-                        }
-                        $graph .= "
-                    ],";
+                    $graph .= 'barColors: [
+                        ';
+                    foreach ($this->colors as $c) {
+                        $graph .= "'$c', ";
+                    }
+                    $graph .= '
+                    ],';
                 }
               $graph .= '
 

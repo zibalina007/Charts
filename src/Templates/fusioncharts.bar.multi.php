@@ -55,21 +55,21 @@ $graph = "
                                 {
                                     'seriesname': \"$el\",
                                     ";
-                                    $graph .= ($this->colors and count($this->colors) > $i) ? "'color': \"".$this->colors[$i]."\"," : "";
-                                    $graph .= "
+                            $graph .= ($this->colors and count($this->colors) > $i) ? "'color': \"".$this->colors[$i].'",' : '';
+                            $graph .= "
                                     'data': [
                                         ";
-                                        foreach ($ds['values'] as $v) {
-                                            $graph .= "
+                            foreach ($ds['values'] as $v) {
+                                $graph .= "
                                                 {
                                                     'value': '$v'
                                                 },
                                             ";
-                                        }
-                                        $graph .= "
+                            }
+                            $graph .= '
                                     ]
                                 },
-                            ";
+                            ';
                             $i++;
                         }
                         $graph .= "

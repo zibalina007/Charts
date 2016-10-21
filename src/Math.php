@@ -27,11 +27,11 @@ class Math extends Chart
     /**
      * Create a new math chart instance.
      *
-     * @param string    $function
-     * @param array     $interval
-     * @param int       $amplitude
-     * @param string    $type
-     * @param string    $library
+     * @param string $function
+     * @param array  $interval
+     * @param int    $amplitude
+     * @param string $type
+     * @param string $library
      */
     public function __construct($function, $interval, $amplitude, $type = null, $library = null)
     {
@@ -99,14 +99,13 @@ class Math extends Chart
         $interval = $this->interval;
         $amplitude = $this->amplitude;
 
-        $this->element_label = $this->element_label . " - $function";
+        $this->element_label = $this->element_label." - $function";
 
         // Reset the values / labels
         $this->values = [];
         $this->labels = [];
 
         for ($i = $interval[0]; $i <= $interval[1]; $i = $i + $amplitude) {
-
             $result = Parser::solve($function, round($i, 2));
 
             array_push($this->values, $result);
