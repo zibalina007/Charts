@@ -374,6 +374,8 @@ The available methods are:
 
 ## Realtime Charts
 
+![Realtime Chart Example](https://i.gyazo.com/77a9365e9270cb16a28c6acf11abadc3.gif)
+
 | Realtime Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar |
 |-----------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|
 | chartjs         | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
