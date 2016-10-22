@@ -135,6 +135,10 @@ class Charts extends Facade
     {
         $includes = include __DIR__.'/includes.php';
 
+        if ($libs && is_string($libs)) {
+            $libs = explode(',', $libs);
+        }
+
         if ($libs && is_array($libs)) {
             $template = $includes['global'];
             foreach ($libs as $lib) {
