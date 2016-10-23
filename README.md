@@ -220,6 +220,26 @@ The available methods are:
 	$chart = Charts::database(User::all(), 'bar', 'highcharts')->setDateColumn('my_date_column');
 	```
 
+- setDateFormat(required string $format)
+
+	Set the fancy date format for `groupByDay()` and `lastByDay()` function if `$fancy` set to true, must be called before those function.
+
+	*Default:* ```l dS M, Y```
+
+	```php
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')->setDateFormat('j F y');
+	```
+
+- setMonthFormat(required string $format)
+
+	Set the fancy date format for `groupByMonth()` and `lastByMonth()` function if `$fancy` set to true, must be called before those function.
+
+	*Default:* ```F, Y```
+
+	```php
+	$chart = Charts::database(User::all(), 'bar', 'highcharts')->setDateFormat('F Y');
+	```
+
 - groupBy(required string $column)
 
 	Groups the data based on a column.
