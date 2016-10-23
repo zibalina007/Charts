@@ -20,7 +20,9 @@ class Database extends Chart
 {
     public $data;
     public $date_column;
-
+    public $date_format = 'l dS M, Y';
+    public $month_format = 'F, Y';
+    
     /**
      * Create a new database instance.
      *
@@ -57,6 +59,30 @@ class Database extends Chart
     public function setDateColumn($column)
     {
         $this->date_column = $column;
+
+        return $this;
+    }
+    
+    /**
+     * Set fancy date format based on PHP date() function.
+     *
+     * @param string $format
+     */
+    public function setDateFormat($format)
+    {
+        $this->date_format = $format;
+
+        return $this;
+    }
+    
+    /**
+     * Set fancy month format based on PHP date() function.
+     *
+     * @param string $format
+     */
+    public function setMonthFormat($format)
+    {
+        $this->month_format = $format;
 
         return $this;
     }
@@ -97,7 +123,7 @@ class Database extends Chart
                 }
             }
 
-            $date_get = $fancy ? 'l dS M, Y' : 'd-m-Y';
+            $date_get = $fancy ? $this->date_format : 'd-m-Y';
             $label = date($date_get, strtotime("$year-$month-$day"));
 
             array_push($labels, $label);
@@ -131,7 +157,7 @@ class Database extends Chart
                 $month = "$i";
             }
 
-            $date_get = $fancy ? 'F, Y' : 'm-Y';
+            $date_get = $fancy ? $this->month_format : 'm-Y';
             $label = date($date_get, strtotime("$year-$month-01"));
 
             array_push($labels, $label);
@@ -224,7 +250,7 @@ class Database extends Chart
 
         for ($i = 0; $i < $number; $i++) {
             $date = $i == 0 ? date('d-m-Y') : date('d-m-Y', strtotime("-$i Day"));
-            $date_f = $fancy ? date('l dS M, Y', strtotime($date)) : $date;
+            $date_f = $fancy ? date($this->date_format, strtotime($date)) : $date;
             array_push($labels, $date_f);
             $value = 0;
             foreach ($this->data as $data) {
@@ -255,7 +281,7 @@ class Database extends Chart
 
         for ($i = 0; $i < $number; $i++) {
             $date = $i == 0 ? date('m-Y') : date('m-Y', strtotime("-$i Month"));
-            $date_f = $fancy ? date('F, Y', strtotime("01-$date")) : $date;
+            $date_f = $fancy ? date($this->month_format, strtotime("01-$date")) : $date;
             array_push($labels, $date_f);
             $value = 0;
             foreach ($this->data as $data) {
