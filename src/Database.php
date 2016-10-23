@@ -22,7 +22,7 @@ class Database extends Chart
     public $date_column;
     public $date_format = 'l dS M, Y';
     public $month_format = 'F, Y';
-    
+
     /**
      * Create a new database instance.
      *
@@ -62,7 +62,7 @@ class Database extends Chart
 
         return $this;
     }
-    
+
     /**
      * Set fancy date format based on PHP date() function.
      *
@@ -74,7 +74,7 @@ class Database extends Chart
 
         return $this;
     }
-    
+
     /**
      * Set fancy month format based on PHP date() function.
      *
