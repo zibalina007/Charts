@@ -218,7 +218,7 @@ class Chart
     public function render()
     {
         $this->id = $this->randomString();
-        $file = $this->sufix ? __DIR__."/Templates/$this->library.$this->type.$this->sufix.php" : __DIR__."/Templates/$this->library.$this->type.php";
+        $file = $this->sufix ? __DIR__."/Templates/$this->library/$this->type.$this->sufix.php" : __DIR__."/Templates/$this->library/$this->type.php";
 
         if (file_exists($file)) {
             return include $file;
