@@ -137,6 +137,7 @@ class Charts extends Facade
     public static function assets($libs = null, $type = null)
     {
         $includes = include __DIR__.'/includes.php';
+        if( !config('charts.load_jquery') ){ $includes['global'] = ''; }
 
         if ($libs && is_string($libs)) {
             $libs = explode(',', $libs);
@@ -167,5 +168,5 @@ class Charts extends Facade
 
         // return all libraries
         return implode("\n", array_values($includes));
-    }
+
 }
