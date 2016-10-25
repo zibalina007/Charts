@@ -1,5 +1,4 @@
 <?php
-if(!$this->customElem){
 $graph .= '<svg ';
     if ($this->responsive) {
         $graph .= "width='100%' height='100%'";
@@ -8,5 +7,4 @@ $graph .= '<svg ';
         $graph .= $this->width ? "width='$this->width' " : '';
     }
 $graph .= " id='$this->id'></svg>";
-}
 ?>
