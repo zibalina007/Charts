@@ -1,8 +1,6 @@
 <?php
 
-if( config('charts.load_jquery') ){
 $includes['global'] = "<script src='".asset('/vendor/consoletvs/charts/jquery-3.0.0.min.js')."'></script>";
-}
 
 $includes['canvas-gauges'] = "<script src='".asset('/vendor/consoletvs/charts/canvas-gauges/gauge.min.js')."'></script>";
 
