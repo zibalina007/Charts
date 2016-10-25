@@ -129,8 +129,9 @@ class Charts extends Facade
     /**
      * Return the library assets. Can set the type of assets in the second param for css and js.
      *
-     * @param array $libs
+     * @param array  $libs
      * @param string $type
+     *
      * @return string
      */
     public static function assets($libs = null, $type = null)
@@ -146,7 +147,7 @@ class Charts extends Facade
                 // return all assets of type in requested libs
                 return collect($libs)->reduce(function ($result, $lib) use ($type, $includes) {
                     return ( ! empty($includes[$lib][$type]))
-                        ? $result . implode("\n", $includes[$lib][$type])
+                        ? $result.implode("\n", $includes[$lib][$type])
                         : $result;
                 });
             }
@@ -154,7 +155,7 @@ class Charts extends Facade
             // return all libraries assets that match requested libraries
             return collect($libs)->reduce(function ($result, $lib) use ($includes) {
                 return ( ! empty($includes[$lib]))
-                    ? $result . implode("\n", array_flatten($includes[$lib]))
+                    ? $result.implode("\n", array_flatten($includes[$lib]))
                     : $result;
             });
         }
