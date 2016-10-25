@@ -17,12 +17,4 @@ return [
         'responsive'    => true,
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Set to false if your app already includes jquery
-    | or you wish to load it manually
-    |--------------------------------------------------------------------------
-    */
-
-    'load_jquery'   => false,
 ];
