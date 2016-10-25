@@ -146,7 +146,7 @@ class Charts extends Facade
             if ($type) {
                 // return all assets of type in requested libs
                 return collect($libs)->reduce(function ($result, $lib) use ($type, $includes) {
-                    return ( ! empty($includes[$lib][$type]))
+                    return (!empty($includes[$lib][$type]))
                         ? $result.implode("\n", $includes[$lib][$type])
                         : $result;
                 });
@@ -154,7 +154,7 @@ class Charts extends Facade
 
             // return all libraries assets that match requested libraries
             return collect($libs)->reduce(function ($result, $lib) use ($includes) {
-                return ( ! empty($includes[$lib]))
+                return (!empty($includes[$lib]))
                     ? $result.implode("\n", array_flatten($includes[$lib]))
                     : $result;
             });
