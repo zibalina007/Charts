@@ -168,5 +168,5 @@ class Charts extends Facade
 
         // return all libraries
         return implode("\n", array_values($includes));
-
+    }
 }

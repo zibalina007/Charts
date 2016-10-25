@@ -1,5 +1,5 @@
 <?php
-	$graph = '
+	$graph .= '
 	<div '; if (!$this->responsive) {
 	    $graph .= $this->width ? "style='width: ".$this->width."px'" : '';
 	} $graph .= "><center><b style='font-family: Arial, Helvetica, sans-serif;font-size: 18px;'>$this->title</b></center></div>

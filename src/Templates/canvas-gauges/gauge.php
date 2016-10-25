@@ -1,7 +1,13 @@
 <?php
 
-$graph = "
-    <div><canvas id='$this->id'></canvas></div>
+$graph = '';
+
+if( !$this->customId )
+{
+    include __DIR__ . '/../_partials/canvas-container.php';
+}
+
+    $graph .= "
     <script type='text/javascript'>
         $(function (){
             var gauge = new RadialGauge({
