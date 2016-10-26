@@ -51,9 +51,8 @@ $graph = "
     </script>
 ";
 
-if( !$this->customId )
-{
-    include __DIR__ . '/../_partials/div-container.php';
+if (!$this->customId) {
+    include __DIR__.'/../_partials/div-container.php';
 }
 
 return $graph;

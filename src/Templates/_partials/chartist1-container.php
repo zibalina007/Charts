@@ -10,5 +10,3 @@ $graph .= '
     $graph .= $this->width ? 'width: '.$this->width.'px;' : '';
     $graph .= "' ";
 } $graph .= " class='ct-chart ct-perfect-fourth'></div>";
-
-?>

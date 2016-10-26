@@ -2,9 +2,8 @@
 
 $graph = '';
 
-if( !$this->customId )
-{
-    include __DIR__ . '/../_partials/canvas-container.php';
+if (!$this->customId) {
+    include __DIR__.'/../_partials/canvas-container.php';
 }
 
     $graph .= "

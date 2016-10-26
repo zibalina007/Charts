@@ -2,20 +2,19 @@
 
 $graph = '';
 
-if( !$this->customId )
-{
-    include __DIR__ . '/../_partials/chartist1-container.php';
+if (!$this->customId) {
+    include __DIR__.'/../_partials/chartist1-container.php';
 }
 
  $graph .= "
     <script type='text/javascript'>
 		var data = {
 			labels: ["; foreach ($this->labels as $label) {
-    $graph .= '"'.$label.'",';
-} $graph .= '],
+     $graph .= '"'.$label.'",';
+ } $graph .= '],
 			series: ['; foreach ($this->values as $value) {
-    $graph .= $value.',';
-} $graph .= "]
+     $graph .= $value.',';
+ } $graph .= "]
 
 		};
 
