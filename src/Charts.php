@@ -137,7 +137,9 @@ class Charts extends Facade
     public static function assets($libs = null, $type = null)
     {
         $includes = include __DIR__.'/includes.php';
-        if( !config('charts.load_jquery') ){ $includes['global'] = ''; }
+        if (!config('charts.load_jquery')) {
+            $includes['global'] = '';
+        }
 
         if ($libs && is_string($libs)) {
             $libs = explode(',', $libs);
@@ -148,7 +150,7 @@ class Charts extends Facade
                 // return all assets of type in requested libs
                 return collect($libs)->reduce(function ($result, $lib) use ($type, $includes) {
                     return (!empty($includes[$lib][$type]))
-                        ? $result . "\n" . implode("\n", $includes[$lib][$type])
+                        ? $result."\n".implode("\n", $includes[$lib][$type])
                         : $result;
                 });
             }
@@ -156,7 +158,7 @@ class Charts extends Facade
             // return all libraries assets that match requested libraries
             return collect($libs)->reduce(function ($result, $lib) use ($includes) {
                 return (!empty($includes[$lib]))
-                    ? $result . "\n" . implode("\n", array_flatten($includes[$lib]))
+                    ? $result."\n".implode("\n", array_flatten($includes[$lib]))
                     : $result;
             });
         }
