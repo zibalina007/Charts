@@ -13,6 +13,8 @@ class ChartsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'charts');
+
         $this->publishes([
             __DIR__.'/../config/charts.php' => config_path('charts.php'),
         ], 'charts_config');
@@ -20,6 +22,10 @@ class ChartsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/Assets' => public_path('vendor/consoletvs/charts'),
         ], 'charts_assets');
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/consoletvs/charts'),
+        ]);
     }
 
     /**
@@ -29,8 +35,6 @@ class ChartsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__.'/../config/charts.php', 'charts'
-        );
+        $this->mergeConfigFrom(__DIR__.'/../config/charts.php', 'charts');
     }
 }
