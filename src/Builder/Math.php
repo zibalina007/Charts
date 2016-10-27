@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ConsoleTVs\Charts;
+namespace ConsoleTVs\Charts\Builder;
 
 use jlawrence\eos\Parser;
 
