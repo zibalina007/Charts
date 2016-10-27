@@ -18,7 +18,6 @@ use ConsoleTVs\Charts\Builder\Database;
 use ConsoleTVs\Charts\Builder\Math;
 use ConsoleTVs\Charts\Builder\Multi;
 use Illuminate\Support\Facades\File;
-use Collective\Html\HtmlFacade as Html;
 
 /**
  * This is the charts facade class.
@@ -99,8 +98,8 @@ class Builder
             if ($file != '.' and $file != '..') {
                 $library = explode('.', $file)[0];
 
-                if (!in_array($library, $libraries)) {
-                    if (!$type or $type == explode('.', $file)[1]) {
+                if (! in_array($library, $libraries)) {
+                    if (! $type or $type == explode('.', $file)[1]) {
                         array_push($libraries, $library);
                     }
                 }
@@ -122,8 +121,8 @@ class Builder
             if ($file != '.' and $file != '..') {
                 $type = explode('.', $file)[1];
 
-                if (!in_array($type, $types)) {
-                    if (!$library or $library == explode('.', $file)[0]) {
+                if (! in_array($type, $types)) {
+                    if (! $library or $library == explode('.', $file)[0]) {
                         array_push($types, $type);
                     }
                 }
@@ -143,8 +142,7 @@ class Builder
      */
     public static function assets($libs = null, $type = null)
     {
-
-        if (!config('charts.load_jquery')) {
+        if (! config('charts.load_jquery')) {
             $includes['global'] = '';
         }
 
@@ -156,7 +154,7 @@ class Builder
             if ($type) {
                 // return all assets of type in requested libs
                 return collect($libs)->reduce(function ($result, $lib) use ($type, $includes) {
-                    return (!empty($includes[$lib][$type]))
+                    return (! empty($includes[$lib][$type]))
                         ? $result."\n".implode("\n", $includes[$lib][$type])
                         : $result;
                 });
@@ -164,7 +162,7 @@ class Builder
 
             // return all libraries assets that match requested libraries
             return collect($libs)->reduce(function ($result, $lib) use ($includes) {
-                return (!empty($includes[$lib]))
+                return (! empty($includes[$lib]))
                     ? $result."\n".implode("\n", array_flatten($includes[$lib]))
                     : $result;
             });
