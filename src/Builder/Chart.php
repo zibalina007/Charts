@@ -29,6 +29,7 @@ class Chart
     public $colors;
     public $responsive;
     public $gauge_style;
+    public $view;
     protected $sufix;
 
     /**
@@ -206,6 +207,18 @@ class Chart
     }
 
     /**
+     * Set a custom view to be used.
+     *
+     * @param bool $view
+     */
+    public function setView($view)
+    {
+        $this->view = $view;
+
+        return $this;
+    }
+
+    /**
      * Return and array of all the chart settings.
      */
     public function settings()
@@ -220,7 +233,7 @@ class Chart
     {
         $this->id = $this->randomString();
 
-        return view("charts::{$this->library}.{$this->type}")->withModel($this);
+        return view($this->view ?? "charts::{$this->library}.{$this->type}")->withModel($this);
     }
 
     /**
