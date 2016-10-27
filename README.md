@@ -50,7 +50,7 @@ ConsoleTVs\Charts\ChartsServiceProvider::class,
 Add the following alias to the array in: ```config/app.php```
 
 ```php
-'Charts' => ConsoleTVs\Charts\Charts::class,
+'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 ```
 ### Publish the assets
 
@@ -619,7 +619,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   print_r(Charts::types());
 
   // Return all the chart types available for the highcharts library
-  print_r(Charts::libraries('highcharts'));
+  print_r(Charts::types('highcharts'));
   ```
 
 ## Available Chart Settings:
