@@ -9,9 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace ConsoleTVs\Charts;
+namespace ConsoleTVs\Charts\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use ConsoleTVs\Charts\Builder\Chart;
+use ConsoleTVs\Charts\Builder\Realtime;
+use ConsoleTVs\Charts\Builder\Database;
+use ConsoleTVs\Charts\Builder\Math;
+use ConsoleTVs\Charts\Builder\Multi;
 
 /**
  * This is the charts facade class.
