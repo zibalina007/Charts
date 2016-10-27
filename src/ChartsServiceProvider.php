@@ -36,5 +36,19 @@ class ChartsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/charts.php', 'charts');
+
+        $this->app->singleton(Builder::class, function ($app) {
+            return new Builder();
+        });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [Builder::class];
     }
 }
