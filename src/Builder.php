@@ -143,7 +143,7 @@ class Builder
      */
     public static function assets($libs = null, $type = null)
     {
-        $includes = include __DIR__.'/includes.php';
+
         if (!config('charts.load_jquery')) {
             $includes['global'] = '';
         }
