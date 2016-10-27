@@ -99,7 +99,7 @@ class Builder
         $results = [];
         foreach ($directories as $directory) {
             // type was not defined...
-            if (!$type) {
+            if (! $type) {
                 return collect($directories)->map(function ($item, $key) {
                     return basename($item);
                 })->toArray();
