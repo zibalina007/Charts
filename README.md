@@ -50,7 +50,11 @@ ConsoleTVs\Charts\ChartsServiceProvider::class,
 Add the following alias to the array in: ```config/app.php```
 
 ```php
-'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+// Current version 2.X
+'Charts' => ConsoleTVs\Charts\Charts::class,
+
+// New version 3.0 (STILL NOT OUT)
+// 'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 ```
 ### Publish the assets
 
