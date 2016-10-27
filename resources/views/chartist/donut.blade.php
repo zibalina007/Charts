@@ -3,7 +3,7 @@
 $graph = '';
 
 if (!$model->customId) {
-    include __DIR__.'/../_partials/chartist1-container.php';
+    @include('charts::_partials.chartist1-container');
 }
 
  $graph .= "

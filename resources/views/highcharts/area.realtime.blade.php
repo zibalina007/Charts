@@ -82,7 +82,7 @@ $graph = "
 ";
 
 if (!$model->customId) {
-    include __DIR__.'/../_partials/div-container.php';
+    @include('charts::_partials.div-container');
 }
 
 return $graph;

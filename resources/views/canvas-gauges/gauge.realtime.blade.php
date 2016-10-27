@@ -3,7 +3,7 @@
 $graph = '';
 
 if (!$model->customId) {
-    include __DIR__.'/../_partials/canvas-container.php';
+    @include('charts::_partials.canvas-container');
 }
 
     $graph .= "
