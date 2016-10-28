@@ -1,41 +1,33 @@
-<?php
+@extends('charts::default')
 
-$graph = '';
+@if(!$model->customId)
+    @include('charts::_partials/titledDiv2-container')
+@endif
 
-if (!$model->customId) {
-    include __DIR__.'/../_partials/titledDiv2-container.php';
-}
+<script type="text/javascript">
+$(function() {
+    Morris.Area({
+        element: "{{ $model->id }}",
+        resize: true,
+        data: [
+            $i = 0;
+            @foreach($model->values as $v)
+                {
+                    x: "{{ $model->labels[$i] }}",
+                    y: "{{ $model->values[$i] }}"
+                },
+            $i++;
+            @endforeach
+        ],
+        xkey: 'x',
+        ykeys: ['y'],
+        labels: ["{{ $model->element_label }}"],
+        hideHover: 'auto',
+        parseTime: false,
+        @if($model->colors)
+            lineColors: ["{{ $model->colors[0] }}"],
+        @endif
+    })
+});
+</script>
 
-$graph .= "
-    <script type='text/javascript'>
-		$(function() {
-			Morris.Area({
-			  element: '$model->id',
-			  resize: true,
-			  data: [
-				";
-                    $i = 0;
-                    foreach ($model->values as $v) {
-                        $l = $model->labels[$i];
-                        $graph .= "{x: \"$l\", y: $v},";
-                        $i++;
-                    }
-                $graph .= "
-			  ],
-			  xkey: 'x',
-			  ykeys: ['y'],
-			  labels: [\"$model->element_label\"],
-			  hideHover: 'auto',
-			  parseTime: false,
-			  ";
-                if ($model->colors) {
-                    $graph .= 'lineColors: ["'.$model->colors[0].'"],';
-                }
-              $graph .= '
-
-			});
-		});
-    </script>
-';
-
-return $graph;

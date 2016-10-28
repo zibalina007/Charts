@@ -1,58 +1,47 @@
-<?php
+@extends('charts::default')
 
-$graph = "
-    <script type='text/javascript'>
-      google.charts.setOnLoadCallback(drawPieChart);
-      function drawPieChart() {
+<script type="text/javascript">
+google.charts.setOnLoadCallback(drawPieChart)
 
-          var data = google.visualization.arrayToDataTable([
-              ['Element', \"$model->element_label\""; if ($model->colors) {
-    $graph .= ", { role: 'style' }";
-} $graph .= '],
-              ';
-                $i = 0;
-                foreach ($model->values as $dta) {
-                    $e = $model->labels[$i];
-                    $v = $dta;
-                    $graph .= "[\"$e\", $v";
-                    if ($model->colors) {
-                        $graph .= ", '".$model->colors[$i]."'";
-                    }
-                    $graph .= '],';
-                    $i++;
-                }
-                $graph .= '
-          ]);
+function drawPieChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Element', "{{ $model->element_label }}",
+            @if($model->colors)
+                { role: 'style' }
+            @endif
+        ],
+        $i = 0;
+        @foreach($model->values as $dta)
+            [
+                "{{ $model->labels[$i] }}", "{{ $model->values[$i] }}"
+                @if($model->colors)
+                    "{{ $model->colors[$i] }}",
+                @endif
+            ],
+            $i++;
+        @endforeach
+    ])
 
-        var options = {
-            ';
-            if (!$model->responsive) {
-                $graph .= $model->width ? "width: $model->width," : '';
-                $graph .= $model->height ? "height: $model->height," : '';
-            }
-            $graph .= "
-            legend: { position: 'top', alignment: 'end' },
-            fontSize: 12,
-            title: \"$model->title\",";
-            if ($model->colors) {
-                $graph .= 'colors:[';
-                foreach ($model->colors as $color) {
-                    $graph .= "'$color',";
-                }
-                $graph .= '],';
-            }
-        $graph .= "
-        };
+    var options = {
+        @include('charts::_partials.dimensions.js'),
+        legend: { position: 'top', alignment: 'end' },
+        fontSize: 12,
+        title: "{{ $model->title }}",
+        @if($model->colors)
+            colors:[
+                @foreach($model->colors as $color)
+                    "{{ $color}}",
+                @endforeach
+            ],
+        @endif
+    };
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('$model->id'));
+    var chart = new google.visualization.ColumnChart(document.getElementById("{{ $model->id }}"))
 
-        chart.draw(data, options);
-      }
-    </script>
-";
-
-if (!$model->customId) {
-    @include('charts::_partials.div-container');
+    chart.draw(data, options)
 }
+</script>
 
-return $graph;
+@if(!$model->customId)
+    @include('charts::_partials.div-container')
+@endif

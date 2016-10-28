@@ -1,56 +1,48 @@
-<?php
+@extends('charts::default')
 
-$graph = "
-    <script type='text/javascript'>
+<script type="text/javascript">
+chart = google.charts.setOnLoadCallback(drawChart)
 
-    chart = google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        [
+            'Element',
+            @foreach($model->datasets as $el => $ds)
+                "{{ $el }}",
+            @endforeach
+        ],
+        $i = 0;
+        @foreach($model->labels as $l)
+            [
+                "{{ $l }}",
+                @foreach($model->datasets as $el => $ds)
+                    "{{ $ds['values'][$i] }}",
+                @endforeach
+            ],
+            $i++;
+        @endforeach
+    ])
 
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Element', "; foreach ($model->datasets as $el => $ds) {
-    $graph .= "\"$el\",";
-} $graph .= '],
-            ';
-              $i = 0;
-              foreach ($model->labels as $l) {
-                  $graph .= "[\"$l\",";
-                  foreach ($model->datasets as $el => $ds) {
-                      $graph .= $ds['values'][$i].',';
-                  }
-                  $graph .= '],';
-                  $i++;
-              }
-              $graph .= '
-        ]);
+    var options = {
+        @include('charts::_partials.dimensions.js')
+        fontSize: 12,
+        title: "{{ $model->title }}",
+        @if($model->colors)
+            colors:[
+                @foreach($model->colors as $color)
+                    "{{ $color}}",
+                @endforeach
+            ],
+        @endif
+        legend: { position: 'top', alignment: 'end' }
+    };
 
-        var options = {
-            ';
-            if (!$model->responsive) {
-                $graph .= $model->width ? "width: $model->width," : '';
-                $graph .= $model->height ? "height: $model->height," : '';
-            }
-            $graph .= "
-            fontSize: 12,
-            title: \"$model->title\",
-            "; if ($model->colors) {
-                $graph .= 'colors: [';
-                foreach ($model->colors as $c) {
-                    $graph .= "'".$c."',";
-                }
-                $graph .= '],';
-            } $graph .= "
-            legend: { position: 'top', alignment: 'end' }
-        };
+    var chart = new google.visualization.LineChart(document.getElementById("{{ $model->id }}"))
 
-        var chart = new google.visualization.LineChart(document.getElementById('$model->id'));
-
-        chart.draw(data, options);
-    }
-    </script>
-";
-
-if (!$model->customId) {
-    @include('charts::_partials.div-container');
+    chart.draw(data, options)
 }
+</script>
 
-return $graph;
+@if(!$model->customId)
+    @include('charts::_partials.div-container')
+@endif

@@ -1,44 +1,33 @@
-<?php
+@extends('charts::default')
 
-$graph = "<div id=\"$model->id\" style=\"
-    ";
-        if (!$model->responsive) {
-            $graph .= $model->height ? 'height: '.$model->height.'px;' : '';
-            $graph .= $model->width ? 'width: '.$model->width.'px;' : '';
+@include('charts::_partials.container.div')
+
+<script type="text/javascript">
+$(function() {
+    var {{ $model->id }} = new JustGage({
+        id:  "{{ $model->id }}",
+        value: "{{ $model->values[0] }}",
+
+        @if(count($model->values) >= 2 and $model->values[1] <= $model->values[0]) {
+            $min = $model->values[1];
+            min: $min,
+        @else
+            $min = 0;
         }
-    $graph .= "
-\"></div>
+        @if(count($model->values) >= 3 and $model->values[2] >= $model->values[0]) {
+            $max = $model->values[2];
+            max: $max,
+        @else
+            $max = 100;
+        }
 
-<script>
-    $(function() {
-        var $model->id = new JustGage({
-            id: \"$model->id\",
-            value: ".$model->values[0].',
-            ';
-
-            if (count($model->values) >= 2 and $model->values[1] <= $model->values[0]) {
-                $min = $model->values[1];
-                $graph .= "min: $min,";
-            } else {
-                $min = 0;
-            }
-            if (count($model->values) >= 3 and $model->values[2] >= $model->values[0]) {
-                $max = $model->values[2];
-                $graph .= "max: $max,";
-            } else {
-                $max = 100;
-            }
-
-            $graph .= "
-            gaugeWidthScale: 0.6,
-            pointer: true,
-            counter: true,
-            title: \"$model->title\",
-            label: \"$model->element_label\",
-            hideInnerShadow: true
-        });
-    });
+        gaugeWidthScale: 0.6,
+        pointer: true,
+        counter: true,
+        title:  "{{ $model->title }}",
+        label: "{{ $model->element_label }}",
+        hideInnerShadow: true
+    })
+});
 </script>
-";
 
-return $graph;
