@@ -11,14 +11,14 @@
 
 namespace ConsoleTVs\Charts;
 
-use Illuminate\Support\Facades\Facade;
+use Collective\Html\HtmlFacade as Html;
 use ConsoleTVs\Charts\Builder\Chart;
-use ConsoleTVs\Charts\Builder\Realtime;
 use ConsoleTVs\Charts\Builder\Database;
 use ConsoleTVs\Charts\Builder\Math;
 use ConsoleTVs\Charts\Builder\Multi;
+use ConsoleTVs\Charts\Builder\Realtime;
+use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\File;
-use Collective\Html\HtmlFacade as Html;
 
 /**
  * This is the charts facade class.
