@@ -209,7 +209,7 @@ class Chart
     /**
      * Set a custom view to be used.
      *
-     * @param bool $view
+     * @param string $view
      */
     public function setView($view)
     {
