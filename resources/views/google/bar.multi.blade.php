@@ -45,6 +45,4 @@ chart.draw(data, options)
 
 @if(!$model->customId)
     @include('charts::_partials.container.div')
-}
-
-
+@endif

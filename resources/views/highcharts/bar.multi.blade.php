@@ -6,9 +6,7 @@ $(function () {
     var chart = new Highcharts.Chart({
         chart: {
             renderTo:  "{{ $model->id }}",
-@include('charts::_partials.dimensions.js')
-}
-
+            @include('charts::_partials.dimensions.js')
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
@@ -27,7 +25,7 @@ $(function () {
             categories: [
 
                 @foreach($model->labels as $label) {
-                     "{{ $label }}",";
+                     "{{ $label }}",
                 }
             ],
             crosshair: true
@@ -55,6 +53,4 @@ $(function () {
 
 @if(!$model->customId)
     @include('charts::_partials.container.div')
-}
-
-
+@endif
