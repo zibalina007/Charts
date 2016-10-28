@@ -1,6 +1,6 @@
 @extends('charts::default')
 
-@include('charts::_partials.svg-container')
+@include('charts::_partials.container.svg')
 
 <script type="text/javascript">
 $(function() {

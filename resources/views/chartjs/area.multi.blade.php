@@ -2,8 +2,8 @@
 
 
 @if(!$model->customId)
-    @include('charts::_partials.canvas2-container')
-}
+    @include('charts::_partials.container.canvas2')
+@endif
 
 
 <script type="text/javascript">

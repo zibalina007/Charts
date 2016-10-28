@@ -28,5 +28,5 @@ google.charts.load('current', {'packages':['bar']})
 </script>
 
 @if(!$model->customId)
-    @include('charts::_partials.div-container')
+    @include('charts::_partials.container.div')
 @endif

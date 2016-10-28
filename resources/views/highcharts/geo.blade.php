@@ -61,5 +61,5 @@ $(function () {
 </script>
 
 @if(!$model->customId)
-    @include('charts::_partials.div-container')
+    @include('charts::_partials.container.div')
 @endif
