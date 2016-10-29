@@ -1,68 +1,62 @@
-<?php
+@extends('charts::default')
 
-$graph = "
-    <script type='text/javascript'>
-        $(function () {
-            var chart = new Highcharts.Chart({
 
-                    chart: {
-                        renderTo: \"$model->id\",
-                "; if (!$model->responsive) {
-    $graph .= $model->width ? "width: $model->width," : '';
-    $graph .= $model->height ? "height: $model->height," : '';
-}
-                $graph .= "
-                },
-                title: {
-                    text: \"$model->title\",
-                    x: -20 //center
-                },
-                xAxis: {
-                    categories: ["; foreach ($model->labels as $label) {
-                    $graph .= '"'.$label.'",';
-                } $graph .= "]
-                },
-                yAxis: {
-                    plotLines: [{
-                        value: 0,
-                        height: 0.5,
-                        width: 1,
-                        color: '#808080'
-                    }]
-                },
+<script type="text/javascript">
+$(function () {
+    var chart = new Highcharts.Chart({
+        chart: {
+            renderTo: "{{ $model->id }}",
+            @include('charts::_partials.dimension.js')
+        },
+        title: {
+            text: "{{ $model->title }}",
+            x: -20 //center
+        },
+        xAxis: {
+            categories: [
+            @foreach($model->labels as $label)
+                "{{ $label }}",
+            @endforeach
+        ]
+        },
+        yAxis: {
+            plotLines: [{
+                value: 0,
+                height: 0.5,
+                width: 1,
+                color: '#808080'
+            }]
+        },
 
-                legend: {
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'middle',
-                    borderWidth: 0
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [
+            $i = 0;
+            @foreach($model->datasets as $el => $ds)
+                {
+                    name:  "{{ $el }}",
+                    @if($model->colors && count($model->colors) > $i)
+                        color: "{{ $model->colors[$i] }}",
+                    @endif
+                    data: [
+                        @foreach($ds['values'] as $dta)
+                            "{{ $dta }}",
+                        @endforeach
+                    ]
                 },
-                series: [
-                    ";
-                    $i = 0;
-                    foreach ($model->datasets as $el => $ds) {
-                        $graph .= "{
-                            name: \"$el\",
-                            ";
-                        $graph .= ($model->colors && count($model->colors) > $i) ? 'color: "'.$model->colors[$i].'",' : '';
-                        $graph .= '
-                            data: [';
-                        foreach ($ds['values'] as $dta) {
-                            $graph .= $dta.',';
-                        }
-                        $graph .= ']
-                            },';
-                        $i++;
-                    }
-                    $graph .= '
-                ]
-            });
-        });
-    </script>
-';
+                $i++;
+            @endforeach
+        ]
+    })
+});
+</script>
 
-if (!$model->customId) {
-    @include('charts::_partials.div-container');
-}
+@if(!$model->customId)
+    @include('charts::_partials.container.div')
+@endif
 
-return $graph;
+

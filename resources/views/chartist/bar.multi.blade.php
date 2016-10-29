@@ -1,36 +1,29 @@
-<?php
+@extends('charts::default')
 
-$graph = '';
+@if(!$model->customId)
+    @include('charts::_partials/titledDiv-container')
+@endif
 
-if (!$model->customId) {
-    include __DIR__.'/../_partials/titledDiv-container.php';
-}
+<script type="text/javascript">
+var data = {
+    labels: [
+        @foreach($model->labels as $label)
+            "{{ $label }}",
+        @endforeach
+    ],
+    series: [
+        @foreach($model->datasets as $ds)
+        [
+            @foreach($ds['values'] as $value)
+                "{{ $value }}",
+            @endforeach
+        ],
+        @endforeach
+    ]
+};
 
- $graph .= "
-    <script type='text/javascript'>
-		var data = {
-			labels: ["; foreach ($model->labels as $label) {
-     $graph .= '"'.$label.'",';
- } $graph .= '],
-			series: ['; foreach ($model->datasets as $ds) {
-     $graph .= '[';
-     foreach ($ds['values'] as $value) {
-         $graph .= $value.',';
-     }
-     $graph .= '],';
- } $graph .= ']
-		};
+var options = { @include('charts::_partials.dimension.js') }
 
-        var options = {
-            ';
-            if (!$model->responsive) {
-                $graph .= $model->height ? 'height: "'.$model->height.'px",' : '';
-                $graph .= $model->width ? 'width: "'.$model->width.'px",' : '';
-            }
-            $graph .= "
-        }
-		new Chartist.Bar('#$model->id', data, options);
-    </script>
-";
+new Chartist.Bar('#{{ $model->id }}', data, options);
+</script>
 
-return $graph;

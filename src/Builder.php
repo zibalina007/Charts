@@ -128,7 +128,7 @@ class Builder
             $files = File::allFiles(__DIR__."/../resources/views/$library");
 
             return collect($files)->map(function ($item, $key) {
-                return str_replace('.php', null, $item->getFileName());
+                return str_replace('.blade.php', null, $item->getFileName());
             })->toArray();
         }
 
@@ -138,7 +138,7 @@ class Builder
         $results = [];
         foreach ($libraries as $library) {
             foreach (File::allFiles($library) as $type) {
-                $results[] = str_replace('.php', null, $type->getFileName());
+                $results[] = str_replace('.blade.php', null, $type->getFileName());
             }
         }
 

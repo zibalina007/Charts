@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'default'   => [
+    'default' => [
         'type'          => 'line',
         'library'       => 'google',
         'element_label' => 'Element',
@@ -25,10 +25,9 @@ return [
     */
 
     'assets' => [
-
         'global' => [
             'scripts' => [
-                asset('/vendor/consoletvs/charts/jquery-3.0.0.min.js'),
+                'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js',
             ],
         ],
 
@@ -40,16 +39,16 @@ return [
 
         'chartist' => [
             'scripts' => [
-                asset('/vendor/consoletvs/charts/chartist/chartist.min.js'),
+                'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.10.1/chartist.min.js',
             ],
             'styles' => [
-                asset('/vendor/consoletvs/charts/chartist/chartist.min.css'),
+                'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.10.1/chartist.min.css',
             ],
         ],
 
         'chartjs' => [
             'scripts' => [
-                asset('/vendor/consoletvs/charts/chartjs/Chart.js'),
+                'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js',
             ],
         ],
 
@@ -70,44 +69,44 @@ return [
 
         'highcharts' => [
             'scripts' => [
-                asset('/vendor/consoletvs/charts/highcharts/js/highcharts.js'),
-                asset('/vendor/consoletvs/charts/highcharts/js/modules/exporting.js'),
-                asset('/vendor/consoletvs/charts/highmaps/js/modules/map.js'),
-                asset('/vendor/consoletvs/charts/highmaps/js/modules/data.js'),
-                asset('/vendor/consoletvs/charts/highmaps/maps/world.js'),
+                'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/highcharts.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/js/modules/exporting.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/highmaps/5.0.2/js/modules/map.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/highmaps/5.0.2/js/modules/data.js',
+                'http://code.highcharts.com/mapdata/custom/world.js',
             ],
         ],
 
         'justgage' => [
             'scripts' => [
-                asset('/vendor/consoletvs/charts/justgage/raphael-2.1.4.min.js'),
-                asset('/vendor/consoletvs/charts/justgage/justgage.js'),
+                'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.6/raphael.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/justgage/1.2.2/justgage.min.js',
             ],
         ],
 
         'morris' => [
             'styles' => [
-                asset('/vendor/consoletvs/charts/morris/morris.css'),
+                'https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css',
             ],
             'scripts' => [
-                asset('/vendor/consoletvs/charts/morris/raphael.min.js'),
-                asset('/vendor/consoletvs/charts/morris/morris.min.js'),
+                'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.6/raphael.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js',
             ],
         ],
 
         'plottablejs' => [
             'scripts' => [
-                asset('/vendor/consoletvs/charts/d3/d3.js'),
-                asset('/vendor/consoletvs/charts/plottable/plottable.js'),
+                'https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.8/d3.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/plottable.js/2.2.0/plottable.min.js',
             ],
             'styles' => [
-                asset('/vendor/consoletvs/charts/plottable/plottable.css'),
+                'https://cdnjs.cloudflare.com/ajax/libs/plottable.js/2.2.0/plottable.css',
             ],
         ],
 
         'progressbarjs' => [
             'scripts' => [
-                asset('/vendor/consoletvs/charts/progressbar/progressbar.min.js'),
+                'https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.0.1/progressbar.min.js',
             ],
         ],
     ],
