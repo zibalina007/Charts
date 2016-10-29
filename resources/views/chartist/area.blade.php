@@ -20,7 +20,7 @@ var data = {
 
 var options = {
     showArea: true,
-    @include('charts::_partials.dimensions.js')
+    @include('charts::_partials.dimension.js')
 };
 
 new Chartist.Line('#{{ $model->id }}', data, options);

@@ -23,7 +23,7 @@ function drawPieChart() {
     ])
 
     var options = {
-        @include('charts::_partials.dimensions.js'),
+        @include('charts::_partials.dimension.js'),
         legend: { position: 'top', alignment: 'end' },
         fontSize: 12,
         title: "{{ $model->title }}",

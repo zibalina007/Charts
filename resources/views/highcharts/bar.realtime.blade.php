@@ -11,7 +11,7 @@ $(function () {
             events: {
                 load: requestData
             },
-            @include('charts::_partials.dimensions.js')
+            @include('charts::_partials.dimension.js')
         },
         title: {
             text:  "{{ $model->title }}",

@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    @yield('script');
+    @yield('script')
 </script>
 
 @yield('container')

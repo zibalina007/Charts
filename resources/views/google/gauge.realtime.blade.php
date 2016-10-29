@@ -13,7 +13,7 @@ function draw{{ $model->id }}() {
         @endif
     ])
     var options = {
-        @include('charts::_partials.dimensions.js'),
+        @include('charts::_partials.dimension.js'),
 
         @if(count($model->values) >= 2 and $model->values[1] <= $model->values[0])
             $min = $model->values[1];

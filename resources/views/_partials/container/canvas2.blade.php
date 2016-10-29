@@ -1,1 +1,1 @@
-<canvas id="{{ $model->id }}" @include('charts::_partials.dimensions.html')></canvas>
+<canvas id="{{ $model->id }}" @include('charts::_partials.dimension.html')></canvas>

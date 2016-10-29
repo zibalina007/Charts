@@ -21,7 +21,7 @@ var data = {
 var options = {
     chartPadding: 20,
     labelDirection: 'explode',
-    @include('charts::_partials.dimensions.js')
+    @include('charts::_partials.dimension.js')
 };
 
 new Chartist.Pie('#{{ $model->id }}', data, options);

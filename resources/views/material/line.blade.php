@@ -27,5 +27,5 @@ google.charts.setOnLoadCallback(drawChart)
 }
 </script>
 
-<div id="{{ $model->id }}" style="@include('charts::_partials.dimensions.css')"></div>
+<div id="{{ $model->id }}" style="@include('charts::_partials.dimension.css')"></div>
 

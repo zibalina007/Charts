@@ -3,7 +3,7 @@
 $min = count($model->values) >= 2 ? $model->values[1] : 0;
 $max = count($model->values) >= 3 ? $model->values[2] : 100;
 
-<div id="{{ $model->id }}" style="position: relative; @include('charts::_partials.dimensions.css')"></div>
+<div id="{{ $model->id }}" style="position: relative; @include('charts::_partials.dimension.css')"></div>
 
 <script type="text/javascript">
 $(function() {

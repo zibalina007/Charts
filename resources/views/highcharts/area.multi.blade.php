@@ -7,7 +7,7 @@ $(function () {
         chart: {
             type: 'area',
             renderTo:  "{{ $model->id }}",
-            @include('charts::_partials.dimensions.js')
+            @include('charts::_partials.dimension.js')
         },
         title: {
             text:  "{{ $model->title }}",

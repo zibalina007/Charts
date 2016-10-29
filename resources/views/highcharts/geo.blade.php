@@ -16,7 +16,7 @@ $(function () {
     var chart = new Highcharts.Map({
         chart: {
             renderTo:  "{{ $model->id }}",
-            @include('charts::_partials.dimensions.js')
+            @include('charts::_partials.dimension.js')
         },
         title : {
             text :  "{{ $model->title }}"

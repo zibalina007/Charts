@@ -3,10 +3,10 @@
     width: 100%,
 @else
     @if($model->height)
-        height: {{ $model->height }}px,
+        height: {{ $model->height }},
     @endif
 
     @if($model->width)
-        width: {{ $model->width }}px,
+        width: {{ $model->width }},
     @endif
 @endif

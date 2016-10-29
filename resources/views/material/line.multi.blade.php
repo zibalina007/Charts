@@ -43,4 +43,4 @@ google.charts.load('current', {'packages':['bar']})
   }
 </script>
 
-<div @include('charts::_partials.dimensions.css') id="{{ $model->id }}"></div>
+<div @include('charts::_partials.dimension.css') id="{{ $model->id }}"></div>

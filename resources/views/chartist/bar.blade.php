@@ -18,7 +18,7 @@ var data = {
     ]
 };
 
-var options = { @include('charts::_partials.dimensions.js') }
+var options = { @include('charts::_partials.dimension.js') }
 
 new Chartist.Bar('#{{ $model->id }}', data, options);
 </script>

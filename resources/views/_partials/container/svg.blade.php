@@ -1,1 +1,2 @@
-<svg id="{{ $model->id }}" @include('charts::_partials.dimensions.html')></svg>
+<svg id="{{ $model->id }}"></svg>
+{{-- <svg id="{{ $model->id }}" @include('charts::_partials.dimension.html')></svg> --}}

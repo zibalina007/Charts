@@ -1,4 +1,4 @@
-<div @include('charts::_partials.dimensions.css')>
+<div @include('charts::_partials.dimension.css')>
     <center>
         <strong>{{ $model->title }}</strong>
     </center>

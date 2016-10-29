@@ -6,7 +6,7 @@ FusionCharts.ready(function () {
     var revenueChart = new FusionCharts({
         type: 'msline',
         renderAt: "{{ $model->id }}",
-        @include('charts::_partials.dimensions.js')
+        @include('charts::_partials.dimension.js')
         dataFormat: 'json',
         dataSource: {
             'chart': {

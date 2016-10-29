@@ -14,7 +14,7 @@ function drawPieChart() {
     ])
 
     var options = {
-        @include('charts::_partials.dimensions.js'),
+        @include('charts::_partials.dimension.js'),
         fontSize: 12,
         pieHole: 0.4,
         title: "{{ $model->title }}",
