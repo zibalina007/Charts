@@ -14,7 +14,9 @@
             colorNumbers: "{{ $model->colors[0] }}",
           @endif
           @include('charts::_partials.dimension.js')
-          title: "{{ $model->title }}",
+          @if($model->title)
+            title: "{{ $model->title }}",
+          @endif
           value: $model->values ? $model->values[0] : '0'; ,
           units: "{{ $model->element_label }}",
             @if(count($model->values) >= 2 and $model->values[1] <= $model->values[0])
