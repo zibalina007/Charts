@@ -26,7 +26,9 @@ function drawPieChart() {
         @include('charts::_partials.dimension.js'),
         legend: { position: 'top', alignment: 'end' },
         fontSize: 12,
-        title: "{{ $model->title }}",
+        @if($model->title)
+            title: "{{ $model->title }}",
+        @endif
         @if($model->colors)
             colors:[
                 @foreach($model->colors as $color)

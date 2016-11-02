@@ -17,7 +17,9 @@ function drawPieChart() {
         @include('charts::_partials.dimension.js'),
         fontSize: 12,
         pieHole: 0.4,
-        title: "{{ $model->title }}",
+        @if($model->title)
+            title: "{{ $model->title }}",
+        @endif
         @if($model->colors)
             colors:[
                 @foreach($model->colors as $color)
