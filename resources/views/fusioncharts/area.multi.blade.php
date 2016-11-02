@@ -10,7 +10,9 @@ FusionCharts.ready(function () {
         dataFormat: 'json',
         dataSource: {
             'chart': {
+                @if($model->title)
                 'caption': "{{ $model->title }}",
+                @endif
                 'yAxisName': "{{ $model->element_label }}",
                 'bgColor': '#ffffff',
                 'borderAlpha': '20',
