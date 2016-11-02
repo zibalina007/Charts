@@ -13,7 +13,7 @@ $(function() {
     var yAxis = new Plottable.Axes.Numeric(yScale, 'left')
 
     var reverseMap = {};
-    data.forEach(function(d) { reverseMap[d.y] = d.x;})
+    data.forEach(function(d) { reverseMap[d.y] = d.x;});
 
     var plot = new Plottable.Plots.Pie()
         .addDataset(new Plottable.Dataset(data))
@@ -25,12 +25,15 @@ $(function() {
         .outerRadius(500, yScale)
         .labelsEnabled(true)
         .labelFormatter(function(n){ return reverseMap[n] ;})
-        .animated(true)
+        .animated(true);
 
-    var title = new Plottable.Components.TitleLabel("{{ $model->title }}").yAlignment('center')
+    var title;
+    @if($model->title)
+        title = new Plottable.Components.TitleLabel("{{ $model->title }}").yAlignment('center');
+    @endif
 
-    var table = new Plottable.Components.Table([[title],[plot]])
-    table.renderTo('svg#{{ $model->id }}')
+    var table = new Plottable.Components.Table([[title],[plot]]);
+    table.renderTo('svg#{{ $model->id }}');
 
     window.addEventListener('resize', function() {
         table.redraw()

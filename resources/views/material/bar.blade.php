@@ -14,7 +14,9 @@ google.charts.load('current', {'packages':['bar']})
 
     var options = {
       chart: {
-        title: "{{ $model->title }}",
+        @if($model->title )
+          title: "{{ $model->title }}",
+        @endif
       },
       @if($model->colors)
         colors: ["{{ $model->colors[0] }}"],

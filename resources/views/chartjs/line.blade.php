@@ -34,13 +34,15 @@ var myLineChart = new Chart(ctx, {
     type: 'line',
     data: data,
     options: {
-        responsive: ($model->responsive or !$model->width) ? 'true' : 'false',
+        responsive: {{ $model->responsive or !$model->width ? 'true' : 'false' }},
         maintainAspectRatio: false,
+        @if($model->title)
         title: {
             display: true,
             text: "{{ $model->title }}",
             fontSize: 20,
         }
+        @endif
     }
 });
 </script>

@@ -14,7 +14,9 @@ google.charts.setOnLoadCallback(drawChart)
 
     var options = {
         chart: {
+          @if($model->title )
             title: "{{ $model->title }}",
+          @endif
         },
         @if($model->colors)
             colors: ["{{ $model->colors[0] }}"],

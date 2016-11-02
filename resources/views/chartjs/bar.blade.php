@@ -37,13 +37,15 @@ var myChart = new Chart(ctx, {
         ]
     },
     options: {
-        responsive: ($model->responsive or !$model->width) ? 'true' : 'false',
+        responsive: {{ $model->responsive or !$model->width ? 'true' : 'false' }},
         maintainAspectRatio: false,
+        @if($model->title)
         title: {
             display: true,
-            text: '$model->title',
+            text: "{{ $model->title }}",
             fontSize: 20,
         },
+        @endif
         scales: {
             yAxes: [{
                 display: true,

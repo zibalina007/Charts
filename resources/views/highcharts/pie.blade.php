@@ -12,9 +12,12 @@ $(function () {
             plotShadow: false,
             type: 'pie'
         },
-        title: {
-            text: "{{ $model->title }}",
-        },
+        @if($model->title)
+            title: {
+                text:  "{{ $model->title }}",
+                x: -20 //center
+            },
+        @endif
         tooltip: {
             pointFormat: '{point.y} <b>({point.percentage:.1f}%)</strong>'
         },

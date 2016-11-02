@@ -25,7 +25,9 @@ $(function() {
         donut: true,
         gaugeWidthScale: 0.6,
         counter: true,
-        title: "{{ $model->title }}",
+        @if($model->title)
+            title:  "{{ $model->title }}",
+        @endif
         label: "{{ $model->element_label }}",
         hideInnerShadow: true
     })

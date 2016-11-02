@@ -17,7 +17,9 @@ function drawChart() {
     var options = {
         @include('charts::_partials.dimension.js'),
         fontSize: 12,
-        title: "{{ $model->title }}",
+        @if($model->title)
+            title: "{{ $model->title }}",
+        @endif
         @if($model->colors)
             colors: ["{{ $model->colors[0] }}"],
         @endif
