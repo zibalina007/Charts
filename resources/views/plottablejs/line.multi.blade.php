@@ -6,11 +6,11 @@
 $(function() {
     @include('charts::plottablejs._data.multi')
 
-    var xScale = new Plottable.Scales.Category()
-    var yScale = new Plottable.Scales.Linear()
+    var xScale = new Plottable.Scales.Category();
+    var yScale = new Plottable.Scales.Linear();
 
-    var xAxis = new Plottable.Axes.Category(xScale, 'bottom')
-    var yAxis = new Plottable.Axes.Numeric(yScale, 'left')
+    var xAxis = new Plottable.Axes.Category(xScale, 'bottom');
+    var yAxis = new Plottable.Axes.Numeric(yScale, 'left');
 
     var plot = new Plottable.Plots.Line()
         @for($i = 0; $i < count($model->datasets) $i++)
@@ -21,13 +21,16 @@ $(function() {
         @if($model->colors)
             .attr('stroke', "{{ $model->colors[0] }}")
         @endif
-        .animated(true)
+        .animated(true);
 
-    var title = new Plottable.Components.TitleLabel("{{ $model->title }}").yAlignment('center');
-    var label = new Plottable.Components.AxisLabel("{{ $model->element_label }}").yAlignment('center')
+    var title;
+    @if($model->title)
+        title = new Plottable.Components.TitleLabel("{{ $model->title }}").yAlignment('center');
+    @endif
+    var label = new Plottable.Components.AxisLabel("{{ $model->element_label }}").yAlignment('center');
 
-    var table = new Plottable.Components.Table([[label, title],[yAxis, plot],[null, xAxis]])
-    table.renderTo('svg#{{ $model->id }}')
+    var table = new Plottable.Components.Table([[label, title],[yAxis, plot],[null, xAxis]]);
+    table.renderTo('svg#{{ $model->id }}');
 
     window.addEventListener('resize', function() {
         table.redraw()
