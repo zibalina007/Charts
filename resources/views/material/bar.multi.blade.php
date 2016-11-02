@@ -27,7 +27,9 @@ function drawChart() {
 
     var options = {
         chart: {
+          @if($model->title )
             title: "{{ $model->title }}",
+          @endif
         },
         @if($model->colors) {
             colors: [
