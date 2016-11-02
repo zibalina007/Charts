@@ -12,9 +12,11 @@ $(function () {
             plotShadow: false,
             type: 'column'
         },
-        title: {
-            text:  "{{ $model->title }}"
-        },
+        @if($model->title)
+            title: {
+                text:  "{{ $model->title }}"
+            },
+        @endif
         plotOptions: {
            column: {
                pointPadding: 0.2,

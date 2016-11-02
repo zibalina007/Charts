@@ -18,9 +18,11 @@ $(function () {
             renderTo:  "{{ $model->id }}",
             @include('charts::_partials.dimension.js')
         },
-        title : {
-            text :  "{{ $model->title }}"
-        },
+        @if($model->title)
+            title: {
+                text:  "{{ $model->title }}"
+            },
+        @endif
         mapNavigation: {
             enabled: true,
             enableDoubleClickZoomTo: true

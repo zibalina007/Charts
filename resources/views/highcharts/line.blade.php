@@ -7,10 +7,12 @@
                 renderTo: "{{ $model->id }}",
                 @include('charts::_partials.dimension.js')
             },
-            title: {
-                text: "{{ $model->title }}",
-                x: -20
-            },
+            @if($model->title)
+                title: {
+                    text:  "{{ $model->title }}",
+                    x: -20 //center
+                },
+            @endif
             xAxis: {
                 categories: [
                     @foreach($model->labels as $label)
