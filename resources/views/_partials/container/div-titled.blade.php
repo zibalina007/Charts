@@ -1,5 +1,5 @@
 <div @include('charts::_partials.dimension.css')>
-    @if($model->title )
+    @if($model->title)
         <center>
             <strong>{{ $model->title }}</strong>
         </center>

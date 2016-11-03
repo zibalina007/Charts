@@ -1,5 +1,3 @@
-{{-- @extends('charts::default') --}}
-
 <script type="text/javascript">
     $(function () {
         var chart = new Highcharts.Chart({
