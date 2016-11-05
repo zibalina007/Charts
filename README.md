@@ -420,7 +420,7 @@ Example json:
 {"value":31}
 ```
 
-'value' can be changed to diferent index name with ```setValueName($string)```
+'value' can be changed to different index name with ```setValueName($string)```
 
 ```php
 $chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
@@ -486,7 +486,7 @@ The available methods are:
 
 -   setMaxValues(required int $number)
 
-    Sets the max ammount of values to be seen before removing the first one.
+    Sets the max amount of values to be seen before removing the first one.
 
     ```php
     $chart = Charts::realtime(url('/path/to/json'), 1000, 'area', 'highcharts')
@@ -535,7 +535,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
 - calculate()
 
-    Calculates the valeus / labels for the chart.
+    Calculates the values / labels for the chart.
 
     **Note:** This function is called every time a modification is made in the chart function, interval or amplitude
     so you don't need to call it every time you change the values. It's just an auxiliary function.
@@ -711,7 +711,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
 - setDimensions(required int $width, required int $height)
 
-  The chart dimensions (shortcut to set width, height with one funcion).
+  The chart dimensions (shortcut to set width, height with one function).
 
   ```php
   Charts::create('line', 'highcharts')->setHeight(1000, 500);
@@ -840,7 +840,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   ### Gauge
 
-  Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
+  Note: You either need 1 value or 3 following this standard: ```[actualValue, minValue, maxValue]```
 
   ```php
   Charts::create('gauge', 'canvas-gauges')
@@ -856,7 +856,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   ### Temperature
 
-  Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
+  Note: You either need 1 value or 3 following this standard: ```[actualValue, minValue, maxValue]```
 
   ```php
   Charts::create('temp', 'canvas-gauges')
@@ -872,7 +872,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   ### Percentage
 
-  Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
+  Note: You either need 1 value or 3 following this standard: ```[actualValue, minValue, maxValue]```
 
   ```php
   Charts::create('percentage', 'justgage')
@@ -888,7 +888,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   ### Progressbar
 
-  Note: You either need 1 value or 3 following this standar: ```[actualValue, minValue, maxValue]```
+  Note: You either need 1 value or 3 following this standard: ```[actualValue, minValue, maxValue]```
 
   ```php
   Charts::create('progressbar', 'progressbarjs')
