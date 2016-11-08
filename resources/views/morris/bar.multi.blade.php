@@ -8,23 +8,19 @@
             element: "{{ $model->id }}",
             resize: true,
             data: [
-                @php($k = 0)
-                @foreach($model->labels as $l) {
+                @for ($l = 0; $l < count($model->labels); $l++)
                     {
                         x: "{{ $l }}",
-                        @php($i = 0)
-                        @foreach($model->datasets as $ds)
-                            s{{ $i }}: "{{ $ds['values'][$k] }}",;
-                            @php($i++)
-                        @endforeach
+                        @for ($l = 0; $l < count($model->datasets); $l++)
+                            s{{ $i }}: "{{ $model->datasets[$i]['values'][$l] }}",;
+                        @endfor
                     },
-                    @php($k++)
-                }
+                @endfor
             ],
             xkey: 'x',
             labels: [
-                @foreach($model->datasets as $el => $ds)
-                    "{{ $el }}",
+                @for ($i = 0; $i < count($model->datasets); $i++)
+                    "{{ $model->datasets[$i]['label'] }}",
                 @endfor
             ],
             ykeys: [

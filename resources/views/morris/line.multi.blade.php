@@ -19,9 +19,9 @@
             ],
             xkey: 'x',
             labels: [
-                @foreach($model->datasets as $el => $ds)
-                    "{{ $el }}",
-                @endforeach
+                @for ($i = 0; $i < count($model->datasets); $i++)
+                    "{{ $model->datasets[$i]['key'] }}",
+                @endfor
             ],
             ykeys: [
                 @for($i = 0; $i < count($model->datasets); $i++)

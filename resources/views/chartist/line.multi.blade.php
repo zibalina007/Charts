@@ -12,7 +12,7 @@
         series: [
             @foreach($model->datasets as $ds)
             [
-                @foreach($ds['values'] as $value)
+                @foreach($model->datasets[$i]['values'] as $value)
                     "{{ $value }}",
                 @endforeach
             ],

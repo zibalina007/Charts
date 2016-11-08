@@ -1,13 +1,10 @@
-@php($i = 0)
-@foreach($model->datasets as $ds)
+@for($i = 0; $i < count($model->datasets); $i++)
     var s{{ $i }} = [
-        @for($k = 0 $k < count($ds['values']) $k++)
+        @for($k = 0 $k < count($model->datasets[$i]['values']) $k++)
             {
                 x: "{{ $model->labels[$k] }}",
-                y: "{{ $ds['values'][$k] }}"
+                y: "{{ $model->datasets[$i]['values'][$k] }}"
             },
         @endfor
     ];
-
-    @php($i++)
 @endforeach

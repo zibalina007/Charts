@@ -7,23 +7,20 @@
         var data = google.visualization.arrayToDataTable([
             [
                 'Element',
-                @foreach($model->datasets as $el => $ds)
-                    "{{ $el }}",
-                @endforeach
+                @for ($i = 0; $i < count($model->datasets); $i++)
+                    "{{ $model->datasets[$i]['key'] }}",
+                @endfor
             ],
 
-            @php($i = 0)
-            @foreach($model->labels as $l)
+            @for($l = 0; $l < count($model->labels); $l++)
                 [
                     "{{ $l }}",
-                    @foreach($model->datasets as $el => $ds)
-                        "{{ $ds['values'][$i] }}",
-                    @endforeach
+                    @for ($i = 0; $i < count($model->datasets); $i++)
+                        "{{ $model->datasets[$i]['values'][$l] }}",
+                    @endfor
                 ],
-                @php($i++)
-            @endforeach
-
-      ])
+            @endfor
+    ])
 
     var options = {
         chart: {
@@ -33,9 +30,9 @@
         },
         @if($model->colors)
             colors: [
-                @foreach($model->colors as $c) {
-                  "{{ $c }}",
-                }
+                @foreach($model->colors as $c)
+                    "{{ $c }}",
+                @endforeach
             ],
         @endif
     };

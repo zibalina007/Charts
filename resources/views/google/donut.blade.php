@@ -4,11 +4,9 @@
     function drawPieChart() {
         var data = google.visualization.arrayToDataTable([
             ['Element', 'Value'],
-            @php($i = 0)
-            @foreach($model->values as $dta)
+            @for ($l = 0; $l < count($model->values); $l++)
                 ["{{ $model->labels[$i] }}", "{{ $model->values[$i] }}"],
-                @php($i++)
-            @endforeach
+            @endfor
         ])
 
         var options = {

@@ -33,7 +33,7 @@ class Multi extends Chart
     {
         parent::__construct($type, $library);
 
-        $this->sufix = 'multi';
+        $this->suffix = 'multi';
     }
 
     /**
@@ -42,9 +42,12 @@ class Multi extends Chart
      * @param array $values
      * @param int   $dataset
      */
-    public function setDataset($element_label, $values)
+    public function setDataset($elementLabel, $values)
     {
-        $this->datasets[$element_label]['values'] = $values;
+        $this->datasets[] = [
+            'label' => $elementLabel,
+            'values' => $values,
+        ];
 
         return $this;
     }

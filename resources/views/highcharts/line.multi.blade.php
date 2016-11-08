@@ -34,21 +34,19 @@
                 borderWidth: 0
             },
             series: [
-                @php($i = 0)
-                @foreach($model->datasets as $el => $ds)
+                @for ($i = 0; $i < count($model->datasets); $i++)
                     {
-                        name:  "{{ $el }}",
+                        name:  "{{ $model->datasets[$i]['label'] }}",
                         @if($model->colors && count($model->colors) > $i)
                             color: "{{ $model->colors[$i] }}",
                         @endif
                         data: [
-                            @foreach($ds['values'] as $dta)
+                            @foreach($model->datasets[$i]['values'] as $dta)
                                 "{{ $dta }}",
                             @endforeach
                         ]
                     },
-                    @php($i++)
-                @endforeach
+                @endfor
             ]
         })
     });

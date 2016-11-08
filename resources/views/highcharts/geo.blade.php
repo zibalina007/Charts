@@ -46,7 +46,7 @@
                             'code':  "{{ $model->labels[$i] }}",
                             'value': "{{ $model->values[$i] }}"
                         },
-                    @endforeach
+                    @endfor
                 ],
                 mapData: Highcharts.maps['custom/world'],
                 joinBy: ['iso-a2', 'code'],

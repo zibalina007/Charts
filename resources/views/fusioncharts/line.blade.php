@@ -35,7 +35,7 @@
                             'label': "{{ $model->labels[$i] }}",
                             'value': "{{ $model->values[$i] }}",
                         },
-                    @endforeach
+                    @endfor
                 ],
             }
         }).render()

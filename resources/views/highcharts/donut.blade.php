@@ -34,16 +34,12 @@
             series: [{
                 colorByPoint: true,
                 data: [
-                    @php($i = 0)
-                    @foreach($model->values as $dta)
-                        $e = {{ $model->labels[$i] }};
-                        $v = $dta;
+                    @for ($l = 0; $l < count($model->values); $l++)
                         {
-                            name: "{{ $e }}",
-                            y: "{{ $v }}"
+                            name: "{{ $model->labels[$i] }}",
+                            y: "{{ $model->values[$i] }}"
                         };
-                        @php($i++)
-                    @endforeach
+                    @endfor
                 ]
             }]
         })
