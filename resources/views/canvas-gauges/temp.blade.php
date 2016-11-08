@@ -1,4 +1,3 @@
-
 @if(!$model->customId)
     @include('charts::_partials.container.canvas')
 @endif
@@ -6,16 +5,16 @@
 <script type="text/javascript">
     $(function (){
         var gauge = new LinearGauge({
-          renderTo: "{{ $model->id }}",
-          @if($model->colors)
+            renderTo: "{{ $model->id }}",
+            @if($model->colors)
             colorNumbers: "{{ $model->colors[0] }}",
-          @endif
-          @include('charts::_partials.dimension.js')
-          @if($model->title)
+            @endif
+            @include('charts::_partials.dimension.js')
+            @if($model->title)
             title: "{{ $model->title }}",
-          @endif
-          value: "{{ $model->values[0] }}",
-          units: "{{ $model->element_label }}",
+            @endif
+            value: "{{ $model->values[0] }}",
+            units: "{{ $model->element_label }}",
             @if(count($model->values) >= 2 and $model->values[1] <= $model->values[0])
                 @php($min = $model->values[1])
                 minValue: {{ $min }},

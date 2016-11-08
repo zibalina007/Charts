@@ -54,7 +54,7 @@
                     @endif
                 @endfor
             ],
-          highlights: [
+            highlights: [
                 @if($model->gauge_style == 'right')
                     // Calculate warning area
                     @php

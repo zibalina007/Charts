@@ -36,23 +36,21 @@
                     ]
                 }],
                 'dataset': [
-                    @php($i = 0)
-                    @foreach($model->datasets as $el => $ds)
+                    @for ($i = 0; $i < count($model->datasets); $i++)
                         {
-                            'seriesname': "{{ $el }}",
+                            'seriesname': "{{ $model->datasets[$i]['label'] }}",
                             @if($model->colors and count($model->colors) > $i)
                                 'color': "{{ $model->colors[$i] }}",
                             @endif
                             'data': [
-                                @foreach($ds['values'] as $v)
+                                @foreach($model->datasets[$i]['values'] as $v)
                                     {
                                         'value': "{{ $v }}"
                                     },
                                 @endforeach
                             ]
                         },
-                        @php($i++)
-                    @endforeach
+                    @endfor
                 ]
             }
         }).render()

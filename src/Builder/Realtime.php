@@ -38,7 +38,7 @@ class Realtime extends Chart
         // Set the data
         $this->url = $url;
         $this->interval = $interval;
-        $this->sufix = 'realtime';
+        $this->suffix = 'realtime';
         $this->value_name = 'value';
         $this->max_values = 20;
     }

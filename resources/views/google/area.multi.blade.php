@@ -5,15 +5,15 @@
         var data = google.visualization.arrayToDataTable([
             [
                 'Element',
-                @foreach($model->datasets as $el => $ds)
-                    "{{ $el }}",
-                @endforeach
+                @for ($i = 0; $i < count($model->datasets); $i++)
+                    "{{ $model->datasets[$i]['key'] }}",
+                @endfor
             ],
-            @for ($i = 0; $i < count($model->labels); $i++)
+            @for ($l = 0; $l < count($model->labels); $l++)
                 [
                     "{{ $l }}",
-                    @foreach($model->datasets as $el => $ds)
-                        "{{ $ds['values'][$i] }}",
+                    @for ($i = 0; $i < count($model->datasets); $i++)
+                        "{{ $model->datasets[$i]['values'][$l] }}",
                     @endforeach
                 ],
             @endfor

@@ -10,7 +10,7 @@
             @endforeach
         ],
         series: [
-            @foreach($model->values as $value) {
+            @foreach($model->values as $value)
                 "{{ $value }}",
             @endforeach
         ]

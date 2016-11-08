@@ -30,7 +30,7 @@ class Chart
     public $responsive;
     public $gauge_style;
     public $view;
-    protected $sufix;
+    protected $suffix;
 
     /**
      * Create a new chart instance.
@@ -48,7 +48,7 @@ class Chart
         $this->labels = [];
         $this->values = [];
         $this->colors = [];
-        $this->sufix = '';
+        $this->suffix = '';
         $this->gauge_style = 'left';
         $this->responsive = config('charts.default.responsive');
         $length = 10; // The random identifier length.

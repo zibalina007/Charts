@@ -1,6 +1,6 @@
 @if($model->responsive)
-    height: 100%,
-    width: 100%,
+    height: "100%",
+    width: "100%",
 @else
     @if($model->height)
         height: {{ $model->height }},

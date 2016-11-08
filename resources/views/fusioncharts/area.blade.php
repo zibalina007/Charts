@@ -31,7 +31,6 @@
                 },
                 'data': [
                     @for ($i = 0; $i < count($model->values); $i++)
-                        $l = $model->labels[$i];
                         {
                             'label': "{{ $model->labels[$i] }}",
                             'value': "{{ $model->values[$i] }}",

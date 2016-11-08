@@ -11,11 +11,10 @@
             @endforeach
         ],
         datasets: [
-            @php($i = 0)
-            @foreach($model->datasets as $el => $ds)
+            @for ($i = 0; $i < count($model->datasets); $i++)
                 {
                     fill: false,
-                    label: "{{ $el }}",
+                    label: "{{ $model->datasets[$i]['label'] }}",
                     lineTension: 0.3,
                     @if($model->colors and count($model->colors) > $i) {
                         @php($c = $model->colors[$i])
@@ -25,13 +24,12 @@
                     borderColor: "{{ $c }}",
                     backgroundColor: "{{ $c }}",
                     data: [
-                        @foreach($ds['values'] as $dta)
+                        @foreach($model->datasets[$i]['values'] as $dta)
                             "{{ $dta }}",
                         @endforeach
                     ],
                 },
-                @php($i++)
-            @endforeach
+            @endfor
         ]
     };
 

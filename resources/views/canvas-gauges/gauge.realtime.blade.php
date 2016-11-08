@@ -50,8 +50,8 @@
                 @endfor
             ],
 
-          animationRule: 'linear',
-          highlights: [
+            animationRule: 'linear',
+            highlights: [
                 @if($model->gauge_style == 'right')
                     // Calculate warning area
                     @php
@@ -98,11 +98,11 @@
             ],
         }).draw()
 
-      setInterval(function(){
+        setInterval(function(){
             $.getJSON("{{ $model->url }}", function( data ) {
                 {{ $model->id }}.value = data["{{ $model->value_name }}"];
             })
-      }, {{ $model->interval }})
+        }, {{ $model->interval }})
     });
 </script>
 

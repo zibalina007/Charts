@@ -28,18 +28,15 @@
                     'subcaptionFontSize': '14'
                 },
                 'data': [
-                    @php($i = 0)
-                    @foreach($model->values as $v) {
-                        $l = $model->labels[$i];
+                    @for ($i = 0; $i < count($model->values); $i++)
                         {
-                            'label': "{{ $l }}",
-                            'value': "{{ $v }}",
+                            'label': "{{ $model->labels[$i] }}",
+                            'value': "{{ $model->values[$i] }}",
                             @if($model->colors) {
                                 'color': "{{ $model->colors[$i] }}",
                             @endif
                         },
-                        @php($i++)
-                    }
+                    @endfor
                 ],
             }
         }).render()

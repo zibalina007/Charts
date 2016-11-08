@@ -13,11 +13,10 @@
                 @endforeach
             ],
             datasets: [
-                @php($i = 0)
-                @foreach($model->datasets as $el => $ds)
+                @for ($i = 0; $i < count($model->datasets); $i++)
                     {
                         fill: true,
-                        label: "{{ $el }}",
+                        label: "{{ $model->datasets[$i]['key'] }}",
                         lineTension: 0.3,
                         @if($model->colors and count($model->colors) > $i)
                             borderColor: "{{ $model->colors[$i] }}",
@@ -28,13 +27,12 @@
                             backgroundColor: "{{ $c }}",
                         @endif
                         data: [
-                            @foreach($ds['values'] as $dta)
+                            @foreach($model->datasets[$i]['values'] as $dta)
                                 "{{ $dta }}",
                             @endforeach
                         ],
                     },
-                    @php($i++)
-                }
+                @endfor
             ]
         },
         options: {

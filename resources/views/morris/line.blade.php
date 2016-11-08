@@ -8,13 +8,11 @@
             element: "{{ $model->id }}",
             resize: true,
             data: [
-                @php($i = 0)
-                @foreach($model->values as $v)
+                @for($l = 0; $l < count($model->values); $l++)
                     {
                         x: "{{ $model->labels[$i] }}",
                         y: "{{ $model->values[$i] }}"
                     },
-                @php($i++)
                 @endforeach
             ],
             xkey: 'x',
