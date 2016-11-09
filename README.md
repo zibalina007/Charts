@@ -145,7 +145,7 @@ Charts::create('line', 'highcharts')
     ->setResponsive(false);
 ```
 
-## Multi Datasets Chart
+## Multi Datasets Charts
 
 | Multi Dataset Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar |
 |----------------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|
