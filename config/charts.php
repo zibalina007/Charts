@@ -33,7 +33,7 @@ return [
 
         'canvas-gauges' => [
             'scripts' => [
-                asset('/vendor/consoletvs/charts/canvas-gauges/gauge.min.js'),
+                'https://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.0.9/all/gauge.min.js',
             ],
         ],
 
