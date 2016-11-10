@@ -200,13 +200,13 @@ class Builder
         return collect(array_flatten($data))->map(function ($item) {
             if (ends_with($item, '.css')) {
                 return starts_with($item, ['http://', 'https://'])
-                        ? Html::style($item)->__toString()
+                        ? Html::style($item)
                         : '<style type="text/css">'.$item.'</style>';
             }
 
             if (ends_with($item, '.js')) {
                 return starts_with($item, ['http://', 'https://'])
-                        ? Html::script($item)->__toString()
+                        ? Html::script($item)
                         : '<script type="text/javascript">'.$item.'</script>';
             }
         })->implode('');
