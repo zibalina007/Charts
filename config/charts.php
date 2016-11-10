@@ -52,12 +52,16 @@ return [
             ],
         ],
 
-        'fusioncharts' => [
-            'scripts' => [
-                asset('/vendor/consoletvs/charts/fusioncharts/fusioncharts.js'),
-                asset('/vendor/consoletvs/charts/fusioncharts/themes/fusioncharts.theme.fint.js'),
-            ],
-        ],
+        /*
+        * function calls are incompatable in config files.
+        */
+
+        // 'fusioncharts' => [
+        //     'scripts' => [
+        //         asset('/vendor/consoletvs/charts/fusioncharts/fusioncharts.js'),
+        //         asset('/vendor/consoletvs/charts/fusioncharts/themes/fusioncharts.theme.fint.js'),
+        //     ],
+        // ],
 
         'google' => [
             'scripts' => [
