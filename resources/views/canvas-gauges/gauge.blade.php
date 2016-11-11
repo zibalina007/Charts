@@ -36,16 +36,16 @@
 
             majorTicks: [
                 @php($r = $min)
-                @for($i = 0 $i <= $interval; $i++)
+                @for($i = 0; $i <= $interval; $i++)
                     @if($i == 0)
                         {{ $min }},
                     @elseif($i == $interval)
                         {{ $max }},
                     @else
-                        @php
+                        <?php
                             $r + $interval_adder.',';
                             $r = $r + $interval_adder;
-                        @endphp
+                        ?>
                     @endif
                 @endfor
             ],
@@ -54,11 +54,11 @@
             highlights: [
                 @if($model->gauge_style == 'right')
                     // Calculate warning area
-                    @php
-                        $low_warning = round(0.40 * $max, 2)
-                        $warning = round(0.25 * $max, 2)
-                        $max_warning = round(0.10 * $max, 2)
-                    @endphp
+                    <?php
+                        $low_warning = round(0.40 * $max, 2);
+                        $warning = round(0.25 * $max, 2);
+                        $max_warning = round(0.10 * $max, 2);
+                    ?>
 
                     { from: $low_warning, to: $max, color: 'rgba(0,258,0,.20)' },
                     { from: $warning, to: $low_warning, color: 'rgba(255,255,0,.35)' },
@@ -66,14 +66,14 @@
                     { from: $min, to: $max_warning, color: 'rgba(255,0,0,.5)' },
                 @elseif($model->gauge_style == 'center')
                     // Calculate warning area
-                    @php
-                        $warning = round(0.10 * $max, 2)
-                        $warning2 = round(0.25 * $max, 2)
-                        $warning3 = round(0.40 * $max, 2)
-                        $warning4 = round(0.60 * $max, 2)
-                        $warning5 = round(0.75 * $max, 2)
-                        $warning6 = round(0.90 * $max, 2)
-                    @endphp
+                    <?php
+                        $warning = round(0.10 * $max, 2);
+                        $warning2 = round(0.25 * $max, 2);
+                        $warning3 = round(0.40 * $max, 2);
+                        $warning4 = round(0.60 * $max, 2);
+                        $warning5 = round(0.75 * $max, 2);
+                        $warning6 = round(0.90 * $max, 2);
+                    ?>
 
                     { from: $warning3, to: $warning4, color: 'rgba(0,258,0,.20)' },
                     { from: $warning2, to: $warning3, color: 'rgba(255,255,0,.35)' },
@@ -84,11 +84,11 @@
                     { from: $warning6, to: $max, color: 'rgba(255,0,0,.5)' },
                 @else
                     // Calculate warning area
-                    @php
-                        $low_warning = round(0.60 * $max, 2)
-                        $warning = round(0.75 * $max, 2)
-                        $max_warning = round(0.90 * $max, 2)
-                    @endphp
+                    <?php
+                        $low_warning = round(0.60 * $max, 2);
+                        $warning = round(0.75 * $max, 2);
+                        $max_warning = round(0.90 * $max, 2);
+                    ?>
 
                     { from: $min, to: $low_warning, color: 'rgba(0,258,0,.20)' },
                     { from: $low_warning, to: $warning, color: 'rgba(255,255,0,.35)' },
