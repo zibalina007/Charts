@@ -29,7 +29,7 @@
                 crosshair: true
             },
             series: [{
-                name: "{{ $model->element_label }}",
+                name: "{{ $model->element_label }}",
                 data: [
                     @foreach($model->values as $dta)
                         "{{ $dta }}",

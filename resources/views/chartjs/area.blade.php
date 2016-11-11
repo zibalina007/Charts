@@ -16,7 +16,7 @@
             @if($model->colors)
                 backgroundColor: "{{ $model->colors[0] }}",
             @endif
-            label: "{{ $model->element_label }}",
+            label: "{{ $model->element_label }}",
             lineTension: 0.3,
             @if($model->colors)
                 borderColor: "{{ $model->colors[0] }}",
@@ -38,7 +38,7 @@
             @if($model->title)
                 title: {
                     display: true,
-                    text: "{{ $model->title }}",
+                    text: "{{ $model->title }}",
                     fontSize: 20,
                 }
             @endif

@@ -24,10 +24,10 @@
 
         var title;
         @if($model->title)
-            title = new Plottable.Components.TitleLabel("{{ $model->title }}").yAlignment('center');
+            title = new Plottable.Components.TitleLabel("{{ $model->title }}").yAlignment('center');
         @endif
 
-        var label = new Plottable.Components.AxisLabel("{{ $model->element_label }}")
+        var label = new Plottable.Components.AxisLabel("{{ $model->element_label }}")
             .yAlignment('center');
 
          var table = new Plottable.Components.Table([[label, title],[yAxis, plot],[null, xAxis]]);

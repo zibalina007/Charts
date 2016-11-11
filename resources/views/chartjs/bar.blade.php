@@ -14,7 +14,7 @@
             ],
             datasets: [
                 {
-                    label: "{{ $model->element_label }}",
+                    label: "{{ $model->element_label }}",
                     backgroundColor: [
                         @if($model->colors)
                             @foreach($model->colors as $color)
@@ -40,7 +40,7 @@
             @if($model->title)
             title: {
                 display: true,
-                text: "{{ $model->title }}",
+                text: "{{ $model->title }}",
                 fontSize: 20,
             },
             @endif

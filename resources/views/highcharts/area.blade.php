@@ -21,7 +21,7 @@
             },
             yAxis: {
                 title: {
-                    text: "{{ $model->element_label }}"
+                    text: "{{ $model->element_label }}"
                 },
                 plotLines: [{
                     value: 0,
@@ -44,7 +44,7 @@
                 borderWidth: 0
             },
             series: [{
-                name: "{{ $model->element_label }}",
+                name: "{{ $model->element_label }}",
                 data: [
                     @foreach($model->values as $dta)
                         "{{ $dta }}",

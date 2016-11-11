@@ -26,7 +26,7 @@
 
         var title;
         @if($model->title)
-            title = new Plottable.Components.TitleLabel("{{ $model->title }}").yAlignment('center');
+            title = new Plottable.Components.TitleLabel("{{ $model->title }}").yAlignment('center');
         @endif
 
         var table = new Plottable.Components.Table([[title],[plot]]);

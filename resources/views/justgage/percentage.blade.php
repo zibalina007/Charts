@@ -2,8 +2,8 @@
 
 <script type="text/javascript">
     $(function() {
-        var {{ $model->id }} = new JustGage({
-            id: "{{ $model->id }}",
+        var {{ $model->id }} = new JustGage({
+            id: "{{ $model->id }}",
             value: "{{ $model->values[0] }}",
 
             @if(count($model->values) >= 2 and $model->values[1] <= $model->values[0])
@@ -26,7 +26,7 @@
             @if($model->title)
                 title:  "{{ $model->title }}",
             @endif
-            label: "{{ $model->element_label }}",
+            label: "{{ $model->element_label }}",
             hideInnerShadow: true
         })
     });

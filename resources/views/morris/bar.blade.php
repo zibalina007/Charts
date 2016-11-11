@@ -17,15 +17,15 @@
             ],
             xkey: 'x',
             ykeys: ['y'],
-            labels: ["{{ $model->element_label }}"],
+            labels: ["{{ $model->element_label }}"],
             hideHover: 'auto',
             @if($model->colors)
                 barColors: function (row, series, type) {
                     @for ($i = 0; $i < count($model->colors); $i++)
                         @if($i == 0)
-                            'if(row.label == "{{ $model->labels[$i] }}") return "{{ $model->colors[$i] }}"';
+                            'if(row.label == "{{ $model->labels[$i] }}") return "{{ $model->colors[$i] }}"';
                         @else
-                            'else if(row.label == "{{ $model->labels[$i] }}") return "{{ $model->colors[$i] }}"';
+                            'else if(row.label == "{{ $model->labels[$i] }}") return "{{ $model->colors[$i] }}"';
                         @endif
                     @endforeach
                 }
