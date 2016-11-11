@@ -32,7 +32,7 @@
                 name: "{{ $model->element_label }}",
                 data: [
                     @foreach($model->values as $dta)
-                        "{{ $dta }}",
+                        {{ $dta }},
                     @endforeach
                 ]
             }]
