@@ -50,7 +50,7 @@
                 ],
                 mapData: Highcharts.maps['custom/world'],
                 joinBy: ['iso-a2', 'code'],
-                name: "{{ $model->element_label }}",
+                name: "{{ $model->element_label }}",
                 states: {
                     hover: {
                         color: '#BADA55'

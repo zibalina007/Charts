@@ -22,7 +22,7 @@
             },
             yAxis: {
                 title: {
-                    text: "{{ $model->element_label }}"
+                    text: "{{ $model->element_label }}"
                 },
                 plotLines: [{
                     value: 0,
@@ -56,12 +56,12 @@
             $.ajax({
                 url:  "{{ $model->url }}",
                 success: function(point) {
-                    var series = {{ $model->id }}.series[0],
+                    var series = {{ $model->id }}.series[0],
                         shift = series.data.length >= $model->max_values; // shift if the series is longer than 20
 
                     // add the point
-                    {{ $model->id }}.series[0].addPoint(point[ "{{ $model->value_name }}"], true, shift)
-                    {{ $model->id }}.xAxis.categories
+                    {{ $model->id }}.series[0].addPoint(point[ "{{ $model->value_name }}"], true, shift)
+                    {{ $model->id }}.xAxis.categories
 
                     // call it again after one second
                     setTimeout(requestData, {{ $model->interval }})

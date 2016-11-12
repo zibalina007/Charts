@@ -38,7 +38,7 @@
             @if($model->title)
                 title: {
                     display: true,
-                    text: "{{ $model->title }}",
+                    text: "{{ $model->title }}",
                     fontSize: 20,
                 }
             @endif

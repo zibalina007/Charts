@@ -25,7 +25,7 @@
     var options = {
         chart: {
             @if($model->title)
-                title: "{{ $model->title }}",
+                title: "{{ $model->title }}",
             @endif
         },
         @if($model->colors)

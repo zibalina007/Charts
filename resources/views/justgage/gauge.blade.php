@@ -2,7 +2,7 @@
 
 <script type="text/javascript">
     $(function() {
-        var {{ $model->id }} = new JustGage({
+        var {{ $model->id }} = new JustGage({
             id:  "{{ $model->id }}",
             value: "{{ $model->values[0] }}",
 
@@ -26,7 +26,7 @@
             @if($model->title)
                 title:  "{{ $model->title }}",
             @endif
-            label: "{{ $model->element_label }}",
+            label: "{{ $model->element_label }}",
             hideInnerShadow: true
         })
     });

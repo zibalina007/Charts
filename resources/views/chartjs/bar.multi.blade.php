@@ -19,8 +19,8 @@
                         label: "{{ $model->datasets[$i]['key'] }}",
                         lineTension: 0.3,
                         @if($model->colors and count($model->colors) > $i)
-                            borderColor: "{{ $model->colors[$i] }}",
-                            backgroundColor: "{{ $model->colors[$i] }}",
+                            borderColor: "{{ $model->colors[$i] }}",
+                            backgroundColor: "{{ $model->colors[$i] }}",
                         @else
                             $c = sprintf('#%06X', mt_rand(0, 0xFFFFFF))
                             borderColor: "{{ $c }}",
@@ -41,7 +41,7 @@
                 @if($model->title)
                     title: {
                 display: true,
-                    text: "{{ $model->title }}",
+                    text: "{{ $model->title }}",
                     fontSize: 20,
             },
             @endif

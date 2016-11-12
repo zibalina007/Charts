@@ -14,7 +14,7 @@
             fontSize: 12,
             pieHole: 0.4,
             @if($model->title)
-                title: "{{ $model->title }}",
+                title: "{{ $model->title }}",
             @endif
             @if($model->colors)
                 colors:[

@@ -8,9 +8,9 @@
             dataSource: {
                 'chart': {
                     @if($model->title)
-                    'caption': "{{ $model->title }}",
+                    'caption': "{{ $model->title }}",
                     @endif
-                    'yAxisName': "{{ $model->element_label }}",
+                    'yAxisName': "{{ $model->element_label }}",
                     @if($model->colors)
                         'paletteColors': "{{ $model->colors[0] }}",
                     @endif

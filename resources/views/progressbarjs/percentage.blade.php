@@ -5,7 +5,7 @@
 
 <script type="text/javascript">
     $(function() {
-        var {{ $model->id }} = new ProgressBar.Circle('#{{ $model->id }}', {
+        var {{ $model->id }} = new ProgressBar.Circle('#{{ $model->id }}', {
             @if($model->colors and count($model->colors) >= 2)
                 color: $model->colors[1],
             @else
@@ -36,7 +36,7 @@
             @endif
         })
 
-        {{ $model->id }}.animate({{ ($model->values[0] - $min) / ($max - $min) }})
+        {{ $model->id }}.animate({{ ($model->values[0] - $min) / ($max - $min) }})
     });
 </script>
 

@@ -2,7 +2,7 @@
     $(function () {
         var chart = new Highcharts.Chart({
             chart: {
-                renderTo: "{{ $model->id }}",
+                renderTo: "{{ $model->id }}",
                 @include('charts::_partials.dimension.js')
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -37,7 +37,7 @@
                     @for($i = 0; $i < count($model->values); $i++)
                         {
                             name: "{{ $model->labels[$i] }}",
-                            y: "{{ $model->values[$i] }}"
+                            y: {{ $model->values[$i] }}
                         },
                     @endfor
                 ]
