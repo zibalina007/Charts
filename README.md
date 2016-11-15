@@ -8,6 +8,13 @@
 
 ![Charts Logo](http://i.imgur.com/zylVNhI.png)
 
+
+## Important Notice
+
+Yes, charts 3.0 is comming this week, I'm currently fixing TONS of bugs that appeared upon the recent pull requests done. While I 
+fix all this stuff, please avoid creating new pull requests as they will be mostly closed. Please take into consideration we're trying
+to make it as stable as posible, so this might take some time for us to try all the charts.
+
 ## Table Of Contents
 
 -   [Installation](#installation)
