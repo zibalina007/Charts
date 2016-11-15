@@ -4,7 +4,7 @@ var data = [
             x: "{{ $model->labels[$i] }}",
             y: "{{ $model->values[$i] }}",
             @if($model->colors)
-                color: "{{ $model->colors[$i] }}"
+                color: "{{ $model->colors[$i] }}"
             @endif
         },
     @endfor

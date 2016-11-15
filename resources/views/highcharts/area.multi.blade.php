@@ -21,7 +21,7 @@
             },
             yAxis: {
                 title: {
-                    text: "{{ $model->element_label }}"
+                    text: "{{ $model->element_label }}"
                 },
                 plotLines: [{
                     value: 0,

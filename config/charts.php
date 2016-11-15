@@ -33,7 +33,7 @@ return [
 
         'canvas-gauges' => [
             'scripts' => [
-                asset('/vendor/consoletvs/charts/canvas-gauges/gauge.min.js'),
+                'https://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.0.9/all/gauge.min.js',
             ],
         ],
 
@@ -52,12 +52,16 @@ return [
             ],
         ],
 
-        'fusioncharts' => [
-            'scripts' => [
-                asset('/vendor/consoletvs/charts/fusioncharts/fusioncharts.js'),
-                asset('/vendor/consoletvs/charts/fusioncharts/themes/fusioncharts.theme.fint.js'),
-            ],
-        ],
+        /*
+        * function calls are incompatable in config files.
+        */
+
+        // 'fusioncharts' => [
+        //     'scripts' => [
+        //         asset('/vendor/consoletvs/charts/fusioncharts/fusioncharts.js'),
+        //         asset('/vendor/consoletvs/charts/fusioncharts/themes/fusioncharts.theme.fint.js'),
+        //     ],
+        // ],
 
         'google' => [
             'scripts' => [

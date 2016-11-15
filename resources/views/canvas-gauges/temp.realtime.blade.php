@@ -4,17 +4,17 @@
 
 <script type="text/javascript">
     $(function (){
-        var {{ $model->id }} = new LinearGauge({
-            renderTo: "{{ $model->id }}",
+        var {{ $model->id }} = new LinearGauge({
+            renderTo: "{{ $model->id }}",
             @if($model->colors)
                 colorNumbers: "{{ $model->colors[0] }}",
             @endif
             @include('charts::_partials.dimension.js')
             @if($model->title)
-                title: "{{ $model->title }}",
+                title: "{{ $model->title }}",
             @endif
             value: {{ $model->values ? $model->values[0] : '0' }},
-            units: "{{ $model->element_label }}",
+            units: "{{ $model->element_label }}",
             @if(count($model->values) >= 2 and $model->values[1] <= $model->values[0])
                 @php($min = $model->values[1])
                 minValue: {{ $min }},
@@ -102,8 +102,8 @@
         }).draw()
 
         setInterval(function(){
-            $.getJSON("{{ $model->url }}", function( data ) {
-                {{ $model->id }}.value = data["{{ $model->value_name }}"];
+            $.getJSON("{{ $model->url }}", function( data ) {
+                {{ $model->id }}.value = data["{{ $model->value_name }}"];
             })
         }, {{ $model->interval }})
     });

@@ -2,7 +2,7 @@
     $(function () {
         var chart = new Highcharts.Chart({
             chart: {
-                renderTo: "{{ $model->id }}",
+                renderTo: "{{ $model->id }}",
                 @include('charts::_partials.dimension.js')
             },
             @if($model->title)

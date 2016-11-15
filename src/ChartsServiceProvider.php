@@ -20,11 +20,11 @@ class ChartsServiceProvider extends ServiceProvider
         ], 'charts_config');
 
         $this->publishes([
-            __DIR__.'/Assets' => public_path('vendor/consoletvs/charts'),
+            __DIR__.'/assets' => public_path('vendor/consoletvs/charts'),
         ], 'charts_assets');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/consoletvs/charts'),
+            __DIR__.'/../resources/views' => base_path('resources/views/vendor/consoletvs/charts'),
         ]);
 
         $this->registerBladeDirectives();

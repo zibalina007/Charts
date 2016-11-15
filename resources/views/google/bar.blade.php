@@ -3,7 +3,7 @@
 
     function drawPieChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Element', "{{ $model->element_label }}",
+            ['Element', "{{ $model->element_label }}",
                 @if($model->colors)
                     { role: 'style' }
                 @endif
@@ -12,7 +12,7 @@
                 [
                     "{{ $model->labels[$i] }}", "{{ $model->values[$i] }}"
                     @if($model->colors)
-                        "{{ $model->colors[$i] }}",
+                        "{{ $model->colors[$i] }}",
                     @endif
                 ],
             @endfor
@@ -23,7 +23,7 @@
             legend: { position: 'top', alignment: 'end' },
             fontSize: 12,
             @if($model->title)
-                title: "{{ $model->title }}",
+                title: "{{ $model->title }}",
             @endif
             @if($model->colors)
                 colors:[

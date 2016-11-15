@@ -18,8 +18,8 @@
                     lineTension: 0.3,
 
                     @if($model->colors and count($model->colors) > $i)
-                        borderColor: "{{ $model->colors[$i] }}",
-                        backgroundColor: "{{ $model->colors[$i] }}",
+                        borderColor: "{{ $model->colors[$i] }}",
+                        backgroundColor: "{{ $model->colors[$i] }}",
                     @else
                         $c = sprintf('#%06X', mt_rand(0, 0xFFFFFF))
                         borderColor: "{{ $c }}",
