@@ -220,13 +220,34 @@ class Database extends Chart
      * Group the data based on the column.
      *
      * @param string $column
+     * @param string $relationColumn
+     * @return $this
      */
-    public function groupBy($column)
+    public function groupBy($column, $relationColumn = null)
     {
         $labels = [];
         $values = [];
+
+        if ($relationColumn && strpos($relationColumn, '.') !== false) {
+            $relationColumn = explode('.', $relationColumn);
+        }
+
         foreach ($this->data->groupBy($column) as $data) {
-            array_push($labels, $data[0]->$column);
+            $label = $data[0];
+
+            if (is_null($relationColumn)) {
+                $label = $label->$column;
+            } else {
+                if (is_array($relationColumn)) {
+                    foreach ($relationColumn as $boz) {
+                        $label = $label->$boz;
+                    }
+                } else {
+                    $label = $data[0]->$relationColumn;
+                }
+            }
+
+            array_push($labels, $label);
             array_push($values, count($data));
         }
         $this->labels = $labels;
