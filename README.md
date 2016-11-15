@@ -735,7 +735,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
 - render()
 
-  Render the chat.
+  Render the chart.
 
   ```php
   echo Charts::create('line', 'highcharts')->setLabels(['One', 'Two'])->setValues([10, 20])->render();
