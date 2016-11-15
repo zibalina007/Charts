@@ -232,11 +232,10 @@ class Database extends Chart
             $relationColumn = explode('.', $relationColumn);
         }
 
-        foreach ($this->data->groupBy($column) as $data)
-        {
+        foreach ($this->data->groupBy($column) as $data) {
             $label = $data[0];
 
-            if(is_null($relationColumn)) {
+            if (is_null($relationColumn)) {
                 $label = $label->$column;
             } else {
                 if (is_array($relationColumn)) {
