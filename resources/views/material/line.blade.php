@@ -1,12 +1,12 @@
 <script type="text/javascript">
     google.charts.load('current', {'packages':['bar']})
 
-    google.charts.setOnLoadCallback(drawChart)
-        function drawChart() {
+    google.charts.setOnLoadCallback(draw{{ $model->id }})
+        function draw{{ $model->id }}() {
         var data = google.visualization.arrayToDataTable([
             ['', "{{ $model->element_label }}"],
             @for($i = 0; $i < count($model->values); $i++)
-                ["{{ $model->labels[$i] }}", "{{ $model->values[$i] }}"],
+                ["{{ $model->labels[$i] }}", {{ $model->values[$i] }}],
             @endfor
         ])
 
@@ -21,11 +21,10 @@
             @endif
         };
 
-        var chart = new google.charts.Line(document.getElementById("{{ $model->id }}"))
+        var {{ $model->id }} = new google.charts.Line(document.getElementById("{{ $model->id }}"))
 
-        chart.draw(data, options)
+        {{ $model->id }}.draw(data, options)
     }
 </script>
 
-<div id="{{ $model->id }}" style="@include('charts::_partials.dimension.css')"></div>
-
+@include('charts::_partials.container.div')

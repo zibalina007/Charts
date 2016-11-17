@@ -1,16 +1,16 @@
 <script type="text/javascript">
-    chart = google.charts.setOnLoadCallback(drawChart)
+    chart = google.charts.setOnLoadCallback(draw{{ $model->id }})
 
-    function drawChart() {
+    function draw{{ $model->id }}() {
         var data = google.visualization.arrayToDataTable([
             ['Element', "{{ $model->element_label }}"],
             @for ($i = 0; $i < count($model->values); $i++)
-                ["{{ $model->labels[$i] }}", "{{ $model->values[$i] }}"],
+                ["{{ $model->labels[$i] }}", {{ $model->values[$i] }}],
             @endfor
         ])
 
         var options = {
-            @include('charts::_partials.dimension.js'),
+            @include('charts::_partials.dimension.js')
             fontSize: 12,
             @if($model->title)
                 title: "{{ $model->title }}",
@@ -21,9 +21,9 @@
             legend: { position: 'top', alignment: 'end' }
         };
 
-        var chart = new google.visualization.AreaChart(document.getElementById("{{ $model->id }}"))
+        var {{ $model->id }} = new google.visualization.AreaChart(document.getElementById("{{ $model->id }}"))
 
-        chart.draw(data, options)
+        {{ $model->id }}.draw(data, options)
     }
 </script>
 

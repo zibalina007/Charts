@@ -4,16 +4,16 @@
 
 <script type="text/javascript">
     $(function (){
-        var gauge = new RadialGauge({
+        var {{ $model->id }} = new RadialGauge({
             renderTo: "{{ $model->id }}",
             @if($model->colors)
                 colorNumbers: "{{ $model->colors[0] }}",
             @endif
-            @include('charts::_partials.dimension.js')
+            @include('charts::_partials.dimension.js2')
             @if($model->title)
                 title: "{{ $model->title }}",
             @endif
-            value: "{{ $model->values[0] }}",
+            value: {{ $model->values[0] }},
             units: "{{ $model->element_label }}",
             @if(count($model->values) >= 2 and $model->values[1] <= $model->values[0])
                 @php($min = $model->values[1])
@@ -42,10 +42,8 @@
                     @elseif($i == $interval)
                         {{ $max }},
                     @else
-                        <?php
-                            $r + $interval_adder.',';
-                            $r = $r + $interval_adder;
-                        ?>
+                        {{ $r + $interval_adder }},
+                        @php($r = $r + $interval_adder)
                     @endif
                 @endfor
             ],
@@ -60,10 +58,10 @@
                         $max_warning = round(0.10 * $max, 2);
                     ?>
 
-                    { from: $low_warning, to: $max, color: 'rgba(0,258,0,.20)' },
-                    { from: $warning, to: $low_warning, color: 'rgba(255,255,0,.35)' },
-                    { from: $max_warning, to: $warning, color: 'rgba(255,69,0,.40)' },
-                    { from: $min, to: $max_warning, color: 'rgba(255,0,0,.5)' },
+                    { from: {{ $low_warning }}, to: {{ $max }}, color: 'rgba(0,258,0,.20)' },
+                    { from: {{ $warning }}, to: {{ $low_warning }}, color: 'rgba(255,255,0,.35)' },
+                    { from: {{ $max_warning }}, to: {{ $warning }}, color: 'rgba(255,69,0,.40)' },
+                    { from: {{ $min }}, to: {{ $max_warning }}, color: 'rgba(255,0,0,.5)' },
                 @elseif($model->gauge_style == 'center')
                     // Calculate warning area
                     <?php
@@ -75,13 +73,13 @@
                         $warning6 = round(0.90 * $max, 2);
                     ?>
 
-                    { from: $warning3, to: $warning4, color: 'rgba(0,258,0,.20)' },
-                    { from: $warning2, to: $warning3, color: 'rgba(255,255,0,.35)' },
-                    { from: $warning4, to: $warning5, color: 'rgba(255,255,0,.35)' },
-                    { from: $warning, to: $warning2, color: 'rgba(255,69,0,.40)' },
-                    { from: $warning5, to: $warning6, color: 'rgba(255,69,0,.40)' },
-                    { from: $min, to: $warning, color: 'rgba(255,0,0,.5)' },
-                    { from: $warning6, to: $max, color: 'rgba(255,0,0,.5)' },
+                    { from: {{ $warning3 }}, to: {{ $warning4 }}, color: 'rgba(0,258,0,.20)' },
+                    { from: {{ $warning2 }}, to: {{ $warning3 }}, color: 'rgba(255,255,0,.35)' },
+                    { from: {{ $warning4 }}, to: {{ $warning5 }}, color: 'rgba(255,255,0,.35)' },
+                    { from: {{ $warning }}, to: {{ $warning2 }}, color: 'rgba(255,69,0,.40)' },
+                    { from: {{ $warning5 }}, to: {{ $warning6 }}, color: 'rgba(255,69,0,.40)' },
+                    { from: {{ $min }}, to: {{ $warning }}, color: 'rgba(255,0,0,.5)' },
+                    { from: {{ $warning6 }}, to: {{ $max }}, color: 'rgba(255,0,0,.5)' },
                 @else
                     // Calculate warning area
                     <?php
@@ -90,13 +88,12 @@
                         $max_warning = round(0.90 * $max, 2);
                     ?>
 
-                    { from: $min, to: $low_warning, color: 'rgba(0,258,0,.20)' },
-                    { from: $low_warning, to: $warning, color: 'rgba(255,255,0,.35)' },
-                    { from: $warning, to: $max_warning, color: 'rgba(255,69,0,.40)' },
-                    { from: $max_warning, to: $max, color: 'rgba(255,0,0,.5)' },
+                    { from: {{ $min }}, to: {{ $low_warning }}, color: 'rgba(0,258,0,.20)' },
+                    { from: {{ $low_warning }}, to: {{ $warning }}, color: 'rgba(255,255,0,.35)' },
+                    { from: {{ $warning }}, to: {{ $max_warning }}, color: 'rgba(255,69,0,.40)' },
+                    { from: {{ $max_warning }}, to: {{ $max }}, color: 'rgba(255,0,0,.5)' },
                 @endif
             ],
         }).draw()
     });
 </script>
-

@@ -12,12 +12,12 @@
     @endif
 @endforeach
 
-@endforeach<script type="text/javascript">
+<script type="text/javascript">
     $(function () {
-        var chart = new Highcharts.Map({
+        var {{ $model->id }} = new Highcharts.Map({
             chart: {
                 renderTo:  "{{ $model->id }}",
-                @include('charts::_partials.dimension.js')
+                @include('charts::_partials.dimension.js2')
             },
             @if($model->title)
                 title: {
@@ -44,7 +44,7 @@
                     @for ($i = 0; $i < count($model->values); $i++)
                         {
                             'code':  "{{ $model->labels[$i] }}",
-                            'value': "{{ $model->values[$i] }}"
+                            'value': {{ $model->values[$i] }}
                         },
                     @endfor
                 ],

@@ -1,6 +1,4 @@
-@if(!$model->customId)
-    @include('charts::_partials.chartist1-container')
-@endif
+@include('charts::_partials.container.chartist')
 
 <script type="text/javascript">
     var data = {
@@ -10,9 +8,11 @@
             @endforeach
         ],
         series: [
-            @foreach($model->values as $value)
-                "{{ $value }}",
-            @endforeach
+            [
+                @foreach($model->values as $value)
+                    "{{ $value }}",
+                @endforeach
+            ],
         ]
     };
 
@@ -20,4 +20,3 @@
 
     new Chartist.Bar('#{{ $model->id }}', data, options);
 </script>
-

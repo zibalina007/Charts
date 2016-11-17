@@ -2,7 +2,7 @@
 
 <script type="text/javascript">
     $(function() {
-        @include('charts::minimalist._data.one')
+        @include('charts::minimalist._data.one-indcolor')
 
         var xScale = new Plottable.Scales.Category()
         var yScale = new Plottable.Scales.Linear()
@@ -24,4 +24,3 @@
         })
     });
 </script>
-

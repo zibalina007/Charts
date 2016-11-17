@@ -28,7 +28,7 @@
                     ],
                     data: [
                         @foreach($model->values as $dta)
-                            "{{ $dta }}",
+                            {{ $dta }},
                         @endforeach
                     ],
                 }
@@ -55,4 +55,3 @@
         }
     });
 </script>
-

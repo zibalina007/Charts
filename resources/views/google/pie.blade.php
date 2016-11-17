@@ -5,12 +5,12 @@
         var data = google.visualization.arrayToDataTable([
             ['Element', 'Value'],
             @for($i = 0; $i < count($model->values); $i++)
-                ["{{ $model->labels[$i] }}", "{{ $model->values[$i] }}"],
+                ["{{ $model->labels[$i] }}", {{ $model->values[$i] }}],
             @endfor
         ])
 
         var options = {
-            @include('charts::_partials.dimension.js'),
+            @include('charts::_partials.dimension.js')
             fontSize: 12,
             @if($model->title)
                 title: "{{ $model->title }}",

@@ -48,7 +48,7 @@ return [
 
         'chartjs' => [
             'scripts' => [
-                'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js',
             ],
         ],
 
@@ -61,8 +61,8 @@ return [
 
         'google' => [
             'scripts' => [
-                'https://www.gstatic.com/charts/loader.js',
                 'https://www.google.com/jsapi',
+                'https://www.gstatic.com/charts/loader.js',
                 "google.charts.load('current', {'packages':['corechart', 'gauge', 'geochart', 'bar', 'line']})",
             ],
         ],
@@ -96,7 +96,7 @@ return [
 
         'plottablejs' => [
             'scripts' => [
-                'https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.8/d3.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js',
                 'https://cdnjs.cloudflare.com/ajax/libs/plottable.js/2.2.0/plottable.min.js',
             ],
             'styles' => [
@@ -107,6 +107,16 @@ return [
         'progressbarjs' => [
             'scripts' => [
                 'https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.0.1/progressbar.min.js',
+            ],
+        ],
+
+        'c3'=> [
+            'scripts' => [
+                'https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js',
+            ],
+            'styles' => [
+                'https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css',
             ],
         ],
     ],

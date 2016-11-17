@@ -1,14 +1,14 @@
 <script type="text/javascript">
-    google.charts.setOnLoadCallback(drawGaugeChart)
+    google.charts.setOnLoadCallback(draw{{ $model->id }})
 
-    function drawGaugeChart() {
+    function draw{{ $model->id }}() {
         var data = google.visualization.arrayToDataTable([
             ['Element', 'Value'],
-            ["{{ $model->element_label }}", "{{ $model->values[0] }}"],
+            ["{{ $model->element_label }}", {{ $model->values[0] }}],
         ])
 
         var options = {
-            @include('charts::_partials.dimension.js'),
+            @include('charts::_partials.dimension.js')
 
             @if(count($model->values) >= 2 and $model->values[1] <= $model->values[0])
                 @php($min = $model->values[1])
@@ -64,11 +64,11 @@
             minorTicks: 10,
         };
 
-        var chart = new google.visualization.Gauge(document.getElementById("{{ $model->id }}"))
-        chart.draw(data, options)
+        var {{ $model->id }} = new google.visualization.Gauge(document.getElementById("{{ $model->id }}"))
+        {{ $model->id }}.draw(data, options)
     }
 </script>
 
 @if(!$model->customId)
-    @include('charts::_partials/titledDiv-container')
+    @include('charts::_partials/container.div-titled')
 @endif

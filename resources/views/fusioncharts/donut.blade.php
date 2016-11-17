@@ -1,6 +1,6 @@
 <script type="text/javascript">
     FusionCharts.ready(function () {
-        var revenueChart = new FusionCharts({
+        var {{ $model->id }} = new FusionCharts({
             type: 'doughnut2d',
             renderAt: "{{ $model->id }}",
             @include('charts::_partials.dimension.js')
@@ -42,8 +42,8 @@
                     @for ($i = 0; $i < count($model->values); $i++)
                         {
                             'label': "{{ $model->labels[$i] }}",
-                            'value': "{{ $model->values[$i] }}",
-                            @if($model->colors) {
+                            'value': {{ $model->values[$i] }},
+                            @if($model->colors)
                                 'color': "{{ $model->colors[$i] }}",
                             @endif
                         },
@@ -54,4 +54,4 @@
     });
 </script>
 
-<div id="{{ $model->id }}"></div>
+@include('charts::_partials.container.div')

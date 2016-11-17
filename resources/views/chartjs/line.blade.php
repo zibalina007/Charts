@@ -21,7 +21,7 @@
                 @endif
                 data: [
                     @foreach($model->values as $dta)
-                        "{{ $dta }}",
+                        {{ $dta }},
                     @endforeach
                 ],
             }
@@ -35,13 +35,12 @@
             responsive: {{ $model->responsive || !$model->width ? 'true' : 'false' }},
             maintainAspectRatio: false,
             @if($model->title)
-            title: {
-                display: true,
-                text: "{{ $model->title }}",
-                fontSize: 20,
-            }
+                title: {
+                    display: true,
+                    text: "{{ $model->title }}",
+                    fontSize: 20,
+                }
             @endif
         }
     });
 </script>
-

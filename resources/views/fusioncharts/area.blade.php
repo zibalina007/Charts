@@ -1,6 +1,6 @@
 <script type="text/javascript">
     FusionCharts.ready(function () {
-        var revenueChart = new FusionCharts({
+        var {{ $model->id }} = new FusionCharts({
             type: 'area2d',
             renderAt: "{{ $model->id }}",
             @include('charts::_partials.dimension.js')
@@ -19,7 +19,8 @@
                     'canvasBorderAlpha': '0',
                     'usePlotGradientColor': '0',
                     'plotBorderAlpha': '10',
-                    'rotatevalues': '1',
+                    'rotatevalues': '0',
+                    'showValues': '0',
                     'valueFontColor': '#ffffff',
                     'showXAxisLine': '1',
                     'xAxisLineColor': '#999999',
@@ -33,7 +34,7 @@
                     @for ($i = 0; $i < count($model->values); $i++)
                         {
                             'label': "{{ $model->labels[$i] }}",
-                            'value': "{{ $model->values[$i] }}",
+                            'value': {{ $model->values[$i] }},
                         },
                     @endfor
                 ],
@@ -42,4 +43,4 @@
     });
 </script>
 
-<div id="{{ $model->id }}"></div>
+@include('charts::_partials.container.div')

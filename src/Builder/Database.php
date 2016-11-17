@@ -44,7 +44,7 @@ class Database extends Chart
      *
      * @param mixed $data
      */
-    public function setData($data)
+    public function data($data)
     {
         $this->data = $data;
 
@@ -56,7 +56,7 @@ class Database extends Chart
      *
      * @param string $column
      */
-    public function setDateColumn($column)
+    public function dateColumn($column)
     {
         $this->date_column = $column;
 
@@ -68,7 +68,7 @@ class Database extends Chart
      *
      * @param string $format
      */
-    public function setDateFormat($format)
+    public function dateFormat($format)
     {
         $this->date_format = $format;
 
@@ -80,7 +80,7 @@ class Database extends Chart
      *
      * @param string $format
      */
-    public function setMonthFormat($format)
+    public function monthFormat($format)
     {
         $this->month_format = $format;
 

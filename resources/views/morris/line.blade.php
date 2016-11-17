@@ -1,6 +1,4 @@
-@if(!$model->customId)
-    @include('charts::_partials/titledDiv2-container')
-@endif
+@include('charts::_partials/container.div-titled')
 
 <script type="text/javascript">
     $(function (){
@@ -10,10 +8,10 @@
             data: [
                 @for($l = 0; $l < count($model->values); $l++)
                     {
-                        x: "{{ $model->labels[$i] }}",
-                        y: "{{ $model->values[$i] }}"
+                        x: "{{ $model->labels[$l] }}",
+                        y: "{{ $model->values[$l] }}"
                     },
-                @endforeach
+                @endfor
             ],
             xkey: 'x',
             ykeys: ['y'],
@@ -26,4 +24,3 @@
         })
     });
 </script>
-

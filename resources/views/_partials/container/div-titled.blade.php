@@ -1,11 +1,5 @@
-<div @include('charts::_partials.dimension.css')>
-    @if($model->title)
-        <center>
-            <strong>{{ $model->title }}</strong>
-        </center>
-    @endif
-</div>
+@include('charts::_partials.container.title')
 
 <center>
-    <div id="{{ $model->id }}"></div>
+    <div id="{{ $model->id }}" style="@include('charts::_partials.dimension.css')"></div>
 </center>

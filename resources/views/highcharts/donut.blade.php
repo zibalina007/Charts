@@ -1,9 +1,9 @@
 <script type="text/javascript">
     $(function () {
-        var chart = new Highcharts.Chart({
+        var {{ $model->id }} = new Highcharts.Chart({
             chart: {
                 renderTo: "{{ $model->id }}",
-                @include('charts::_partials.dimension.js')
+                @include('charts::_partials.dimension.js2')
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
@@ -19,7 +19,7 @@
             },
             plotOptions: {
                 pie: {
-                    innerSize: 225,
+                    innerSize: '50%',
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
@@ -36,9 +36,9 @@
                 data: [
                     @for ($l = 0; $l < count($model->values); $l++)
                         {
-                            name: "{{ $model->labels[$i] }}",
-                            y: "{{ $model->values[$i] }}"
-                        };
+                            name: "{{ $model->labels[$l] }}",
+                            y: {{ $model->values[$l] }}
+                        },
                     @endfor
                 ]
             }]

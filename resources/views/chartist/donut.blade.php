@@ -1,6 +1,4 @@
-@if(!$model->customId)
-    @include('charts::_partials.chartist1-container')
-@endif
+@include('charts::_partials.container.chartist')
 
 <script type="text/javascript">
     var data = {
@@ -26,4 +24,3 @@
 
     new Chartist.Pie('#{{ $model->id }}', data, options);
 </script>
-

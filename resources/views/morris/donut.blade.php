@@ -1,6 +1,4 @@
-@if(!$model->customId)
-    @include('charts::_partials/titledDiv2-container')
-@endif
+@include('charts::_partials/container.div-titled')
 
 <script type="text/javascript">
     $(function (){
@@ -25,4 +23,3 @@
         })
     });
 </script>
-

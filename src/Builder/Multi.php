@@ -42,7 +42,7 @@ class Multi extends Chart
      * @param array $values
      * @param int   $dataset
      */
-    public function setDataset($elementLabel, $values)
+    public function dataset($elementLabel, $values)
     {
         $this->datasets[] = [
             'label' => $elementLabel,

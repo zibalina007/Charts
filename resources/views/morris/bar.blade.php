@@ -1,6 +1,4 @@
-@if(!$model->customId)
-    @include('charts::_partials/titledDiv2-container')
-@endif
+@include('charts::_partials/container.div-titled')
 
 <script type="text/javascript">
     $(function () {
@@ -11,7 +9,7 @@
                 @for ($i = 0; $i < count($model->values); $i++)
                     {
                         x: "{{ $model->labels[$i] }}",
-                        y: "{{ $model->values[$i] }}"
+                        y: {{ $model->values[$i] }}
                     },
                 @endfor
             ],
@@ -23,14 +21,13 @@
                 barColors: function (row, series, type) {
                     @for ($i = 0; $i < count($model->colors); $i++)
                         @if($i == 0)
-                            'if(row.label == "{{ $model->labels[$i] }}") return "{{ $model->colors[$i] }}"';
+                            if(row.label == "{{ $model->labels[$i] }}") return "{{ $model->colors[$i] }}"
                         @else
-                            'else if(row.label == "{{ $model->labels[$i] }}") return "{{ $model->colors[$i] }}"';
+                            else if(row.label == "{{ $model->labels[$i] }}") return "{{ $model->colors[$i] }}"
                         @endif
-                    @endforeach
+                    @endfor
                 }
             @endif
         })
     });
 </script>
-

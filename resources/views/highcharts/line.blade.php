@@ -1,9 +1,9 @@
 <script type="text/javascript">
     $(function () {
-        var chart = new Highcharts.Chart({
+        var {{ $model->id }} = new Highcharts.Chart({
             chart: {
                 renderTo: "{{ $model->id }}",
-                @include('charts::_partials.dimension.js')
+                @include('charts::_partials.dimension.js2')
             },
             @if($model->title)
                 title: {
