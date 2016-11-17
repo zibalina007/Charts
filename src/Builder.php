@@ -159,15 +159,15 @@ class Builder
             $libraries = explode(',', $libraries);
         }
 
-        if($libraries) {
-            if($type) {
-                $final_assets = collect($assets)->filter(function($value, $key) use ($libraries, $type) {
-                    return (in_array($key, $libraries) && array_key_exists($type, $value));
-                })->map(function($value) use ($type) {
+        if ($libraries) {
+            if ($type) {
+                $final_assets = collect($assets)->filter(function ($value, $key) use ($libraries, $type) {
+                    return in_array($key, $libraries) && array_key_exists($type, $value);
+                })->map(function ($value) use ($type) {
                     return $value[$type];
                 })->toArray();
             } else {
-                $final_assets = collect($assets)->filter(function($value, $key) use ($libraries) {
+                $final_assets = collect($assets)->filter(function ($value, $key) use ($libraries) {
                     return in_array($key, $libraries);
                 })->toArray();
             }
@@ -189,7 +189,6 @@ class Builder
     private static function buildIncludeTags(array $data)
     {
         return collect(array_flatten($data))->map(function ($item) {
-
             if (ends_with($item, '.css')) {
                 return '<link rel="stylesheet" href="'.$item.'">';
             }
@@ -199,7 +198,6 @@ class Builder
             }
 
             return '<script type="text/javascript">'.$item.'</script>';
-
         })->implode("\n");
     }
 }
