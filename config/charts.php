@@ -110,7 +110,7 @@ return [
             ],
         ],
 
-        'c3'=> [
+        'c3' => [
             'scripts' => [
                 'https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js',
                 'https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js',

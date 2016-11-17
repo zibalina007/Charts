@@ -247,23 +247,23 @@ class Chart
      */
     public function render()
     {
-        if (!$this->labels && !$this->values) {
+        if (! $this->labels && ! $this->values) {
             $this->labels = ['No Data Set'];
             $this->values = [0];
-        } elseif (!$this->values && $this->labels) {
-            foreach($this->labels as $l) {
+        } elseif (! $this->values && $this->labels) {
+            foreach ($this->labels as $l) {
                 array_push($this->values, 0);
             }
-        } elseif ($this->values && !$this->labels) {
-            foreach($this->values as $v) {
+        } elseif ($this->values && ! $this->labels) {
+            foreach ($this->values as $v) {
                 array_push($this->labels, 'No Data Set');
             }
         } elseif (count($this->values) > count($this->labels)) {
-            for($i = 0; $i < (count($this->values) - count($this->labels)); $i++) {
+            for ($i = 0; $i < (count($this->values) - count($this->labels)); $i++) {
                 array_push($this->labels, 'No Data Set');
             }
         } elseif (count($this->values) < count($this->labels)) {
-            for($i = 0; $i < (count($this->labels) - count($this->values)); $i++) {
+            for ($i = 0; $i < (count($this->labels) - count($this->values)); $i++) {
                 array_push($this->values, 0);
             }
         }
@@ -281,11 +281,12 @@ class Chart
         $img_url = 'http://www.iconsfind.com/wp-content/uploads/2015/12/20151208_56663ed552e5d.png';
 
         $error = "<div><div style='position: relative;";
-        if (!$this->responsive) {
+        if (! $this->responsive) {
             $error .= $this->height ? 'height: '.$this->height.'px' : '';
             $error .= $this->width ? 'width: '.$this->width.'px' : '';
         }
         $error .= "'><center><div style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'><img style='width: 75px; height: 75px;' src='$img_url'><br><br><b>$error_msg</b></div></center><div></div>";
+
         return $error;
     }
 
@@ -296,6 +297,6 @@ class Chart
      */
     public function randomString($length = 10)
     {
-        return substr(str_shuffle(str_repeat($x='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+        return substr(str_shuffle(str_repeat($x = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
     }
 }
