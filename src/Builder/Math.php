@@ -50,7 +50,7 @@ class Math extends Chart
      *
      * @param string $function
      */
-    public function function($function)
+    public function mathFunction($function)
     {
         $this->function = $function;
 
