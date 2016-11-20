@@ -270,7 +270,7 @@ class Chart
 
         $this->id = $this->randomString();
         $view = $this->suffix ? "charts::{$this->library}.{$this->suffix}.{$this->type}" : "charts::{$this->library}.{$this->type}";
-        $view = $this->view ?? $view;
+        $view = $this->view ?: $view;
 
         if (View::exists($view)) {
             return view($view)->withModel($this);
