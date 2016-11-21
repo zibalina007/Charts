@@ -69,7 +69,7 @@ class Chart
 	/**
      * Set a custom container to render the chart
      *
-     * @param string $style
+     * @param string $division
      */
     public function container($division)
     {
@@ -81,7 +81,7 @@ class Chart
     /**
      * Set the google geo region.
      *
-     * @param string $style
+     * @param string $region
      */
     public function region($region)
     {
