@@ -628,6 +628,14 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
 ## Available Chart Settings:
 
+- container(required string $division)
+
+    Set a custom division ID to render the chart at
+
+    ```php
+    Charts::create('line', 'google')->container('my-division-id');
+    ```
+
 - view(required string $view)
 
     Set a custom view to render the chart
