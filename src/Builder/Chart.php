@@ -73,7 +73,7 @@ class Chart
      */
     public function container($division)
     {
-        $this->container = $container;
+        $this->container = $division;
 
         return $this;
     }
