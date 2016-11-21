@@ -10,8 +10,8 @@
 
 ## Documentation
 
-Version 3.0: https://erik.cat/projects/Charts/docs/3.0
-Version 2.0.2: https://erik.cat/projects/Charts/docs/2.0.2
+-   Version 3.0: https://erik.cat/projects/Charts/docs/3.0
+-   Version 2.0.2: https://erik.cat/projects/Charts/docs/2.0.2
 
 **Note:** While my hosting is fixing the PDO options the pages will redirect to the github page, still readable tho :)
 
