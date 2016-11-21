@@ -243,9 +243,11 @@ The available methods are:
     $chart = Charts::database(User::all(), 'bar', 'highcharts')->dateFormat('F Y');
     ```
 
-- groupBy(required string $column)
+- groupBy(required string $column, optional string $relationColumn)
 
     Groups the data based on a column.
+    
+    *Note:* Relationship column follows this standard: ```->groupBy('product_id', 'product.model');``` where second argument will set labels to model column of product table based on it's relationship with the model.
 
     ```php
     $chart = Charts::database(User::all(), 'bar', 'highcharts')
