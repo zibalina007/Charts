@@ -34,6 +34,7 @@ class Chart
     public $view;
     public $region;
     protected $suffix;
+	public $container;
 
     /**
      * Create a new chart instance.
@@ -52,6 +53,7 @@ class Chart
         $this->values = [];
         $this->colors = [];
         $this->suffix = '';
+		$this->container = '';
         $this->gauge_style = 'left';
         $this->responsive = config('charts.default.responsive');
         $this->region = 'world';
@@ -63,9 +65,21 @@ class Chart
         // Set the chart library
         $this->library = $library ? $library : config('charts.default.library');
     }
+	
+	/**
+     * Set a custom container to render the chart
+     *
+     * @param string $style
+     */
+    public function container($division)
+    {
+        $this->container = $container;
+
+        return $this;
+    }
 
     /**
-     * Set gauge style.
+     * Set the google geo region.
      *
      * @param string $style
      */
@@ -267,8 +281,9 @@ class Chart
                 array_push($this->values, 0);
             }
         }
-
-        $this->id = $this->randomString();
+		
+        $this->id = $this->container ? $this->container : $this->randomString();
+		
         $view = $this->suffix ? "charts::{$this->library}.{$this->suffix}.{$this->type}" : "charts::{$this->library}.{$this->type}";
         $view = $this->view ?: $view;
 
