@@ -761,7 +761,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   Return the chart settings.
 
   ```php
-  print_r(Charts::create('line', 'highcharts')->tings());
+  print_r(Charts::create('line', 'highcharts')->settings());
   ```
 
 - render()
