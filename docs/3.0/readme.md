@@ -28,12 +28,6 @@
 
 ## Installation
 
-### Video Tutorial
-
-[![Video Tutorial](https://img.youtube.com/vi/KrAvrU2XYuY/0.jpg)](https://www.youtube.com/watch?v=KrAvrU2XYuY)
-
-To install charts use composer
-
 ### Download
 
 ```
