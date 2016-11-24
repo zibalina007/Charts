@@ -10,9 +10,7 @@
 
 ## Documentation
 
-https://erik.cat/projects/Charts/docs
-
-**Note:** While my hosting is fixing the PDO options the pages will redirect to the github page, still readable tho :)
+Documentation for any version can be found here: https://erik.cat/projects/Charts/docs
 
 ## License
 
