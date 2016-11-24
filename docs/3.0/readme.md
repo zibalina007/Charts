@@ -12,7 +12,6 @@
 ## Table Of Contents
 
 -   [Installation](#installation)
-    -   [Video Tutorial](#video-tutorial)
 -   [Default Settings](#default-settings)
 -   [Example Usage](#example-usage)
 -   [Create Charts](#create-charts)
