@@ -1,48 +1,33 @@
-<?php
-
-$graph = "
-    <script type='text/javascript'>
-
-    chart = google.charts.setOnLoadCallback(drawChart);
+<script type="text/javascript">
+    chart = google.charts.setOnLoadCallback(drawChart)
 
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Element', \"$model->element_label\"],
-            ";
-              $i = 0;
-              foreach ($model->values as $dta) {
-                  $e = $model->labels[$i];
-                  $v = $dta;
-                  $graph .= "[\"$e\", $v],";
-                  $i++;
-              }
-              $graph .= '
-        ]);
+            [
+                'Element', "{{ $model->element_label }}"],
+                @for ($i = 0; $i < count($model->values); $i++)
+                    ["{{ $model->labels[$i] }}", {{ $model->values[$i] }}],
+                @endfor
+        ])
 
         var options = {
-            ';
-            if (!$model->responsive) {
-                $graph .= $model->width ? "width: $model->width," : '';
-                $graph .= $model->height ? "height: $model->height," : '';
-            }
-            $graph .= "
+            @include('charts::_partials.dimension.js')
             fontSize: 12,
-            title: \"$model->title\",
-            "; if ($model->colors) {
-                $graph .= 'colors: ["'.$model->colors[0].'"],';
-            } $graph .= "
+            @if($model->title)
+                title: "{{ $model->title }}",
+            @endif
+            @if($model->colors)
+                colors: ["{{ $model->colors[0] }}"],
+            @endif
             legend: { position: 'top', alignment: 'end' }
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('$model->id'));
+        var chart = new google.visualization.LineChart(document.getElementById("{{ $model->id }}"))
 
-        chart.draw(data, options);
+        chart.draw(data, options)
     }
-    </script>
-";
+</script>
 
-if (!$model->customId) {
-    @include('charts::_partials.div-container');
-}
-
-return $graph;
+@if(!$model->customId)
+    @include('charts::_partials.container.div')
+@endif

@@ -1,47 +1,34 @@
-<?php
+<script type="text/javascript">
+    google.charts.setOnLoadCallback(drawPieChart)
 
-$graph = "
-    <script type='text/javascript'>
-      google.charts.setOnLoadCallback(drawPieChart);
-      function drawPieChart() {
+    function drawPieChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Element', 'Value'],
-          ";
-            $i = 0;
-            foreach ($model->values as $dta) {
-                $e = $model->labels[$i];
-                $v = $dta;
-                $graph .= "[\"$e\", $v],";
-                $i++;
-            }
-            $graph .= '
-        ]);
+            ['Element', 'Value'],
+            @for($i = 0; $i < count($model->values); $i++)
+                ["{{ $model->labels[$i] }}", {{ $model->values[$i] }}],
+            @endfor
+        ])
+
         var options = {
-            ';
-            if (!$model->responsive) {
-                $graph .= $model->width ? "width: $model->width," : '';
-                $graph .= $model->height ? "height: $model->height," : '';
-            }
-            $graph .= "
+            @include('charts::_partials.dimension.js')
             fontSize: 12,
-            title: \"$model->title\",";
-            if ($model->colors) {
-                $graph .= 'colors:[';
-                foreach ($model->colors as $color) {
-                    $graph .= "'$color',";
-                }
-                $graph .= '],';
-            }
-        $graph .= "
+            @if($model->title)
+                title: "{{ $model->title }}",
+            @endif
+            @if($model->colors)
+                colors:[
+                    @foreach($model->colors as $color)
+                        "{{ $color}}",
+                    @endforeach
+                ],
+            @endif
         };
-        var chart = new google.visualization.PieChart(document.getElementById('$model->id'));
-        chart.draw(data, options);
-      }
-    </script>
-";
 
-if (!$model->customId) {
-    @include('charts::_partials.div-container');
-}
+        var chart = new google.visualization.PieChart(document.getElementById("{{ $model->id }}"))
+        chart.draw(data, options)
+    }
+</script>
 
-return $graph;
+@if(!$model->customId)
+    @include('charts::_partials.container.div')
+@endif

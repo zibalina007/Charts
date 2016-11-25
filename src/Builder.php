@@ -11,7 +11,6 @@
 
 namespace ConsoleTVs\Charts;
 
-use Collective\Html\HtmlFacade as Html;
 use ConsoleTVs\Charts\Builder\Chart;
 use ConsoleTVs\Charts\Builder\Database;
 use ConsoleTVs\Charts\Builder\Math;
@@ -128,7 +127,7 @@ class Builder
             $files = File::allFiles(__DIR__."/../resources/views/$library");
 
             return collect($files)->map(function ($item, $key) {
-                return str_replace('.php', null, $item->getFileName());
+                return str_replace('.blade.php', null, $item->getFileName());
             })->toArray();
         }
 
@@ -138,7 +137,7 @@ class Builder
         $results = [];
         foreach ($libraries as $library) {
             foreach (File::allFiles($library) as $type) {
-                $results[] = str_replace('.php', null, $type->getFileName());
+                $results[] = str_replace('.blade.php', null, $type->getFileName());
             }
         }
 
@@ -151,41 +150,33 @@ class Builder
      * @param array  $libraries
      * @param string $type
      */
-    public static function assets($libraries = [], $type = null)
+    public static function assets($libraries = [], $type = [])
     {
         $assets = config('charts.assets');
+        $final_assets = [];
 
         if ($libraries && is_string($libraries)) {
             $libraries = explode(',', $libraries);
         }
 
-        $assetsToInclude = [];
-
         if ($libraries) {
             if ($type) {
-                // return all assets of type in requested libs
-                return collect($libraries)->reduce(function ($result, $library) use ($type, $assets) {
-                    return empty($assets[$library][$type])
-                            ? $result
-                            : $result.static::buildIncludeTags($assets[$library][$type]);
-                });
+                $final_assets = collect($assets)->filter(function ($value, $key) use ($libraries, $type) {
+                    return in_array($key, $libraries) && array_key_exists($type, $value);
+                })->map(function ($value) use ($type) {
+                    return $value[$type];
+                })->toArray();
+            } else {
+                $final_assets = collect($assets)->filter(function ($value, $key) use ($libraries) {
+                    return in_array($key, $libraries);
+                })->toArray();
             }
-
-            // return all libraries assets that match requested libraries
-            return collect($libraries)->reduce(function ($result, $library) use ($assets) {
-                return empty($assets[$library])
-                        ? $result
-                        : $result.static::buildIncludeTags($assets[$library]);
-            });
-        }
-
-        if ($type) {
-            // return all libraries that have requested asset types
-            return static::buildIncludeTags(array_collapse(array_pluck($assets, $type)));
+        } else {
+            $final_assets = $assets;
         }
 
         // return all libraries
-        return static::buildIncludeTags($assets);
+        return static::buildIncludeTags($final_assets);
     }
 
     /**
@@ -199,16 +190,14 @@ class Builder
     {
         return collect(array_flatten($data))->map(function ($item) {
             if (ends_with($item, '.css')) {
-                return starts_with($item, ['http://', 'https://'])
-                        ? Html::style($item)->__toString()
-                        : '<style type="text/css">'.$item.'</style>';
+                return '<link rel="stylesheet" href="'.$item.'">';
             }
 
-            if (ends_with($item, '.js')) {
-                return starts_with($item, ['http://', 'https://'])
-                        ? Html::script($item)->__toString()
-                        : '<script type="text/javascript">'.$item.'</script>';
+            if (ends_with($item, '.js') or strpos($item, 'http') !== false) {
+                return '<script type="text/javascript" src="'.$item.'"></script>';
             }
-        })->implode('');
+
+            return '<script type="text/javascript">'.$item.'</script>';
+        })->implode("\n");
     }
 }

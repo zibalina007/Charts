@@ -1,41 +1,30 @@
-<?php
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']})
 
-$graph = "
-    <script type='text/javascript'>
-    google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
+    google.charts.setOnLoadCallback(draw{{ $model->id }})
+        function draw{{ $model->id }}() {
         var data = google.visualization.arrayToDataTable([
-          ['', \"$model->element_label\"],
-          ";
-          for ($i = 0; $i < count($model->values); $i++) {
-              $e = $model->labels[$i];
-              $v = $model->values[$i];
-              $graph .= "[\"$e\", $v],";
-          }
-          $graph .= "
-        ]);
+            ['', "{{ $model->element_label }}"],
+            @for($i = 0; $i < count($model->values); $i++)
+                ["{{ $model->labels[$i] }}", {{ $model->values[$i] }}],
+            @endfor
+        ])
 
         var options = {
-          chart: {
-            title: \"$model->title\",
-          },
-          ";
-          $graph .= $model->colors ? "colors: ['".$model->colors[0]."']" : '';
-          $graph .= "
+            chart: {
+              @if($model->title)
+                title: "{{ $model->title }}",
+              @endif
+            },
+            @if($model->colors)
+                colors: ["{{ $model->colors[0] }}"],
+            @endif
         };
 
-        var chart = new google.charts.Line(document.getElementById('$model->id'));
+        var {{ $model->id }} = new google.charts.Line(document.getElementById("{{ $model->id }}"))
 
-        chart.draw(data, options);
-      }
-    </script>
-    <div style='";
-    if (!$model->responsive) {
-        $graph .= $model->height ? 'height: '.$model->height.'px;' : '';
-        $graph .= $model->width ? 'width: '.$model->width.'px;' : '';
+        {{ $model->id }}.draw(data, options)
     }
-    $graph .= "' id='$model->id'></div>
-";
+</script>
 
-return $graph;
+@include('charts::_partials.container.div')

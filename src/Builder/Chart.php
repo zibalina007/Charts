@@ -11,6 +11,8 @@
 
 namespace ConsoleTVs\Charts\Builder;
 
+use View;
+
 /**
  * This is the chart class.
  *
@@ -30,7 +32,9 @@ class Chart
     public $responsive;
     public $gauge_style;
     public $view;
-    protected $sufix;
+    public $region;
+    protected $suffix;
+    public $container;
 
     /**
      * Create a new chart instance.
@@ -48,9 +52,11 @@ class Chart
         $this->labels = [];
         $this->values = [];
         $this->colors = [];
-        $this->sufix = '';
+        $this->suffix = '';
+        $this->container = '';
         $this->gauge_style = 'left';
         $this->responsive = config('charts.default.responsive');
+        $this->region = 'world';
         $length = 10; // The random identifier length.
 
         // Set the chart type
@@ -61,11 +67,35 @@ class Chart
     }
 
     /**
+     * Set a custom container to render the chart.
+     *
+     * @param string $division
+     */
+    public function container($division)
+    {
+        $this->container = $division;
+
+        return $this;
+    }
+
+    /**
+     * Set the google geo region.
+     *
+     * @param string $region
+     */
+    public function region($region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
      * Set gauge style.
      *
      * @param string $style
      */
-    public function setGaugeStyle($style)
+    public function gaugeStyle($style)
     {
         $this->gauge_style = $style;
 
@@ -77,7 +107,7 @@ class Chart
      *
      * @param string $type
      */
-    public function setType($type)
+    public function type($type)
     {
         $this->type = $type;
 
@@ -89,7 +119,7 @@ class Chart
      *
      * @param string $library
      */
-    public function setLibrary($library)
+    public function library($library)
     {
         $this->library = $library;
 
@@ -101,7 +131,7 @@ class Chart
      *
      * @param array $labels
      */
-    public function setLabels($labels)
+    public function labels($labels)
     {
         $this->labels = $labels;
 
@@ -113,7 +143,7 @@ class Chart
      *
      * @param array $values
      */
-    public function setValues($values)
+    public function values($values)
     {
         $this->values = $values;
 
@@ -125,7 +155,7 @@ class Chart
      *
      * @param string $label
      */
-    public function setElementLabel($label)
+    public function elementLabel($label)
     {
         $this->element_label = $label;
 
@@ -137,7 +167,7 @@ class Chart
      *
      * @param string $title
      */
-    public function setTitle($title)
+    public function title($title)
     {
         $this->title = $title;
 
@@ -149,7 +179,7 @@ class Chart
      *
      * @param array $colors
      */
-    public function setColors($colors)
+    public function colors($colors)
     {
         $this->colors = $colors;
 
@@ -161,7 +191,7 @@ class Chart
      *
      * @param int $width
      */
-    public function setWidth($width)
+    public function width($width)
     {
         $this->width = $width;
 
@@ -173,7 +203,7 @@ class Chart
      *
      * @param int $height
      */
-    public function setHeight($height)
+    public function height($height)
     {
         $this->height = $height;
 
@@ -186,7 +216,7 @@ class Chart
      * @param int $width
      * @param int $height
      */
-    public function setDimensions($width, $height)
+    public function dimensions($width, $height)
     {
         $this->width = $width;
         $this->height = $height;
@@ -199,7 +229,7 @@ class Chart
      *
      * @param bool $responsive
      */
-    public function setResponsive($responsive)
+    public function responsive($responsive)
     {
         $this->responsive = $responsive;
 
@@ -209,9 +239,9 @@ class Chart
     /**
      * Set a custom view to be used.
      *
-     * @param bool $view
+     * @param string $view
      */
-    public function setView($view)
+    public function view($view)
     {
         $this->view = $view;
 
@@ -231,9 +261,48 @@ class Chart
      */
     public function render()
     {
-        $this->id = $this->randomString();
+        if (! $this->labels && ! $this->values) {
+            $this->labels = ['No Data Set'];
+            $this->values = [0];
+        } elseif (! $this->values && $this->labels) {
+            foreach ($this->labels as $l) {
+                array_push($this->values, 0);
+            }
+        } elseif ($this->values && ! $this->labels) {
+            foreach ($this->values as $v) {
+                array_push($this->labels, 'No Data Set');
+            }
+        } elseif (count($this->values) > count($this->labels)) {
+            for ($i = 0; $i < (count($this->values) - count($this->labels)); $i++) {
+                array_push($this->labels, 'No Data Set');
+            }
+        } elseif (count($this->values) < count($this->labels)) {
+            for ($i = 0; $i < (count($this->labels) - count($this->values)); $i++) {
+                array_push($this->values, 0);
+            }
+        }
 
-        return view($this->view ?? "charts::{$this->library}.{$this->type}")->withModel($this);
+        $this->id = $this->container ? $this->container : $this->randomString();
+
+        $view = $this->suffix ? "charts::{$this->library}.{$this->suffix}.{$this->type}" : "charts::{$this->library}.{$this->type}";
+        $view = $this->view ?: $view;
+
+        if (View::exists($view)) {
+            return view($view)->withModel($this);
+        }
+
+        // There must be an error, let's show the error!
+        $error_msg = 'Unknown chart library / type combination';
+        $img_url = 'http://www.iconsfind.com/wp-content/uploads/2015/12/20151208_56663ed552e5d.png';
+
+        $error = "<div><div style='position: relative;";
+        if (! $this->responsive) {
+            $error .= $this->height ? 'height: '.$this->height.'px' : '';
+            $error .= $this->width ? 'width: '.$this->width.'px' : '';
+        }
+        $error .= "'><center><div style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'><img style='width: 75px; height: 75px;' src='$img_url'><br><br><b>$error_msg</b></div></center><div></div>";
+
+        return $error;
     }
 
     /**
@@ -243,6 +312,6 @@ class Chart
      */
     public function randomString($length = 10)
     {
-        return str_random($length);
+        return substr(str_shuffle(str_repeat($x = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
     }
 }

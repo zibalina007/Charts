@@ -50,7 +50,7 @@ class Math extends Chart
      *
      * @param string $function
      */
-    public function setFunction($function)
+    public function mathFunction($function)
     {
         $this->function = $function;
 
@@ -64,7 +64,7 @@ class Math extends Chart
      *
      * @param array $interval
      */
-    public function setInterval($interval)
+    public function interval($interval)
     {
         $this->interval = $interval;
 
@@ -78,7 +78,7 @@ class Math extends Chart
      *
      * @param int $amplitude
      */
-    public function setAmplitude($amplitude)
+    public function amplitude($amplitude)
     {
         $this->amplitude = $amplitude;
 

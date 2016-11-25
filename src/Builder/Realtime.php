@@ -38,7 +38,7 @@ class Realtime extends Chart
         // Set the data
         $this->url = $url;
         $this->interval = $interval;
-        $this->sufix = 'realtime';
+        $this->suffix = 'realtime';
         $this->value_name = 'value';
         $this->max_values = 20;
     }
@@ -48,7 +48,7 @@ class Realtime extends Chart
      *
      * @param int $number
      */
-    public function setMaxValues($number)
+    public function maxValues($number)
     {
         $this->max_values = $number;
 
@@ -60,7 +60,7 @@ class Realtime extends Chart
      *
      * @param string $string
      */
-    public function setValueName($string)
+    public function valueName($string)
     {
         $this->value_name = $string;
 
@@ -72,7 +72,7 @@ class Realtime extends Chart
      *
      * @param string $url
      */
-    public function setUrl($url)
+    public function url($url)
     {
         $this->url = $url;
 
@@ -84,7 +84,7 @@ class Realtime extends Chart
      *
      * @param string $url
      */
-    public function setInterval($interval)
+    public function interval($interval)
     {
         $this->interval = $interval;
 
