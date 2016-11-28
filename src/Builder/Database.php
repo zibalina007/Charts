@@ -94,7 +94,8 @@ class Database extends Chart
      * @param string $month
      * @param bool   $fancy
      */
-    public function groupByHour($day = null, $month = null, $year = null, $fancy = false) {
+    public function groupByHour($day = null, $month = null, $year = null, $fancy = false)
+    {
         $labels = [];
         $values = [];
 
