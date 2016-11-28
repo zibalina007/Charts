@@ -88,7 +88,55 @@ class Database extends Chart
     }
 
     /**
-     * Group the data monthly based on the creation date.
+     * Group the data hourly based on the creation date.
+     *
+     * @param string $year
+     * @param string $month
+     * @param bool   $fancy
+     */
+    public function groupByHour($day = null, $month = null, $year = null, $fancy = false) {
+        $labels = [];
+        $values = [];
+
+        $date_column = $this->date_column;
+
+        $day = $day ? $day : date('d');
+        $month = $month ? $month : date('m');
+        $year = $year ? $year : date('Y');
+
+        $hours = 24;
+
+        for ($i = 0; $i < $hours; $i++) {
+            if ($i < 10) {
+                $hour = "0$i";
+            } else {
+                $hour = "$i";
+            }
+
+            $date = "$year-$month-$day $hour:00:00";
+
+            $value = 0;
+
+            foreach ($this->data as $data) {
+                if (date('Y-m-d H:00:00', strtotime($data->$date_column)) == $date) {
+                    $value++;
+                }
+            }
+
+            $date_get = $fancy ? $this->date_format : 'd-m-Y H:00:00';
+            $label = date($date_get, strtotime("$year-$month-$day $hour:00:00"));
+
+            array_push($labels, $label);
+            array_push($values, $value);
+        }
+        $this->labels = $labels;
+        $this->values = $values;
+
+        return $this;
+    }
+
+    /**
+     * Group the data daily based on the creation date.
      *
      * @param string $year
      * @param string $month
