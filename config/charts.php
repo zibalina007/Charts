@@ -68,6 +68,9 @@ return [
         ],
 
         'highcharts' => [
+            'styles' => [
+                'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.4/css/highcharts.css',
+            ],
             'scripts' => [
                 'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/highcharts.js',
                 'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/js/modules/exporting.js',
