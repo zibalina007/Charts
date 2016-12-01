@@ -260,7 +260,7 @@ The available methods are:
             ->dimensions(1000, 500)
             ->responsive(false)
             ->groupBy('type', null, [1 => 'Admins', 2 => 'Users', 3 => 'Trainees']);
-        ```
+    ```
 
 - groupByYear(optional int $years)
 
