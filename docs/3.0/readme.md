@@ -236,7 +236,7 @@ The available methods are:
     $chart = Charts::database(User::all(), 'bar', 'highcharts')->dateFormat('F Y');
     ```
 
-- groupBy(required string $column, optional string $relationColumn)
+- groupBy(required string $column, optional string $relationColumn, optional array $labelsMapping)
 
     Groups the data based on a column.
     
@@ -249,8 +249,18 @@ The available methods are:
         ->responsive(false)
         ->groupBy('game');
     ```
-
+    
     ![Example GroupBy](https://i.gyazo.com/30183fa75f6bee6848898c4dbe487491.png)
+    
+    You can use the $labelsMapping to override labels. The following example overrides the label of different user types stored as integer in database.
+    
+    ```php
+        $chart = Charts::database(User::all(), 'pie', 'highcharts')
+            ->title('User types')
+            ->dimensions(1000, 500)
+            ->responsive(false)
+            ->groupBy('type', null, [1 => 'Admins', 2 => 'Users', 3 => 'Trainees']);
+        ```
 
 - groupByYear(optional int $years)
 

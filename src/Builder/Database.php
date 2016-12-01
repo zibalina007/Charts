@@ -270,9 +270,10 @@ class Database extends Chart
      *
      * @param string $column
      * @param string $relationColumn
+     * @param array $labelsMapping
      * @return $this
      */
-    public function groupBy($column, $relationColumn = null)
+    public function groupBy($column, $relationColumn = null, array $labelsMapping = [])
     {
         $labels = [];
         $values = [];
@@ -296,7 +297,7 @@ class Database extends Chart
                 }
             }
 
-            array_push($labels, $label);
+            array_push($labels, array_key_exists($label, $labelsMapping) ? $labelsMapping[$label] : $label);
             array_push($values, count($data));
         }
         $this->labels = $labels;
