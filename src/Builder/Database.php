@@ -120,9 +120,11 @@ class Database extends Chart
 
             foreach ($this->data as $data) {
                 if (date('Y-m-d H:00:00', strtotime($data->$date_column)) == $date) {
-                    if ($precounted)
-                    {$value = $data->count;}
-                    else {$value++;}
+                    if ($precounted) {
+                        $value = $data->count;
+                    } else {
+                        $value++;
+                    }
                 }
             }
 
@@ -170,9 +172,11 @@ class Database extends Chart
 
             foreach ($this->data as $data) {
                 if (date('Y-m-d', strtotime($data->$date_column)) == $date) {
-                    if ($precounted)
-                    {$value = $data->count;}
-                    else {$value++;}
+                    if ($precounted) {
+                        $value = $data->count;
+                    } else {
+                        $value++;
+                    }
                 }
             }
 
@@ -221,9 +225,11 @@ class Database extends Chart
                     // Same year
                     if ($month == date('m', strtotime($data->$date_column))) {
                         // Same month
-                        if ($precounted)
-                        {$value = $data->count;}
-                        else {$value++;}
+                        if ($precounted) {
+                            $value = $data->count;
+                        } else {
+                            $value++;
+                        }
                     }
                 }
             }
@@ -260,9 +266,11 @@ class Database extends Chart
             $value = 0;
             foreach ($this->data as $data) {
                 if ($year == date('Y', strtotime($data->$date_column))) {
-                    if ($precounted)
-                    {$value = $data->count;}
-                    else {$value++;}
+                    if ($precounted) {
+                        $value = $data->count;
+                    } else {
+                        $value++;
+                    }
                 }
             }
             array_push($values, $value);
@@ -334,9 +342,11 @@ class Database extends Chart
             $value = 0;
             foreach ($this->data as $data) {
                 if ($date == date('d-m-Y', strtotime($data->$date_column))) {
-                    if ($precounted)
-                    {$value = $data->count;}
-                    else {$value++;}
+                    if ($precounted) {
+                        $value = $data->count;
+                    } else {
+                        $value++;
+                    }
                 }
             }
             array_push($values, $value);
@@ -367,9 +377,11 @@ class Database extends Chart
             $value = 0;
             foreach ($this->data as $data) {
                 if ($date == date('m-Y', strtotime($data->$date_column))) {
-                    if ($precounted)
-                    {$value = $data->count;}
-                    else {$value++;}
+                    if ($precounted) {
+                        $value = $data->count;
+                    } else {
+                        $value++;
+                    }
                 }
             }
             array_push($values, $value);
