@@ -13,7 +13,7 @@
                     },
                 @endfor
             ],
-            @if($model->colors) {
+            @if($model->colors)
                 colors: [
                     @foreach($model->colors as $c)
                         "{{ $c }}",
