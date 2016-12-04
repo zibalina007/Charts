@@ -22,6 +22,7 @@ class Database extends Chart
     public $date_column;
     public $date_format = 'l dS M, Y';
     public $month_format = 'F, Y';
+    public $preaggregated = false;
 
     /**
      * Create a new database instance.
@@ -88,6 +89,19 @@ class Database extends Chart
     }
 
     /**
+     * Set whether data is preaggregated or should be summed.
+     *
+     * @param bool $preaggregated
+     * @return $this
+     */
+    public function preaggregated($preaggregated)
+    {
+        $this->preaggregated = $preaggregated;
+
+        return $this;
+    }
+
+    /**
      * Group the data hourly based on the creation date.
      *
      * @param string $year
@@ -120,7 +134,11 @@ class Database extends Chart
 
             foreach ($this->data as $data) {
                 if (date('Y-m-d H:00:00', strtotime($data->$date_column)) == $date) {
-                    $value++;
+                    if ($this->preaggregated) {
+                        $value = $data->aggregate;
+                    } else {
+                        $value++;
+                    }
                 }
             }
 
@@ -168,7 +186,11 @@ class Database extends Chart
 
             foreach ($this->data as $data) {
                 if (date('Y-m-d', strtotime($data->$date_column)) == $date) {
-                    $value++;
+                    if ($this->preaggregated) {
+                        $value = $data->aggregate;
+                    } else {
+                        $value++;
+                    }
                 }
             }
 
@@ -217,7 +239,11 @@ class Database extends Chart
                     // Same year
                     if ($month == date('m', strtotime($data->$date_column))) {
                         // Same month
-                        $value++;
+                        if ($this->preaggregated) {
+                            $value = $data->aggregate;
+                        } else {
+                            $value++;
+                        }
                     }
                 }
             }
@@ -254,7 +280,11 @@ class Database extends Chart
             $value = 0;
             foreach ($this->data as $data) {
                 if ($year == date('Y', strtotime($data->$date_column))) {
-                    $value++;
+                    if ($this->preaggregated) {
+                        $value = $data->aggregate;
+                    } else {
+                        $value++;
+                    }
                 }
             }
             array_push($values, $value);
@@ -326,7 +356,11 @@ class Database extends Chart
             $value = 0;
             foreach ($this->data as $data) {
                 if ($date == date('d-m-Y', strtotime($data->$date_column))) {
-                    $value++;
+                    if ($this->preaggregated) {
+                        $value = $data->aggregate;
+                    } else {
+                        $value++;
+                    }
                 }
             }
             array_push($values, $value);
@@ -357,7 +391,11 @@ class Database extends Chart
             $value = 0;
             foreach ($this->data as $data) {
                 if ($date == date('m-Y', strtotime($data->$date_column))) {
-                    $value++;
+                    if ($this->preaggregated) {
+                        $value = $data->aggregate;
+                    } else {
+                        $value++;
+                    }
                 }
             }
             array_push($values, $value);
