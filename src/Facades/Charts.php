@@ -11,8 +11,8 @@
 
 namespace ConsoleTVs\Charts\Facades;
 
-use Illuminate\Support\Facades\Facade;
 use ConsoleTVs\Charts\Builder;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * This is the charts facade class.
