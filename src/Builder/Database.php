@@ -22,6 +22,7 @@ class Database extends Chart
     public $date_column;
     public $date_format = 'l dS M, Y';
     public $month_format = 'F, Y';
+    public $preaggregated = false;
 
     /**
      * Create a new database instance.
@@ -88,13 +89,26 @@ class Database extends Chart
     }
 
     /**
+     * Set whether data is preaggregated or should be summed
+     *
+     * @param boolean $preaggregated
+     * @return $this
+     */
+    public function preaggregated($preaggregated)
+    {
+        $this->preaggregated = $preaggregated;
+
+        return $this;
+    }
+
+    /**
      * Group the data hourly based on the creation date.
      *
      * @param string $year
      * @param string $month
      * @param bool   $fancy
      */
-    public function groupByHour($day = null, $month = null, $year = null, $fancy = false, $precounted = false)
+    public function groupByHour($day = null, $month = null, $year = null, $fancy = false)
     {
         $labels = [];
         $values = [];
@@ -120,11 +134,9 @@ class Database extends Chart
 
             foreach ($this->data as $data) {
                 if (date('Y-m-d H:00:00', strtotime($data->$date_column)) == $date) {
-                    if ($precounted) {
-                        $value = $data->count;
-                    } else {
-                        $value++;
-                    }
+                    if ($this->preaggregated)
+                    {$value = $data->aggregate;}
+                    else {$value++;}
                 }
             }
 
@@ -147,7 +159,7 @@ class Database extends Chart
      * @param string $month
      * @param bool   $fancy
      */
-    public function groupByDay($month = null, $year = null, $fancy = false, $precounted = false)
+    public function groupByDay($month = null, $year = null, $fancy = false)
     {
         $labels = [];
         $values = [];
@@ -172,11 +184,9 @@ class Database extends Chart
 
             foreach ($this->data as $data) {
                 if (date('Y-m-d', strtotime($data->$date_column)) == $date) {
-                    if ($precounted) {
-                        $value = $data->count;
-                    } else {
-                        $value++;
-                    }
+                    if ($this->preaggregated)
+                    {$value = $data->aggregate;}
+                    else {$value++;}
                 }
             }
 
@@ -198,7 +208,7 @@ class Database extends Chart
      * @param int  $year
      * @param bool $fancy
      */
-    public function groupByMonth($year = null, $fancy = false, $precounted = false)
+    public function groupByMonth($year = null, $fancy = false)
     {
         $labels = [];
         $values = [];
@@ -225,11 +235,9 @@ class Database extends Chart
                     // Same year
                     if ($month == date('m', strtotime($data->$date_column))) {
                         // Same month
-                        if ($precounted) {
-                            $value = $data->count;
-                        } else {
-                            $value++;
-                        }
+                        if ($this->preaggregated)
+                        {$value = $data->aggregate;}
+                        else {$value++;}
                     }
                 }
             }
@@ -247,7 +255,7 @@ class Database extends Chart
      *
      * @param int $number
      */
-    public function groupByYear($number = 4, $precounted = false)
+    public function groupByYear($number = 4)
     {
         $labels = [];
         $values = [];
@@ -266,11 +274,9 @@ class Database extends Chart
             $value = 0;
             foreach ($this->data as $data) {
                 if ($year == date('Y', strtotime($data->$date_column))) {
-                    if ($precounted) {
-                        $value = $data->count;
-                    } else {
-                        $value++;
-                    }
+                    if ($this->preaggregated)
+                    {$value = $data->aggregate;}
+                    else {$value++;}
                 }
             }
             array_push($values, $value);
@@ -328,7 +334,7 @@ class Database extends Chart
      * @param int  $number
      * @param bool $number
      */
-    public function lastByDay($number = 7, $fancy = false, $precounted = false)
+    public function lastByDay($number = 7, $fancy = false)
     {
         $labels = [];
         $values = [];
@@ -342,11 +348,9 @@ class Database extends Chart
             $value = 0;
             foreach ($this->data as $data) {
                 if ($date == date('d-m-Y', strtotime($data->$date_column))) {
-                    if ($precounted) {
-                        $value = $data->count;
-                    } else {
-                        $value++;
-                    }
+                    if ($this->preaggregated)
+                    {$value = $data->aggregate;}
+                    else {$value++;}
                 }
             }
             array_push($values, $value);
@@ -363,7 +367,7 @@ class Database extends Chart
      * @param int  $number
      * @param bool $number
      */
-    public function lastByMonth($number = 6, $fancy = false, $precounted = false)
+    public function lastByMonth($number = 6, $fancy = false)
     {
         $labels = [];
         $values = [];
@@ -377,11 +381,9 @@ class Database extends Chart
             $value = 0;
             foreach ($this->data as $data) {
                 if ($date == date('m-Y', strtotime($data->$date_column))) {
-                    if ($precounted) {
-                        $value = $data->count;
-                    } else {
-                        $value++;
-                    }
+                    if ($this->preaggregated)
+                    {$value = $data->aggregate;}
+                    else {$value++;}
                 }
             }
             array_push($values, $value);
