@@ -54,8 +54,8 @@ return [
 
         'fusioncharts' => [
             'scripts' => [
-                'http://static.fusioncharts.com/code/latest/fusioncharts.js',
-                'http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js',
+                'https://static.fusioncharts.com/code/latest/fusioncharts.js',
+                'https://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js',
             ],
         ],
 
@@ -76,7 +76,7 @@ return [
                 'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/js/modules/exporting.js',
                 'https://cdnjs.cloudflare.com/ajax/libs/highmaps/5.0.2/js/modules/map.js',
                 'https://cdnjs.cloudflare.com/ajax/libs/highmaps/5.0.2/js/modules/data.js',
-                'http://code.highcharts.com/mapdata/custom/world.js',
+                'https://code.highcharts.com/mapdata/custom/world.js',
             ],
         ],
 
