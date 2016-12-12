@@ -24,6 +24,11 @@
                     text:  "{{ $model->title }}"
                 },
             @endif
+            @if(!$model->credits)
+                credits: {
+                    enabled: false
+                },
+            @endif
             mapNavigation: {
                 enabled: true,
                 enableDoubleClickZoomTo: true

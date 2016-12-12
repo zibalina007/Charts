@@ -14,6 +14,11 @@
                     text:  "{{ $model->title }}"
                 },
             @endif
+            @if(!$model->credits)
+                credits: {
+                    enabled: false
+                },
+            @endif
             plotOptions: {
                column: {
                    pointPadding: 0.2,

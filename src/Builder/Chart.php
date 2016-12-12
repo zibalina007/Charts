@@ -35,6 +35,7 @@ class Chart
     public $region;
     protected $suffix;
     public $container;
+    public $credits = true;
 
     /**
      * Create a new chart instance.
@@ -170,6 +171,18 @@ class Chart
     public function title($title)
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Set chart credits enabled or Disable. Default credits enable.
+     *
+     * @param boolean $credits
+     */
+    public function credits($credits)
+    {
+        $this->credits = $credits;
 
         return $this;
     }
