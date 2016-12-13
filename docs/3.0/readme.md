@@ -946,7 +946,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   ### Credits Disable
 
-  Note: ```highcharts``` credits disable available. Default is credits enable.
+  Note: ```highcharts``` credits disable available. Default credits is enable.
 
   ```php
   Charts::multi('line', 'highcharts')->credits(false);
