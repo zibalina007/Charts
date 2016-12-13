@@ -178,7 +178,7 @@ class Chart
     /**
      * Set chart credits enabled or Disable. Default credits enable.
      *
-     * @param boolean $credits
+     * @param bool $credits
      */
     public function credits($credits)
     {
