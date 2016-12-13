@@ -239,7 +239,7 @@ The available methods are:
 - groupBy(required string $column, optional string $relationColumn, optional array $labelsMapping)
 
     Groups the data based on a column.
-    
+
     *Note:* Relationship column follows this standard: ```->groupBy('product_id', 'product.model');``` where second argument will set labels to model column of product table based on it's relationship with the model.
 
     ```php
@@ -249,11 +249,11 @@ The available methods are:
         ->responsive(false)
         ->groupBy('game');
     ```
-    
+
     ![Example GroupBy](https://i.gyazo.com/30183fa75f6bee6848898c4dbe487491.png)
-    
+
     You can use the $labelsMapping to override labels. The following example overrides the label of different user types stored as integer in database.
-    
+
     ```php
         $chart = Charts::database(User::all(), 'pie', 'highcharts')
             ->title('User types')
@@ -403,10 +403,10 @@ The available methods are:
 - preaggregated(boolean $preaggregated)
 
     Set to true if using an aggregate database query such as count, max, min, avg, and sum.
-    
+
     ```php
     $data = Orders::select('orders.created_at', DB::raw('count(orders.id) as aggregate'))->groupBy(DB::raw('Date(orders.created_at)'))->get(); //must alias the aggregate column as aggregate
-    
+
     $chart = Charts::database($data)->preaggregated(true)->lastByDay(7, false);
     ```
 
@@ -943,6 +943,14 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   ```
 
   ![Example Progressbar](https://i.gyazo.com/ecd6a20344939ab75767739d32780104.png)
+
+  ### Credits Disable
+
+  Note: ```highcharts``` credits disable available. Default credits is enable.
+
+  ```php
+  Charts::multi('line', 'highcharts')->credits(false);
+  ```
 
 
 ## Extend your way!

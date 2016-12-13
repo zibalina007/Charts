@@ -15,6 +15,11 @@
                     x: -20 //center
                 },
             @endif
+            @if(!$model->credits)
+                credits: {
+                    enabled: false
+                },
+            @endif
             tooltip: {
                 pointFormat: '{point.y} <b>({point.percentage:.1f}%)</strong>'
             },
