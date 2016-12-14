@@ -592,7 +592,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
     Charts::realtime(url('/json/data'), 2000, 'gauge', 'google')
     ```
 
-- realtime(required string $function, required array $interval, required int $amplitude, optional string $type, optional string $library)
+- math(required string $function, required array $interval, required int $amplitude, optional string $type, optional string $library)
 
     Returns a new math function chart instance that extends the base one.
 
