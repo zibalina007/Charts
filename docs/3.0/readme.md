@@ -438,7 +438,7 @@ Example json:
 {"value":31}
 ```
 
-'value' can be changed to different index name with ```setValueName($string)```
+'value' can be changed to different index name with ```valueName($string)```
 
 ```php
 $chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
@@ -455,7 +455,7 @@ $chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
 
 The available methods are:
 
--   setValueName(required string $string)
+-   valueName(required string $string)
 
     Sets the value json index.
 
@@ -472,7 +472,7 @@ The available methods are:
                 ->valueName('value'); //This determines the json index for the value
     ```
 
--   setUrl(required string $url)
+-   url(required string $url)
 
     Sets the url after chart object creation.
 
@@ -487,7 +487,7 @@ The available methods are:
                 ->url(url('/new/json'));
     ```
 
--   setInterval(required int $interval)
+-   interval(required int $interval)
 
     Sets the interval after chart object creation (ms).
 
@@ -502,7 +502,7 @@ The available methods are:
                 ->interval(3000); // in ms
     ```
 
--   setMaxValues(required int $number)
+-   maxValues(required int $number)
 
     Sets the max amount of values to be seen before removing the first one.
 
@@ -527,7 +527,7 @@ Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts');
 
 The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` amplitude is ```0.2```
 
-- setFunction(required string $function)
+- function(required string $function)
 
   Sets the function.
 
@@ -535,7 +535,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts')->mathFunction('x+1');
   ```
 
-- setInterval(required array $interval)
+- interval(required array $interval)
 
     Sets the function / chart interval.
 
@@ -543,7 +543,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
     Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts')->interval([2, 8]);
     ```
 
-- setAmplitude(required int $amplitude)
+- amplitude(required int $amplitude)
 
     Sets the function amplitude between x points.
 
