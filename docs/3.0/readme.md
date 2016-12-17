@@ -955,6 +955,8 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
 ## Charts in tabs
 
+![Example tab chart](https://i.gyazo.com/7588eb53db5045a8b3231247d25f8cd6.gif)
+
 Rendering charts on tabs will cause them to render very bad. The cause is that unactive tabs have no
 dimensions and charts try to adapt to a 0 dimensions division.
 
