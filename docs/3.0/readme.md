@@ -22,6 +22,7 @@
 -   [Charts Functions](#charts-functions)
 -   [Available Chart Settings](#available-chart-settings)
 -   [Chart Examples](#chart-examples)
+-   [Charts in tabs](#chart-in-tabs)
 -   [Extend your way](#extend-your-way)
 
 
@@ -951,6 +952,149 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   ```php
   Charts::multi('line', 'highcharts')->credits(false);
   ```
+
+## Charts in tabs
+
+Rendering charts on tabs will cause them to render very bad. The cause is that unactive tabs have no
+dimensions and charts try to adapt to a 0 dimensions division.
+
+Lucky for you I'll add a quick method to make it work!
+
+1.  Create a layout, call it something like: ```layoyts/charts.blade.php```
+
+    ```
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+
+      {!! Charts::assets() !!}
+
+      <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+      <![endif]-->
+    </head>
+
+    <body>
+        @yield('chart')
+    </body>
+    </html>
+
+    ```
+    
+2.  Create a new folder where you'll add all charts, for example: ```charts/```
+3.  Create a new file inside, for example: ```latest_users.blade.php``` and add the cart
+
+    ```
+    @extends('layouts.charts')
+    @section('chart')
+        {!! Charts::database(App\User::all(), 'line', 'material')->dimensions(0,$height)->title('Latest Users')->lastByDay(7, true)->elementLabel('New Users')->render() !!}
+    @endsection
+    ```
+4.  Create a new route in ```routes/web.php```
+
+    ```
+    Route::get('/charts/{name}/{height}', 'ChartsController@show')->name('chart');
+    ```
+5.  Create a new Controller ```ChartsController```
+
+    ```
+    <?php
+
+    namespace App\Http\Controllers;
+
+    use Illuminate\Http\Request;
+    use Auth;
+
+    class ChartsController extends Controller
+    {
+        /* Charts that will be protected to normal users */
+        public $protected_charts = ['admin_dashboard'];
+
+        /**
+         * Show the chart, made to be displayed in an iframe.
+         *
+         * @param int $name
+         * @param int $height
+         */
+        public function show($name, $height)
+        {
+            if (in_array($name, $this->protected_charts)) {
+                $this->checkProtected();
+            }
+            return view("panel.charts.$name", ['height' => $height]);
+        }
+
+        /**
+         * Protected charts will go here first.
+         * You can change this condition how you like.
+         */
+        public function checkProtected()
+        {
+            if(!Auth::user()->admin) {
+                abort(404);
+            }
+        }
+    }
+
+    ```
+    Make sure to change your stuff, it's all documented
+    
+6.  Go to your view where you have your tabs, and inside that tab you like add the chart iframe with the height.
+    
+    **Note:** This example uses materializecss. They have a loader that makes it cooler to load up charts :)
+    
+    ```
+    @php $chart_height = 300; @endphp
+    <div class="card-panel" style="height: {{ $chart_height + 50 }}px">
+        <!-- Start materialize loader -->
+        <center>
+            <div class="preloader-wrapper big active" style="margin-top: {{ ($chart_height / 2) - 32 }}px;">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </center>
+        <!-- End materialize loader -->
+        <iframe id="latest_users" src="{{ route('chart', ['name' => 'latest_users', 'height' => $chart_height]) }}" height="{{ $chart_height + 50 }}" width="100%" style="width:100%; border:none;"></iframe>
+    </div>
+    ```
+7. Add this script changing the tab id with yours
+
+    **Note:** As you can see it also uses the loader from materializecss, you can remove them as well.
+
+    ```
+    <script>
+        $(function() {
+            // Your tab id must match with the click element: administration_toggle
+            // Change it how you like :)
+            $('#administration_toggle').click(function() {
+                $('.preloader-wrapper').fadeIn();
+                $('iframe').css('opacity', 0);
+                setTimeout(function() {
+                    $('iframe').each(function() {
+                        $(this).attr('src', $(this).attr('src'));
+                    });
+                    $('.preloader-wrapper').fadeOut();
+                    setTimeout(function() {
+                        $('iframe').animate({
+                            opacity: 1,
+                        }, 1000);
+                    }, 500);
+                }, 500);
+            });
+        });
+    </script>
+    ```
 
 
 ## Extend your way!
