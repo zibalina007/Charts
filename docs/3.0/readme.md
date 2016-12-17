@@ -1025,7 +1025,7 @@ Lucky for you I'll add a quick method to make it work!
             if (in_array($name, $this->protected_charts)) {
                 $this->checkProtected();
             }
-            return view("panel.charts.$name", ['height' => $height]);
+            return view("charts.$name", ['height' => $height]);
         }
 
         /**
