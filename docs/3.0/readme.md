@@ -22,7 +22,7 @@
 -   [Charts Functions](#charts-functions)
 -   [Available Chart Settings](#available-chart-settings)
 -   [Chart Examples](#chart-examples)
--   [Charts in tabs](#chart-in-tabs)
+-   [Charts in tabs](#charts-in-tabs)
 -   [Extend your way](#extend-your-way)
 
 
