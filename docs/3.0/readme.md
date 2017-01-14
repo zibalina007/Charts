@@ -181,6 +181,7 @@ Charts::multi('line', 'highcharts')
                     ->dataset('Test 2', [0,6,0])
                     ->dataset('Test 3', [3,4,1]);
     ```
+    
 
 ## Database Charts
 
@@ -410,6 +411,21 @@ The available methods are:
 
     $chart = Charts::database($data)->preaggregated(true)->lastByDay(7, false);
     ```
+
+### Database method alternative
+
+When creating charts, you might wanna take full control of it, this might be done creating the chart with the ```create``` method
+and adding the data from the database:
+
+```
+$data = Shopping::all();
+$chart = Charts::create('bar', 'highcharts')
+                             ->title('My nice chart')
+                             ->elementLabel('My nice label')
+                             ->labels($data->pluck('shoppingDate'))
+                             ->values($data->pluck('price'))
+                             ->responsive(true);
+```
 
 ## Realtime Charts
 
