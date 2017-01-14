@@ -420,11 +420,11 @@ and adding the data from the database:
 ```
 $data = Shopping::all();
 $chart = Charts::create('bar', 'highcharts')
-                             ->title('My nice chart')
-                             ->elementLabel('My nice label')
-                             ->labels($data->pluck('shoppingDate'))
-                             ->values($data->pluck('price'))
-                             ->responsive(true);
+             ->title('My nice chart')
+             ->elementLabel('My nice label')
+             ->labels($data->pluck('shoppingDate'))
+             ->values($data->pluck('price'))
+             ->responsive(true);
 ```
 
 ## Realtime Charts
