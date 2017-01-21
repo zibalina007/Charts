@@ -113,21 +113,21 @@ Example View:
 
 ## Create Charts
 
-| Create Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar |
-|---------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|
-| chartjs       | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           |
-| highcharts    | x    | x    | x   | x   | x     | x   | -     | -    | -          | -           |
-| google        | x    | x    | x   | x   | x     | x   | x     | -    | -          | -           |
-| material      | x    | -    | x   | -   | -     | -   | -     | -    | -          | -           |
-| chartist      | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           |
-| fusioncharts  | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           |
-| morris        | x    | x    | x   | -   | x     | -   | -     | -    | -          | -           |
-| plottablejs   | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           |
-| minimalist    | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           |
-| c3		    | x    | x    | x   | x   | x     | -   | x     | -    | -          | -           |
-| canvas-gauges | -    | -    | -   | -   | -     | -   | x     | x    | -          | -           |
-| justgage      | -    | -    | -   | -   | -     | -   | x     | -    | x          | -           |
-| progressbarjs | -    | -    | -   | -   | -     | -   | -     | -    | x          | x           |
+| Create Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar | areaspline | 
+|---------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|------------|
+| chartjs       | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           | -          |
+| highcharts    | x    | x    | x   | x   | x     | x   | -     | -    | -          | -           | x          |
+| google        | x    | x    | x   | x   | x     | x   | x     | -    | -          | -           | -          |
+| material      | x    | -    | x   | -   | -     | -   | -     | -    | -          | -           | -          |
+| chartist      | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           | -          |
+| fusioncharts  | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           | -          |
+| morris        | x    | x    | x   | -   | x     | -   | -     | -    | -          | -           | -          |
+| plottablejs   | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           | -          |
+| minimalist    | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           | -          |
+| c3		    | x    | x    | x   | x   | x     | -   | x     | -    | -          | -           | -          |
+| canvas-gauges | -    | -    | -   | -   | -     | -   | x     | x    | -          | -           | -          |
+| justgage      | -    | -    | -   | -   | -     | -   | x     | -    | x          | -           | -          |
+| progressbarjs | -    | -    | -   | -   | -     | -   | -     | -    | x          | x           | -          |
 
 The first argument of the create method is the chart type, and the second is the library
 
@@ -142,21 +142,21 @@ Charts::create('line', 'highcharts')
 
 ## Multi Datasets Charts
 
-| Multi Dataset Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar |
-|----------------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|
-| chartjs              | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
-| highcharts           | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
-| google               | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
-| material             | x    | -    | x   | -   | -     | -   | -     | -    | -          | -           |
-| chartist             | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
-| fusioncharts         | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
-| morris               | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
-| plottablejs          | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
-| minimalist           | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
-| c3		    	   | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           |
-| canvas-gauges        | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
-| justgage             | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
-| progressbarjs        | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           |
+| Multi Dataset Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar | areaspline  | 
+|----------------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|-------------|
+| chartjs              | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           | -           |
+| highcharts           | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           | x           |
+| google               | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           | -           |
+| material             | x    | -    | x   | -   | -     | -   | -     | -    | -          | -           | -           |
+| chartist             | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           | -           |
+| fusioncharts         | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           | -           |
+| morris               | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           | -           |
+| plottablejs          | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           | -           |
+| minimalist           | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           | -           |
+| c3		    	   | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           | -           |
+| canvas-gauges        | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           | -           |
+| justgage             | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           | -           |
+| progressbarjs        | -    | -    | -   | -   | -     | -   | -     | -    | -          | -           | -           |
 
 To create multi-dataset charts simply add the values using the ```setDataset()``` function!
 
@@ -863,7 +863,20 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   ![Example Area](https://i.gyazo.com/f6c500cf9bfc2e449d64ee19b7bb809c.png)
 
-
+   ### Areaspline
+   
+   ```php
+  Charts::multi('areaspline', 'highcharts')
+    ->title('My nice chart')
+    ->colors(['#ff0000', '#ffffff'])
+    ->labels(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday', 'Sunday'])
+    ->dataset('John', [3, 4, 3, 5, 4, 10, 12])
+    ->dataset('Jane',  [1, 3, 4, 3, 3, 5, 4]);
+   ```
+    
+   ![Example Area](https://s30.postimg.org/6uwe893kx/areaspline.png)
+     
+     
   ### Bar
 
   Note: ```highcharts``` can't change the color of this chart. Well it can but it's complicated, so I leave it here.
