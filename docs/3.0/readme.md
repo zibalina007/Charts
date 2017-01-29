@@ -76,7 +76,6 @@ class TestController extends Controller
     public function index()
     {
         $chart = Charts::create('line', 'highcharts')
-            ->view('custom.line.chart.view') // Use this if you want to use your own template
             ->title('My nice chart')
             ->labels(['First', 'Second', 'Third'])
             ->values([5,10,20])
