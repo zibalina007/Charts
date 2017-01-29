@@ -112,6 +112,9 @@ Example View:
 
 ## Create Charts
 
+**x**: Available combination
+**-**: Unavailable combination
+
 | Create Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar | areaspline | 
 |---------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|------------|
 | chartjs       | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           | -          |
@@ -140,6 +143,9 @@ Charts::create('line', 'highcharts')
 ```
 
 ## Multi Datasets Charts
+
+**x**: Available combination
+**-**: Unavailable combination
 
 | Multi Dataset Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar | areaspline  | 
 |----------------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|-------------|
@@ -429,6 +435,9 @@ $chart = Charts::create('bar', 'highcharts')
 ## Realtime Charts
 
 ![Realtime Chart Example](https://i.gyazo.com/77a9365e9270cb16a28c6acf11abadc3.gif)
+
+**x**: Available combination
+**-**: Unavailable combination
 
 | Realtime Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar |
 |-----------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|
