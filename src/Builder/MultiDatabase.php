@@ -46,7 +46,6 @@ class MultiDatabase extends Multi
      */
     public function dataset($element_label, $data)
     {
-
         $this->datas[$element_label] = new Database($data);
 
         return $this;
@@ -113,7 +112,7 @@ class MultiDatabase extends Multi
         // Reset the datasets to avoid overlapping
         $this->datasets = [];
 
-        foreach($this->datas as $element_label => $data) {
+        foreach ($this->datas as $element_label => $data) {
             $data->groupByHour($day, $month, $year, $fancy);
             parent::dataset($element_label, $data->values);
         }
@@ -135,7 +134,7 @@ class MultiDatabase extends Multi
         // Reset the datasets to avoid overlapping
         $this->datasets = [];
 
-        foreach($this->datas as $element_label => $data) {
+        foreach ($this->datas as $element_label => $data) {
             $data->groupByDay($month, $year, $fancy);
             parent::dataset($element_label, $data->values);
         }
@@ -156,7 +155,7 @@ class MultiDatabase extends Multi
         // Reset the datasets to avoid overlapping
         $this->datasets = [];
 
-        foreach($this->datas as $element_label => $data) {
+        foreach ($this->datas as $element_label => $data) {
             $data->groupByMonth($year, $fancy);
             parent::dataset($element_label, $data->values);
         }
@@ -176,7 +175,7 @@ class MultiDatabase extends Multi
         // Reset the datasets to avoid overlapping
         $this->datasets = [];
 
-        foreach($this->datas as $element_label => $data) {
+        foreach ($this->datas as $element_label => $data) {
             $data->groupByYear($number);
             parent::dataset($element_label, $data->values);
         }
@@ -199,7 +198,7 @@ class MultiDatabase extends Multi
         // Reset the datasets to avoid overlapping
         $this->datasets = [];
 
-        foreach($this->datas as $element_label => $data) {
+        foreach ($this->datas as $element_label => $data) {
             $data->groupBy($column, $relationColumn, $labelsMapping);
             parent::dataset($element_label, $data->values);
         }
@@ -220,7 +219,7 @@ class MultiDatabase extends Multi
         // Reset the datasets to avoid overlapping
         $this->datasets = [];
 
-        foreach($this->datas as $element_label => $data) {
+        foreach ($this->datas as $element_label => $data) {
             $data->lastByDay($number, $fancy);
             parent::dataset($element_label, $data->values);
         }
@@ -241,7 +240,7 @@ class MultiDatabase extends Multi
         // Reset the datasets to avoid overlapping
         $this->datasets = [];
 
-        foreach($this->datas as $element_label => $data) {
+        foreach ($this->datas as $element_label => $data) {
             $data->lastByMonth($number, $fancy);
             parent::dataset($element_label, $data->values);
         }
