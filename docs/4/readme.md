@@ -727,7 +727,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   print_r(Charts::types('highcharts'));
   ```
 
-## Available Chart Settings:
+## Available Chart Settings
 
 - loader(required bool $loader)
 
