@@ -390,36 +390,35 @@ class Chart
             }
         }
 
-        if(!$this->colors) {
+        if (! $this->colors) {
             $this->colors = ['#000000'];
         }
 
         // Set the template colors
         $templates = config('charts.templates');
-        if( $this->template && array_key_exists($this->template, $templates) && $colors = $templates[$this->template] ){
+        if ($this->template && array_key_exists($this->template, $templates) && $colors = $templates[$this->template]) {
             $this->colors = $colors;
         }
-        if( $this->one_color ) {
+        if ($this->one_color) {
             $color = $this->colors[0];
             $this->colors = [];
-            foreach($this->values as $v) {
+            foreach ($this->values as $v) {
                 array_push($this->colors, $color);
             }
-        } elseif ( ($cc = count($this->colors) != $cv = count($this->values)) or ($this->suffix == 'multi' and ($cc != $ds = count($this->datasets))) ) {
-
-            if( $this->suffix == 'multi' ) {
+        } elseif (($cc = count($this->colors) != $cv = count($this->values)) or ($this->suffix == 'multi' and ($cc != $ds = count($this->datasets)))) {
+            if ($this->suffix == 'multi') {
                 $cv = $ds;
             }
 
-            if( $cc > $cv ) {
+            if ($cc > $cv) {
                 // There are more colors than values
                 $this->colors = array_slice($this->colors, 0, $cv);
             } else {
                 // There are less colors than values
                 $i = 0;
                 $max = count($this->colors);
-                while(count($this->colors) < $cv) {
-                    if($i == $max) {
+                while (count($this->colors) < $cv) {
+                    if ($i == $max) {
                         $i = 0;
                     }
                     array_push($this->colors, $this->colors[$i]);

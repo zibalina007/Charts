@@ -11,15 +11,14 @@
 
 namespace ConsoleTVs\Charts;
 
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Facade;
-
 use ConsoleTVs\Charts\Builder\Math;
 use ConsoleTVs\Charts\Builder\Chart;
 use ConsoleTVs\Charts\Builder\Multi;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Facade;
 use ConsoleTVs\Charts\Builder\Database;
-use ConsoleTVs\Charts\Builder\MultiDatabase;
 use ConsoleTVs\Charts\Builder\Realtime;
+use ConsoleTVs\Charts\Builder\MultiDatabase;
 
 /**
  * This is the charts facade class.
@@ -157,36 +156,42 @@ class Builder
         return array_unique($results);
     }
 
-     /**
-      * Return the library styles.
-      *
-      * @param array  $libraries
-      */
-      public function styles($libraries = []) {
-          $styles = static::getAssets($libraries, 'styles');
-          $styles .= view('charts::_partials.loader.css');
-          return $styles;
-      }
-
       /**
-       * Return the library scripts.
+       * Return the library styles.
        *
        * @param array  $libraries
        */
-       public function scripts($libraries = []) {
-           $scripts = static::getAssets($libraries, 'scripts');
-           $scripts .= view('charts::_partials.loader.js');
-           return $scripts;
-       }
+      public function styles($libraries = [])
+      {
+          $styles = static::getAssets($libraries, 'styles');
+          $styles .= view('charts::_partials.loader.css');
+
+          return $styles;
+      }
 
        /**
-        * Return the library styles.
+        * Return the library scripts.
         *
         * @param array  $libraries
         */
-        public function assets($libraries = []) {
+       public function scripts($libraries = [])
+       {
+           $scripts = static::getAssets($libraries, 'scripts');
+           $scripts .= view('charts::_partials.loader.js');
+
+           return $scripts;
+       }
+
+        /**
+         * Return the library styles.
+         *
+         * @param array  $libraries
+         */
+        public function assets($libraries = [])
+        {
             $assets = static::styles($libraries);
             $assets .= static::scripts($libraries);
+
             return $assets;
         }
 
@@ -198,9 +203,9 @@ class Builder
      */
     private static function getAssets($libraries = [], $type = [])
     {
-        if(!$libraries) {
+        if (! $libraries) {
             $libraries = [];
-            foreach(config('charts.assets') as $key => $value) {
+            foreach (config('charts.assets') as $key => $value) {
                 array_push($libraries, $key);
             }
         }
@@ -211,17 +216,17 @@ class Builder
             $libraries = explode(',', $libraries);
         }
 
-            if ($type) {
-                $final_assets = collect($assets)->filter(function ($value, $key) use ($libraries, $type) {
-                    return in_array($key, $libraries) && array_key_exists($type, $value);
-                })->map(function ($value) use ($type) {
-                    return $value[$type];
-                })->toArray();
-            } else {
-                $final_assets = collect($assets)->filter(function ($value, $key) use ($libraries) {
-                    return in_array($key, $libraries);
-                })->toArray();
-            }
+        if ($type) {
+            $final_assets = collect($assets)->filter(function ($value, $key) use ($libraries, $type) {
+                return in_array($key, $libraries) && array_key_exists($type, $value);
+            })->map(function ($value) use ($type) {
+                return $value[$type];
+            })->toArray();
+        } else {
+            $final_assets = collect($assets)->filter(function ($value, $key) use ($libraries) {
+                return in_array($key, $libraries);
+            })->toArray();
+        }
 
         // return all libraries
         return static::buildIncludeTags($final_assets);
