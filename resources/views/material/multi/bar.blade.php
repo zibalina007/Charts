@@ -6,7 +6,7 @@
     function draw{{ $model->id }}() {
         var data = google.visualization.arrayToDataTable([
             [
-                'Element',
+                '',
                 @for ($i = 0; $i < count($model->datasets); $i++)
                     "{{ $model->datasets[$i]['label'] }}",
                 @endfor

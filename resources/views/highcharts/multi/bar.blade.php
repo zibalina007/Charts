@@ -31,7 +31,6 @@
                          "{{ $label }}",
                     @endforeach
                 ],
-                crosshair: true
             },
             yAxis: {
                 title: {

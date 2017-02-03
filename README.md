@@ -1,20 +1,51 @@
-# Charts
+<p align="center"><a href="https://erik.cat/projects/Charts"><img height="250" src="http://i.imgur.com/zylVNhI.png"></a></p>
 
-### Charts is a multi-library chart package to create interactive charts using laravel.
+<p align="center">
+<a href="https://styleci.io/repos/69124179"><img src="https://styleci.io/repos/69124179/shield?branch=master&style=flat" alt="StyleCI Status"></a>
+<a href="https://styleci.io/repos/69124179"><img src="https://img.shields.io/badge/Built_for-Laravel-orange.svg" alt="Build For Laravel"></a>
+<a href="https://packagist.org/packages/consoletvs/charts"><img src="https://poser.pugx.org/consoletvs/charts/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/consoletvs/charts"><img src="https://poser.pugx.org/consoletvs/charts/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/consoletvs/charts"><img src="https://poser.pugx.org/consoletvs/charts/license.svg" alt="License"></a>
+</p>
 
-[![StyleCI](https://styleci.io/repos/69124179/shield?branch=master)](https://styleci.io/repos/69124179)
-![StyleCI](https://img.shields.io/badge/Built_for-Laravel-green.svg?style=flat-square)
-![StyleCI](https://img.shields.io/github/license/consoletvs/charts.svg?style=flat-square)
+## What is Charts?
 
-![Charts Logo](http://i.imgur.com/zylVNhI.png)
+Charts is a multi-library chart package to create interactive charts using laravel. It Gives you access to
+tons of diferents charts. Over +100 diferent charts and +13 diferent chart libraries to choose from. With this package
+you can forget wirtting all the javascript manually and focus on your laravel project, while keeping an insane customitzable chart coded in PHP. And last but not least, we support diferent types of charts, mathematical charts, multi-charts, they can even be
+created using your eloquent models! And hey... We do support realtime stuff as well ;)
+
+## Sample Chart
+
+This chart is a multi bar chart using the material library.
+
+![Charts Logo](https://i.gyazo.com/2f50ac060f699cc323741403174cec66.png)
+
+```php
+$chart = Charts::multi('bar', 'material')
+            // Setup the chart settings
+            ->title("My Cool Chart")
+            // A dimension of 0 means it will take 100% of the space
+            ->dimensions(0, 400) // Width x Height
+            // This defines a preset of colors already done:)
+            ->template("material")
+            // You could always set them manually
+            // ->colors(['#2196F3', '#F44336', '#FFC107'])
+            // Setup the diferent datasets (this is a multi chart)
+            ->dataset('Element 1', [5,20,100])
+            ->dataset('Element 2', [15,30,80])
+            ->dataset('Element 3', [25,10,40])
+            // Setup what the values mean
+            ->labels(['One', 'Two', 'Three']);
+```
 
 ## Documentation
 
-Documentation for any version can be found here: https://erik.cat/projects/Charts/docs
+<p align="center">
+<a href="https://erik.cat/projects/Charts/docs"><img src="http://i.imgur.com/47WnADd.png"></a>
+</p>
 
 ## License
-
-MIT LICENSE:
 
 ```
 MIT License

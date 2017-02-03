@@ -35,7 +35,13 @@ class Chart
     public $region;
     protected $suffix;
     public $container;
-    public $credits = true;
+    public $credits;
+    public $loader;
+    public $loader_duration;
+    public $loader_color;
+    public $background_color;
+    public $template;
+    public $one_color;
 
     /**
      * Create a new chart instance.
@@ -52,19 +58,103 @@ class Chart
         $this->element_label = config('charts.default.element_label');
         $this->labels = [];
         $this->values = [];
-        $this->colors = [];
+        $this->colors = config('charts.default.colors');
         $this->suffix = '';
         $this->container = '';
         $this->gauge_style = 'left';
         $this->responsive = config('charts.default.responsive');
         $this->region = 'world';
         $length = 10; // The random identifier length.
+        $this->background_color = config('charts.default.background_color');
+        $this->credits = false; // Disables the library credits (not on all)
+
+        // Setup the chart loader
+        $this->loader = config('charts.default.loader.active');
+        $this->loader_duration = config('charts.default.loader.duration');
+        $this->loader_color = config('charts.default.loader.color');
 
         // Set the chart type
         $this->type = $type ? $type : config('charts.default.type');
 
         // Set the chart library
         $this->library = $library ? $library : config('charts.default.library');
+
+        // Set the chart template
+        $this->template = config('charts.default.template');
+
+        $this->one_color = config('charts.default.one_color');
+    }
+
+    /**
+     * Set the chart one color attribute.
+     *
+     * @param bool $one_color
+     */
+    public function oneColor($one_color)
+    {
+        $this->one_color = $one_color;
+
+        return $this;
+    }
+
+    /**
+     * Set the chart color template.
+     *
+     * @param string $template
+     */
+    public function template($template)
+    {
+        $this->template = $template;
+
+        return $this;
+    }
+
+    /**
+     * Set the chart division background color.
+     *
+     * @param string $background_color
+     */
+    public function backgroundColor($background_color)
+    {
+        $this->background_color = $background_color;
+
+        return $this;
+    }
+
+    /**
+     * Set the loader for the chart.
+     *
+     * @param bool $loader
+     */
+    public function loader($loader)
+    {
+        $this->loader = $loader;
+
+        return $this;
+    }
+
+    /**
+     * Set a custom loadter time before showing the chart.
+     *
+     * @param int $loader_duration
+     */
+    public function loaderDuration($loader_duration)
+    {
+        $this->loader_duration = $loader_duration;
+
+        return $this;
+    }
+
+    /**
+     * Set the loader color for the chart if the loader is enabled.
+     *
+     * @param string $loader_color
+     */
+    public function loaderColor($loader_color)
+    {
+        $this->loader_color = $loader_color;
+
+        return $this;
     }
 
     /**
@@ -274,6 +364,8 @@ class Chart
      */
     public function render()
     {
+        $this->id = $this->container ? $this->container : $this->randomString();
+
         if (! $this->labels && ! $this->values) {
             $this->labels = ['No Data Set'];
             $this->values = [0];
@@ -282,20 +374,59 @@ class Chart
                 array_push($this->values, 0);
             }
         } elseif ($this->values && ! $this->labels) {
+            $i = 0;
             foreach ($this->values as $v) {
-                array_push($this->labels, 'No Data Set');
+                array_push($this->labels, "Unknown $i");
             }
         } elseif (count($this->values) > count($this->labels)) {
-            for ($i = 0; $i < (count($this->values) - count($this->labels)); $i++) {
-                array_push($this->labels, 'No Data Set');
+            $lb = count($this->labels);
+            for ($i = 0; $i < (count($this->values) - $lb); $i++) {
+                array_push($this->labels, "Unknown $i");
             }
         } elseif (count($this->values) < count($this->labels)) {
-            for ($i = 0; $i < (count($this->labels) - count($this->values)); $i++) {
+            $vl = count($this->values);
+            for ($i = 0; $i < (count($this->labels) - $vl); $i++) {
                 array_push($this->values, 0);
             }
         }
 
-        $this->id = $this->container ? $this->container : $this->randomString();
+        if(!$this->colors) {
+            $this->colors = ['#000000'];
+        }
+
+        // Set the template colors
+        $templates = config('charts.templates');
+        if( $this->template && array_key_exists($this->template, $templates) && $colors = $templates[$this->template] ){
+            $this->colors = $colors;
+        }
+        if( $this->one_color ) {
+            $color = $this->colors[0];
+            $this->colors = [];
+            foreach($this->values as $v) {
+                array_push($this->colors, $color);
+            }
+        } elseif ( ($cc = count($this->colors) != $cv = count($this->values)) or ($this->suffix == 'multi' and ($cc != $ds = count($this->datasets))) ) {
+
+            if( $this->suffix == 'multi' ) {
+                $cv = $ds;
+            }
+
+            if( $cc > $cv ) {
+                // There are more colors than values
+                $this->colors = array_slice($this->colors, 0, $cv);
+            } else {
+                // There are less colors than values
+                $i = 0;
+                $max = count($this->colors);
+                while(count($this->colors) < $cv) {
+                    if($i == $max) {
+                        $i = 0;
+                    }
+                    array_push($this->colors, $this->colors[$i]);
+                    $i++;
+                }
+            }
+        }
 
         $view = $this->suffix ? "charts::{$this->library}.{$this->suffix}.{$this->type}" : "charts::{$this->library}.{$this->type}";
         $view = $this->view ?: $view;

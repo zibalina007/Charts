@@ -6,9 +6,13 @@
     function draw{{ $model->id }}() {
         var data = google.visualization.arrayToDataTable([
             [
-                '', "{{ $model->element_label }}"],
+                '', "{{ $model->element_label }}",
+                @if($model->colors)
+                    { role: 'style' }
+                @endif
+            ],
                 @for($i = 0; $i < count($model->values); $i++)
-                    ["{{ $model->labels[$i] }}", {{ $model->values[$i] }}],
+                    ["{{ $model->labels[$i] }}", {{ $model->values[$i] }},"{{ $model->colors[$i] }}"],
                 @endfor
         ])
 
@@ -19,7 +23,11 @@
                 @endif
             },
             @if($model->colors)
-                colors: ["{{ $model->colors[0] }}"],
+                colors:[
+                    @foreach($model->colors as $color)
+                        "{{ $color}}",
+                    @endforeach
+                ],
             @endif
         };
 

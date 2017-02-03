@@ -1,13 +1,9 @@
-# Charts 3.0 documentation
 
-### Charts is a multi-library chart package to create interactive charts using laravel.
+## Charts version 4
 
-[![StyleCI](https://styleci.io/repos/69124179/shield?branch=master)](https://styleci.io/repos/69124179)
-![StyleCI](https://img.shields.io/badge/Built_for-Laravel-green.svg?style=flat-square)
-![StyleCI](https://img.shields.io/github/license/consoletvs/charts.svg?style=flat-square)
-
-![Charts Logo](http://i.imgur.com/zylVNhI.png)
-
+<p align="center">
+<img src="http://i.imgur.com/47WnADd.png">
+</p>
 
 ## Table Of Contents
 
@@ -17,6 +13,7 @@
 -   [Create Charts](#create-charts)
 -   [Multi Datasets Chart](#multi-datasets-charts)
 -   [Database Charts](#database-charts)
+-   [Multi Database Charts](#multi-database-charts)
 -   [Realtime Charts](#realtime-charts)
 -   [Math Functions Charts](#math-functions-charts)
 -   [Charts Functions](#charts-functions)
@@ -31,7 +28,7 @@
 ### Download
 
 ```
-composer require consoletvs/charts:3.*
+composer require consoletvs/charts:4.*
 ```
 
 ### Add service provider & alias
@@ -75,12 +72,22 @@ class TestController extends Controller
 {
     public function index()
     {
-        $chart = Charts::create('line', 'highcharts')
-            ->title('My nice chart')
-            ->labels(['First', 'Second', 'Third'])
-            ->values([5,10,20])
-            ->dimensions(1000,500)
-            ->responsive(false);
+        $chart = Charts::multi('bar', 'material')
+			// Setup the chart settings
+			->title("My Cool Chart")
+			// A dimension of 0 means it will take 100% of the space
+			->dimensions(0, 400) // Width x Height
+			// This defines a preset of colors already done:)
+			->template("material")
+			// You could always set them manually
+			// ->colors(['#2196F3', '#F44336', '#FFC107'])
+			// Setup the diferent datasets (this is a multi chart)
+			->dataset('Element 1', [5,20,100])
+			->dataset('Element 2', [15,30,80])
+			->dataset('Element 3', [25,10,40])
+			// Setup what the values mean
+			->labels(['One', 'Two', 'Three']);
+
         return view('test', ['chart' => $chart]);
     }
 }
@@ -112,10 +119,7 @@ Example View:
 
 ## Create Charts
 
-**x**: Available combination
-**-**: Unavailable combination
-
-| Create Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar | areaspline | 
+| Create Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar | areaspline |
 |---------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|------------|
 | chartjs       | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           | -          |
 | highcharts    | x    | x    | x   | x   | x     | x   | -     | -    | -          | -           | x          |
@@ -138,16 +142,12 @@ Charts::create('line', 'highcharts')
     ->title('My nice chart')
     ->labels(['First', 'Second', 'Third'])
     ->values([5,10,20])
-    ->dimensions(1000,500)
-    ->responsive(false);
+    ->dimensions(0,500);
 ```
 
 ## Multi Datasets Charts
 
-**x**: Available combination
-**-**: Unavailable combination
-
-| Multi Dataset Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar | areaspline  | 
+| Multi Dataset Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar | areaspline  |
 |----------------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|-------------|
 | chartjs              | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           | -           |
 | highcharts           | x    | x    | x   | -   | -     | -   | -     | -    | -          | -           | x           |
@@ -186,7 +186,7 @@ Charts::multi('line', 'highcharts')
                     ->dataset('Test 2', [0,6,0])
                     ->dataset('Test 3', [3,4,1]);
     ```
-    
+
 
 ## Database Charts
 
@@ -432,12 +432,36 @@ $chart = Charts::create('bar', 'highcharts')
              ->responsive(true);
 ```
 
+## Multi Database Charts
+
+Sometimes it might be usefull to create multi charts from diferent tables, right?
+
+Fear no more, as this feature is there for you!
+
+*Working Standard:* This chart is kinda special, the class extends the multi chart class and that means
+that any option available in the multi chart is avalable here. BUT as this is a database chart, you
+need to add the dataset in the following way:
+
+```php
+Charts::multiDatabase('line', 'material')
+    ->dataset('Element 1', Users::all())
+    ->dataset('Element 2', Posts::all());
+```
+
+And remember, you got all the database functions linked, meaning you're able to play with them as well like this:
+
+```php
+Charts::multiDatabase('line', 'material')
+    ->dataset('Element 1', Users::all())
+    ->dataset('Element 2', Posts::all())
+    ->groupByMonth(2017, true);
+```
+
+**As mentioned above, this chart got all the available database methods and multi chart methods.**
+
 ## Realtime Charts
 
 ![Realtime Chart Example](https://i.gyazo.com/77a9365e9270cb16a28c6acf11abadc3.gif)
-
-**x**: Available combination
-**-**: Unavailable combination
 
 | Realtime Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar |
 |-----------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|
@@ -625,6 +649,22 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
     Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts');
     ```
 
+- multi(optional string $type, optional string $library)
+
+    Returns a new multi chart instance that extends the base one.
+
+    ```php
+    Charts::multi('line', 'material');
+    ```
+
+- multiDatabase(optional string $type, optional string $library)
+
+    Returns a new multi database chart instance that extends the multi chart but can use the database functions.
+
+    ```php
+    Charts::multi('line', 'material');
+    ```
+
 - assets(optional array $libraries)
 
     Returns all the assets to generate the graphs.
@@ -641,6 +681,27 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
     {!! Charts::assets(['google', 'chartjs']) !!}
     ```
 
+- styles(optional array $libraries)
+
+	Returns all the style assets.
+
+	```php
+	// All libraries
+	{!! Charts::styles() !!}
+	// Only certain libraries
+	{!! Charts::styles(['google', 'material']) !!}
+	```
+
+- scripts(optional array $libraries)
+
+	Returns all the script assets.
+
+	```php
+	// All libraries
+	{!! Charts::styles() !!}
+	// Only certain libraries
+	{!! Charts::styles(['google', 'material']) !!}
+	```
 
 - libraries(optional string $type)
 
@@ -667,6 +728,64 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   ```
 
 ## Available Chart Settings:
+
+- loader(required bool $loader)
+
+    Set the chart loader animation enabled or disabled.
+
+    ```php
+    Charts::create('line', 'highcharts')->loader(false);
+    ```
+
+- loaderDuration(required int $duration)
+
+    Set the duration of the chart loader animation in ms.
+
+    ```php
+    Charts::create('line', 'highcharts')->loader(true)->loaderDuration(2000);
+    ```
+
+- loaderColor(required string $color)
+
+    Set the loader color.
+
+    ```php
+    Charts::create('line', 'highcharts')->loader(true)->loaderColor('#FF0000');
+    ```
+
+- backgroundColor(required string $background_color)
+
+    Set the background color for the loader.
+
+    ```php
+    Charts::create('line', 'highcharts')->backgroundColor('#FF0000');
+    ```
+
+- template(required string $template)
+
+    Set an available color template for the chart.
+
+    *Note:* They are defined in ```config/charts.php``` file, under the templates key.
+
+    ```php
+    Charts::create('line', 'highcharts')->template('material');
+    ```
+
+- oneColor(required bool $one_color)
+
+    Specifies if the chart will only use the first color, regardless of the ammount of values.
+
+    ```php
+    Charts::create('line', 'highcharts')->oneColor(true);
+    ```
+
+- credits(required bool $credits)
+
+    Set the credits enabled or disabled if the library supports it.
+
+    ```php
+    Charts::create('line', 'highcharts')->credits(false);
+    ```
 
 - container(required string $division)
 
@@ -872,7 +991,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   ![Example Area](https://i.gyazo.com/f6c500cf9bfc2e449d64ee19b7bb809c.png)
 
    ### Areaspline
-   
+
    ```php
   Charts::multi('areaspline', 'highcharts')
     ->title('My nice chart')
@@ -881,10 +1000,10 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
     ->dataset('John', [3, 4, 3, 5, 4, 10, 12])
     ->dataset('Jane',  [1, 3, 4, 3, 3, 5, 4]);
    ```
-    
+
    ![Example Area](https://s30.postimg.org/6uwe893kx/areaspline.png)
-     
-     
+
+
   ### Bar
 
   Note: ```highcharts``` can't change the color of this chart. Well it can but it's complicated, so I leave it here.
@@ -1021,7 +1140,7 @@ Lucky for you I'll add a quick method to make it work!
     </html>
 
     ```
-    
+
 2.  Create a new folder where you'll add all charts, for example: ```charts/```
 3.  Create a new file inside, for example: ```latest_users.blade.php``` and add the cart
 
@@ -1079,11 +1198,11 @@ Lucky for you I'll add a quick method to make it work!
 
     ```
     Make sure to change your stuff, it's all documented
-    
+
 6.  Go to your view where you have your tabs, and inside that tab you like add the chart iframe with the height.
-    
+
     **Note:** This example uses materializecss. They have a loader that makes it cooler to load up charts :)
-    
+
     ```
     @php $chart_height = 300; @endphp
     <div class="card-panel" style="height: {{ $chart_height + 50 }}px">

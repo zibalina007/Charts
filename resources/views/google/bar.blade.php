@@ -3,7 +3,7 @@
 
     function draw{{ $model->id }}() {
         var data = google.visualization.arrayToDataTable([
-            ['Element', "{{ $model->element_label }}",
+            ['', "{{ $model->element_label }}",
                 @if($model->colors)
                     { role: 'style' }
                 @endif
@@ -12,7 +12,7 @@
                 [
                     "{{ $model->labels[$i] }}", {{ $model->values[$i] }}
                     @if($model->colors)
-                        "{{ $model->colors[$i] }}",
+                        ,"{{ $model->colors[$i] }}"
                     @endif
                 ],
             @endfor

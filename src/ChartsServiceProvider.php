@@ -4,7 +4,6 @@ namespace ConsoleTVs\Charts;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Collective\Html\HtmlServiceProvider;
 
 class ChartsServiceProvider extends ServiceProvider
 {
@@ -37,8 +36,6 @@ class ChartsServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/charts.php', 'charts');
 
-        $this->app->register(HtmlServiceProvider::class);
-
         $this->app->singleton(Builder::class, function ($app) {
             return new Builder();
         });
@@ -51,7 +48,7 @@ class ChartsServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [Builder::class, HtmlServiceProvider::class];
+        return [Builder::class];
     }
 
     private function registerBladeDirectives()
