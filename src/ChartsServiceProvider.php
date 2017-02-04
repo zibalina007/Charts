@@ -18,7 +18,6 @@ class ChartsServiceProvider extends ServiceProvider
             __DIR__.'/../config/charts.php' => config_path('charts.php'),
         ], 'charts_config');
 
-
         $this->publishes([
             __DIR__.'/../resources/views' => base_path('resources/views/vendor/consoletvs/charts'),
         ]);
