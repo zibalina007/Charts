@@ -399,13 +399,18 @@ class Chart
         if ($this->template && array_key_exists($this->template, $templates) && $colors = $templates[$this->template]) {
             $this->colors = $colors;
         }
+
+        $ds = count($this->datasets);
+        $cv = count($this->values);
+        $cc = count($this->colors);
+
         if ($this->one_color) {
             $color = $this->colors[0];
             $this->colors = [];
             foreach ($this->values as $v) {
                 array_push($this->colors, $color);
             }
-        } elseif (($cc = count($this->colors) != $cv = count($this->values)) or ($this->suffix == 'multi' and ($cc != $ds = count($this->datasets)))) {
+        } elseif (($cc != $cv) or ($this->suffix == 'multi' and ($cc != $ds))) {
             if ($this->suffix == 'multi') {
                 $cv = $ds;
             }
