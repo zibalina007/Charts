@@ -11,8 +11,6 @@
 
 namespace ConsoleTVs\Charts\Builder;
 
-use Database;
-
 /**
  * This is the database class.
  *
