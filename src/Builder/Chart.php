@@ -400,7 +400,7 @@ class Chart
             $this->colors = $colors;
         }
 
-        $ds = $this->sufix == "multi" ? count($this->datasets) : [];
+        $ds = $this->sufix == 'multi' ? count($this->datasets) : [];
         $cv = count($this->values);
         $cc = count($this->colors);
 
