@@ -218,21 +218,20 @@ class Builder
 
         if ($type) {
             $final_assets = collect($assets)->map(function ($value, $key) use ($libraries, $type) {
-                if(in_array($key, $libraries) && array_key_exists($type, $value)) {
+                if (in_array($key, $libraries) && array_key_exists($type, $value)) {
                     return $value[$type];
-                }
-                else {
-                    return null;
+                } else {
+                    return;
                 }
             })->reject(function ($value) {
                 return $value == null;
             })->toArray();
         } else {
             $final_assets = collect($assets)->map(function ($value, $key) use ($libraries) {
-                if(in_array($key, $libraries)) {
+                if (in_array($key, $libraries)) {
                     return $value;
                 } else {
-                    return null;
+                    return;
                 }
             })->reject(function ($value) {
                 return $value == null;
