@@ -89,6 +89,8 @@ class Chart
      * Set the chart one color attribute.
      *
      * @param bool $one_color
+     *
+     * @return Chart
      */
     public function oneColor($one_color)
     {
@@ -101,6 +103,8 @@ class Chart
      * Set the chart color template.
      *
      * @param string $template
+     *
+     * @return Chart
      */
     public function template($template)
     {
@@ -113,6 +117,8 @@ class Chart
      * Set the chart division background color.
      *
      * @param string $background_color
+     *
+     * @return Chart
      */
     public function backgroundColor($background_color)
     {
@@ -125,6 +131,8 @@ class Chart
      * Set the loader for the chart.
      *
      * @param bool $loader
+     *
+     * @return Chart
      */
     public function loader($loader)
     {
@@ -137,6 +145,8 @@ class Chart
      * Set a custom loadter time before showing the chart.
      *
      * @param int $loader_duration
+     *
+     * @return Chart
      */
     public function loaderDuration($loader_duration)
     {
@@ -149,6 +159,8 @@ class Chart
      * Set the loader color for the chart if the loader is enabled.
      *
      * @param string $loader_color
+     *
+     * @return Chart
      */
     public function loaderColor($loader_color)
     {
@@ -161,6 +173,8 @@ class Chart
      * Set a custom container to render the chart.
      *
      * @param string $division
+     *
+     * @return Chart
      */
     public function container($division)
     {
@@ -173,6 +187,8 @@ class Chart
      * Set the google geo region.
      *
      * @param string $region
+     *
+     * @return Chart
      */
     public function region($region)
     {
@@ -185,6 +201,8 @@ class Chart
      * Set gauge style.
      *
      * @param string $style
+     *
+     * @return Chart
      */
     public function gaugeStyle($style)
     {
@@ -197,6 +215,8 @@ class Chart
      * Set chart type.
      *
      * @param string $type
+     *
+     * @return Chart
      */
     public function type($type)
     {
@@ -209,6 +229,8 @@ class Chart
      * Set chart library.
      *
      * @param string $library
+     *
+     * @return Chart
      */
     public function library($library)
     {
@@ -221,6 +243,8 @@ class Chart
      * Set chart labels.
      *
      * @param array $labels
+     *
+     * @return Chart
      */
     public function labels($labels)
     {
@@ -233,6 +257,8 @@ class Chart
      * Set chart values.
      *
      * @param array $values
+     *
+     * @return Chart
      */
     public function values($values)
     {
@@ -245,6 +271,8 @@ class Chart
      * Set the chart element label.
      *
      * @param string $label
+     *
+     * @return Chart
      */
     public function elementLabel($label)
     {
@@ -257,6 +285,8 @@ class Chart
      * Set chart title.
      *
      * @param string $title
+     *
+     * @return Chart
      */
     public function title($title)
     {
@@ -269,6 +299,8 @@ class Chart
      * Set chart credits enabled or Disable. Default credits enable.
      *
      * @param bool $credits
+     *
+     * @return Chart
      */
     public function credits($credits)
     {
@@ -281,6 +313,8 @@ class Chart
      * Set chart colors.
      *
      * @param array $colors
+     *
+     * @return Chart
      */
     public function colors($colors)
     {
@@ -293,6 +327,8 @@ class Chart
      * Set chart width.
      *
      * @param int $width
+     *
+     * @return Chart
      */
     public function width($width)
     {
@@ -305,6 +341,8 @@ class Chart
      * Set chart height.
      *
      * @param int $height
+     *
+     * @return Chart
      */
     public function height($height)
     {
@@ -318,6 +356,8 @@ class Chart
      *
      * @param int $width
      * @param int $height
+     *
+     * @return Chart
      */
     public function dimensions($width, $height)
     {
@@ -331,6 +371,8 @@ class Chart
      * Set if chart is responsive (will ignore dimensions if true).
      *
      * @param bool $responsive
+     *
+     * @return Chart
      */
     public function responsive($responsive)
     {
@@ -343,6 +385,8 @@ class Chart
      * Set a custom view to be used.
      *
      * @param string $view
+     *
+     * @return Chart
      */
     public function view($view)
     {
@@ -353,6 +397,8 @@ class Chart
 
     /**
      * Return and array of all the chart settings.
+     *
+     * @return array
      */
     public function settings()
     {
@@ -361,6 +407,8 @@ class Chart
 
     /**
      * Render the chart.
+     *
+     * @return View|string
      */
     public function render()
     {
@@ -457,6 +505,8 @@ class Chart
      * Return a random string.
      *
      * @param int $length
+     *
+     * @return string
      */
     public function randomString($length = 10)
     {

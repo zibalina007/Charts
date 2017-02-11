@@ -47,6 +47,8 @@ class Realtime extends Chart
      * Set the max values in the chart.
      *
      * @param int $number
+     *
+     * @return Realtime
      */
     public function maxValues($number)
     {
@@ -59,6 +61,8 @@ class Realtime extends Chart
      * Set json value name.
      *
      * @param string $string
+     *
+     * @return Realtime
      */
     public function valueName($string)
     {
@@ -71,6 +75,8 @@ class Realtime extends Chart
      * Set json data streaming url.
      *
      * @param string $url
+     *
+     * @return Realtime
      */
     public function url($url)
     {
@@ -82,7 +88,9 @@ class Realtime extends Chart
     /**
      * Set the update interval in ms.
      *
-     * @param string $url
+     * @param int $interval
+     *
+     * @return Realtime
      */
     public function interval($interval)
     {
