@@ -49,6 +49,8 @@ class Math extends Chart
      * Set the chart function.
      *
      * @param string $function
+     *
+     * @return Math
      */
     public function mathFunction($function)
     {
@@ -63,6 +65,8 @@ class Math extends Chart
      * Set the function interval.
      *
      * @param array $interval
+     *
+     * @return Math
      */
     public function interval($interval)
     {
@@ -77,6 +81,8 @@ class Math extends Chart
      * Set the function amplitude.
      *
      * @param int $amplitude
+     *
+     * @return Math
      */
     public function amplitude($amplitude)
     {
@@ -90,7 +96,7 @@ class Math extends Chart
     /**
      * Calculates the values.
      *
-     * @param int $amplitude
+     * @return Math
      */
     public function calculate()
     {

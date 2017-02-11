@@ -18,6 +18,9 @@ namespace ConsoleTVs\Charts\Builder;
  */
 class MultiDatabase extends Multi
 {
+    /**
+     * @var Database[]
+     */
     public $datas;
     public $date_column = 'created_at';
     public $date_format = 'l dS M, Y';
@@ -27,7 +30,6 @@ class MultiDatabase extends Multi
     /**
      * Create a new database instance.
      *
-     * @param string $data
      * @param string $type
      * @param string $library
      */
@@ -40,7 +42,9 @@ class MultiDatabase extends Multi
      * Set the dataset data.
      *
      * @param string $element_label
-     * @param mixed  $data
+     * @param \Illuminate\Support\Collection $data
+     *
+     * @return MultiDatabase
      */
     public function dataset($element_label, $data)
     {
@@ -53,6 +57,8 @@ class MultiDatabase extends Multi
      * Set date column to filter the data.
      *
      * @param string $column
+     *
+     * @return MultiDatabase
      */
     public function dateColumn($column)
     {
@@ -65,6 +71,8 @@ class MultiDatabase extends Multi
      * Set fancy date format based on PHP date() function.
      *
      * @param string $format
+     *
+     * @return MultiDatabase
      */
     public function dateFormat($format)
     {
@@ -77,6 +85,8 @@ class MultiDatabase extends Multi
      * Set fancy month format based on PHP date() function.
      *
      * @param string $format
+     *
+     * @return MultiDatabase
      */
     public function monthFormat($format)
     {
@@ -89,7 +99,8 @@ class MultiDatabase extends Multi
      * Set whether data is preaggregated or should be summed.
      *
      * @param bool $preaggregated
-     * @return $this
+     *
+     * @return MultiDatabase
      */
     public function preaggregated($preaggregated)
     {
@@ -101,9 +112,12 @@ class MultiDatabase extends Multi
     /**
      * Group the data hourly based on the creation date.
      *
-     * @param string $year
-     * @param string $month
-     * @param bool   $fancy
+     * @param int $day
+     * @param int $month
+     * @param int $year
+     * @param bool $fancy
+     *
+     * @return MultiDatabase
      */
     public function groupByHour($day = null, $month = null, $year = null, $fancy = false)
     {
@@ -123,9 +137,11 @@ class MultiDatabase extends Multi
     /**
      * Group the data daily based on the creation date.
      *
-     * @param string $year
-     * @param string $month
-     * @param bool   $fancy
+     * @param int $month
+     * @param int $year
+     * @param bool $fancy
+     *
+     * @return MultiDatabase
      */
     public function groupByDay($month = null, $year = null, $fancy = false)
     {
@@ -147,6 +163,8 @@ class MultiDatabase extends Multi
      *
      * @param int  $year
      * @param bool $fancy
+     *
+     * @return MultiDatabase
      */
     public function groupByMonth($year = null, $fancy = false)
     {
@@ -167,6 +185,8 @@ class MultiDatabase extends Multi
      * Group the data yearly based on the creation date.
      *
      * @param int $number
+     *
+     * @return MultiDatabase
      */
     public function groupByYear($number = 4)
     {
@@ -189,7 +209,8 @@ class MultiDatabase extends Multi
      * @param string $column
      * @param string $relationColumn
      * @param array $labelsMapping
-     * @return $this
+     *
+     * @return MultiDatabase
      */
     public function groupBy($column, $relationColumn = null, array $labelsMapping = [])
     {
@@ -210,7 +231,9 @@ class MultiDatabase extends Multi
      * Group the data based on the latest days.
      *
      * @param int  $number
-     * @param bool $number
+     * @param bool $fancy
+     *
+     * @return MultiDatabase
      */
     public function lastByDay($number = 7, $fancy = false)
     {
@@ -231,7 +254,9 @@ class MultiDatabase extends Multi
      * Group the data based on the latest months.
      *
      * @param int  $number
-     * @param bool $number
+     * @param bool $fancy
+     *
+     * @return MultiDatabase
      */
     public function lastByMonth($number = 6, $fancy = false)
     {
@@ -252,6 +277,8 @@ class MultiDatabase extends Multi
      * Alias for groupByYear().
      *
      * @param int $number
+     *
+     * @return MultiDatabase
      */
     public function lastByYear($number = 4)
     {

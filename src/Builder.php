@@ -15,7 +15,6 @@ use ConsoleTVs\Charts\Builder\Math;
 use ConsoleTVs\Charts\Builder\Chart;
 use ConsoleTVs\Charts\Builder\Multi;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Facade;
 use ConsoleTVs\Charts\Builder\Database;
 use ConsoleTVs\Charts\Builder\Realtime;
 use ConsoleTVs\Charts\Builder\MultiDatabase;
@@ -32,6 +31,8 @@ class Builder
      *
      * @param string $type
      * @param string $library
+     *
+     * @return Chart
      */
     public static function create($type = null, $library = null)
     {
@@ -41,9 +42,12 @@ class Builder
     /**
      * Return a new realtime chart instance.
      *
-     * @param mixed  $data
+     * @param string $url
+     * @param int $interval
      * @param string $type
      * @param string $library
+     *
+     * @return Realtime
      */
     public static function realtime($url, $interval, $type = null, $library = null)
     {
@@ -53,9 +57,11 @@ class Builder
     /**
      * Return a new database chart instance.
      *
-     * @param mixed  $data
+     * @param \Illuminate\Support\Collection $data
      * @param string $type
      * @param string $library
+     *
+     * @return Database
      */
     public static function database($data, $type = null, $library = null)
     {
@@ -70,6 +76,8 @@ class Builder
      * @param int    $amplitude
      * @param string $type
      * @param string $library
+     *
+     * @return Math
      */
     public static function math($function, $interval, $amplitude, $type = null, $library = null)
     {
@@ -81,6 +89,8 @@ class Builder
      *
      * @param string $type
      * @param string $library
+     *
+     * @return Multi
      */
     public static function multi($type = null, $library = null)
     {
@@ -92,6 +102,8 @@ class Builder
      *
      * @param string $type
      * @param string $library
+     *
+     * @return MultiDatabase
      */
     public static function multiDatabase($type = null, $library = null)
     {
@@ -102,6 +114,8 @@ class Builder
      * Return all the libraries available.
      *
      * @param string $type
+     *
+     * @return array
      */
     public static function libraries($type = null)
     {
@@ -131,6 +145,8 @@ class Builder
      * Return all the types available.
      *
      * @param string $library
+     *
+     * @return array
      */
     public static function types($library = null)
     {
@@ -160,6 +176,8 @@ class Builder
        * Return the library styles.
        *
        * @param array  $libraries
+       *
+       * @return string
        */
       public function styles($libraries = [])
       {
@@ -173,6 +191,8 @@ class Builder
         * Return the library scripts.
         *
         * @param array  $libraries
+        *
+        * @return string
         */
        public function scripts($libraries = [])
        {
@@ -186,6 +206,8 @@ class Builder
          * Return the library styles.
          *
          * @param array  $libraries
+         *
+         * @return string
          */
         public function assets($libraries = [])
         {
@@ -198,8 +220,10 @@ class Builder
     /**
      * Get the library assets.
      *
-     * @param array  $libraries
-     * @param string $type
+     * @param array $libraries
+     * @param array $type
+     *
+     * @return string
      */
     private static function getAssets($libraries = [], $type = [])
     {

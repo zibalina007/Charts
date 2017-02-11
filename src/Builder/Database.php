@@ -18,6 +18,9 @@ namespace ConsoleTVs\Charts\Builder;
  */
 class Database extends Chart
 {
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $data;
     public $date_column;
     public $date_format = 'l dS M, Y';
@@ -27,7 +30,7 @@ class Database extends Chart
     /**
      * Create a new database instance.
      *
-     * @param string $data
+     * @param \Illuminate\Support\Collection $data
      * @param string $type
      * @param string $library
      */
@@ -41,9 +44,9 @@ class Database extends Chart
     }
 
     /**
-     * Set chart data.
+     * @param \Illuminate\Support\Collection $data
      *
-     * @param mixed $data
+     * @return Database
      */
     public function data($data)
     {
@@ -56,6 +59,8 @@ class Database extends Chart
      * Set date column to filter the data.
      *
      * @param string $column
+     *
+     * @return Database
      */
     public function dateColumn($column)
     {
@@ -68,6 +73,8 @@ class Database extends Chart
      * Set fancy date format based on PHP date() function.
      *
      * @param string $format
+     *
+     * @return Database
      */
     public function dateFormat($format)
     {
@@ -80,6 +87,8 @@ class Database extends Chart
      * Set fancy month format based on PHP date() function.
      *
      * @param string $format
+     *
+     * @return Database
      */
     public function monthFormat($format)
     {
@@ -92,7 +101,8 @@ class Database extends Chart
      * Set whether data is preaggregated or should be summed.
      *
      * @param bool $preaggregated
-     * @return $this
+     *
+     * @return Database
      */
     public function preaggregated($preaggregated)
     {
@@ -104,9 +114,12 @@ class Database extends Chart
     /**
      * Group the data hourly based on the creation date.
      *
-     * @param string $year
-     * @param string $month
-     * @param bool   $fancy
+     * @param int $day
+     * @param int $month
+     * @param int $year
+     * @param bool $fancy
+     *
+     * @return Database
      */
     public function groupByHour($day = null, $month = null, $year = null, $fancy = false)
     {
@@ -157,9 +170,11 @@ class Database extends Chart
     /**
      * Group the data daily based on the creation date.
      *
-     * @param string $year
-     * @param string $month
-     * @param bool   $fancy
+     * @param int $month
+     * @param int $year
+     * @param bool $fancy
+     *
+     * @return Database
      */
     public function groupByDay($month = null, $year = null, $fancy = false)
     {
@@ -211,6 +226,8 @@ class Database extends Chart
      *
      * @param int  $year
      * @param bool $fancy
+     *
+     * @return Database
      */
     public function groupByMonth($year = null, $fancy = false)
     {
@@ -260,6 +277,8 @@ class Database extends Chart
      * Group the data yearly based on the creation date.
      *
      * @param int $number
+     *
+     * @return Database
      */
     public function groupByYear($number = 4)
     {
@@ -301,7 +320,8 @@ class Database extends Chart
      * @param string $column
      * @param string $relationColumn
      * @param array $labelsMapping
-     * @return $this
+     *
+     * @return Database
      */
     public function groupBy($column, $relationColumn = null, array $labelsMapping = [])
     {
@@ -340,7 +360,9 @@ class Database extends Chart
      * Group the data based on the latest days.
      *
      * @param int  $number
-     * @param bool $number
+     * @param bool $fancy
+     *
+     * @return Database
      */
     public function lastByDay($number = 7, $fancy = false)
     {
@@ -375,7 +397,9 @@ class Database extends Chart
      * Group the data based on the latest months.
      *
      * @param int  $number
-     * @param bool $number
+     * @param bool $fancy
+     *
+     * @return Database
      */
     public function lastByMonth($number = 6, $fancy = false)
     {
@@ -410,6 +434,8 @@ class Database extends Chart
      * Alias for groupByYear().
      *
      * @param int $number
+     *
+     * @return Database
      */
     public function lastByYear($number = 4)
     {
