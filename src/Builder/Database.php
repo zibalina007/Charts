@@ -19,7 +19,7 @@ namespace ConsoleTVs\Charts\Builder;
 class Database extends Chart
 {
     /**
-     * @var \Illuminate\Support\Collection $data
+     * @var \Illuminate\Support\Collection
      */
     public $data;
     public $date_column;
