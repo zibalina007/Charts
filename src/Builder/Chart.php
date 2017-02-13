@@ -440,13 +440,13 @@ class Chart
 
         if (! $this->colors) {
             $this->colors = ['#000000'];
+            // Set the template colors
+            $templates = config('charts.templates');
+            if ($this->template && array_key_exists($this->template, $templates) && $colors = $templates[$this->template]) {
+                $this->colors = $colors;
+            }
         }
 
-        // Set the template colors
-        $templates = config('charts.templates');
-        if ($this->template && array_key_exists($this->template, $templates) && $colors = $templates[$this->template]) {
-            $this->colors = $colors;
-        }
 
         $ds = $this->suffix == 'multi' ? count($this->datasets) : [];
         $cv = count($this->values);
