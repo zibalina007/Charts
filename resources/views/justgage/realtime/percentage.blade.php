@@ -26,6 +26,10 @@
             @if($model->title)
                 title:  "{{ $model->title }}",
             @endif
+            @if(count($model->colors) > 0 and is_array($model->colors))
+            	@php($colors = '["'.implode(array_slice(array_values($model->colors), 0, 3), '","').'"]')
+                levelColors: {!! $colors !!},
+            @endif
             label: "{{ $model->element_label }}",
             hideInnerShadow: true
         })

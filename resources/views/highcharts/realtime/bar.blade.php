@@ -3,6 +3,11 @@
         Highcharts.setOptions({global: { useUTC: false } })
 
         {{ $model->id }} = new Highcharts.Chart({
+            colors: [
+                @foreach($model->colors as $c)
+                    "{{ $c }}",
+                @endforeach
+            ],
             chart: {
                 renderTo:  "{{ $model->id }}",
                 type: 'column',
@@ -15,6 +20,11 @@
                 title: {
                     text:  "{{ $model->title }}",
                     x: -20 //center
+                },
+            @endif
+            @if(!$model->credits)
+                credits: {
+                    enabled: false
                 },
             @endif
             xAxis: {
@@ -31,13 +41,11 @@
                     color: '#808080'
                 }]
             },
-            @if($model->colors) {
-                plotOptions: {
-                    series: {
-                        color: "{{ $model->colors[0] }}"
-                    }
+            plotOptions: {
+                series: {
+                    colorByPoint: true,
                 },
-            @endif
+            },
             legend: {
                 layout: 'vertical',
                 align: 'right',

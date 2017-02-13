@@ -14,6 +14,11 @@
                     text:  "{{ $model->title }}"
                 },
             @endif
+            @if(!$model->credits)
+                credits: {
+                    enabled: false
+                },
+            @endif
             plotOptions: {
                column: {
                    pointPadding: 0.2,
@@ -26,7 +31,11 @@
                          "{{ $label }}",
                     @endforeach
                 ],
-                crosshair: true
+            },
+            yAxis: {
+                title: {
+                    text:  "{{ $model->element_label }}"
+                },
             },
             series: [
                 @for ($i = 0; $i < count($model->datasets); $i++)

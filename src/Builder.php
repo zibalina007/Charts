@@ -11,13 +11,13 @@
 
 namespace ConsoleTVs\Charts;
 
-use ConsoleTVs\Charts\Builder\Chart;
-use ConsoleTVs\Charts\Builder\Database;
 use ConsoleTVs\Charts\Builder\Math;
+use ConsoleTVs\Charts\Builder\Chart;
 use ConsoleTVs\Charts\Builder\Multi;
-use ConsoleTVs\Charts\Builder\Realtime;
-use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\File;
+use ConsoleTVs\Charts\Builder\Database;
+use ConsoleTVs\Charts\Builder\Realtime;
+use ConsoleTVs\Charts\Builder\MultiDatabase;
 
 /**
  * This is the charts facade class.
@@ -31,6 +31,8 @@ class Builder
      *
      * @param string $type
      * @param string $library
+     *
+     * @return Chart
      */
     public static function create($type = null, $library = null)
     {
@@ -40,9 +42,12 @@ class Builder
     /**
      * Return a new realtime chart instance.
      *
-     * @param mixed  $data
+     * @param string $url
+     * @param int $interval
      * @param string $type
      * @param string $library
+     *
+     * @return Realtime
      */
     public static function realtime($url, $interval, $type = null, $library = null)
     {
@@ -52,9 +57,11 @@ class Builder
     /**
      * Return a new database chart instance.
      *
-     * @param mixed  $data
+     * @param \Illuminate\Support\Collection $data
      * @param string $type
      * @param string $library
+     *
+     * @return Database
      */
     public static function database($data, $type = null, $library = null)
     {
@@ -69,6 +76,8 @@ class Builder
      * @param int    $amplitude
      * @param string $type
      * @param string $library
+     *
+     * @return Math
      */
     public static function math($function, $interval, $amplitude, $type = null, $library = null)
     {
@@ -80,6 +89,8 @@ class Builder
      *
      * @param string $type
      * @param string $library
+     *
+     * @return Multi
      */
     public static function multi($type = null, $library = null)
     {
@@ -87,9 +98,24 @@ class Builder
     }
 
     /**
+     * Return a new multi database chart instance.
+     *
+     * @param string $type
+     * @param string $library
+     *
+     * @return MultiDatabase
+     */
+    public static function multiDatabase($type = null, $library = null)
+    {
+        return new MultiDatabase($type, $library);
+    }
+
+    /**
      * Return all the libraries available.
      *
      * @param string $type
+     *
+     * @return array
      */
     public static function libraries($type = null)
     {
@@ -119,6 +145,8 @@ class Builder
      * Return all the types available.
      *
      * @param string $library
+     *
+     * @return array
      */
     public static function types($library = null)
     {
@@ -144,35 +172,94 @@ class Builder
         return array_unique($results);
     }
 
+      /**
+       * Return the library styles.
+       *
+       * @param array  $libraries
+       *
+       * @return string
+       */
+      public function styles($libraries = [])
+      {
+          $styles = static::getAssets($libraries, 'styles');
+          $styles .= view('charts::_partials.loader.css');
+
+          return $styles;
+      }
+
+       /**
+        * Return the library scripts.
+        *
+        * @param array  $libraries
+        *
+        * @return string
+        */
+       public function scripts($libraries = [])
+       {
+           $scripts = static::getAssets($libraries, 'scripts');
+           $scripts .= view('charts::_partials.loader.js');
+
+           return $scripts;
+       }
+
+        /**
+         * Return the library styles.
+         *
+         * @param array  $libraries
+         *
+         * @return string
+         */
+        public function assets($libraries = [])
+        {
+            $assets = static::styles($libraries);
+            $assets .= static::scripts($libraries);
+
+            return $assets;
+        }
+
     /**
-     * Return the library assets.
+     * Get the library assets.
      *
-     * @param array  $libraries
-     * @param string $type
+     * @param array $libraries
+     * @param array $type
+     *
+     * @return string
      */
-    public static function assets($libraries = [], $type = [])
+    private static function getAssets($libraries = [], $type = [])
     {
+        if (! $libraries) {
+            $libraries = [];
+            foreach (config('charts.assets') as $key => $value) {
+                array_push($libraries, $key);
+            }
+        }
         $assets = config('charts.assets');
-        $final_assets = [];
+        $final_assets = $assets;
 
         if ($libraries && is_string($libraries)) {
             $libraries = explode(',', $libraries);
         }
 
-        if ($libraries) {
-            if ($type) {
-                $final_assets = collect($assets)->filter(function ($value, $key) use ($libraries, $type) {
-                    return in_array($key, $libraries) && array_key_exists($type, $value);
-                })->map(function ($value) use ($type) {
+        if ($type) {
+            $final_assets = collect($assets)->map(function ($value, $key) use ($libraries, $type) {
+                if (in_array($key, $libraries) && array_key_exists($type, $value)) {
                     return $value[$type];
-                })->toArray();
-            } else {
-                $final_assets = collect($assets)->filter(function ($value, $key) use ($libraries) {
-                    return in_array($key, $libraries);
-                })->toArray();
-            }
+                } else {
+                    return;
+                }
+            })->reject(function ($value) {
+                return $value == null;
+            })->toArray();
         } else {
-            $final_assets = $assets;
+            $final_assets = collect($assets)->map(function ($value, $key) use ($libraries) {
+                if (in_array($key, $libraries)) {
+                    return $value;
+                } else {
+                    return;
+                }
+            })->reject(function ($value) {
+                return $value == null;
+            })->toArray();
         }
 
         // return all libraries

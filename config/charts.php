@@ -4,23 +4,64 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default settings for charts
+    | Default settings for charts.
     |--------------------------------------------------------------------------
     */
 
     'default' => [
-        'type'          => 'line',
-        'library'       => 'google',
-        'element_label' => 'Element',
-        'title'         => 'My chart',
-        'height'        => 400,
-        'width'         => 500,
-        'responsive'    => true,
+        'type' => 'line', // The default chart type.
+        'library' => 'material', // The default chart library.
+        'element_label' => 'Element', // The default chart element label.
+        'title' => 'My Cool Chart', // Default chart title.
+        'height' => 400, // 0 Means it will take 100% of the division height.
+        'width' => 0, // 0 Means it will take 100% of the division width.
+        'responsive' => false, // Not recommended since all libraries have diferent sizes.
+        'background_color' => 'inherit', // The chart division background color.
+        'colors' => [], // Default chart colors if using no template is set.
+        'one_color' => false, // Only use the first color in all values.
+        'template' => 'material', // The default chart color template.
+        'loader' => [
+            'active' => true, // Determines the if loader is active by default.
+            'duration' => 500, // In milliseconds.
+            'color' => '#000000', // Determines the default loader color.
+        ],
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Assets required by the libraries
+    | All the color templates available for the charts.
+    |--------------------------------------------------------------------------
+    */
+    'templates' => [
+        'material' => [
+            '#2196F3', '#F44336', '#FFC107',
+        ],
+        'red-material' => [
+            '#B71C1C', '#F44336', '#E57373',
+        ],
+        'indigo-material' => [
+            '#1A237E', '#3F51B5', '#7986CB',
+        ],
+        'blue-material' => [
+            '#0D47A1', '#2196F3', '#64B5F6',
+        ],
+        'teal-material' => [
+            '#004D40', '#009688', '#4DB6AC',
+        ],
+        'green-material' => [
+            '#1B5E20', '#4CAF50', '#81C784',
+        ],
+        'yellow-material' => [
+            '#F57F17', '#FFEB3B', '#FFF176',
+        ],
+        'orange-material' => [
+            '#E65100', '#FF9800', '#FFB74D',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Assets required by the libraries.
     |--------------------------------------------------------------------------
     */
 
@@ -33,7 +74,7 @@ return [
 
         'canvas-gauges' => [
             'scripts' => [
-                'https://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.0.9/all/gauge.min.js',
+                'https://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.2/all/gauge.min.js',
             ],
         ],
 
@@ -54,8 +95,8 @@ return [
 
         'fusioncharts' => [
             'scripts' => [
-                'http://static.fusioncharts.com/code/latest/fusioncharts.js',
-                'http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js',
+                'https://static.fusioncharts.com/code/latest/fusioncharts.js',
+                'https://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js',
             ],
         ],
 
@@ -68,12 +109,16 @@ return [
         ],
 
         'highcharts' => [
+            'styles' => [
+                // The following CSS is not added due to color compatibility errors.
+                // 'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.7/css/highcharts.css',
+            ],
             'scripts' => [
-                'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/highcharts.js',
-                'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/js/modules/exporting.js',
-                'https://cdnjs.cloudflare.com/ajax/libs/highmaps/5.0.2/js/modules/map.js',
-                'https://cdnjs.cloudflare.com/ajax/libs/highmaps/5.0.2/js/modules/data.js',
-                'http://code.highcharts.com/mapdata/custom/world.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.7/highcharts.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.7/js/modules/offline-exporting.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/highmaps/5.0.7/js/modules/map.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/highmaps/5.0.7/js/modules/data.js',
+                'https://code.highcharts.com/mapdata/custom/world.js',
             ],
         ],
 
@@ -97,7 +142,7 @@ return [
         'plottablejs' => [
             'scripts' => [
                 'https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js',
-                'https://cdnjs.cloudflare.com/ajax/libs/plottable.js/2.2.0/plottable.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/plottable.js/2.8.0/plottable.min.js',
             ],
             'styles' => [
                 'https://cdnjs.cloudflare.com/ajax/libs/plottable.js/2.2.0/plottable.css',

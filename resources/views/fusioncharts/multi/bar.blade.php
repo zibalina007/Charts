@@ -7,6 +7,8 @@
             dataFormat: 'json',
             dataSource: {
                 'chart': {
+                    "exportenabled": "1",
+                    "exportatclient": "1",
                     @if($model->title)
                     'caption': "{{ $model->title }}",
                     @endif

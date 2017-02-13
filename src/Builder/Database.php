@@ -18,15 +18,19 @@ namespace ConsoleTVs\Charts\Builder;
  */
 class Database extends Chart
 {
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $data;
     public $date_column;
     public $date_format = 'l dS M, Y';
     public $month_format = 'F, Y';
+    public $preaggregated = false;
 
     /**
      * Create a new database instance.
      *
-     * @param string $data
+     * @param \Illuminate\Support\Collection $data
      * @param string $type
      * @param string $library
      */
@@ -40,9 +44,9 @@ class Database extends Chart
     }
 
     /**
-     * Set chart data.
+     * @param \Illuminate\Support\Collection $data
      *
-     * @param mixed $data
+     * @return Database
      */
     public function data($data)
     {
@@ -55,6 +59,8 @@ class Database extends Chart
      * Set date column to filter the data.
      *
      * @param string $column
+     *
+     * @return Database
      */
     public function dateColumn($column)
     {
@@ -67,6 +73,8 @@ class Database extends Chart
      * Set fancy date format based on PHP date() function.
      *
      * @param string $format
+     *
+     * @return Database
      */
     public function dateFormat($format)
     {
@@ -79,6 +87,8 @@ class Database extends Chart
      * Set fancy month format based on PHP date() function.
      *
      * @param string $format
+     *
+     * @return Database
      */
     public function monthFormat($format)
     {
@@ -88,11 +98,83 @@ class Database extends Chart
     }
 
     /**
-     * Group the data monthly based on the creation date.
+     * Set whether data is preaggregated or should be summed.
      *
-     * @param string $year
-     * @param string $month
-     * @param bool   $fancy
+     * @param bool $preaggregated
+     *
+     * @return Database
+     */
+    public function preaggregated($preaggregated)
+    {
+        $this->preaggregated = $preaggregated;
+
+        return $this;
+    }
+
+    /**
+     * Group the data hourly based on the creation date.
+     *
+     * @param int $day
+     * @param int $month
+     * @param int $year
+     * @param bool $fancy
+     *
+     * @return Database
+     */
+    public function groupByHour($day = null, $month = null, $year = null, $fancy = false)
+    {
+        $labels = [];
+        $values = [];
+
+        $date_column = $this->date_column;
+
+        $day = $day ? $day : date('d');
+        $month = $month ? $month : date('m');
+        $year = $year ? $year : date('Y');
+
+        $hours = 24;
+
+        for ($i = 0; $i < $hours; $i++) {
+            if ($i < 10) {
+                $hour = "0$i";
+            } else {
+                $hour = "$i";
+            }
+
+            $date = "$year-$month-$day $hour:00:00";
+
+            $value = 0;
+
+            foreach ($this->data as $data) {
+                if (date('Y-m-d H:00:00', strtotime($data->$date_column)) == $date) {
+                    if ($this->preaggregated) {
+                        $value = $data->aggregate;
+                    } else {
+                        $value++;
+                    }
+                }
+            }
+
+            $date_get = $fancy ? $this->date_format : 'd-m-Y H:00:00';
+            $label = date($date_get, strtotime("$year-$month-$day $hour:00:00"));
+
+            array_push($labels, $label);
+            array_push($values, $value);
+        }
+        $this->labels = $labels;
+        $this->values = $values;
+
+        return $this;
+    }
+
+    /**
+     * Group the data daily based on the creation date.
+     *
+     * @param int $month
+     * @param int $year
+     * @param bool $fancy
+     *
+     * @return Database
      */
     public function groupByDay($month = null, $year = null, $fancy = false)
     {
@@ -119,7 +201,11 @@ class Database extends Chart
 
             foreach ($this->data as $data) {
                 if (date('Y-m-d', strtotime($data->$date_column)) == $date) {
-                    $value++;
+                    if ($this->preaggregated) {
+                        $value = $data->aggregate;
+                    } else {
+                        $value++;
+                    }
                 }
             }
 
@@ -140,6 +226,8 @@ class Database extends Chart
      *
      * @param int  $year
      * @param bool $fancy
+     *
+     * @return Database
      */
     public function groupByMonth($year = null, $fancy = false)
     {
@@ -168,7 +256,11 @@ class Database extends Chart
                     // Same year
                     if ($month == date('m', strtotime($data->$date_column))) {
                         // Same month
-                        $value++;
+                        if ($this->preaggregated) {
+                            $value = $data->aggregate;
+                        } else {
+                            $value++;
+                        }
                     }
                 }
             }
@@ -185,6 +277,8 @@ class Database extends Chart
      * Group the data yearly based on the creation date.
      *
      * @param int $number
+     *
+     * @return Database
      */
     public function groupByYear($number = 4)
     {
@@ -205,7 +299,11 @@ class Database extends Chart
             $value = 0;
             foreach ($this->data as $data) {
                 if ($year == date('Y', strtotime($data->$date_column))) {
-                    $value++;
+                    if ($this->preaggregated) {
+                        $value = $data->aggregate;
+                    } else {
+                        $value++;
+                    }
                 }
             }
             array_push($values, $value);
@@ -221,9 +319,11 @@ class Database extends Chart
      *
      * @param string $column
      * @param string $relationColumn
-     * @return $this
+     * @param array $labelsMapping
+     *
+     * @return Database
      */
-    public function groupBy($column, $relationColumn = null)
+    public function groupBy($column, $relationColumn = null, array $labelsMapping = [])
     {
         $labels = [];
         $values = [];
@@ -247,7 +347,7 @@ class Database extends Chart
                 }
             }
 
-            array_push($labels, $label);
+            array_push($labels, array_key_exists($label, $labelsMapping) ? $labelsMapping[$label] : $label);
             array_push($values, count($data));
         }
         $this->labels = $labels;
@@ -260,7 +360,9 @@ class Database extends Chart
      * Group the data based on the latest days.
      *
      * @param int  $number
-     * @param bool $number
+     * @param bool $fancy
+     *
+     * @return Database
      */
     public function lastByDay($number = 7, $fancy = false)
     {
@@ -276,7 +378,11 @@ class Database extends Chart
             $value = 0;
             foreach ($this->data as $data) {
                 if ($date == date('d-m-Y', strtotime($data->$date_column))) {
-                    $value++;
+                    if ($this->preaggregated) {
+                        $value = $data->aggregate;
+                    } else {
+                        $value++;
+                    }
                 }
             }
             array_push($values, $value);
@@ -291,7 +397,9 @@ class Database extends Chart
      * Group the data based on the latest months.
      *
      * @param int  $number
-     * @param bool $number
+     * @param bool $fancy
+     *
+     * @return Database
      */
     public function lastByMonth($number = 6, $fancy = false)
     {
@@ -307,7 +415,11 @@ class Database extends Chart
             $value = 0;
             foreach ($this->data as $data) {
                 if ($date == date('m-Y', strtotime($data->$date_column))) {
-                    $value++;
+                    if ($this->preaggregated) {
+                        $value = $data->aggregate;
+                    } else {
+                        $value++;
+                    }
                 }
             }
             array_push($values, $value);
@@ -322,6 +434,8 @@ class Database extends Chart
      * Alias for groupByYear().
      *
      * @param int $number
+     *
+     * @return Database
      */
     public function lastByYear($number = 4)
     {

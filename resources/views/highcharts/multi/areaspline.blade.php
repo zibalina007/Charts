@@ -2,7 +2,8 @@
     $(function () {
         var {{ $model->id }} = new Highcharts.Chart({
             chart: {
-                renderTo: "{{ $model->id }}",
+                type: 'areaspline',
+                renderTo:  "{{ $model->id }}",
                 @include('charts::_partials.dimension.js2')
             },
             @if($model->title)
@@ -15,28 +16,38 @@
                 credits: {
                     enabled: false
                 },
-            @endif
+            @endif    
             xAxis: {
                 categories: [
-                @foreach($model->labels as $label)
-                    "{{ $label }}",
-                @endforeach
-            ]
-            },
-            yAxis: {
-                plotLines: [{
-                    value: 0,
-                    height: 0.5,
-                    width: 1,
-                    color: '#808080'
+                    @foreach($model->labels as $label)
+                        "{{ $label }}",
+                    @endforeach
+                ],
+                plotBands: [{ // visualize the weekend
+                    from: 4.5,
+                    to: 6.5,
+                    color: 'rgba(68, 170, 213, .2)'
                 }]
             },
-
+            yAxis: {
+                title: {
+                    text: "{{ $model->element_label }}"
+                }
+            },
             legend: {
                 layout: 'vertical',
                 align: 'right',
                 verticalAlign: 'middle',
                 borderWidth: 0
+            },
+            tooltip: {
+                shared: true,
+                valueSuffix: ' units'
+            },
+             plotOptions: {
+                areaspline: {
+                    fillOpacity: 0.5
+                }
             },
             series: [
                 @for ($i = 0; $i < count($model->datasets); $i++)

@@ -23,9 +23,6 @@ class Multi extends Chart
     /**
      * Create a new multi chart instance.
      *
-     * @param string $function
-     * @param array  $interval
-     * @param int    $amplitude
      * @param string $type
      * @param string $library
      */
@@ -39,13 +36,15 @@ class Multi extends Chart
     /**
      * Set the dataset values.
      *
-     * @param array $values
-     * @param int   $dataset
+     * @param string $element_label
+     * @param array  $values
+     *
+     * @return Multi
      */
-    public function dataset($elementLabel, $values)
+    public function dataset($element_label, $values)
     {
         $this->datasets[] = [
-            'label' => $elementLabel,
+            'label' => $element_label,
             'values' => $values,
         ];
 

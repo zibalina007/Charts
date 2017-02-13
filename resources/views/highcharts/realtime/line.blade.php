@@ -16,6 +16,11 @@
                     x: -20 //center
                 },
             @endif
+            @if(!$model->credits)
+                credits: {
+                    enabled: false
+                },
+            @endif
             xAxis: {
                 type: 'datetime',
             },

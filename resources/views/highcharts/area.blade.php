@@ -12,6 +12,11 @@
                     x: -20 //center
                 },
             @endif
+            @if(!$model->credits)
+                credits: {
+                    enabled: false
+                },
+            @endif
             xAxis: {
                 categories: [
                     @foreach($model->labels as $label)
@@ -30,7 +35,7 @@
                     color: '#808080'
                 }]
             },
-            @if($model->colors) {
+            @if($model->colors)
                 plotOptions: {
                     series: {
                         color: "{{ $model->colors[0] }}"

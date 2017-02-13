@@ -22,7 +22,7 @@
                             @endforeach
                         @else
                             @foreach($model->values as $dta)
-                                "{{ sprintf('#%06X', mt_rand(0, 0xFFFFFF)) }}"
+                                "{{ sprintf('#%06X', mt_rand(0, 0xFFFFFF)) }}",
                             @endforeach
                         @endif
                     ],

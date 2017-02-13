@@ -14,6 +14,11 @@
                     text:  "{{ $model->title }}"
                 },
             @endif
+            @if(!$model->credits)
+                credits: {
+                    enabled: false
+                },
+            @endif
             tooltip: {
                 pointFormat: '{point.y} <b>({point.percentage:.1f}%)</strong>'
             },
