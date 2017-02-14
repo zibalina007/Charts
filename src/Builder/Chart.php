@@ -447,7 +447,6 @@ class Chart
             }
         }
 
-
         $ds = $this->suffix == 'multi' ? count($this->datasets) : [];
         $cv = count($this->values);
         $cc = count($this->colors);
