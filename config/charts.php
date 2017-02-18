@@ -20,6 +20,7 @@ return [
         'colors' => [], // Default chart colors if using no template is set.
         'one_color' => false, // Only use the first color in all values.
         'template' => 'material', // The default chart color template.
+        'legend' => true, // Whether to enable the chart legend (where applicable).
         'loader' => [
             'active' => true, // Determines the if loader is active by default.
             'duration' => 500, // In milliseconds.
