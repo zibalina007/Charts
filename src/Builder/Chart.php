@@ -42,6 +42,7 @@ class Chart
     public $background_color;
     public $template;
     public $one_color;
+    public $legend;
 
     /**
      * Create a new chart instance.
@@ -67,6 +68,7 @@ class Chart
         $length = 10; // The random identifier length.
         $this->background_color = config('charts.default.background_color');
         $this->credits = false; // Disables the library credits (not on all)
+        $this->legend = config('charts.default.legend');
 
         // Setup the chart loader
         $this->loader = config('charts.default.loader.active');
@@ -391,6 +393,20 @@ class Chart
     public function view($view)
     {
         $this->view = $view;
+
+        return $this;
+    }
+
+    /**
+     * Set whether a chart's legend is shown (where applicable).
+     *
+     * @param bool $legend
+     *
+     * @return Chart
+     */
+    public function legend($legend)
+    {
+        $this->legend = $legend;
 
         return $this;
     }

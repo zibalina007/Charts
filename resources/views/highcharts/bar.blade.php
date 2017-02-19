@@ -41,6 +41,11 @@
                     text:  "{{ $model->element_label }}"
                 },
             },
+            legend: {
+                @if(!$model->legend)
+                    enabled: false
+                @endif
+            },
             series: [{
                 name: "{{ $model->element_label }}",
                 data: [

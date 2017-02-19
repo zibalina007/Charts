@@ -43,6 +43,9 @@
                 },
             @endif
             legend: {
+                @if(!$model->legend)
+                    enabled: false,
+                @endif
                 layout: 'vertical',
                 align: 'right',
                 verticalAlign: 'middle',

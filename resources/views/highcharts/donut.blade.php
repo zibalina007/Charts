@@ -36,6 +36,11 @@
                     }
                 }
             },
+            legend: {
+                @if(!$model->legend)
+                    enabled: false
+                @endif
+            },
             series: [{
                 colorByPoint: true,
                 data: [
