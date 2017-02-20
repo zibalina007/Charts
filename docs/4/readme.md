@@ -913,6 +913,14 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   Charts::create('line', 'highcharts')->responsive(false);
   ```
 
+- legend(required boolean $legend)
+
+  Set whether to display the chart legend or not. Currently only works with ```highcharts```.
+
+  ```php
+  Charts::create('line', 'highcharts')->legend(false);
+  ```
+
 - settings()
 
   Return the chart settings.
@@ -933,8 +941,6 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   ### Pie
 
-  Note: ```highcharts``` can't change the color of this chart. Well it can but it's complicated, so I leave it here.
-
   ```php
   Charts::create('pie', 'highcharts')
     ->title('My nice chart')
@@ -948,7 +954,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   ### Donut / Doughnut
 
-  Note: ```highcharts``` and ```chartist``` can't change the color of this chart. Well they can but it's complicated, so I leave it here.
+  Note: ```chartist``` can't change the color of this chart. Well it can but it's complicated, so I leave it here.
 
   ```php
   Charts::create('donut', 'highcharts')
