@@ -16,7 +16,7 @@
                 credits: {
                     enabled: false
                 },
-            @endif    
+            @endif
             xAxis: {
                 categories: [
                     @foreach($model->labels as $label)
@@ -36,10 +36,9 @@
                 }]
             },
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+                @if(!$model->legend)
+                    enabled: false,
+                @endif
             },
             series: [
                 @for ($i = 0; $i < count($model->datasets); $i++)

@@ -45,10 +45,6 @@
                 @if(!$model->legend)
                     enabled: false,
                 @endif
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0,
             },
             series: [{
                 name: "{{ $model->element_label }}",
