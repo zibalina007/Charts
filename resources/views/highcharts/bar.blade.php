@@ -43,7 +43,7 @@
             },
             legend: {
                 @if(!$model->legend)
-                    enabled: false
+                    enabled: false,
                 @endif
             },
             series: [{

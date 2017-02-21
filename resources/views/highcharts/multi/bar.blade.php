@@ -37,6 +37,11 @@
                     text:  "{{ $model->element_label }}"
                 },
             },
+            legend: {
+                @if(!$model->legend)
+                    enabled: false,
+                @endif
+            },
             series: [
                 @for ($i = 0; $i < count($model->datasets); $i++)
                     {

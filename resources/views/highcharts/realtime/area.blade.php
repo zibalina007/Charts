@@ -14,7 +14,6 @@
             @if($model->title)
                 title: {
                     text:  "{{ $model->title }}",
-                    x: -20 //center
                 },
             @endif
             @if(!$model->credits)
@@ -44,10 +43,9 @@
                 },
             @endif
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+                @if(!$model->legend)
+                    enabled: false,
+                @endif
             },
             series: [{
                 name: "{{ $model->element_label }}",
