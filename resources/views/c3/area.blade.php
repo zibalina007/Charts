@@ -19,6 +19,12 @@ var {{ $model->id }} = c3.generate({
                 position: 'outer-middle',
             }
         },
-    }
+    },
+    @if($model->title)
+    title: {
+        text:  "{{ $model->title }}",
+        x: -20 //center
+    },
+    @endif
 });
 </script>
