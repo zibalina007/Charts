@@ -43,6 +43,9 @@ class Chart
     public $template;
     public $one_color;
     public $legend;
+    public $x_axis_title;
+    public $y_axis_title;
+
 
     /**
      * Create a new chart instance.
@@ -69,6 +72,8 @@ class Chart
         $this->background_color = config('charts.default.background_color');
         $this->credits = false; // Disables the library credits (not on all)
         $this->legend = config('charts.default.legend');
+        $this->x_axis_title = config('charts.default.x_axis_title');
+        $this->y_axis_title = config('charts.default.y_axis_title');
 
         // Setup the chart loader
         $this->loader = config('charts.default.loader.active');
@@ -407,6 +412,34 @@ class Chart
     public function legend($legend)
     {
         $this->legend = $legend;
+
+        return $this;
+    }
+
+    /**
+     * Set the title of a chart's x-axis (where applicable).
+     *
+     * @param bool $x_axis_title
+     *
+     * @return Chart
+     */
+    public function x_axis_title($x_axis_title)
+    {
+        $this->x_axis_title = $x_axis_title;
+
+        return $this;
+    }
+
+    /**
+     * Set the title of a chart's y-axis (where applicable).
+     *
+     * @param bool $y_axis_title
+     *
+     * @return Chart
+     */
+    public function y_axis_title($y_axis_title)
+    {
+        $this->y_axis_title = $y_axis_title;
 
         return $this;
     }

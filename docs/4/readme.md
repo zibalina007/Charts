@@ -917,8 +917,32 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   Set whether to display the chart legend or not. Currently only works with ```highcharts```.
 
+  *Default:* ```true```
+
   ```php
   Charts::create('line', 'highcharts')->legend(false);
+  ```
+
+- x_axis_title(required boolean $x_axis_title)
+
+  Set title of the x-axis. Currently only works with ```highcharts```.
+
+  *Default:* ```false```
+
+  ```php
+  Charts::create('line', 'highcharts')->x_axis_title('Year');
+  ```
+
+- y_axis_title(required boolean $y_axis_title)
+
+  Set title of the y-axis. Currently only works with ```highcharts```.
+
+  *Default:* ```null```
+
+  *Note:* When set to ```null``` the value for element_label will be used instead.
+
+  ```php
+  Charts::create('line', 'highcharts')->y_axis_title('Number of Units');
   ```
 
 - settings()
@@ -1011,8 +1035,6 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
 
   ### Bar
-
-  Note: ```highcharts``` can't change the color of this chart. Well it can but it's complicated, so I leave it here.
 
   ```php
   Charts::create('bar', 'highcharts')

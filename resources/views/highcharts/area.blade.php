@@ -18,6 +18,9 @@
                 },
             @endif
             xAxis: {
+                title: {
+                    text: "{{ $model->x_axis_title }}"
+                },
                 categories: [
                     @foreach($model->labels as $label)
                         "{{ $label }}",
@@ -26,7 +29,7 @@
             },
             yAxis: {
                 title: {
-                    text: "{{ $model->element_label }}"
+                    text: "{{ $model->y_axis_title === null ? $model->element_label : $model->y_axis_title }}"
                 },
                 plotLines: [{
                     value: 0,
