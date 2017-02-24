@@ -46,7 +46,6 @@ class Chart
     public $x_axis_title;
     public $y_axis_title;
 
-
     /**
      * Create a new chart instance.
      *
