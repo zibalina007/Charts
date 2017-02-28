@@ -28,7 +28,9 @@ class Database extends Chart
     public $date_format = 'l dS M, Y';
     public $month_format = 'F, Y';
     public $preaggregated = false;
-    public $sum_column = null;
+
+    public $aggregate_column = null;
+    public $aggregate_type = null;
     public $value_data = [];
 
     /**
@@ -111,8 +113,8 @@ class Database extends Chart
      */
     public function preaggregated($preaggregated)
     {
-        if ($this->sum_column !== null) {
-            throw new Exception ('Cannot preaggregate AND sum columns. Use either option, not both');
+        if ($this->aggregate_column !== null) {
+            throw new Exception ('Cannot preaggregate AND aggregate columns. Use either option, not both');
         }
         $this->preaggregated = $preaggregated;
 
@@ -127,12 +129,13 @@ class Database extends Chart
      * @return Database
      * @throws Exception
      */
-    public function sumColumn($sumColumn)
+    public function aggregateColumn($aggregateColumn, $aggregateType)
     {
-        if ($this->preaggregated || $sumColumn == 'aggregate') {
+        if ($this->preaggregated || $aggregateColumn == 'aggregate') {
             throw new Exception ('Cannot preaggregate AND sum columns. Use either option, not both');
         }
-        $this->sum_column = $sumColumn;
+        $this->aggregate_column = $aggregateColumn;
+        $this->aggregate_type = $aggregateType;
 
         return $this;
     }
@@ -425,11 +428,16 @@ class Database extends Chart
                 return $checkDate == date($formatToCheck, strtotime($value->$date_column));
             });
 
-            $value = $this->sum_column ? $valueData->sum($this->sum_column) : $valueData->count();
-        }
+            // Do an aggregation, otherwise count the number of records.
+            try {
+                $value = $this->aggregate_column ? $valueData->{$this->aggregate_column}($this->aggregate_column) : $valueData->count();
+            } catch (Exception $e) {
+                dd($e);
+            }
 
-        // Store the datasets by label.
-        $this->value_data[$label] = $valueData;
+            // Store the datasets by label.
+            $this->value_data[$label] = $valueData;
+        }
 
         return $value;
     }
