@@ -6,7 +6,7 @@
     function draw{{ $model->id }}() {
         var data = google.visualization.arrayToDataTable([
             [
-                '', "{{ $model->element_label }}",
+                '', "{!! $model->element_label !!}",
                 @if($model->colors)
                     { role: 'style' }
                 @endif
@@ -19,7 +19,7 @@
         var options = {
             chart: {
                 @if($model->title)
-                    title: "{{ $model->title }}",
+                    title: "{!! $model->title !!}",
                 @endif
             },
             @if($model->colors)

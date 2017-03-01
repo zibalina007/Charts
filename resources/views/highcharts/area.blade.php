@@ -8,7 +8,7 @@
             },
             @if($model->title)
                 title: {
-                    text:  "{{ $model->title }}",
+                    text:  "{!! $model->title !!}",
                     x: -20 //center
                 },
             @endif
@@ -23,7 +23,7 @@
                 },
                 categories: [
                     @foreach($model->labels as $label)
-                        "{{ $label }}",
+                        "{!! $label !!}",
                     @endforeach
                 ]
             },
@@ -51,7 +51,7 @@
                 @endif
             },
             series: [{
-                name: "{{ $model->element_label }}",
+                name: "{!! $model->element_label !!}",
                 data: [
                     @foreach($model->values as $dta)
                         {{ $dta }},

@@ -21,7 +21,7 @@
             },
             @if($model->title)
                 title: {
-                    text:  "{{ $model->title }}"
+                    text:  "{!! $model->title !!}"
                 },
             @endif
             @if(!$model->credits)
@@ -55,7 +55,7 @@
                 ],
                 mapData: Highcharts.maps['custom/world'],
                 joinBy: ['iso-a2', 'code'],
-                name: "{{ $model->element_label }}",
+                name: "{!! $model->element_label !!}",
                 states: {
                     hover: {
                         color: '#BADA55'

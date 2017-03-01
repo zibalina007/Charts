@@ -4,7 +4,7 @@
     var data = {
         labels: [
             @foreach($model->labels as $label)
-                "{{ $label }}",
+                "{!! $label !!}",
             @endforeach
         ],
         series: [

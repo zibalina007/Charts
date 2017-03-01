@@ -8,7 +8,7 @@
             },
             @if($model->title)
                 title: {
-                    text:  "{{ $model->title }}",
+                    text:  "{!! $model->title !!}",
                     x: -20 //center
                 },
             @endif
@@ -20,13 +20,13 @@
             xAxis: {
                 categories: [
                     @foreach($model->labels as $label)
-                        "{{ $label }}",
+                        "{!! $label !!}",
                     @endforeach
                 ]
             },
             yAxis: {
                 title: {
-                    text: "{{ $model->element_label }}"
+                    text: "{!! $model->element_label !!}"
                 },
                 plotLines: [{
                     value: 0,
