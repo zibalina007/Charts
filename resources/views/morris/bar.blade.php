@@ -15,7 +15,7 @@
             ],
             xkey: 'x',
             ykeys: ['y'],
-            labels: ["{{ $model->element_label }}"],
+            labels: ["{!! $model->element_label !!}"],
             hideHover: 'auto',
             @if($model->colors)
                 barColors: function (row, series, type) {

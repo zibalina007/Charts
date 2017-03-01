@@ -16,7 +16,7 @@
             },
             @if($model->title)
                 title: {
-                    text:  "{{ $model->title }}",
+                    text:  "{!! $model->title !!}",
                 },
             @endif
             @if(!$model->credits)

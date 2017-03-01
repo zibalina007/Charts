@@ -10,7 +10,7 @@
     var data = {
         labels: [
             @foreach($model->labels as $label)
-                "{{ $label }}",
+                "{!! $label !!}",
             @endforeach
         ],
         datasets: [
@@ -45,7 +45,7 @@
             @if($model->title)
                 title: {
                     display: true,
-                    text: "{{ $model->title }}",
+                    text: "{!! $model->title !!}",
                     fontSize: 20,
                 }
             @endif

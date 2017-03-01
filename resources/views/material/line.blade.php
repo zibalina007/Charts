@@ -4,7 +4,7 @@
     google.charts.setOnLoadCallback(draw{{ $model->id }})
         function draw{{ $model->id }}() {
         var data = google.visualization.arrayToDataTable([
-            ['', "{{ $model->element_label }}"],
+            ['', "{!! $model->element_label !!}"],
             @for($i = 0; $i < count($model->values); $i++)
                 ["{{ $model->labels[$i] }}", {{ $model->values[$i] }}],
             @endfor
@@ -13,7 +13,7 @@
         var options = {
             chart: {
               @if($model->title)
-                title: "{{ $model->title }}",
+                title: "{!! $model->title !!}",
               @endif
             },
             @if($model->colors)

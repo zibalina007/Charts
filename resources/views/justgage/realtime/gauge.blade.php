@@ -24,9 +24,9 @@
             pointer: true,
             counter: true,
             @if($model->title)
-                title:  "{{ $model->title }}",
+                title:  "{!! $model->title !!}",
             @endif
-            label: "{{ $model->element_label }}",
+            label: "{!! $model->element_label !!}",
             hideInnerShadow: true
         })
 

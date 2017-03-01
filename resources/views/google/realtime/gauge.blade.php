@@ -5,9 +5,9 @@
         var data = google.visualization.arrayToDataTable([
             ['Element', 'Value'],
             @if($model->values)
-                ["{{ $model->element_label }}", {{ $model->values[0] }}],
+                ["{!! $model->element_label !!}", {{ $model->values[0] }}],
             @else
-                ["{{ $model->element_label }}", 0],
+                ["{!! $model->element_label !!}", 0],
             @endif
         ])
         var options = {
