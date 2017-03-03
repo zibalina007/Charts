@@ -148,7 +148,7 @@ class Chart
     }
 
     /**
-     * Set a custom loadter time before showing the chart.
+     * Set a custom loader time before showing the chart.
      *
      * @param int $loader_duration
      *

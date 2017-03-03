@@ -416,6 +416,21 @@ The available methods are:
 
     $chart = Charts::database($data)->preaggregated(true)->lastByDay(7, false);
     ```
+- aggregateColumn(string $aggregateColumn, string $aggregateType)
+
+    This is similar to preaggregate. If you do not want to maintain extra data or
+    simply want to leverage the search speed of the database use preaggregate.
+    If you need to maintain the extra data from a record use this form (possibly for drilldown extension).
+
+    Pass in a string representation of a column containing numeric values to be summed. 
+    
+    Assume a collection of BankRecord with a numeric column called 'amount'.
+    ```php
+    $chart = new Database(BankRecord::all(), 'bar', 'highcharts');
+    $chart->aggregateColumn('amount', 'sum');
+    ```
+    
+    This will yield summed values for column 'amount'.
 
 ### Database method alternative
 
