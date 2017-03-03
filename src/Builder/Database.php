@@ -122,9 +122,12 @@ class Database extends Chart
     }
 
     /**
-     * Set the column in which this program should use to sum. This is useful for summing columns.
+     * Set the column in which this program should use to aggregate. This is useful for summing/averaging columns.
      *
-     * @param string $sumColumn
+     * @param string $aggregateColumn - name of the column to aggregate
+     * @param string $aggregateType - type of aggregation (sum, avg, min, max, count, ...)
+     *                                Must be Laravel collection commands.
+     * @see Illuminate\Support\Collection
      *
      * @return Database
      * @throws Exception
@@ -132,7 +135,7 @@ class Database extends Chart
     public function aggregateColumn($aggregateColumn, $aggregateType)
     {
         if ($this->preaggregated || $aggregateColumn == 'aggregate') {
-            throw new Exception ('Cannot preaggregate AND sum columns. Use either option, not both');
+            throw new Exception ('Cannot preaggregate AND aggregate columns. Use either option, not both');
         }
         $this->aggregate_column = $aggregateColumn;
         $this->aggregate_type = $aggregateType;
@@ -430,9 +433,9 @@ class Database extends Chart
 
             // Do an aggregation, otherwise count the number of records.
             try {
-                $value = $this->aggregate_column ? $valueData->{$this->aggregate_column}($this->aggregate_column) : $valueData->count();
+                $value = $this->aggregate_column ? $valueData->{$this->aggregate_type}($this->aggregate_column) : $valueData->count();
             } catch (Exception $e) {
-                dd($e);
+                die('Message: ' . $e->getMessage() . ' :: Make sure aggregation type is valid.');
             }
 
             // Store the datasets by label.
