@@ -10,7 +10,6 @@
  */
 
 namespace ConsoleTVs\Charts\Builder;
-use Exception;
 use Illuminate\Support\Collection;
 
 /**
@@ -113,9 +112,6 @@ class Database extends Chart
      */
     public function preaggregated($preaggregated)
     {
-        if ($this->aggregate_column !== null) {
-            throw new Exception('Cannot preaggregate AND aggregate columns. Use either option, not both');
-        }
         $this->preaggregated = $preaggregated;
 
         return $this;
@@ -134,9 +130,6 @@ class Database extends Chart
      */
     public function aggregateColumn($aggregateColumn, $aggregateType)
     {
-        if ($this->preaggregated || $aggregateColumn == 'aggregate') {
-            throw new Exception('Cannot preaggregate AND aggregate columns. Use either option, not both');
-        }
         $this->aggregate_column = $aggregateColumn;
         $this->aggregate_type = $aggregateType;
 
@@ -414,29 +407,26 @@ class Database extends Chart
      * @param string $checkDate - a string in the format 'Y-m-d H:ii::ss' Needs to resemble up with $formatToCheck to work
      * @param $formatToCheck - a string in the format 'Y-m-d H:ii::ss' Needs to resemble up with $checkDate to work
      * @param $label
-     * @return int
+     * @return integer
      */
     private function getCheckDateValue($checkDate, $formatToCheck, $label)
     {
         $date_column = $this->date_column;
+        $data = $this->data;
         if ($this->preaggregated) {
             // Since the column has been preaggregated, we only need one record that matches the search
-            $valueData = $this->data->first(function ($value) use ($checkDate, $date_column, $formatToCheck) {
+            $valueData = $data->first(function ($value) use ($checkDate, $date_column, $formatToCheck) {
                 return $checkDate == date($formatToCheck, strtotime($value->$date_column));
             });
             $value = $valueData->aggregate;
         } else {
             // Set the data represented. Return the relevant value.
-            $valueData = $this->data->filter(function ($value) use ($checkDate, $date_column, $formatToCheck) {
+            $valueData = $data->filter(function ($value) use ($checkDate, $date_column, $formatToCheck) {
                 return $checkDate == date($formatToCheck, strtotime($value->$date_column));
             });
 
             // Do an aggregation, otherwise count the number of records.
-            try {
-                $value = $this->aggregate_column ? $valueData->{$this->aggregate_type}($this->aggregate_column) : $valueData->count();
-            } catch (Exception $e) {
-                die('Message: '.$e->getMessage().' :: Make sure aggregation type is valid.');
-            }
+            $value = $this->aggregate_column ? $valueData->{$this->aggregate_type}($this->aggregate_column) : $valueData->count();
 
             // Store the datasets by label.
             $this->value_data[$label] = $valueData;
