@@ -407,7 +407,7 @@ class Database extends Chart
      * @param string $checkDate - a string in the format 'Y-m-d H:ii::ss' Needs to resemble up with $formatToCheck to work
      * @param $formatToCheck - a string in the format 'Y-m-d H:ii::ss' Needs to resemble up with $checkDate to work
      * @param $label
-     * @return integer
+     * @return mixed
      */
     private function getCheckDateValue($checkDate, $formatToCheck, $label)
     {
