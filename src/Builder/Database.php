@@ -10,6 +10,7 @@
  */
 
 namespace ConsoleTVs\Charts\Builder;
+
 use Illuminate\Support\Collection;
 
 /**
