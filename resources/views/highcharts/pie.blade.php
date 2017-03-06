@@ -50,7 +50,7 @@
                 data: [
                     @for($i = 0; $i < count($model->values); $i++)
                         {
-                            name: "{{ $model->labels[$i] }}",
+                            name: "{!! $model->labels[$i] !!}",
                             y: {{ $model->values[$i] }}
                         },
                     @endfor

@@ -6,7 +6,7 @@
             [
                 'Element', "{!! $model->element_label !!}"],
                 @for ($i = 0; $i < count($model->values); $i++)
-                    ["{{ $model->labels[$i] }}", {{ $model->values[$i] }}],
+                    ["{!! $model->labels[$i] !!}", {{ $model->values[$i] }}],
                 @endfor
         ])
 

@@ -40,7 +40,7 @@
             series: [
                 @for ($i = 0; $i < count($model->datasets); $i++)
                     {
-                        name:  "{{ $model->datasets[$i]['label'] }}",
+                        name:  "{!! $model->datasets[$i]['label'] !!}",
                         @if($model->colors && count($model->colors) > $i)
                             color: "{{ $model->colors[$i] }}",
                         @endif

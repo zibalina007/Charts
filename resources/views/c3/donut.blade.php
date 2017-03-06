@@ -5,7 +5,7 @@ var {{ $model->id }} = c3.generate({
     data: {
         columns: [
             @for($i = 0; $i < count($model->labels); $i++)
-                ["{{ $model->labels[$i] }}", {{ $model->values[$i] }}],
+                ["{!! $model->labels[$i] !!}", {{ $model->values[$i] }}],
             @endfor
         ],
         type: 'donut',

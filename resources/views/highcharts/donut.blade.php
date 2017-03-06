@@ -51,7 +51,7 @@
                 data: [
                     @for ($l = 0; $l < count($model->values); $l++)
                         {
-                            name: "{{ $model->labels[$l] }}",
+                            name: "{!! $model->labels[$l] !!}",
                             y: {{ $model->values[$l] }}
                         },
                     @endfor
