@@ -7,7 +7,7 @@
             },
             @if($model->title)
                 title: {
-                    text:  "{{ $model->title }}",
+                    text:  "{!! $model->title !!}",
                     x: -20 //center
                 },
             @endif
@@ -19,7 +19,7 @@
             xAxis: {
                 categories: [
                 @foreach($model->labels as $label)
-                    "{{ $label }}",
+                    "{!! $label !!}",
                 @endforeach
             ]
             },
@@ -40,7 +40,7 @@
             series: [
                 @for ($i = 0; $i < count($model->datasets); $i++)
                     {
-                        name:  "{{ $model->datasets[$i]['label'] }}",
+                        name:  "{!! $model->datasets[$i]['label'] !!}",
                         @if($model->colors && count($model->colors) > $i)
                             color: "{{ $model->colors[$i] }}",
                         @endif

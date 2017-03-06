@@ -4,7 +4,7 @@
     function draw{{ $model->id }}() {
         var data = google.visualization.arrayToDataTable([
             ['Element', 'Value'],
-            ["{{ $model->element_label }}", {{ $model->values[0] }}],
+            ["{!! $model->element_label !!}", {{ $model->values[0] }}],
         ])
 
         var options = {

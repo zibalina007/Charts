@@ -16,7 +16,7 @@
             },
             @if($model->title)
                 title: {
-                    text:  "{{ $model->title }}"
+                    text:  "{!! $model->title !!}"
                 },
             @endif
             @if(!$model->credits)
@@ -51,7 +51,7 @@
                 data: [
                     @for ($l = 0; $l < count($model->values); $l++)
                         {
-                            name: "{{ $model->labels[$l] }}",
+                            name: "{!! $model->labels[$l] !!}",
                             y: {{ $model->values[$l] }}
                         },
                     @endfor

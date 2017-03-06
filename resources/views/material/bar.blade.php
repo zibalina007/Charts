@@ -6,20 +6,20 @@
     function draw{{ $model->id }}() {
         var data = google.visualization.arrayToDataTable([
             [
-                '', "{{ $model->element_label }}",
+                '', "{!! $model->element_label !!}",
                 @if($model->colors)
                     { role: 'style' }
                 @endif
             ],
                 @for($i = 0; $i < count($model->values); $i++)
-                    ["{{ $model->labels[$i] }}", {{ $model->values[$i] }},"{{ $model->colors[$i] }}"],
+                    ["{!! $model->labels[$i] !!}", {{ $model->values[$i] }},"{{ $model->colors[$i] }}"],
                 @endfor
         ])
 
         var options = {
             chart: {
                 @if($model->title)
-                    title: "{{ $model->title }}",
+                    title: "{!! $model->title !!}",
                 @endif
             },
             @if($model->colors)

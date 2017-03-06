@@ -23,7 +23,7 @@
             @include('charts::_partials.dimension.js')
             fontSize: 12,
             @if($model->title)
-                title: "{{ $model->title }}",
+                title: "{!! $model->title !!}",
             @endif
             @if($model->colors)
                 colors:[

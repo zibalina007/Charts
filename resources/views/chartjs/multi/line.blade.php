@@ -7,14 +7,14 @@
     var data = {
         labels: [
             @foreach($model->labels as $label)
-                "{{ $label }}",
+                "{!! $label !!}",
             @endforeach
         ],
         datasets: [
             @for ($i = 0; $i < count($model->datasets); $i++)
                 {
                     fill: false,
-                    label: "{{ $model->datasets[$i]['label'] }}",
+                    label: "{!! $model->datasets[$i]['label'] !!}",
                     lineTension: 0.3,
                     @if($model->colors and count($model->colors) > $i)
                         @php($c = $model->colors[$i])
@@ -42,7 +42,7 @@
             @if($model->title)
                 title: {
                     display: true,
-                    text: "{{ $model->title }}",
+                    text: "{!! $model->title !!}",
                     fontSize: 20,
                 }
             @endif

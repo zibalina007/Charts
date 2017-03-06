@@ -5,7 +5,7 @@
         var data = google.visualization.arrayToDataTable([
             ['Element', 'Value'],
             @for ($l = 0; $l < count($model->values); $l++)
-                ["{{ $model->labels[$i] }}", {{ $model->values[$i] }}],
+                ["{!! $model->labels[$i] !!}", {{ $model->values[$i] }}],
             @endfor
         ])
 
@@ -14,7 +14,7 @@
             fontSize: 12,
             pieHole: 0.4,
             @if($model->title)
-                title: "{{ $model->title }}",
+                title: "{!! $model->title !!}",
             @endif
             @if($model->colors)
                 colors:[

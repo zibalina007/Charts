@@ -24,7 +24,7 @@
             legend: { position: 'top', alignment: 'end' },
             fontSize: 12,
             @if($model->title)
-                title: "{{ $model->title }}",
+                title: "{!! $model->title !!}",
             @endif
             @if($model->colors)
                 colors:[
