@@ -417,15 +417,19 @@ class Database extends Chart
             $valueData = $data->first(function ($value) use ($checkDate, $date_column, $formatToCheck) {
                 return $checkDate == date($formatToCheck, strtotime($value->$date_column));
             });
-            $value = $valueData->aggregate;
+            $value = $valueData != null ? $valueData->aggregate : 0;
         } else {
             // Set the data represented. Return the relevant value.
             $valueData = $data->filter(function ($value) use ($checkDate, $date_column, $formatToCheck) {
                 return $checkDate == date($formatToCheck, strtotime($value->$date_column));
             });
 
-            // Do an aggregation, otherwise count the number of records.
-            $value = $this->aggregate_column ? $valueData->{$this->aggregate_type}($this->aggregate_column) : $valueData->count();
+            if ($valueData != null) {
+                // Do an aggregation, otherwise count the number of records.
+                $value = $this->aggregate_column ? $valueData->{$this->aggregate_type}($this->aggregate_column) : $valueData->count();
+            } else {
+                $value = 0;
+            }
 
             // Store the datasets by label.
             $this->value_data[$label] = $valueData;
