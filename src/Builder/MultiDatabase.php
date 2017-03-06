@@ -48,7 +48,12 @@ class MultiDatabase extends Multi
      */
     public function dataset($element_label, $data)
     {
-        $this->datas[$element_label] = new Database($data);
+        $database = new Database($data);
+        $database->date_column = $this->date_column;
+        $database->month_format = $this->month_format;
+        $database->preaggregated = $this->preaggregated;
+        
+        $this->datas[$element_label] = $database;
 
         return $this;
     }
