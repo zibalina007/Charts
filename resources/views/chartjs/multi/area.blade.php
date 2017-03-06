@@ -17,7 +17,7 @@
             @for ($i = 0; $i < count($model->datasets); $i++)
                 {
                     fill: true,
-                    label: "{{ $model->datasets[$i]['label'] }}",
+                    label: "{!! $model->datasets[$i]['label'] !!}",
                     lineTension: 0.3,
                     @if($model->colors and count($model->colors) > $i)
                         @php($c = $model->colors[$i])

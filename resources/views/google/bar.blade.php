@@ -10,7 +10,7 @@
             ],
             @for ($i = 0; $i < count($model->values); $i++)
                 [
-                    "{{ $model->labels[$i] }}", {{ $model->values[$i] }}
+                    "{!! $model->labels[$i] !!}", {{ $model->values[$i] }}
                     @if($model->colors)
                         ,"{{ $model->colors[$i] }}"
                     @endif

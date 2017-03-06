@@ -43,7 +43,7 @@
                 'data': [
                     @for($i = 0; $i < count($model->values); $i++)
                         {
-                            'label': "{{ $model->labels[$i] }}",
+                            'label': "{!! $model->labels[$i] !!}",
                             'value': {{ $model->values[$i] }},
                             @if($model->colors)
                                 'color': "{{ $model->colors[$i] }}",

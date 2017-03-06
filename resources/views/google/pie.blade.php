@@ -5,7 +5,7 @@
         var data = google.visualization.arrayToDataTable([
             ['Element', 'Value'],
             @for($i = 0; $i < count($model->values); $i++)
-                ["{{ $model->labels[$i] }}", {{ $model->values[$i] }}],
+                ["{!! $model->labels[$i] !!}", {{ $model->values[$i] }}],
             @endfor
         ])
 
