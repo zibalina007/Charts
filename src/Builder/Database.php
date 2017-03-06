@@ -109,7 +109,6 @@ class Database extends Chart
      * @param bool $preaggregated
      *
      * @return Database
-     * @throws Exception
      */
     public function preaggregated($preaggregated)
     {
@@ -127,7 +126,6 @@ class Database extends Chart
      * @see Illuminate\Support\Collection
      *
      * @return Database
-     * @throws Exception
      */
     public function aggregateColumn($aggregateColumn, $aggregateType)
     {

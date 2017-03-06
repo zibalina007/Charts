@@ -27,6 +27,9 @@ class MultiDatabase extends Multi
     public $month_format = 'F, Y';
     public $preaggregated = false;
 
+    public $aggregate_column = null;
+    public $aggregate_type = null;
+
     /**
      * Create a new database instance.
      *
@@ -48,12 +51,12 @@ class MultiDatabase extends Multi
      */
     public function dataset($element_label, $data)
     {
-        $database = new Database($data);
-        $database->date_column = $this->date_column;
-        $database->month_format = $this->month_format;
-        $database->preaggregated = $this->preaggregated;
-        
-        $this->datas[$element_label] = $database;
+        $this->datas[$element_label] = new Database($data);
+        $this->datas[$element_label]->dateColumn($this->date_column)
+            ->dateFormat($this->date_format)
+            ->monthFormat($this->month_format)
+            ->preaggregated($this->preaggregated)
+            ->aggregateColumn($this->aggregate_column, $this->aggregate_type);
 
         return $this;
     }
@@ -68,6 +71,9 @@ class MultiDatabase extends Multi
     public function dateColumn($column)
     {
         $this->date_column = $column;
+        foreach ($this->datas as $element_label => $data) {
+            $this->datas[$element_label]->dateColumn($this->date_column);
+        }
 
         return $this;
     }
@@ -82,6 +88,9 @@ class MultiDatabase extends Multi
     public function dateFormat($format)
     {
         $this->date_format = $format;
+        foreach ($this->datas as $element_label => $data) {
+            $this->datas[$element_label]->dateFormat($this->date_format);
+        }
 
         return $this;
     }
@@ -96,6 +105,9 @@ class MultiDatabase extends Multi
     public function monthFormat($format)
     {
         $this->month_format = $format;
+        foreach ($this->datas as $element_label => $data) {
+            $this->datas[$element_label]->monthFormat($this->month_format);
+        }
 
         return $this;
     }
@@ -110,6 +122,28 @@ class MultiDatabase extends Multi
     public function preaggregated($preaggregated)
     {
         $this->preaggregated = $preaggregated;
+        foreach ($this->datas as $element_label => $data) {
+            $this->datas[$element_label]->preaggregated($this->preaggregated);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set the column in which this program should use to sum. This is useful for summing columns.
+     *
+     * @param string $aggregateColumn
+     * @param string $aggregateType
+     *
+     * @return Database
+     */
+    public function aggregateColumn($aggregateColumn, $aggregateType)
+    {
+        $this->aggregate_column = $aggregateColumn;
+        $this->aggregate_type = $aggregateType;
+        foreach ($this->datas as $element_label => $data) {
+            $this->datas[$element_label]->aggregateColumn($this->aggregate_column, $this->aggregate_type);
+        }
 
         return $this;
     }
