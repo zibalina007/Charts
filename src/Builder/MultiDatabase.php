@@ -21,7 +21,7 @@ class MultiDatabase extends Multi
     /**
      * @var Database[]
      */
-    public $datas;
+    public $datas = [];
     public $date_column = 'created_at';
     public $date_format = 'l dS M, Y';
     public $month_format = 'F, Y';
