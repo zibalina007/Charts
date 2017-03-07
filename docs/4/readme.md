@@ -122,7 +122,7 @@ Example View:
 | Create Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar | areaspline |
 |---------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|------------|
 | chartjs       | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           | -          |
-| highcharts    | x    | x    | x   | x   | x     | x   | -     | -    | -          | -           | x          |
+| highcharts    | x    | x    | x   | x   | x     | x   | -     | -    | -          | -           | -          |
 | google        | x    | x    | x   | x   | x     | x   | x     | -    | -          | -           | -          |
 | material      | x    | -    | x   | -   | -     | -   | -     | -    | -          | -           | -          |
 | chartist      | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           | -          |
