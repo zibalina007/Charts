@@ -35,7 +35,7 @@
                     color: '#808080'
                 }]
             },
-            @if($model->colors) {
+            @if($model->colors)
                 plotOptions: {
                     series: {
                         color: "{{ $model->colors[0] }}"
