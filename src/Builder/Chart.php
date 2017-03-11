@@ -421,7 +421,7 @@ class Chart
      *
      * @return Chart
      */
-    public function x_axis_title($x_axis_title)
+    public function xAxisTitle($x_axis_title)
     {
         $this->x_axis_title = $x_axis_title;
 
@@ -435,7 +435,7 @@ class Chart
      *
      * @return Chart
      */
-    public function y_axis_title($y_axis_title)
+    public function yAxisTitle($y_axis_title)
     {
         $this->y_axis_title = $y_axis_title;
 
