@@ -505,7 +505,7 @@ class Chart
             foreach ($this->values as $v) {
                 array_push($this->colors, $color);
             }
-        } elseif (($cc != $cv) or ($this->suffix == 'multi' and ($cc != $ds))) {
+        } elseif (($cc != $cv) || ($this->suffix == 'multi' && ($cc != $ds))) {
             if ($this->suffix == 'multi') {
                 $cv = $ds;
             }
