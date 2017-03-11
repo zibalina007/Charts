@@ -280,7 +280,7 @@ class Builder
                 return '<link rel="stylesheet" href="'.$item.'">';
             }
 
-            if (ends_with($item, '.js') or strpos($item, 'http') !== false) {
+            if (ends_with($item, '.js') || strpos($item, 'http') !== false) {
                 return '<script type="text/javascript" src="'.$item.'"></script>';
             }
 
