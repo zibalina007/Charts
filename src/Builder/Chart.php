@@ -67,7 +67,6 @@ class Chart
         $this->gauge_style = 'left';
         $this->responsive = config('charts.default.responsive');
         $this->region = 'world';
-        $length = 10; // The random identifier length.
         $this->background_color = config('charts.default.background_color');
         $this->credits = false; // Disables the library credits (not on all)
         $this->legend = config('charts.default.legend');
