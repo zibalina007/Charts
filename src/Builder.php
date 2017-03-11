@@ -248,7 +248,7 @@ class Builder
                     return;
                 }
             })->reject(function ($value) {
-                return $value == null;
+                return $value === null;
             })->toArray();
         } else {
             $final_assets = collect($assets)->map(function ($value, $key) use ($libraries) {
@@ -258,7 +258,7 @@ class Builder
                     return;
                 }
             })->reject(function ($value) {
-                return $value == null;
+                return $value === null;
             })->toArray();
         }
 
