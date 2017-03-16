@@ -221,7 +221,7 @@ class Builder
      * Get the library assets.
      *
      * @param array $libraries
-     * @param array $type
+     * @param string $type
      *
      * @return string
      */

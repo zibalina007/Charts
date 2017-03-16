@@ -404,8 +404,8 @@ class Database extends Chart
      * This is a simple value generator for the three types of summations used in this Chart object when sorted via data.
      *
      * @param string $checkDate - a string in the format 'Y-m-d H:ii::ss' Needs to resemble up with $formatToCheck to work
-     * @param $formatToCheck - a string in the format 'Y-m-d H:ii::ss' Needs to resemble up with $checkDate to work
-     * @param $label
+     * @param string $formatToCheck - a string in the format 'Y-m-d H:ii::ss' Needs to resemble up with $checkDate to work
+     * @param string $label
      * @return mixed
      */
     private function getCheckDateValue($checkDate, $formatToCheck, $label)

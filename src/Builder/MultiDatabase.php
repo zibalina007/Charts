@@ -135,7 +135,7 @@ class MultiDatabase extends Multi
      * @param string $aggregateColumn
      * @param string $aggregateType
      *
-     * @return Database
+     * @return MultiDatabase
      */
     public function aggregateColumn($aggregateColumn, $aggregateType)
     {
