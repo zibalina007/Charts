@@ -240,7 +240,7 @@ The available methods are:
     *Default:* ```F, Y```
 
     ```php
-    $chart = Charts::database(User::all(), 'bar', 'highcharts')->dateFormat('F Y');
+    $chart = Charts::database(User::all(), 'bar', 'highcharts')->monthFormat('F Y');
     ```
 
 - groupBy(required string $column, optional string $relationColumn, optional array $labelsMapping)
