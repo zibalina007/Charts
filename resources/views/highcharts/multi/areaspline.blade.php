@@ -8,7 +8,7 @@
             },
             @if($model->title)
                 title: {
-                    text:  "{{ $model->title }}",
+                    text:  "{!! $model->title !!}",
                     x: -20 //center
                 },
             @endif
@@ -16,11 +16,11 @@
                 credits: {
                     enabled: false
                 },
-            @endif    
+            @endif
             xAxis: {
                 categories: [
                     @foreach($model->labels as $label)
-                        "{{ $label }}",
+                        "{!! $label !!}",
                     @endforeach
                 ],
                 plotBands: [{ // visualize the weekend
@@ -31,14 +31,13 @@
             },
             yAxis: {
                 title: {
-                    text: "{{ $model->element_label }}"
+                    text: "{!! $model->element_label !!}"
                 }
             },
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+                @if(!$model->legend)
+                    enabled: false,
+                @endif
             },
             tooltip: {
                 shared: true,
@@ -52,7 +51,7 @@
             series: [
                 @for ($i = 0; $i < count($model->datasets); $i++)
                     {
-                        name:  "{{ $model->datasets[$i]['label'] }}",
+                        name:  "{!! $model->datasets[$i]['label'] !!}",
                         @if($model->colors && count($model->colors) > $i)
                             color: "{{ $model->colors[$i] }}",
                         @endif

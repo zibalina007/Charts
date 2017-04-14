@@ -221,7 +221,7 @@ class Builder
      * Get the library assets.
      *
      * @param array $libraries
-     * @param array $type
+     * @param string $type
      *
      * @return string
      */
@@ -248,7 +248,7 @@ class Builder
                     return;
                 }
             })->reject(function ($value) {
-                return $value == null;
+                return $value === null;
             })->toArray();
         } else {
             $final_assets = collect($assets)->map(function ($value, $key) use ($libraries) {
@@ -258,7 +258,7 @@ class Builder
                     return;
                 }
             })->reject(function ($value) {
-                return $value == null;
+                return $value === null;
             })->toArray();
         }
 
@@ -280,7 +280,7 @@ class Builder
                 return '<link rel="stylesheet" href="'.$item.'">';
             }
 
-            if (ends_with($item, '.js') or strpos($item, 'http') !== false) {
+            if (ends_with($item, '.js') || strpos($item, 'http') !== false) {
                 return '<script type="text/javascript" src="'.$item.'"></script>';
             }
 

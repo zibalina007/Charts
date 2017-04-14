@@ -11,8 +11,8 @@
 ## What is Charts?
 
 Charts is a multi-library chart package to create interactive charts using laravel. It Gives you access to
-tons of diferents charts. Over +100 diferent charts and +13 diferent chart libraries to choose from. With this package
-you can forget wirtting all the javascript manually and focus on your laravel project, while keeping an insane customitzable chart coded in PHP. And last but not least, we support diferent types of charts, mathematical charts, multi-charts, they can even be
+tons of different charts. Over +100 different charts and +13 different chart libraries to choose from. With this package
+you can forget writing all the javascript manually and focus on your laravel project, while keeping an insane customizable chart coded in PHP. And last but not least, we support different types of charts, mathematical charts, multi-charts, they can even be
 created using your eloquent models! And hey... We do support realtime stuff as well ;)
 
 ## Sample Chart

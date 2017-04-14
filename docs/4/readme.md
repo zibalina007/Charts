@@ -122,7 +122,7 @@ Example View:
 | Create Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar | areaspline |
 |---------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|------------|
 | chartjs       | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           | -          |
-| highcharts    | x    | x    | x   | x   | x     | x   | -     | -    | -          | -           | x          |
+| highcharts    | x    | x    | x   | x   | x     | x   | -     | -    | -          | -           | -          |
 | google        | x    | x    | x   | x   | x     | x   | x     | -    | -          | -           | -          |
 | material      | x    | -    | x   | -   | -     | -   | -     | -    | -          | -           | -          |
 | chartist      | x    | x    | x   | x   | x     | -   | -     | -    | -          | -           | -          |
@@ -240,7 +240,7 @@ The available methods are:
     *Default:* ```F, Y```
 
     ```php
-    $chart = Charts::database(User::all(), 'bar', 'highcharts')->dateFormat('F Y');
+    $chart = Charts::database(User::all(), 'bar', 'highcharts')->monthFormat('F Y');
     ```
 
 - groupBy(required string $column, optional string $relationColumn, optional array $labelsMapping)
@@ -416,6 +416,21 @@ The available methods are:
 
     $chart = Charts::database($data)->preaggregated(true)->lastByDay(7, false);
     ```
+- aggregateColumn(string $aggregateColumn, string $aggregateType)
+
+    This is similar to preaggregate. If you do not want to maintain extra data or
+    simply want to leverage the search speed of the database use preaggregate.
+    If you need to maintain the extra data from a record use this form (possibly for drilldown extension).
+
+    Pass in a string representation of a column containing numeric values to be summed. 
+    
+    Assume a collection of BankRecord with a numeric column called 'amount'.
+    ```php
+    $chart = new Database(BankRecord::all(), 'bar', 'highcharts');
+    $chart->aggregateColumn('amount', 'sum');
+    ```
+    
+    This will yield summed values for column 'amount'.
 
 ### Database method alternative
 
@@ -913,6 +928,38 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   Charts::create('line', 'highcharts')->responsive(false);
   ```
 
+- legend(required boolean $legend)
+
+  Set whether to display the chart legend or not. Currently only works with ```highcharts```.
+
+  *Default:* ```true```
+
+  ```php
+  Charts::create('line', 'highcharts')->legend(false);
+  ```
+
+- x_axis_title(required boolean $x_axis_title)
+
+  Set title of the x-axis. Currently only works with ```highcharts```.
+
+  *Default:* ```false```
+
+  ```php
+  Charts::create('line', 'highcharts')->x_axis_title('Year');
+  ```
+
+- y_axis_title(required boolean $y_axis_title)
+
+  Set title of the y-axis. Currently only works with ```highcharts```.
+
+  *Default:* ```null```
+
+  *Note:* When set to ```null``` the value for element_label will be used instead.
+
+  ```php
+  Charts::create('line', 'highcharts')->y_axis_title('Number of Units');
+  ```
+
 - settings()
 
   Return the chart settings.
@@ -933,8 +980,6 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   ### Pie
 
-  Note: ```highcharts``` can't change the color of this chart. Well it can but it's complicated, so I leave it here.
-
   ```php
   Charts::create('pie', 'highcharts')
     ->title('My nice chart')
@@ -948,7 +993,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   ### Donut / Doughnut
 
-  Note: ```highcharts``` and ```chartist``` can't change the color of this chart. Well they can but it's complicated, so I leave it here.
+  Note: ```chartist``` can't change the color of this chart. Well it can but it's complicated, so I leave it here.
 
   ```php
   Charts::create('donut', 'highcharts')
@@ -1005,8 +1050,6 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
 
   ### Bar
-
-  Note: ```highcharts``` can't change the color of this chart. Well it can but it's complicated, so I leave it here.
 
   ```php
   Charts::create('bar', 'highcharts')

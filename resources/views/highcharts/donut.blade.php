@@ -1,6 +1,11 @@
 <script type="text/javascript">
     $(function () {
         var {{ $model->id }} = new Highcharts.Chart({
+            colors: [
+                @foreach($model->colors as $c)
+                    "{{ $c }}",
+                @endforeach
+            ],
             chart: {
                 renderTo: "{{ $model->id }}",
                 @include('charts::_partials.dimension.js2')
@@ -11,7 +16,7 @@
             },
             @if($model->title)
                 title: {
-                    text:  "{{ $model->title }}"
+                    text:  "{!! $model->title !!}"
                 },
             @endif
             @if(!$model->credits)
@@ -36,12 +41,17 @@
                     }
                 }
             },
+            legend: {
+                @if(!$model->legend)
+                    enabled: false
+                @endif
+            },
             series: [{
                 colorByPoint: true,
                 data: [
                     @for ($l = 0; $l < count($model->values); $l++)
                         {
-                            name: "{{ $model->labels[$l] }}",
+                            name: "{!! $model->labels[$l] !!}",
                             y: {{ $model->values[$l] }}
                         },
                     @endfor

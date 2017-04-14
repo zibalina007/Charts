@@ -20,6 +20,9 @@ return [
         'colors' => [], // Default chart colors if using no template is set.
         'one_color' => false, // Only use the first color in all values.
         'template' => 'material', // The default chart color template.
+        'legend' => true, // Whether to enable the chart legend (where applicable).
+        'x_axis_title' => false, // The title of the x-axis
+        'y_axis_title' => null, // The title of the y-axis (When set to null will use element_label value).
         'loader' => [
             'active' => true, // Determines the if loader is active by default.
             'duration' => 500, // In milliseconds.

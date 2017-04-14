@@ -10,9 +10,9 @@
                     "exportenabled": "1",
                     "exportatclient": "1",
                     @if($model->title)
-                    'caption': "{{ $model->title }}",
+                    'caption': "{!! $model->title !!}",
                     @endif
-                    'yAxisName': "{{ $model->element_label }}",
+                    'yAxisName': "{!! $model->element_label !!}",
                     'paletteColors': '#0075c2',
                     'bgColor': '#ffffff',
                     'showBorder': '0',
@@ -43,7 +43,7 @@
                 'data': [
                     @for($i = 0; $i < count($model->values); $i++)
                         {
-                            'label': "{{ $model->labels[$i] }}",
+                            'label': "{!! $model->labels[$i] !!}",
                             'value': {{ $model->values[$i] }},
                             @if($model->colors)
                                 'color': "{{ $model->colors[$i] }}",

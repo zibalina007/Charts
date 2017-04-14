@@ -8,14 +8,14 @@
             data: [
                 @for ($i = 0; $i < count($model->values); $i++)
                     {
-                        x: "{{ $model->labels[$i] }}",
+                        x: "{!! $model->labels[$i] !!}",
                         y: {{ $model->values[$i] }}
                     },
                 @endfor
             ],
             xkey: 'x',
             ykeys: ['y'],
-            labels: ["{{ $model->element_label }}"],
+            labels: ["{!! $model->element_label !!}"],
             hideHover: 'auto',
             @if($model->colors)
                 barColors: function (row, series, type) {

@@ -10,9 +10,9 @@
                     "exportenabled": "1",
                     "exportatclient": "1",
                     @if($model->title)
-                    'caption': "{{ $model->title }}",
+                    'caption': "{!! $model->title !!}",
                     @endif
-                    'yAxisName': "{{ $model->element_label }}",
+                    'yAxisName': "{!! $model->element_label !!}",
                     'bgColor': '#ffffff',
                     'borderAlpha': '20',
                     'canvasBorderAlpha': '0',

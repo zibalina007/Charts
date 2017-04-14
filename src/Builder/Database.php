@@ -11,6 +11,8 @@
 
 namespace ConsoleTVs\Charts\Builder;
 
+use Illuminate\Support\Collection;
+
 /**
  * This is the database class.
  *
@@ -19,7 +21,7 @@ namespace ConsoleTVs\Charts\Builder;
 class Database extends Chart
 {
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $data;
     public $date_column;
@@ -27,10 +29,14 @@ class Database extends Chart
     public $month_format = 'F, Y';
     public $preaggregated = false;
 
+    public $aggregate_column = null;
+    public $aggregate_type = null;
+    public $value_data = [];
+
     /**
      * Create a new database instance.
      *
-     * @param \Illuminate\Support\Collection $data
+     * @param Collection $data
      * @param string $type
      * @param string $library
      */
@@ -44,7 +50,7 @@ class Database extends Chart
     }
 
     /**
-     * @param \Illuminate\Support\Collection $data
+     * @param Collection $data
      *
      * @return Database
      */
@@ -112,6 +118,24 @@ class Database extends Chart
     }
 
     /**
+     * Set the column in which this program should use to aggregate. This is useful for summing/averaging columns.
+     *
+     * @param string $aggregateColumn - name of the column to aggregate
+     * @param string $aggregateType - type of aggregation (sum, avg, min, max, count, ...)
+     *                                Must be Laravel collection commands.
+     * @see Illuminate\Support\Collection
+     *
+     * @return Database
+     */
+    public function aggregateColumn($aggregateColumn, $aggregateType)
+    {
+        $this->aggregate_column = $aggregateColumn;
+        $this->aggregate_type = $aggregateType;
+
+        return $this;
+    }
+
+    /**
      * Group the data hourly based on the creation date.
      *
      * @param int $day
@@ -126,8 +150,6 @@ class Database extends Chart
         $labels = [];
         $values = [];
 
-        $date_column = $this->date_column;
-
         $day = $day ? $day : date('d');
         $month = $month ? $month : date('m');
         $year = $year ? $year : date('Y');
@@ -141,28 +163,17 @@ class Database extends Chart
                 $hour = "$i";
             }
 
-            $date = "$year-$month-$day $hour:00:00";
-
-            $value = 0;
-
-            foreach ($this->data as $data) {
-                if (date('Y-m-d H:00:00', strtotime($data->$date_column)) == $date) {
-                    if ($this->preaggregated) {
-                        $value = $data->aggregate;
-                    } else {
-                        $value++;
-                    }
-                }
-            }
-
             $date_get = $fancy ? $this->date_format : 'd-m-Y H:00:00';
             $label = date($date_get, strtotime("$year-$month-$day $hour:00:00"));
+
+            $checkDate = "$year-$month-$day $hour:00:00";
+            $value = $this->getCheckDateValue($checkDate, 'Y-m-d H:00:00', $label);
 
             array_push($labels, $label);
             array_push($values, $value);
         }
-        $this->labels = $labels;
-        $this->values = $values;
+        $this->labels($labels);
+        $this->values($values);
 
         return $this;
     }
@@ -181,8 +192,6 @@ class Database extends Chart
         $labels = [];
         $values = [];
 
-        $date_column = $this->date_column;
-
         $month = $month ? $month : date('m');
         $year = $year ? $year : date('Y');
 
@@ -195,28 +204,17 @@ class Database extends Chart
                 $day = "$i";
             }
 
-            $date = "$year-$month-$day";
-
-            $value = 0;
-
-            foreach ($this->data as $data) {
-                if (date('Y-m-d', strtotime($data->$date_column)) == $date) {
-                    if ($this->preaggregated) {
-                        $value = $data->aggregate;
-                    } else {
-                        $value++;
-                    }
-                }
-            }
-
             $date_get = $fancy ? $this->date_format : 'd-m-Y';
             $label = date($date_get, strtotime("$year-$month-$day"));
+
+            $checkDate = "$year-$month-$day";
+            $value = $this->getCheckDateValue($checkDate, 'Y-m-d', $label);
 
             array_push($labels, $label);
             array_push($values, $value);
         }
-        $this->labels = $labels;
-        $this->values = $values;
+        $this->labels($labels);
+        $this->values($values);
 
         return $this;
     }
@@ -234,8 +232,6 @@ class Database extends Chart
         $labels = [];
         $values = [];
 
-        $date_column = $this->date_column;
-
         $year = $year ? $year : date('Y');
 
         for ($i = 1; $i <= 12; $i++) {
@@ -250,25 +246,14 @@ class Database extends Chart
 
             array_push($labels, $label);
 
-            $value = 0;
-            foreach ($this->data as $data) {
-                if ($year == date('Y', strtotime($data->$date_column))) {
-                    // Same year
-                    if ($month == date('m', strtotime($data->$date_column))) {
-                        // Same month
-                        if ($this->preaggregated) {
-                            $value = $data->aggregate;
-                        } else {
-                            $value++;
-                        }
-                    }
-                }
-            }
+            $checkDate = "$year-$month";
+            $value = $this->getCheckDateValue($checkDate, 'Y-m', $label);
+
             array_push($values, $value);
         }
 
-        $this->labels = $labels;
-        $this->values = $values;
+        $this->labels($labels);
+        $this->values($values);
 
         return $this;
     }
@@ -285,8 +270,6 @@ class Database extends Chart
         $labels = [];
         $values = [];
 
-        $date_column = $this->date_column;
-
         for ($i = 0; $i < $number; $i++) {
             if ($i == 0) {
                 $year = date('Y');
@@ -296,20 +279,14 @@ class Database extends Chart
 
             array_push($labels, $year);
             // Check the value
-            $value = 0;
-            foreach ($this->data as $data) {
-                if ($year == date('Y', strtotime($data->$date_column))) {
-                    if ($this->preaggregated) {
-                        $value = $data->aggregate;
-                    } else {
-                        $value++;
-                    }
-                }
-            }
+            $checkDate = $year;
+            $value = $this->getCheckDateValue($checkDate, 'Y', $year);
+
             array_push($values, $value);
         }
-        $this->labels = array_reverse($labels);
-        $this->values = array_reverse($values);
+
+        $this->labels(array_reverse($labels));
+        $this->values(array_reverse($values));
 
         return $this;
     }
@@ -350,8 +327,9 @@ class Database extends Chart
             array_push($labels, array_key_exists($label, $labelsMapping) ? $labelsMapping[$label] : $label);
             array_push($values, count($data));
         }
-        $this->labels = $labels;
-        $this->values = $values;
+
+        $this->labels($labels);
+        $this->values($values);
 
         return $this;
     }
@@ -369,26 +347,16 @@ class Database extends Chart
         $labels = [];
         $values = [];
 
-        $date_column = $this->date_column;
-
         for ($i = 0; $i < $number; $i++) {
             $date = $i == 0 ? date('d-m-Y') : date('d-m-Y', strtotime("-$i Day"));
             $date_f = $fancy ? date($this->date_format, strtotime($date)) : $date;
             array_push($labels, $date_f);
-            $value = 0;
-            foreach ($this->data as $data) {
-                if ($date == date('d-m-Y', strtotime($data->$date_column))) {
-                    if ($this->preaggregated) {
-                        $value = $data->aggregate;
-                    } else {
-                        $value++;
-                    }
-                }
-            }
+            $value = $this->getCheckDateValue($date, 'd-m-Y', $date_f);
             array_push($values, $value);
         }
-        $this->labels = array_reverse($labels);
-        $this->values = array_reverse($values);
+
+        $this->labels(array_reverse($labels));
+        $this->values(array_reverse($values));
 
         return $this;
     }
@@ -405,27 +373,30 @@ class Database extends Chart
     {
         $labels = [];
         $values = [];
-
-        $date_column = $this->date_column;
+        $previousDate = null;
+        $day = 1;
 
         for ($i = 0; $i < $number; $i++) {
             $date = $i == 0 ? date('m-Y') : date('m-Y', strtotime("-$i Month"));
+            // If the previous date equals the newly calculated date, move the interval by a day and try again.
+            // @see edge case 29th of March to 29th of February and 31-03-2017 to 30-11-2016. Put a limit just in case
+            // it breaks something.
+            while ($date == $previousDate && $day < 4) {
+                $date = $i == 0 ? date('m-Y', time() - $day * 86400) : date('m-Y', strtotime("-$i Month") - 86400 * $day);
+                $day++;
+            }
             $date_f = $fancy ? date($this->month_format, strtotime("01-$date")) : $date;
             array_push($labels, $date_f);
-            $value = 0;
-            foreach ($this->data as $data) {
-                if ($date == date('m-Y', strtotime($data->$date_column))) {
-                    if ($this->preaggregated) {
-                        $value = $data->aggregate;
-                    } else {
-                        $value++;
-                    }
-                }
-            }
+            $value = $this->getCheckDateValue($date, 'm-Y', $date_f);
             array_push($values, $value);
+
+            // Set the checks for the next round.
+            $previousDate = $date;
+            $day = 1;
         }
-        $this->labels = array_reverse($labels);
-        $this->values = array_reverse($values);
+
+        $this->labels(array_reverse($labels));
+        $this->values(array_reverse($values));
 
         return $this;
     }
@@ -440,5 +411,43 @@ class Database extends Chart
     public function lastByYear($number = 4)
     {
         return $this->groupByYear($number);
+    }
+
+    /**
+     * This is a simple value generator for the three types of summations used in this Chart object when sorted via data.
+     *
+     * @param string $checkDate - a string in the format 'Y-m-d H:ii::ss' Needs to resemble up with $formatToCheck to work
+     * @param string $formatToCheck - a string in the format 'Y-m-d H:ii::ss' Needs to resemble up with $checkDate to work
+     * @param string $label
+     * @return mixed
+     */
+    private function getCheckDateValue($checkDate, $formatToCheck, $label)
+    {
+        $date_column = $this->date_column;
+        $data = $this->data;
+        if ($this->preaggregated) {
+            // Since the column has been preaggregated, we only need one record that matches the search
+            $valueData = $data->first(function ($value) use ($checkDate, $date_column, $formatToCheck) {
+                return $checkDate == date($formatToCheck, strtotime($value->$date_column));
+            });
+            $value = $valueData !== null ? $valueData->aggregate : 0;
+        } else {
+            // Set the data represented. Return the relevant value.
+            $valueData = $data->filter(function ($value) use ($checkDate, $date_column, $formatToCheck) {
+                return $checkDate == date($formatToCheck, strtotime($value->$date_column));
+            });
+
+            if ($valueData !== null) {
+                // Do an aggregation, otherwise count the number of records.
+                $value = $this->aggregate_column ? $valueData->{$this->aggregate_type}($this->aggregate_column) : $valueData->count();
+            } else {
+                $value = 0;
+            }
+
+            // Store the datasets by label.
+            $this->value_data[$label] = $valueData;
+        }
+
+        return $value;
     }
 }

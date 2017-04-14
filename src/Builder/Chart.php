@@ -42,6 +42,9 @@ class Chart
     public $background_color;
     public $template;
     public $one_color;
+    public $legend;
+    public $x_axis_title;
+    public $y_axis_title;
 
     /**
      * Create a new chart instance.
@@ -64,9 +67,11 @@ class Chart
         $this->gauge_style = 'left';
         $this->responsive = config('charts.default.responsive');
         $this->region = 'world';
-        $length = 10; // The random identifier length.
         $this->background_color = config('charts.default.background_color');
         $this->credits = false; // Disables the library credits (not on all)
+        $this->legend = config('charts.default.legend');
+        $this->x_axis_title = config('charts.default.x_axis_title');
+        $this->y_axis_title = config('charts.default.y_axis_title');
 
         // Setup the chart loader
         $this->loader = config('charts.default.loader.active');
@@ -142,7 +147,7 @@ class Chart
     }
 
     /**
-     * Set a custom loadter time before showing the chart.
+     * Set a custom loader time before showing the chart.
      *
      * @param int $loader_duration
      *
@@ -396,6 +401,48 @@ class Chart
     }
 
     /**
+     * Set whether a chart's legend is shown (where applicable).
+     *
+     * @param bool $legend
+     *
+     * @return Chart
+     */
+    public function legend($legend)
+    {
+        $this->legend = $legend;
+
+        return $this;
+    }
+
+    /**
+     * Set the title of a chart's x-axis (where applicable).
+     *
+     * @param bool $x_axis_title
+     *
+     * @return Chart
+     */
+    public function xAxisTitle($x_axis_title)
+    {
+        $this->x_axis_title = $x_axis_title;
+
+        return $this;
+    }
+
+    /**
+     * Set the title of a chart's y-axis (where applicable).
+     *
+     * @param bool $y_axis_title
+     *
+     * @return Chart
+     */
+    public function yAxisTitle($y_axis_title)
+    {
+        $this->y_axis_title = $y_axis_title;
+
+        return $this;
+    }
+
+    /**
      * Return and array of all the chart settings.
      *
      * @return array
@@ -447,7 +494,6 @@ class Chart
             }
         }
 
-
         $ds = $this->suffix == 'multi' ? count($this->datasets) : [];
         $cv = count($this->values);
         $cc = count($this->colors);
@@ -458,7 +504,7 @@ class Chart
             foreach ($this->values as $v) {
                 array_push($this->colors, $color);
             }
-        } elseif (($cc != $cv) or ($this->suffix == 'multi' and ($cc != $ds))) {
+        } elseif (($cc != $cv) || ($this->suffix == 'multi' && ($cc != $ds))) {
             if ($this->suffix == 'multi') {
                 $cv = $ds;
             }

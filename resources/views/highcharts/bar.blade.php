@@ -16,7 +16,7 @@
             },
             @if($model->title)
                 title: {
-                    text:  "{{ $model->title }}"
+                    text:  "{!! $model->title !!}"
                 },
             @endif
             @if(!$model->credits)
@@ -29,20 +29,28 @@
                     colorByPoint: true,
                 },
             },
-           xAxis: {
+            xAxis: {
+                title: {
+                    text: "{!! $model->x_axis_title !!}"
+                },
                 categories: [
                     @foreach($model->labels as $label)
-                         "{{ $label }}",
+                         "{!! $label !!}",
                     @endforeach
                 ],
             },
             yAxis: {
                 title: {
-                    text:  "{{ $model->element_label }}"
+                    text: "{!! $model->y_axis_title === null ? $model->element_label : $model->y_axis_title !!}"
                 },
             },
+            legend: {
+                @if(!$model->legend)
+                    enabled: false,
+                @endif
+            },
             series: [{
-                name: "{{ $model->element_label }}",
+                name: "{!! $model->element_label !!}",
                 data: [
                     @foreach($model->values as $dta)
                         {{ $dta }},

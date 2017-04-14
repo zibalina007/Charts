@@ -8,7 +8,7 @@
             },
             @if($model->title)
                 title: {
-                    text:  "{{ $model->title }}",
+                    text:  "{!! $model->title !!}",
                     x: -20 //center
                 },
             @endif
@@ -18,15 +18,18 @@
                 },
             @endif
             xAxis: {
+                title: {
+                    text: "{!! $model->x_axis_title !!}"
+                },
                 categories: [
                     @foreach($model->labels as $label)
-                        "{{ $label }}",
+                        "{!! $label !!}",
                     @endforeach
                 ]
             },
             yAxis: {
                 title: {
-                    text: "{{ $model->element_label }}"
+                    text: "{!! $model->y_axis_title === null ? $model->element_label : $model->y_axis_title !!}"
                 },
                 plotLines: [{
                     value: 0,
@@ -43,13 +46,12 @@
                 },
             @endif
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+                @if(!$model->legend)
+                    enabled: false,
+                @endif
             },
             series: [{
-                name: "{{ $model->element_label }}",
+                name: "{!! $model->element_label !!}",
                 data: [
                     @foreach($model->values as $dta)
                         {{ $dta }},
