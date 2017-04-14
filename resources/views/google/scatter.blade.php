@@ -19,7 +19,19 @@
             @if($model->colors)
                 colors: ["{{ $model->colors[0] }}"],
             @endif
+            @if($model->width)
+            width: {{ $model->width }},
+            @endif
+            @if($model->height)
+            height: {{ $model->height }},
+            @endif
+            @if($model->background_color)
+            backgroundColor: {{ $model->background_color }},
+            @if(!$model->legend)
+            legend: null
+            @else
             legend: { position: 'top', alignment: 'end' }
+            @endif
         };
 
         var chart = new google.visualization.ScatterChart(document.getElementById("{{ $model->id }}"))
