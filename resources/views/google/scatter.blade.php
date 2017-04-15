@@ -15,10 +15,17 @@
             fontSize: 12,
             @include('charts::google.titles')
             @include('charts::google.colors')
+            @if($model->colors)
+                colors: ["{{ $model->colors[0] }}"],
+            @endif
+            @if(!$model->legend)
+            legend: null
+            @else
             legend: { position: 'top', alignment: 'end' }
+            @endif
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById("{{ $model->id }}"))
+        var chart = new google.visualization.ScatterChart(document.getElementById("{{ $model->id }}"))
 
         chart.draw(data, options)
     }

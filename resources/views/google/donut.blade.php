@@ -13,16 +13,8 @@
             @include('charts::_partials.dimension.js')
             fontSize: 12,
             pieHole: 0.4,
-            @if($model->title)
-                title: "{!! $model->title !!}",
-            @endif
-            @if($model->colors)
-                colors:[
-                    @foreach($model->colors as $color)
-                        "{{ $color}}",
-                    @endforeach
-                ],
-            @endif
+            @include('charts::google.titles')
+            @include('charts::google.colors')
         };
 
         var {{ $model->id }} = new google.visualization.PieChart(document.getElementById("{{ $model->id }}"))
