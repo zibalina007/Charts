@@ -12,16 +12,8 @@
         var options = {
             @include('charts::_partials.dimension.js')
             fontSize: 12,
-            @if($model->title)
-                title: "{!! $model->title !!}",
-            @endif
-            @if($model->colors)
-                colors:[
-                    @foreach($model->colors as $color)
-                        "{{ $color}}",
-                    @endforeach
-                ],
-            @endif
+            @include('charts::google.titles')
+            @include('charts::google.colors')
         };
 
         var chart = new google.visualization.PieChart(document.getElementById("{{ $model->id }}"))
