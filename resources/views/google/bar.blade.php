@@ -23,9 +23,7 @@
             @include('charts::_partials.dimension.js')
             legend: { position: 'top', alignment: 'end' },
             fontSize: 12,
-            @if($model->title)
-                title: "{!! $model->title !!}",
-            @endif
+            @include('charts::google.titles')
             @if($model->colors)
                 colors:[
                     @foreach($model->colors as $color)
