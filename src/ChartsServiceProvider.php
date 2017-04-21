@@ -19,8 +19,8 @@ class ChartsServiceProvider extends ServiceProvider
         ], 'charts_config');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/consoletvs/charts'),
-        ]);
+            __DIR__.'/../resources/views' => base_path('resources/views/vendor/charts'),
+        ], 'charts_views');
 
         $this->registerBladeDirectives();
     }
