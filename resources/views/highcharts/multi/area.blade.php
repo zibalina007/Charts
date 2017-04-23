@@ -26,14 +26,8 @@
             },
             yAxis: {
                 title: {
-                    text: "{!! $model->element_label !!}"
+                    text: "{!! $model->y_axis_title === null ? $model->element_label : $model->y_axis_title !!}"
                 },
-                plotLines: [{
-                    value: 0,
-                    height: 0.5,
-                    width: 1,
-                    color: '#808080'
-                }]
             },
             legend: {
                 @if(!$model->legend)
