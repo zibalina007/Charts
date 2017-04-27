@@ -34,7 +34,7 @@
             },
             yAxis: {
                 title: {
-                    text:  "{!! $model->element_label !!}"
+                    text: "{!! $model->y_axis_title === null ? $model->element_label : $model->y_axis_title !!}"
                 },
             },
             legend: {
