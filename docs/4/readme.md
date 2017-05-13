@@ -369,7 +369,7 @@ The available methods are:
         ->groupByHour('12', '05', '2017', true)
     ```
 
-    ![Example GroupByHour](https://sc-cdn.scaleengine.net/i/84798b4edbac04048360ab912c57e1de.png)
+    ![Example GroupByHour](https://sc-cdn.scaleengine.net/i/fc4ed88407cbaf47e4637e60e307ae41.png)
 
 - lastByYear(optional int $number)
 
