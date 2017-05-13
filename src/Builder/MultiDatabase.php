@@ -22,10 +22,37 @@ class MultiDatabase extends Multi
      * @var Database[]
      */
     public $datas = [];
+
+    /**
+     * Determines the date column.
+     *
+     * @var string
+     */
     public $date_column = 'created_at';
+
+    /**
+     * Determines the date format.
+     *
+     * @var string
+     */
     public $date_format = 'l dS M, Y';
+
+    /**
+     * Determines the month format.
+     *
+     * @var string
+     */
     public $month_format = 'F, Y';
+
+    /**
+     * Determines the hour format.
+     *
+     * @var string
+     */
+    public $hour_format = 'D, M j, Y g A';
+
     public $preaggregated = false;
+    public $language = null;
 
     public $aggregate_column = null;
     public $aggregate_type = null;
@@ -55,6 +82,7 @@ class MultiDatabase extends Multi
         $this->datas[$element_label]->dateColumn($this->date_column)
             ->dateFormat($this->date_format)
             ->monthFormat($this->month_format)
+            ->hourFormat($this->hour_format)
             ->preaggregated($this->preaggregated)
             ->aggregateColumn($this->aggregate_column, $this->aggregate_type);
 
@@ -108,6 +136,37 @@ class MultiDatabase extends Multi
         foreach ($this->datas as $element_label => $data) {
             $this->datas[$element_label]->monthFormat($this->month_format);
         }
+
+        return $this;
+    }
+
+    /**
+     * Set fancy hour format based on PHP date() function.
+     *
+     * @param string $format
+     *
+     * @return MultiDatabase
+     */
+    public function hourFormat($format)
+    {
+        $this->hour_format = $format;
+        foreach ($this->datas as $element_label => $data) {
+            $this->datas[$element_label]->hourFormat($this->hour_format);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set the Date language that is going to be used.
+     *
+     * @param string $language
+     *
+     * @return MultiDatabase
+     */
+    public function language($language)
+    {
+        $this->language = $language;
 
         return $this;
     }
