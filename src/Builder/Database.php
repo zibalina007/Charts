@@ -11,9 +11,9 @@
 
 namespace ConsoleTVs\Charts\Builder;
 
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Collection;
 use Jenssegers\Date\Date;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 
 /**
  * This is the database class.
@@ -54,7 +54,6 @@ class Database extends Chart
      * @var string
      */
     public $hour_format = 'D, M j, Y g A';
-
 
     /**
      * Determines the dates language.
