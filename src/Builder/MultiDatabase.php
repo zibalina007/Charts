@@ -11,6 +11,8 @@
 
 namespace ConsoleTVs\Charts\Builder;
 
+use Illuminate\Support\Facades\App;
+
 /**
  * This is the database class.
  *
@@ -51,9 +53,15 @@ class MultiDatabase extends Multi
      */
     public $hour_format = 'D, M j, Y g A';
 
-    public $preaggregated = false;
-    public $language = null;
+    /**
+     * Determines the dates language.
+     *
+     * @var string
+     */
+    public $language;
 
+
+    public $preaggregated = false;
     public $aggregate_column = null;
     public $aggregate_type = null;
 

@@ -11,6 +11,7 @@
 
 namespace ConsoleTVs\Charts\Builder;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Collection;
 use Jenssegers\Date\Date;
 
@@ -54,9 +55,15 @@ class Database extends Chart
      */
     public $hour_format = 'D, M j, Y g A';
 
+
+    /**
+     * Determines the dates language.
+     *
+     * @var string
+     */
+    public $language;
+
     public $preaggregated = false;
-    public $language = null;
-    
     public $aggregate_column = null;
     public $aggregate_type = null;
     public $value_data = [];
@@ -74,6 +81,10 @@ class Database extends Chart
 
         // Set the data
         $this->date_column = 'created_at';
+
+        // Set the language
+        $this->language = App::getLocale();
+
         $this->data = $data;
     }
 
@@ -215,7 +226,7 @@ class Database extends Chart
 
             $date_get = $fancy ? $this->hour_format : 'd-m-Y H:00:00';
 
-            Date::setLocale($this->language ? $this->language : Date::getLocale());
+            Date::setLocale($this->language);
             $label = ucfirst(Date::create($year, $month, $day, $hour)->format($date_get));
 
             $checkDate = "$year-$month-$day $hour:00:00";
@@ -249,7 +260,7 @@ class Database extends Chart
 
         $days = date('t', strtotime("$year-$month-01"));
 
-        Date::setLocale($this->language ? $this->language : Date::getLocale());
+        Date::setLocale($this->language);
 
         for ($i = 1; $i <= $days; $i++) {
             $day = ($i < 10) ? "0$i" : "$i";
@@ -285,7 +296,7 @@ class Database extends Chart
 
         $year = $year ? $year : date('Y');
 
-        Date::setLocale($this->language ? $this->language : Date::getLocale());
+        Date::setLocale($this->language);
 
         for ($i = 1; $i <= 12; $i++) {
             $month = ($i < 10) ? "0$i" : "$i";
@@ -391,7 +402,7 @@ class Database extends Chart
         $labels = [];
         $values = [];
 
-        Date::setLocale($this->language ? $this->language : Date::getLocale());
+        Date::setLocale($this->language);
 
         for ($i = 0; $i < $number; $i++) {
             $date = $i == 0 ? date('d-m-Y') : date('d-m-Y', strtotime("-$i Day"));
@@ -423,7 +434,7 @@ class Database extends Chart
         $previousDate = null;
         $day = 1;
 
-        Date::setLocale($this->language ? $this->language : Date::getLocale());
+        Date::setLocale($this->language);
 
         for ($i = 0; $i < $number; $i++) {
             $date = $i == 0 ? date('m-Y') : date('m-Y', strtotime("-$i Month"));
