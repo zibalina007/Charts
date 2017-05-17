@@ -1228,7 +1228,7 @@ Lucky for you I'll add a quick method to make it work!
     ```
 
 2.  Create a new folder where you'll add all charts, for example: ```charts/```
-3.  Create a new file inside, for example: ```latest_users.blade.php``` and add the cart
+3.  Create a new file inside, for example: ```latest_users.blade.php``` and add the chart
 
     ```
     @extends('layouts.charts')
