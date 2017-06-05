@@ -8,7 +8,6 @@
                     { role: 'style' }
                 @endif
             ],
-            @include('charts::google.titles')
             @for ($i = 0; $i < count($model->values); $i++)
                 [
                     "{!! $model->labels[$i] !!}", {{ $model->values[$i] }}
