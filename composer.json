@@ -19,5 +19,15 @@
             "ConsoleTVs\\Charts\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ConsoleTVs\\Charts\\ChartsServiceProvider"
+            ],
+            "aliases": {
+                "Charts": "ConsoleTVs\\Charts\\Facades\\Charts"
+            }
+        }
+    },
     "minimum-stability": "dev"
 }
