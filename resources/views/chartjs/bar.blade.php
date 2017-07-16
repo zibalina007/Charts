@@ -4,7 +4,7 @@
 
 <script type="text/javascript">
     var ctx = document.getElementById("{{ $model->id }}")
-    var myChart = new Chart(ctx, {
+    var {{ $model->id }} = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: [

@@ -169,5 +169,11 @@ return [
                 'https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css',
             ],
         ],
+
+        'echarts' => [
+            'scripts' => [
+                'https://cdnjs.cloudflare.com/ajax/libs/echarts/3.6.2/echarts.min.js'
+            ]
+        ]
     ],
 ];

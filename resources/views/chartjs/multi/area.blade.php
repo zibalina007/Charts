@@ -36,7 +36,7 @@
         ]
     };
 
-    var myLineChart = new Chart(ctx, {
+    var {{ $model->id }} = new Chart(ctx, {
         type: 'line',
         data: data,
         options: {
