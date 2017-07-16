@@ -255,7 +255,7 @@ class Chart
     {
         $render = $this->render();
 
-        if ($this->html !== '' && $this->script !== '' ) {
+        if ($this->html !== '' && $this->script !== '') {
             return;
         }
 
