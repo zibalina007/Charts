@@ -172,8 +172,8 @@ return [
 
         'echarts' => [
             'scripts' => [
-                'https://cdnjs.cloudflare.com/ajax/libs/echarts/3.6.2/echarts.min.js'
-            ]
-        ]
+                'https://cdnjs.cloudflare.com/ajax/libs/echarts/3.6.2/echarts.min.js',
+            ],
+        ],
     ],
 ];

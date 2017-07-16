@@ -370,7 +370,7 @@ trait Setters
     }
 
     /**
-     * Determines if the chart should be exportable (Only if type is suported)
+     * Determines if the chart should be exportable (Only if type is suported).
      *
      * @param bool $export
      *
