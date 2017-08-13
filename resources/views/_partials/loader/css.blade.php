@@ -65,5 +65,4 @@
     border-radius: 50%;
     display: inline-block;
 }
-
 </style>

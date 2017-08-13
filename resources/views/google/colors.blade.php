@@ -6,5 +6,5 @@ colors:[
 ],
 @endif
 @if($model->background_color)
-backgroundColor: {{ $model->background_color }},
+backgroundColor: "{{ $model->background_color }}",
 @endif

@@ -175,5 +175,17 @@ return [
                 'https://cdnjs.cloudflare.com/ajax/libs/echarts/3.6.2/echarts.min.js',
             ],
         ],
+
+        'amcharts' => [
+            'scripts' => [
+                'https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.2/amcharts.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.2/serial.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.2/plugins/export/export.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.2/themes/light.js',
+            ],
+            'styles' => [
+                'https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.2/plugins/export/export.css',
+            ],
+        ],
     ],
 ];
