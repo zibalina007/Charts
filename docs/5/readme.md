@@ -1,12 +1,8 @@
 
-## Charts version 5
+## Charts version 5 - Under Development, use 4.X for stable version
 
 <p align="center">
 <img src="http://i.imgur.com/47WnADd.png">
-</p>
-
-<p align="center">
-<h3>Under Development - use 4.X for stable version</h3>
 </p>
 
 ## Table Of Contents
