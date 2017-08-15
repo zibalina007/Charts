@@ -112,7 +112,7 @@ Example View:
 
         <title>My Charts</title>
 
-        {!! Charts::assets() !!}
+        {!! Charts::styles() !!}
 
     </head>
     <body>
@@ -123,6 +123,7 @@ Example View:
             </center>
         </div>
         <!-- End Of Main Application -->
+        {!! Charts::scripts() !!}
         {!! $chart->script() !!}
     </body>
 </html>
