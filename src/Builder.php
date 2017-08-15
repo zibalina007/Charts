@@ -172,50 +172,50 @@ class Builder
         return array_unique($results);
     }
 
-      /**
-       * Return the library styles.
-       *
-       * @param array  $libraries
-       *
-       * @return string
-       */
-      public function styles($libraries = [])
-      {
-          $styles = static::getAssets($libraries, 'styles');
-          $styles .= view('charts::_partials.loader.css');
+    /**
+     * Return the library styles.
+     *
+     * @param array  $libraries
+     *
+     * @return string
+     */
+    public function styles($libraries = [])
+    {
+        $styles = static::getAssets($libraries, 'styles');
+        $styles .= view('charts::_partials.loader.css');
 
-          return $styles;
-      }
+        return $styles;
+    }
 
-       /**
-        * Return the library scripts.
-        *
-        * @param array  $libraries
-        *
-        * @return string
-        */
-       public function scripts($libraries = [])
-       {
-           $scripts = static::getAssets($libraries, 'scripts');
-           $scripts .= view('charts::_partials.loader.js');
+    /**
+     * Return the library scripts.
+     *
+     * @param array  $libraries
+     *
+     * @return string
+     */
+    public function scripts($libraries = [])
+    {
+        $scripts = static::getAssets($libraries, 'scripts');
+        $scripts .= view('charts::_partials.loader.js');
 
-           return $scripts;
-       }
+        return $scripts;
+    }
 
-        /**
-         * Return the library styles.
-         *
-         * @param array  $libraries
-         *
-         * @return string
-         */
-        public function assets($libraries = [])
-        {
-            $assets = static::styles($libraries);
-            $assets .= static::scripts($libraries);
+    /**
+     * Return the library styles.
+     *
+     * @param array  $libraries
+     *
+     * @return string
+     */
+    public function assets($libraries = [])
+    {
+        $assets = static::styles($libraries);
+        $assets .= static::scripts($libraries);
 
-            return $assets;
-        }
+        return $assets;
+    }
 
     /**
      * Get the library assets.
