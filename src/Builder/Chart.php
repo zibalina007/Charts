@@ -11,8 +11,8 @@
 namespace ConsoleTVs\Charts\Builder;
 
 use View;
-use ConsoleTVs\Charts\Traits\Setters;
 use ConsoleTVs\Support\Helpers;
+use ConsoleTVs\Charts\Traits\Setters;
 
 /**
  * This is the chart class.
@@ -260,7 +260,7 @@ class Chart
             return;
         }
 
-        $this->script = "<script" . Helpers::getBetween("<script", "</script>", $render) . "</script>";
+        $this->script = '<script'.Helpers::getBetween('<script', '</script>', $render).'</script>';
         $this->html = str_replace($this->script, '', $render);
 
         // $scriptEnds = strrpos($render, '</script>') + strlen('</script>');
