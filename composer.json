@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.0.0",
         "illuminate/support": "5.*",
         "jlawrence/eos": "3.*",
         "jenssegers/date": "v3.*",
