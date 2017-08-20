@@ -17,7 +17,7 @@
 -   [Extend your way](#extend-your-way)
 
 
-## Installation
+## Installation {#installation}
 
 ### Download
 
