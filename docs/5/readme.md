@@ -1,7 +1,7 @@
 
 ## Table Of Contents
 
--   [Installation](#installation)
+-   [Installation](#installation) {data-turbolinks=false}
 -   [Default Settings](#default-settings)
 -   [Example Usage](#example-usage)
 -   [Create Charts](#create-charts)
