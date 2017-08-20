@@ -1,10 +1,4 @@
 
-## Charts version 5 - Under Development, use 4.X for stable version
-
-<p align="center">
-<img src="http://i.imgur.com/47WnADd.png">
-</p>
-
 ## Table Of Contents
 
 -   [Installation](#installation)
@@ -232,7 +226,7 @@ The available methods are:
 
     Set the column to group the data.
 
-    *Default:* ```created_at```
+    *Default:* created_at
 
     ```php
     $chart = Charts::database(User::all(), 'bar', 'highcharts')->dateColumn('my_date_column');
@@ -242,7 +236,7 @@ The available methods are:
 
     Set the fancy date format for `groupByDay()` and `lastByDay()` function if `$fancy` set to true, must be called before those function.
 
-    *Default:* ```l dS M, Y```
+    *Default:* l dS M, Y
 
     ```php
     $chart = Charts::database(User::all(), 'bar', 'highcharts')->dateFormat('j F y');
@@ -252,7 +246,7 @@ The available methods are:
 
     Set the fancy date format for `groupByMonth()` and `lastByMonth()` function if `$fancy` set to true, must be called before those function.
 
-    *Default:* ```F, Y```
+    *Default:* F, Y
 
     ```php
     $chart = Charts::database(User::all(), 'bar', 'highcharts')->monthFormat('F Y');
@@ -262,7 +256,7 @@ The available methods are:
 
     Set the fancy date format for `groupByHour()` function if `$fancy` set to true, must be called before those function.
 
-    *Default:* ```D, M j, Y g A```
+    *Default:* D, M j, Y g A
 
     ```php
     $chart = Charts::database(User::all(), 'bar', 'highcharts')->hourFormat('j, g A');
@@ -298,7 +292,7 @@ The available methods are:
 
     Groups the data based in years.
 
-    *Default:* ```$years = 4```
+    *Default:* $years = 4
 
     ```php
     $chart = Charts::database(User::all(), 'bar', 'highcharts')
@@ -321,7 +315,7 @@ The available methods are:
 
     Groups the data in months (if no year set, the current one will be used).
 
-    *Default:* ```$year = 7, $fancy = false```
+    *Default:* $year = 7, $fancy = false
 
     ```php
     $chart = Charts::database(User::all(), 'bar', 'highcharts')
@@ -344,7 +338,7 @@ The available methods are:
 
     Groups the data in days (if no year/month set, the current one will be used).
 
-    *Default:* ```$month = date('m'), $year = date('Y'), $fancy = false```
+    *Default:* $month = date('m'), $year = date('Y'), $fancy = false
 
     ```php
     $chart = Charts::database(User::all(), 'bar', 'highcharts')
@@ -367,7 +361,7 @@ The available methods are:
 
     Groups the data in hours (if no year/month/day set, the current one will be used).
 
-    *Default:* ```$month = date('m'), $year = date('Y'), $fancy = false```
+    *Default:* $month = date('m'), $year = date('Y'), $fancy = false
 
     ```php
     $chart = Charts::database(User::all(), 'bar', 'highcharts')
@@ -390,7 +384,7 @@ The available methods are:
 
     Alias for groupByYear() method. Does the same.
 
-    *Default:* ```$number = 4```
+    *Default:* $number = 4
 
     ```php
     $chart = Charts::database(User::all(), 'bar', 'highcharts')
@@ -413,7 +407,7 @@ The available methods are:
 
     Display the numbers of months behind (relative to the current date).
 
-    *Default:* ```$number = 6, $fancy = false```
+    *Default:* $number = 6, $fancy = false
 
     ```php
     $chart = Charts::database(User::all(), 'bar', 'highcharts')
@@ -436,7 +430,7 @@ The available methods are:
 
     Display the numbers of days behind (relative to the current date).
 
-    *Default:* ```$number = 7, $fancy = false```
+    *Default:* $number = 7, $fancy = false
 
     ```php
     $chart = Charts::database(User::all(), 'bar', 'highcharts')
@@ -572,7 +566,7 @@ The available methods are:
 
     Sets the value json index.
 
-    *Default:* ```value```
+    *Default:* value
 
     ```php
     $chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
@@ -871,7 +865,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
     Set the region for google geo chart
 
-    *Default:* ```world```
+    *Default:* world
 
     ```php
     Charts::create('geo', 'google')->region('FR');
@@ -881,7 +875,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
     Set the gauge style
 
-    *Default:* ```left```
+    *Default:* left
 
     *Available options:* ```left``` ```right``` ```center```
 
@@ -981,7 +975,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   Set whether to display the chart legend or not. Currently only works with ```highcharts```.
 
-  *Default:* ```true```
+  *Default:* true
 
   ```php
   Charts::create('line', 'highcharts')->legend(false);
@@ -991,7 +985,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   Set title of the x-axis. Currently only works with ```highcharts```.
 
-  *Default:* ```false```
+  *Default:* false
 
   ```php
   Charts::create('line', 'highcharts')->x_axis_title('Year');
@@ -1001,7 +995,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
 
   Set title of the y-axis. Currently only works with ```highcharts```.
 
-  *Default:* ```null```
+  *Default:* null
 
   *Note:* When set to ```null``` the value for element_label will be used instead.
 
