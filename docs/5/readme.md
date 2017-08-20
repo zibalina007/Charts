@@ -2,19 +2,19 @@
 ## Table Of Contents
 
 -   [Installation](#installation) {data-turbolinks=false}
--   [Default Settings](#default-settings)
--   [Example Usage](#example-usage)
--   [Create Charts](#create-charts)
--   [Multi Datasets Chart](#multi-datasets-charts)
--   [Database Charts](#database-charts)
--   [Multi Database Charts](#multi-database-charts)
--   [Realtime Charts](#realtime-charts)
--   [Math Functions Charts](#math-functions-charts)
--   [Charts Functions](#charts-functions)
--   [Available Chart Settings](#available-chart-settings)
--   [Chart Examples](#chart-examples)
--   [Charts in tabs](#charts-in-tabs)
--   [Extend your way](#extend-your-way)
+-   [Default Settings](#default-settings) {data-turbolinks=false}
+-   [Example Usage](#example-usage) {data-turbolinks=false}
+-   [Create Charts](#create-charts) {data-turbolinks=false}
+-   [Multi Datasets Chart](#multi-datasets-charts) {data-turbolinks=false}
+-   [Database Charts](#database-charts) {data-turbolinks=false}
+-   [Multi Database Charts](#multi-database-charts) {data-turbolinks=false}
+-   [Realtime Charts](#realtime-charts) {data-turbolinks=false}
+-   [Math Functions Charts](#math-functions-charts) {data-turbolinks=false}
+-   [Charts Functions](#charts-functions) {data-turbolinks=false}
+-   [Available Chart Settings](#available-chart-settings) {data-turbolinks=false}
+-   [Chart Examples](#chart-examples) {data-turbolinks=false}
+-   [Charts in tabs](#charts-in-tabs) {data-turbolinks=false}
+-   [Extend your way](#extend-your-way) {data-turbolinks=false}
 
 
 ## Installation {#installation}
@@ -47,15 +47,15 @@ Add the following alias to the array in: ```config/app.php```
 php artisan vendor:publish
 ```
 
-## Default Settings
+## Default Settings {#default-settings}
 
 The file in: ```config/charts.php``` contains an array of settings, you can find the default settings in there.
 
-## Default Chart Views
+### Default Chart Views
 
 The default chart views are published as well at the resources/views/vendor folder
 
-## Example Usage
+## Example Usage {#example-usage}
 
 Example Controller:
 
@@ -124,7 +124,7 @@ Example View:
 
 ```
 
-## Create Charts
+## Create Charts {#create-charts}
 
 | Create Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar | areaspline | scatter |
 |---------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|------------|---------|
@@ -153,7 +153,7 @@ Charts::create('line', 'highcharts')
     ->dimensions(0,500);
 ```
 
-## Multi Datasets Charts
+## Multi Datasets Charts {#multi-dataset-charts}
 
 | Multi Dataset Charts | line | area | bar | pie | donut | geo | gauge | temp | percentage | progressbar | areaspline  | scatter |
 |----------------------|------|------|-----|-----|-------|-----|-------|------|------------|-------------|-------------|---------|
@@ -197,7 +197,7 @@ Charts::multi('line', 'highcharts')
     ```
 
 
-## Database Charts
+## Database Charts {#database-charts}
 
 You can also generate database charts with simple setup!
 
@@ -474,7 +474,7 @@ The available methods are:
 
     This will yield summed values for column 'amount'.
 
-### Database method alternative
+### Database alternative method
 
 When creating charts, you might wanna take full control of it, this might be done creating the chart with the ```create``` method
 and adding the data from the database:
@@ -489,7 +489,7 @@ $chart = Charts::create('bar', 'highcharts')
              ->responsive(true);
 ```
 
-## Multi Database Charts
+## Multi Database Charts {#multi-database-charts}
 
 Sometimes it might be usefull to create multi charts from diferent tables, right?
 
@@ -516,7 +516,7 @@ Charts::multiDatabase('line', 'material')
 
 **As mentioned above, this chart got all the available database methods and multi chart methods.**
 
-## Realtime Charts
+## Realtime Charts {#realtime-charts}
 
 ![Realtime Chart Example](https://i.gyazo.com/77a9365e9270cb16a28c6acf11abadc3.gif)
 
@@ -622,7 +622,7 @@ The available methods are:
                 ->maxValues(10);
     ```
 
-## Math Functions Charts
+## Math Functions Charts {#math-functions-charts}
 
 You can create math function charts.
 
@@ -669,7 +669,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
     Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts')->calculate();
     ```
 
-## Charts Functions
+## Charts Functions {#charts-functions}
 
 - create(optional string $type, optional string $library)
 
@@ -785,7 +785,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   print_r(Charts::types('highcharts'));
   ```
 
-## Available Chart Settings
+## Available Chart Settings {#available-charts-settings}
 
 - loader(required bool $loader)
 
@@ -1029,7 +1029,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   echo Charts::create('line', 'highcharts')->labels(['One', 'Two'])->values([10, 20])->render();
   ```
 
-  ## Chart Examples
+## Chart Examples {#chart-examples}
 
   ### Pie
 
@@ -1205,7 +1205,7 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
   Charts::multi('line', 'highcharts')->credits(false);
   ```
 
-## Charts in tabs
+## Charts in tabs {#cjarts-in-tabs}
 
 ![Example tab chart](https://i.gyazo.com/7588eb53db5045a8b3231247d25f8cd6.gif)
 
@@ -1351,7 +1351,7 @@ Lucky for you I'll add a quick method to make it work!
     ```
 
 
-## Extend your way!
+## Extend your way! {#extend-your-way}
 
 You can create your own Charts by forking this repository. The ```src/Templates``` folder contains all the current charts, but you can
 add yours like this:
