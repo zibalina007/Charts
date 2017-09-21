@@ -100,7 +100,7 @@
         }).draw()
 
         setInterval(function(){
-            $.getJSON("{{ $model->url }}", function( data ) {
+            $.getJSON("{!! $model->url !!}", function( data ) {
                 {{ $model->id }}.value = data["{{ $model->value_name }}"];
             })
         }, {{ $model->interval }})
