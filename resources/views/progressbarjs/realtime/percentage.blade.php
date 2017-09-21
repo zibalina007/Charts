@@ -32,7 +32,7 @@
         {{ $model->id }}.animate({{ ($model->values[0] - $min) / ($max - $min) }})
 
         setInterval(function() {
-            $.getJSON("{{ $model->url }}", function( jdata ) {
+            $.getJSON("{!! $model->url !!}", function( jdata ) {
                 var v = (jdata["{{ $model->value_name }}"] - {{ $min }})/({{ $max }} - {{ $min }});
                 {{ $model->id }}.animate(v);
             })
