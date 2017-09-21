@@ -31,7 +31,7 @@
         })
 
         setInterval(function() {
-            $.getJSON("{{ $model->url }}", function( jdata ) {
+            $.getJSON("{!! $model->url !!}", function( jdata ) {
                 {{ $model->id }}.refresh(jdata["{{ $model->value_name }}"])
             })
         }, {{ $model->interval }})
