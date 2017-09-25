@@ -11,6 +11,7 @@
 
 namespace ConsoleTVs\Charts;
 
+use ConsoleTVs\Charts\Builder\Url;
 use ConsoleTVs\Charts\Builder\Math;
 use ConsoleTVs\Charts\Builder\Chart;
 use ConsoleTVs\Charts\Builder\Multi;
@@ -31,7 +32,6 @@ class Builder
      *
      * @param string $type
      * @param string $library
-     *
      * @return Chart
      */
     public static function create($type = null, $library = null)
@@ -46,7 +46,6 @@ class Builder
      * @param int $interval
      * @param string $type
      * @param string $library
-     *
      * @return Realtime
      */
     public static function realtime($url, $interval, $type = null, $library = null)
@@ -60,7 +59,6 @@ class Builder
      * @param \Illuminate\Support\Collection $data
      * @param string $type
      * @param string $library
-     *
      * @return Database
      */
     public static function database($data, $type = null, $library = null)
@@ -76,7 +74,6 @@ class Builder
      * @param int    $amplitude
      * @param string $type
      * @param string $library
-     *
      * @return Math
      */
     public static function math($function, $interval, $amplitude, $type = null, $library = null)
@@ -89,7 +86,6 @@ class Builder
      *
      * @param string $type
      * @param string $library
-     *
      * @return Multi
      */
     public static function multi($type = null, $library = null)
@@ -102,12 +98,24 @@ class Builder
      *
      * @param string $type
      * @param string $library
-     *
      * @return MultiDatabase
      */
     public static function multiDatabase($type = null, $library = null)
     {
         return new MultiDatabase($type, $library);
+    }
+
+    /**
+     * Return a new url chart instance.
+     *
+     * @param string $url
+     * @param string $type
+     * @param string $library
+     * @return Url
+     */
+    public static function url($url, $type = null, $library = null)
+    {
+        return new Url($url, $type, $library);
     }
 
     /**
