@@ -72,7 +72,7 @@
                         @for ($i = 0; count($model->labels) > $i; $i++)
                             {
                                 name: "{!! $model->labels[$i] !!}",
-                                y: {{ $model->id }}_values[{{ $i }}]
+                                y: parseFloat({{ $model->id }}_values[{{ $i }}])
                             },
                         @endfor
                     ],
