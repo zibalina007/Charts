@@ -18,6 +18,7 @@ use ConsoleTVs\Charts\Builder\Multi;
 use Illuminate\Support\Facades\File;
 use ConsoleTVs\Charts\Builder\Database;
 use ConsoleTVs\Charts\Builder\Realtime;
+use ConsoleTVs\Charts\Builder\MultiUrl;
 use ConsoleTVs\Charts\Builder\MultiDatabase;
 
 /**
@@ -116,6 +117,19 @@ class Builder
     public static function url($url, $type = null, $library = null)
     {
         return new Url($url, $type, $library);
+    }
+
+    /**
+     * Return a new multi url chart instance.
+     *
+     * @param string $url
+     * @param string $type
+     * @param string $library
+     * @return MultiUrl
+     */
+    public static function multiUrl($url, $type = null, $library = null)
+    {
+        return new MultiUrl($url, $type, $library);
     }
 
     /**
