@@ -67,9 +67,10 @@
             data : {!! $model->data !!},
             success: function(data) {
                 {{ $model->id }}.hideLoading();
+                var {{ $model->id }}_values = data{{ $model->value_name ? '.' . $model->value_name : '' }}.map(parseFloat);
                 {{ $model->id }}.addSeries({
                   name: "{!! $model->element_label !!}",
-                  data: data{{ $model->value_name ? '.' . $model->value_name : '' }}
+                  data: {{ $model->id }}_values
                 });
             },
             cache: false
