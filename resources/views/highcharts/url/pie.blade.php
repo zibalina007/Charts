@@ -66,17 +66,18 @@
             data : {!! $model->data !!},
             success: function(data) {
                 {{ $model->id }}.hideLoading();
-                var {{ $model->id }}_values = data{{ $model->value_name ? '.' . $model->value_name : '' }};
+                var {{ $model->id }}_values = data{{ $model->values_name ? '.' . $model->values_name : '' }};
+                var {{ $model->id }}_labels = data.{{ $model->labels_name }};
+                var {{ $model->id }}_new_values = [];
+                for (var i = 0; {{ $model->id }}_labels.length > i; i++) {
+                    {{ $model->id }}_new_values.push({
+                        name: {{ $model->id }}_labels[i],
+                        y: parseFloat({{ $model->id }}_values[i])
+                    });
+                }
                 {{ $model->id }}.addSeries({
                     colorByPoint: true,
-                    data: [
-                        @for ($i = 0; count($model->labels) > $i; $i++)
-                            {
-                                name: "{!! $model->labels[$i] !!}",
-                                y: parseFloat({{ $model->id }}_values[{{ $i }}])
-                            },
-                        @endfor
-                    ],
+                    data: {{ $model->id }}_new_values,
                 });
             },
             cache: false

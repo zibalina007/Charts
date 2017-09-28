@@ -15,7 +15,8 @@ class Url extends Chart
     public $url;
     public $data;
     public $method;
-    public $value_name;
+    public $values_name;
+    public $labels_name;
     public $loading_text;
 
     /**
@@ -32,7 +33,8 @@ class Url extends Chart
         $this->url($url);
         $this->method('GET');
         $this->data([]);
-        $this->valueName(null);
+        $this->valuesName('values');
+        $this->labelsName('labels');
         $this->loadingText('Loading...');
 
         $this->suffix = 'url';
@@ -78,14 +80,27 @@ class Url extends Chart
     }
 
     /**
-     * Set the value name for the JSON object.
+     * Set the values name for the JSON object.
      *
-     * @param  string $value_name
+     * @param  string $values_name
      * @return Url
      */
-    public function valueName($value_name)
+    public function valuesName($values_name)
     {
-        $this->value_name = $value_name;
+        $this->values_name = $values_name;
+
+        return $this;
+    }
+
+    /**
+     * Set the label name for the JSON object.
+     *
+     * @param  string $labels_name
+     * @return Url
+     */
+    public function labelsName($labels_name)
+    {
+        $this->labels_name = $labels_name;
 
         return $this;
     }

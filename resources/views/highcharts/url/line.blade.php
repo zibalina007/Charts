@@ -20,11 +20,7 @@
                 title: {
                     text: "{{ $model->x_axis_title }}"
                 },
-                categories: [
-                    @foreach($model->labels as $label)
-                        "{!! $label !!}",
-                    @endforeach
-                ],
+                categories: [],
             },
             yAxis: {
                 title: {
@@ -67,7 +63,8 @@
             data : {!! $model->data !!},
             success: function(data) {
                 {{ $model->id }}.hideLoading();
-                var {{ $model->id }}_values = data{{ $model->value_name ? '.' . $model->value_name : '' }}.map(parseFloat);
+                {{ $model->id }}.xAxis[0].setCategories(data.{{ $model->labels_name }});
+                var {{ $model->id }}_values = data{{ $model->values_name ? '.' . $model->values_name : '' }}.map(parseFloat);
                 {{ $model->id }}.addSeries({
                   name: "{!! $model->element_label !!}",
                   data: {{ $model->id }}_values

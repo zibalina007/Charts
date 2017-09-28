@@ -21,11 +21,7 @@
                 title: {
                     text: "{{ $model->x_axis_title }}"
                 },
-                categories: [
-                    @foreach($model->labels as $label)
-                        "{!! $label !!}",
-                    @endforeach
-                ],
+                categories: [],
             },
             yAxis: {
                 title: {
@@ -67,9 +63,10 @@
             dataType: "json",
             data : {!! $model->data !!},
             success: function (data) {
-                var {{ $model->id }}_data = data{{ $model->value_name ? '.' . $model->value_name : '' }};
+                var {{ $model->id }}_data = data{{ $model->values_name ? '.' . $model->values_name : '' }};
                 var {{ $model->id }}_colors = {!! json_encode($model->colors) !!};
                 var {{ $model->id }}_datasets = Object.keys({{ $model->id }}_data);
+                {{ $model->id }}.xAxis[0].setCategories(data.{{ $model->labels_name }});
                 {{ $model->id }}.hideLoading();
                 for (var i = 0; i < {{ $model->id }}_datasets.length; i++) {
                     {{ $model->id }}.addSeries({
