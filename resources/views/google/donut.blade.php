@@ -1,6 +1,6 @@
 <script type="text/javascript">
     google.charts.setOnLoadCallback(draw{{ $model->id }})
-
+    var {{ $model->id }};
     function draw{{ $model->id }}() {
         var data = google.visualization.arrayToDataTable([
             ['Element', 'Value'],
@@ -17,7 +17,7 @@
             @include('charts::google.colors')
         };
 
-        var {{ $model->id }} = new google.visualization.PieChart(document.getElementById("{{ $model->id }}"))
+        {{ $model->id }} = new google.visualization.PieChart(document.getElementById("{{ $model->id }}"))
         {{ $model->id }}.draw(data, options)
     }
 </script>

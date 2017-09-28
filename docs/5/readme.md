@@ -10,6 +10,8 @@
 -   [Multi Database Charts](#multi-database-charts) {data-turbolinks=false}
 -   [Realtime Charts](#realtime-charts) {data-turbolinks=false}
 -   [Math Functions Charts](#math-functions-charts) {data-turbolinks=false}
+-   [URL Charts (Ajax)](#url-charts) {data-turbolinks=false}
+-   [Multi URL Charts (Ajax)](#multi-url-charts) {data-turbolinks=false}
 -   [Charts Functions](#charts-functions) {data-turbolinks=false}
 -   [Available Chart Settings](#available-chart-settings) {data-turbolinks=false}
 -   [Chart Examples](#chart-examples) {data-turbolinks=false}
@@ -266,7 +268,7 @@ The available methods are:
 
     Groups the data based on a column.
 
-    *Note:* Relationship column follows this standard: 
+    *Note:* Relationship column follows this standard:
     ```
     ->groupBy('product_id', 'product.model');
     ```
@@ -672,6 +674,67 @@ The function is ```sin(x)```, the interval is ```[0, 10]``` and the ```x``` ampl
     ```php
     Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts')->calculate();
     ```
+
+## URL Charts (Ajax) {#url-charts}
+
+**BETA FEATURE WITH CHANGES FOR THE NEXT MAJOR RELEASE**
+
+*Currently only highcharts is supported.*
+
+Since sometimes you need to create a lot of charts and they perhaps require a lot of operations, we allow loading the chart data from
+a URL with ajax.
+
+Example Response from ```/api/data-url```
+```json
+[1, 2, 3, 4]
+```
+
+```php
+Charts::url(url('/api/data-url'), 'line', 'highcharts');
+```
+
+-   url(required string $url)
+
+    Sets the chart URL (ajax URL).
+
+-   method(required string $method)
+
+    Sets the URL method. Defaults to 'GET'.
+
+-   data(required array $data)
+
+    Set the data to be sent with the HTTP request. This might be usefull for sending auth tokens.
+
+-   valueName(required string $value_name)
+
+    Set the JSON valuename key.
+
+    Example:
+    ```php
+    $value_name = 'values';
+    ```
+    ```json
+    {'values': [1, 2, 3, 4]}
+    ```
+
+-   loadingText(required string $loading_text)
+
+    Set the loading text of the chart.
+
+## Multi URL charts (Ajax) {#multi-url-charts}
+
+**BETA FEATURE WITH CHANGES FOR THE NEXT MAJOR RELEASE**
+
+This class extends the base URL, so all functions there are available.
+
+It works the same way, but expects a different response:
+
+```json
+{
+    'dataset1': [1, 2, 3, 4],
+    'dataset2': [4, 3, 2, 1]
+}
+```
 
 ## Charts Functions {#charts-functions}
 

@@ -1,4 +1,5 @@
 <script type="text/javascript">
+    var {{ $model->id }};
     $(function () {
         Highcharts.setOptions({global: { useUTC: false } })
 
