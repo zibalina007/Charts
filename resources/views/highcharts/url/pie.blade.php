@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    var {{ $model->id };
+    var {{ $model->id }};
     $(function () {
         {{ $model->id }} = new Highcharts.Chart({
             chart: {
