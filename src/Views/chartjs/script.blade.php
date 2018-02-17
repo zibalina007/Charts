@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    window.onload = function() {
+    let {{ $chart->id }}_load = function() {
         window.{{ $chart->id }} = new Chart(document.getElementById("{{ $chart->id }}").getContext("2d"), {
             type: "{{ $chart->formatType() }}",
             data: {
@@ -9,4 +9,6 @@
             options: {!! $chart->formatOptions(true) !!}
         });
     };
+    window.onload = {{ $chart->id }}_load;
+    document.addEventListener("turbolinks:load", {{ $chart->id }}_load);
 </script>

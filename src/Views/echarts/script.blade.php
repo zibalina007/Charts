@@ -1,6 +1,10 @@
 <script type="text/javascript">
-    window.{{ $chart->id }} = echarts.init(document.getElementById("{{ $chart->id }}")).setOption({
-        series: {!! $chart->formatDatasets() !!},
-        {!! $chart->formatOptions(false, true) !!}
-    });
+    let {{ $chart->id }}_load = function () {
+        window.{{ $chart->id }} = echarts.init(document.getElementById("{{ $chart->id }}")).setOption({
+            series: {!! $chart->formatDatasets() !!},
+            {!! $chart->formatOptions(false, true) !!}
+        });
+    };
+    window.onload = {{ $chart->id }}_load;
+    document.addEventListener("turbolinks:load", {{ $chart->id }}_load);
 </script>

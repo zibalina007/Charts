@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    FusionCharts.ready(function(){
+    let {{ $chart->id }}_load = function(){
         window.{{ $chart->id }} = new FusionCharts({
             type: "{!! $chart->formatType() !!}",
             renderAt: "{{ $chart->id }}",
@@ -14,4 +14,6 @@
             }
         }).render();
     });
+    FusionCharts.ready({{ $chart->id }}_load);
+    document.addEventListener("turbolinks:load", {{ $chart->id }}_load);
 </script>
