@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Consoletvs\\Charts\\ChartsServiceProvider"
+                "ConsoleTVs\\Charts\\ChartsServiceProvider"
             ]
         }
     },
