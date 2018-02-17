@@ -14,7 +14,7 @@ Meanwhile you may just be hyped or happy about it. Expect the docs to be online 
 
 And by the way, it's a complete redisign of the library. Not just an ordinary update.
 
-<p align="center"><a href="https://erik.cat/projects/Charts"><img height="250" src="https://image.prntscr.com/image/U58WN1HURu2Tq6U8bqOgRQ.png"></a></p>
+<p align="center"><a href="https://erik.cat/projects"><img height="250" src="https://image.prntscr.com/image/7f59JXbQQSCc_CO8OqXF0A.png"></a></p>
 
 ## Looking for the 5.X release? hehe
 You're probably looking for the 5.X release, here, let me introduce you to it's documentation:
