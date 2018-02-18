@@ -2,6 +2,8 @@
 
 namespace ConsoleTVs\Charts\Features\Highcharts;
 
+use Illuminate\Support\Collection;
+
 trait Dataset
 {
     /**
@@ -13,6 +15,10 @@ trait Dataset
      */
     public function color($color)
     {
+        if ($color instanceof Collection) {
+            $color = $color->toArray();
+        }
+
         return $this->options([
             'color' => $color,
         ]);

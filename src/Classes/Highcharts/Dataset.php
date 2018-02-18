@@ -20,12 +20,11 @@ class Dataset extends DatasetClass
     /**
      * Creates a new dataset with the given values.
      *
-     * @param string           $name
-     * @param string           $type
-     * @param array|Collection $values
-     * @param array|Collection $options
+     * @param string    $name
+     * @param string    $type
+     * @param array     $values
      */
-    public function __construct(string $name, string $type, $values)
+    public function __construct(string $name, string $type, array $values)
     {
         parent::__construct($name, $type, $values);
     }

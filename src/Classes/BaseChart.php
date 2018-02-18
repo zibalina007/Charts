@@ -100,6 +100,10 @@ class BaseChart
      */
     public function dataset(string $name, string $type, $data)
     {
+        if ($data instanceof Collection) {
+            $data = $data->toArray();
+        }
+
         $dataset = new $this->dataset($name, $type, $data);
 
         array_push($this->datasets, $dataset);
@@ -116,6 +120,10 @@ class BaseChart
      */
     public function labels($labels)
     {
+        if ($labels instanceof Collection) {
+            $labels = $labels->toArray();
+        }
+
         $this->labels = $labels;
 
         return $this;
@@ -131,6 +139,10 @@ class BaseChart
      */
     public function options($options, bool $overwrite = false)
     {
+        if ($options instanceof Collection) {
+            $options = $options->toArray();
+        }
+
         if ($overwrite) {
             $this->options = $options;
         } else {

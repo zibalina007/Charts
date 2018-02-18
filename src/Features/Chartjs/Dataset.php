@@ -2,17 +2,23 @@
 
 namespace ConsoleTVs\Charts\Features\Chartjs;
 
+use Illuminate\Support\Collection;
+
 trait Dataset
 {
     /**
      * Set the dataset border color.
      *
-     * @param string|array $color
+     * @param string|array|Collection $color
      *
      * @return self
      */
     public function color($color)
     {
+        if ($color instanceof Collection) {
+            $color = $color->toArray();
+        }
+
         return $this->options([
             'borderColor' => $color,
         ]);
@@ -21,12 +27,16 @@ trait Dataset
     /**
      * Set the dataset background color.
      *
-     * @param string|array $color
+     * @param string|array|Collection $color
      *
      * @return self
      */
     public function backgroundColor($color)
     {
+        if ($color instanceof Collection) {
+            $color = $color->toArray();
+        }
+
         return $this->options([
             'backgroundColor' => $color,
         ]);
