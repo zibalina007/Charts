@@ -12,9 +12,9 @@ class Dataset extends DatasetClass
     /**
      * Creates a new dataset with the given values.
      *
-     * @param string    $name
-     * @param string    $type
-     * @param array     $values
+     * @param string $name
+     * @param string $type
+     * @param array  $values
      */
     public function __construct(string $name, string $type, array $values)
     {
