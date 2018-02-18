@@ -1,4 +1,4 @@
-<p align="center"><img src="https://image.prntscr.com/image/FDJCr7ywShKMUlFitEc_Ww.png"></p>
+<p align="center"><a href="https://erik.cat/projects/charts"><img src="https://image.prntscr.com/image/FDJCr7ywShKMUlFitEc_Ww.png"></a></p>
 <p align="center">
 <a href="https://styleci.io/repos/69124179"><img src="https://styleci.io/repos/69124179/shield?branch=master&style=flat" alt="StyleCI Status"></a>
 <a href="https://styleci.io/repos/69124179"><img src="https://img.shields.io/badge/Built_for-Laravel-orange.svg" alt="Build For Laravel"></a>
