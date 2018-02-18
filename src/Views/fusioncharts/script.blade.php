@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    let {{ $chart->id }}_load = function(){
+    let {{ $chart->id }}_load = function () {
         window.{{ $chart->id }} = new FusionCharts({
             type: "{!! $chart->formatType() !!}",
             renderAt: "{{ $chart->id }}",
