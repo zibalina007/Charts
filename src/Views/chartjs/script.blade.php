@@ -1,6 +1,8 @@
 <script type="text/javascript">
+    let {{ $chart->id }}_rendered = false;
     let {{ $chart->id }}_load = function () {
-        if (document.getElementById("{{ $chart->id }}")) {
+        if (document.getElementById("{{ $chart->id }}") && !{{ $chart->id }}_rendered) {
+            {{ $chart->id }}_rendered = true;
             window.{{ $chart->id }} = new Chart(document.getElementById("{{ $chart->id }}").getContext("2d"), {
                 type: "{{ $chart->formatType() }}",
                 data: {
