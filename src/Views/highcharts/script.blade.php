@@ -7,6 +7,6 @@
             });
         }
     };
-    window.onload = {{ $chart->id }}_load;
+    window.addEventListener("load", {{ $chart->id }}_load);
     document.addEventListener("turbolinks:load", {{ $chart->id }}_load);
 </script>

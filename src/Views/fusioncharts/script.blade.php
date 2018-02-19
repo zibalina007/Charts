@@ -13,7 +13,7 @@
                 chart: {!! $chart->formatOptions(true) !!}
             }
         }).render();
-    });
+    };
     FusionCharts.ready({{ $chart->id }}_load);
     document.addEventListener("turbolinks:load", {{ $chart->id }}_load);
 </script>
