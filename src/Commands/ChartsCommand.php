@@ -55,7 +55,7 @@ class ChartsCommand extends Command
             return;
         }
 
-        $file = file_get_contents(__DIR__.'/../Classes/ChartCLass.php');
+        $file = file_get_contents(__DIR__.'/../Classes/ChartClass.php');
 
         file_put_contents($fpath, $file);
 
