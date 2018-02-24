@@ -64,6 +64,27 @@ class BaseChart
     public $type = '';
 
     /**
+     * Stores the API url if the chart is loaded over API.
+     *
+     * @var string
+     */
+    public $api_url = '';
+
+    /**
+     * Determines if the loader is show.
+     *
+     * @var boolean
+     */
+    public $loader = true;
+
+    /**
+     * Determines if the loader color.
+     *
+     * @var string
+     */
+    public $loaderColor = '#22292F';
+
+    /**
      * Stores the height of the chart.
      *
      * @var int
@@ -179,7 +200,7 @@ class BaseChart
      */
     public function script(string $script = null)
     {
-        if (count($this->datasets) == 0) {
+        if (count($this->datasets) == 0 && !$this->api_url) {
             throw new \Exception('No datasets provided, please provide at least one dataset to generate a chart');
         }
 
@@ -289,12 +310,73 @@ class BaseChart
      */
     public function formatDatasets()
     {
+        // This little boy was commented because it's not compatible
+        // in laravel < 5.4
+        //
+        // return Collection::make($this->datasets)
+        //     ->each
+        //     ->matchValues(count($this->labels))
+        //     ->map
+        //     ->format($this->labels)
+        //     ->toJson();
+
         return Collection::make($this->datasets)
-            ->each
-            ->matchValues(count($this->labels))
-            ->map
-            ->format($this->labels)
+            ->each(function ($dataset) {
+                $dataset->matchValues(count($this->labels));
+            })
+            ->map(function ($dataset) {
+                return $dataset->format($this->labels);
+            })
             ->toJson();
+    }
+
+    /**
+     * Indicates that the chart information will be loaded over API.
+     *
+     * @param string $api_url
+     * @return void
+     */
+    public function load(string $api_url)
+    {
+        $this->api_url = $api_url;
+
+        return $this;
+    }
+
+    /**
+     * Determines if the chart should show a loader.
+     *
+     * @param boolean $loader
+     * @return void
+     */
+    public function loader(bool $loader)
+    {
+        $this->loader = $loader;
+
+        return $this;
+    }
+
+    /**
+     * Determines the loader color.
+     *
+     * @param string $color
+     * @return void
+     */
+    public function loaderColor(string $color)
+    {
+        $this->loaderColor = $color;
+
+        return $this;
+    }
+
+    /**
+     * Alias for the formatDatasets() method.
+     *
+     * @return void
+     */
+    public function api()
+    {
+        return $this->formatDatasets();
     }
 
     /**

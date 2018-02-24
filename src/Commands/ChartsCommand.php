@@ -47,7 +47,7 @@ class ChartsCommand extends Command
             mkdir($path, 0777, true);
         }
 
-        $fpath = $path.'/'.$this->arguments('name')['name'].'.php';
+        $fpath = $path.'/'.$this->argument('name').'.php';
 
         if (file_exists($fpath)) {
             $this->error('[Charts] File already exists!');
@@ -59,10 +59,10 @@ class ChartsCommand extends Command
 
         file_put_contents($fpath, $file);
 
-        $this->strReplaceFile('ChartClass', $this->arguments('name')['name'], $fpath);
+        $this->strReplaceFile('ChartClass', $this->argument('name'), $fpath);
         $this->strReplaceFile(
             'Library',
-            $this->arguments('library')['library'] ? ucfirst($this->arguments('library')['library']) : ucfirst(config('charts.default_library')),
+            $this->argument('library') ? ucfirst($this->argument('library')) : ucfirst(config('charts.default_library')),
             $fpath
         );
 

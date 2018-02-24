@@ -112,15 +112,18 @@ class DatasetClass
      * Matches the values of the dataset with the given number.
      *
      * @param int $values
+     * @param bool $strict
      *
      * @return void
      */
-    public function matchValues(int $values)
+    public function matchValues(int $values, bool $strict = false)
     {
         while (count($this->values) < $values) {
             array_push($this->values, 0);
         }
 
-        $this->values = array_slice($this->values, 0, $values);
+        if ($strict) {
+            $this->values = array_slice($this->values, 0, $values);
+        }
     }
 }

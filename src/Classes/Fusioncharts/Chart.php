@@ -25,6 +25,13 @@ class Chart extends BaseChart
     public $keepType = ['pie2d', 'doughnut2d'];
 
     /**
+     * Determines the combo type of chart.
+     *
+     * @var array
+     */
+    public $comboType = 'mscombi2d';
+
+    /**
      * Initiates the Chartjs Line Chart.
      *
      * @return self
@@ -71,21 +78,5 @@ class Chart extends BaseChart
                 return ['label' => $label];
             })
             ->toJson();
-    }
-
-    /**
-     * Formats the type to be a correct output.
-     *
-     * @return string
-     */
-    public function formatType()
-    {
-        $type = strtolower($this->type ? $this->type : $this->datasets[0]->type);
-
-        if (in_array($type, $this->keepType)) {
-            return $type;
-        }
-
-        return 'mscombi2d';
     }
 }

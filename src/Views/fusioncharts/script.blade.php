@@ -1,25 +1,30 @@
 <script type="text/javascript">
-    let {{ $chart->id }}_rendered = false;
-    let {{ $chart->id }}_load = function () {
-        if (document.getElementById("{{ $chart->id }}") && !{{ $chart->id }}_rendered) {
-            {{ $chart->id }}_rendered = true;
-            FusionCharts.ready(function () {
-                window.{{ $chart->id }} = new FusionCharts({
-                    type: "{!! $chart->formatType() !!}",
-                    renderAt: "{{ $chart->id }}",
-                    dataFormat: 'json',
-                    {!! $chart->formatContainerOptions('js', true) !!}
-                    dataSource: {
-                        categories: [{
-                            category: {!! $chart->formatLabels() !!}
-                        }],
-                        dataset: {!! $chart->formatDatasets() !!},
-                        chart: {!! $chart->formatOptions(true) !!}
-                    }
-                }).render();
-            });
+    function {{ $chart->id }}_create(data) {
+        {{ $chart->id }}_rendered = true;
+        document.getElementById("{{ $chart->id }}_loader").remove();
+        @if ($chart->type)
+            let {{ $chart->id }}_type = {{ $chart->type }}
+        @else
+            let {{ $chart->id }}_type = data[0].renderAs;
+        @endif
+        if (!{!! json_encode($chart->keepType) !!}.includes({{ $chart->id }}_type)) {
+            {{ $chart->id }}_type = "{{ $chart->comboType }}"
         }
-    };
-    window.addEventListener("load", {{ $chart->id }}_load);
-    document.addEventListener("turbolinks:load", {{ $chart->id }}_load);
+        FusionCharts.ready(function () {
+            window.{{ $chart->id }} = new FusionCharts({
+                type: {{ $chart->id }}_type,
+                renderAt: "{{ $chart->id }}",
+                dataFormat: 'json',
+                {!! $chart->formatContainerOptions('js', true) !!}
+                dataSource: {
+                    categories: [{
+                        category: {!! $chart->formatLabels() !!}
+                    }],
+                    dataset: data,
+                    chart: {!! $chart->formatOptions(true) !!}
+                }
+            }).render();
+        });
+    }
+    @include('charts::init')
 </script>

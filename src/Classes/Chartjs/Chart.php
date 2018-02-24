@@ -30,6 +30,15 @@ class Chart extends BaseChart
 
         return $this->options([
             'maintainAspectRatio' => false,
+            'scales' => [
+                'yAxes' => [
+                    [
+                        'ticks' => [
+                            'beginAtZero' => true
+                        ]
+                    ]
+                ]
+            ]
         ]);
     }
 }
