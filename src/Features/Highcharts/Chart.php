@@ -40,6 +40,23 @@ trait Chart
     }
 
     /**
+     * Rotates the labels of the xAxis
+     *
+     * @param float $angle
+     * @return void
+     */
+    public function labelsRotation(float $angle)
+    {
+        return $this->options([
+            'xAxis' => [
+                'labels' => [
+                    'rotation' => $angle
+                ]
+            ]
+        ]);
+    }
+
+    /**
      * Set the chart style to minimalist.
      *
      * @param bool $display
