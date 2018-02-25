@@ -40,9 +40,10 @@ trait Chart
     }
 
     /**
-     * Rotates the labels of the xAxis
+     * Rotates the labels of the xAxis.
      *
      * @param float $angle
+     *
      * @return void
      */
     public function labelsRotation(float $angle)
@@ -50,9 +51,9 @@ trait Chart
         return $this->options([
             'xAxis' => [
                 'labels' => [
-                    'rotation' => $angle
-                ]
-            ]
+                    'rotation' => $angle,
+                ],
+            ],
         ]);
     }
 
