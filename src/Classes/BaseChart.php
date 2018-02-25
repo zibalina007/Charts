@@ -73,7 +73,7 @@ class BaseChart
     /**
      * Determines if the loader is show.
      *
-     * @var boolean
+     * @var bool
      */
     public $loader = true;
 
@@ -334,6 +334,7 @@ class BaseChart
      * Indicates that the chart information will be loaded over API.
      *
      * @param string $api_url
+     *
      * @return void
      */
     public function load(string $api_url)
@@ -346,7 +347,8 @@ class BaseChart
     /**
      * Determines if the chart should show a loader.
      *
-     * @param boolean $loader
+     * @param bool $loader
+     *
      * @return void
      */
     public function loader(bool $loader)
@@ -360,6 +362,7 @@ class BaseChart
      * Determines the loader color.
      *
      * @param string $color
+     *
      * @return void
      */
     public function loaderColor(string $color)

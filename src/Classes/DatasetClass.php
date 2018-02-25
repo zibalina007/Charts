@@ -111,7 +111,7 @@ class DatasetClass
     /**
      * Matches the values of the dataset with the given number.
      *
-     * @param int $values
+     * @param int  $values
      * @param bool $strict
      *
      * @return void
