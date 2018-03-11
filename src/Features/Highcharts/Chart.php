@@ -44,7 +44,7 @@ trait Chart
      *
      * @param float $angle
      *
-     * @return void
+     * @return self
      */
     public function labelsRotation(float $angle)
     {
