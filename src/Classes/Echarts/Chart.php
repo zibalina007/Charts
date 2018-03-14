@@ -35,11 +35,17 @@ class Chart extends BaseChart
             'tooltip' => [
                 'show' => true,
             ],
+            'xAxis' => [
+                'show' => true,
+            ],
+            'yAxis' => [
+                'show' => true,
+            ],
         ]);
     }
 
     /**
-     * Formats the labels.
+     * Formats the options.
      *
      * @return self
      */
@@ -47,12 +53,8 @@ class Chart extends BaseChart
     {
         $this->options([
             'xAxis' => [
-                'show' => true,
                 'data' => json_decode($this->formatLabels()),
-            ],
-            'yAxis' => [
-                'show' => true,
-            ],
+            ]
         ]);
 
         return parent::formatOptions($strict, $noBraces);
