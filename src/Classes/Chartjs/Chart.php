@@ -30,7 +30,7 @@ class Chart extends BaseChart
 
         return $this->options([
             'maintainAspectRatio' => false,
-            'scales' => [
+            'scales'              => [
                 'xAxes' => [],
                 'yAxes' => [
                     [
