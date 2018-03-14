@@ -96,7 +96,7 @@ trait Chart
     {
         return $this->options([
             'xAxis' => [
-                'show' => $display,
+                'show'     => $display,
                 'axisLine' => [
                     'show' => $display,
                 ],
@@ -105,7 +105,7 @@ trait Chart
                 ],
             ],
             'yAxis' => [
-                'show' => $display,
+                'show'     => $display,
                 'axisLine' => [
                     'show' => $display,
                 ],

@@ -54,7 +54,7 @@ class Chart extends BaseChart
         $this->options([
             'xAxis' => [
                 'data' => json_decode($this->formatLabels()),
-            ]
+            ],
         ]);
 
         return parent::formatOptions($strict, $noBraces);
