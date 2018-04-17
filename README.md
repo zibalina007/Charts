@@ -8,14 +8,8 @@
 <a href="https://packagist.org/packages/consoletvs/charts"><img src="https://poser.pugx.org/consoletvs/charts/license.svg" alt="License"></a>
 </p>
 
-## Redisigned concepts
+## Redesigned concepts
 
 Welcome to Charts 6.0. We created this version from the ground up, feel free to explode the documentation :)
 
 <p align="center"><a href="https://erik.cat/projects/charts"><img height="250" src="https://i.imgur.com/F0PDyYE.png"></a></p>
-
-## Looking for the 5.X release?
-
-if you're looking for the 5.X release, let me introduce you to it's documentation:
-
-[Charts 5.X documentation](https://github.com/ConsoleTVs/Charts/tree/5.4.0/docs/5)
