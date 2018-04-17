@@ -13,3 +13,9 @@
 Welcome to Charts 6.0. We created this version from the ground up, feel free to explore the documentation :)
 
 <p align="center"><a href="https://erik.cat/projects/charts"><img height="250" src="https://i.imgur.com/F0PDyYE.png"></a></p>
+
+## Regarding to documentation
+
+Well yes, the docs are not that clear, you need to read it all and understand the new concept, specially if you come from 5.X.
+
+In fact, new docs and features will still come soon, please fear not.
