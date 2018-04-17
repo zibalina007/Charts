@@ -10,6 +10,6 @@
 
 ## Redesigned concepts
 
-Welcome to Charts 6.0. We created this version from the ground up, feel free to explode the documentation :)
+Welcome to Charts 6.0. We created this version from the ground up, feel free to explore the documentation :)
 
 <p align="center"><a href="https://erik.cat/projects/charts"><img height="250" src="https://i.imgur.com/F0PDyYE.png"></a></p>
