@@ -2,10 +2,10 @@
 
 namespace ConsoleTVs\Charts\Classes;
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\View;
 use Balping\JsonRaw\Encoder;
 use Balping\JsonRaw\Raw;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\View;
 
 class BaseChart
 {
@@ -297,7 +297,7 @@ class BaseChart
 
     /**
      * Use this to pass values to json without any modification
-     * Useful for defining callbacks
+     * Useful for defining callbacks.
      *
      * @param string $value
      *
@@ -307,8 +307,6 @@ class BaseChart
     {
         return new Raw($value);
     }
-
-
 
     /**
      * Reset the chart options.
@@ -338,14 +336,14 @@ class BaseChart
         //     ->toJson();
 
         return Encoder::encode(
-        	Collection::make($this->datasets)
-	            ->each(function ($dataset) {
-	                $dataset->matchValues(count($this->labels));
-	            })
-	            ->map(function ($dataset) {
-	                return $dataset->format($this->labels);
-	            })
-	            ->toArray()
+            Collection::make($this->datasets)
+                ->each(function ($dataset) {
+                    $dataset->matchValues(count($this->labels));
+                })
+                ->map(function ($dataset) {
+                    return $dataset->format($this->labels);
+                })
+                ->toArray()
         );
     }
 
