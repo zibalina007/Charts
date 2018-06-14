@@ -35,7 +35,7 @@ class Dataset extends DatasetClass
         return array_merge($this->options, [
             'data'  => $this->values,
             'label' => $this->name,
-            'type'  => strtolower($this->type),
+            'type'  => $this->type,
         ]);
     }
 }
