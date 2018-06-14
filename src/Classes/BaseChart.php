@@ -264,7 +264,7 @@ class BaseChart
      */
     public function formatType()
     {
-        return strtolower($this->type ? $this->type : $this->datasets[0]->type);
+        return $this->type ? $this->type : $this->datasets[0]->type;
     }
 
     /**
