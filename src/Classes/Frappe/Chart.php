@@ -17,21 +17,21 @@ class Chart extends BaseChart
     public $dataset = Dataset::class;
 
     /**
-     * Stores the default colors
+     * Stores the default colors.
      *
      * @var array
      */
     public $default_colors = [
-        '#E3342F', '#F6993F', '#FFED4A', '#38C172', '#4DC0B5', '#3490DC', '#6574CD', '#9561E2', '#F66D9B'
+        '#E3342F', '#F6993F', '#FFED4A', '#38C172', '#4DC0B5', '#3490DC', '#6574CD', '#9561E2', '#F66D9B',
     ];
 
     /**
-     * Determines the special charts
+     * Determines the special charts.
      *
      * @var array
      */
     public $special_datasets = [
-        'pie', 'percentage'
+        'pie', 'percentage',
     ];
 
     /**
@@ -48,17 +48,18 @@ class Chart extends BaseChart
 
         return $this->options([
             'barOptions' => [
-                'spaceRatio' => 0.75
-            ]
+                'spaceRatio' => 0.75,
+            ],
         ]);
     }
 
     /**
      * Format the datasets.
      *
-     * @param boolean $strict
-     * @param boolean $noBraces
-     * @return Self
+     * @param bool $strict
+     * @param bool $noBraces
+     *
+     * @return self
      */
     public function formatOptions(bool $strict = false, bool $noBraces = false)
     {
@@ -73,10 +74,10 @@ class Chart extends BaseChart
                 $default++;
             }
             array_push($colors, $color);
-        };
+        }
 
         $this->options([
-            'colors' => $colors
+            'colors' => $colors,
         ]);
 
         return parent::formatOptions($strict, $noBraces);

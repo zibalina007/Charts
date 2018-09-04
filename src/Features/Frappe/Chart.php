@@ -8,12 +8,13 @@ trait Chart
      * Add a title to the Chart.
      *
      * @param string $title
+     *
      * @return void
      */
     public function title(string $title)
     {
         return $this->options([
-            'title' => $title
+            'title' => $title,
         ]);
     }
 
@@ -21,14 +22,15 @@ trait Chart
      * Determines the spaceRatio of the bars.
      *
      * @param float $space
-     * @return Self
+     *
+     * @return self
      */
     public function spaceRatio(float $space = 0.75)
     {
         return $this->options([
             'barOptions' => [
-                'spaceRatio' => $space
-            ]
+                'spaceRatio' => $space,
+            ],
         ]);
     }
 
@@ -36,14 +38,15 @@ trait Chart
      * Determines if the bars are stacked.
      *
      * @param bool $stacked
-     * @return Self
+     *
+     * @return self
      */
     public function stacked(bool $stacked)
     {
         return $this->options([
             'barOptions' => [
-                'stacked' => $stacked
-            ]
+                'stacked' => $stacked,
+            ],
         ]);
     }
 
@@ -51,12 +54,13 @@ trait Chart
      * Makes the chart interactive with arrow keys and highlights the current active data point.
      *
      * @param bool $stacked
-     * @return Self
+     *
+     * @return self
      */
     public function isNavigable(bool $value)
     {
         return $this->options([
-            'isNavigable' => $value
+            'isNavigable' => $value,
         ]);
     }
 
@@ -64,57 +68,61 @@ trait Chart
      * To display data values over bars or dots in an axis graph.
      *
      * @param bool $stacked
-     * @return Self
+     *
+     * @return self
      */
     public function valuesOverPoints(bool $value)
     {
         return $this->options([
-            'valuesOverPoints' => $value
+            'valuesOverPoints' => $value,
         ]);
     }
 
     /**
      * Determines if the lines will show a dot.
      *
-     * @param boolean $value
-     * @return Self
+     * @param bool $value
+     *
+     * @return self
      */
     public function hideDots(bool $value)
     {
         return $this->options([
             'lineOptions' => [
-                'hideDots' => $value
-            ]
+                'hideDots' => $value,
+            ],
         ]);
     }
 
     /**
      * Determines if the line will be hidden.
      *
-     * @param boolean $value
-     * @return Self
+     * @param bool $value
+     *
+     * @return self
      */
     public function hideLine(bool $value)
     {
         return $this->options([
             'lineOptions' => [
-                'hideDots' => $value
-            ]
+                'hideDots' => $value,
+            ],
         ]);
     }
 
     /**
      * Determines if the line will be a heatline.
      *
-     * @param boolean $value
-     * @return Self
+     * @param bool $value
+     *
+     * @return self
      */
     public function heatline(bool $value)
     {
         return $this->options([
             'lineOptions' => [
-                'heatline' => $value
-            ]
+                'heatline' => $value,
+            ],
         ]);
     }
 }
