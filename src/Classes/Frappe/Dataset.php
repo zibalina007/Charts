@@ -31,8 +31,8 @@ class Dataset extends DatasetClass
     public function format()
     {
         return array_merge($this->options, [
-            'values'  => $this->values,
-            'name' => $this->name,
+            'values'     => $this->values,
+            'name'       => $this->name,
             'chartType'  => $this->type,
         ]);
     }

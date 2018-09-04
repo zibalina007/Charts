@@ -2,9 +2,9 @@
 
 namespace ConsoleTVs\Charts\Classes\C3;
 
-use Illuminate\Support\Collection;
 use ConsoleTVs\Charts\Classes\BaseChart;
 use ConsoleTVs\Charts\Features\C3\Chart as ChartFeatures;
+use Illuminate\Support\Collection;
 
 class Chart extends BaseChart
 {
@@ -50,7 +50,7 @@ class Chart extends BaseChart
                     return $dataset->format($this->labels);
                 })
                 ->toArray(),
-            'type' => $datasets->first()->type,
+            'type'  => $datasets->first()->type,
             'types' => $datasets->mapWithKeys(function ($d) {
                 return [$d->name => $d->type];
             })->toArray(),

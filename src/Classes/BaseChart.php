@@ -345,7 +345,6 @@ class BaseChart
                 })
                 ->toArray()
         );
-
     }
 
     /**
