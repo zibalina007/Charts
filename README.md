@@ -25,4 +25,4 @@ The documentation for the latest version of charts can be found here by pressing
 
 A sample screenshot of a chartjs chart created using Charts.
 
-<p align="center"><img height="250" src="https://image.prntscr.com/image/FDJCr7ywShKMUlFitEc_Ww.png"></p>
+<p align="center"><img src="https://image.prntscr.com/image/FDJCr7ywShKMUlFitEc_Ww.png"></p>
