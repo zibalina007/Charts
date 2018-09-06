@@ -3,17 +3,17 @@
 namespace ConsoleTVs\Charts\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Console\GeneratorCommand;
+use Symfony\Component\Console\Input\InputArgument;
 
-class ChartsCommand extends Command
+class ChartsCommand extends GeneratorCommand
 {
     /**
-     * The name and signature of the console command.
+     * The console command name.
      *
      * @var string
      */
-    protected $signature = 'make:chart
-                                {name : The name of the chart file}
-                                {library? : Library of the chart}';
+    protected $name = 'make:chart';
 
     /**
      * The console command description.
@@ -23,13 +23,20 @@ class ChartsCommand extends Command
     protected $description = 'Creates a new chart';
 
     /**
-     * Create a new command instance.
+     * The type of class being generated.
      *
-     * @return void
+     * @var string
      */
-    public function __construct()
+    protected $type = 'Chart';
+
+    /**
+     * Get the stub file for the generator.
+     *
+     * @return string
+     */
+    protected function getStub()
     {
-        parent::__construct();
+        return __DIR__ . '/stubs/chart.stub';
     }
 
     /**
@@ -41,45 +48,53 @@ class ChartsCommand extends Command
     {
         $this->line('[Charts] Creating chart...');
 
-        $path = base_path('app/Charts');
+        parent::handle();
 
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
-        }
+        $name = $this->qualifyClass($this->getNameInput());
+        $path = $this->getPath($name);
 
-        $fpath = $path.'/'.$this->argument('name').'.php';
-
-        if (file_exists($fpath)) {
-            $this->error('[Charts] File already exists!');
-
-            return;
-        }
-
-        $file = file_get_contents(__DIR__.'/../Classes/ChartClass.php');
-
-        file_put_contents($fpath, $file);
-
-        $this->strReplaceFile('ChartClass', $this->argument('name'), $fpath);
-        $this->strReplaceFile(
-            'Library',
-            $this->argument('library') ? ucfirst($this->argument('library')) : ucfirst(config('charts.default_library')),
-            $fpath
-        );
-
-        $this->info("[Charts] Chart created! - Location: {$fpath}");
+        $this->info("[Charts] Chart created! - Location: {$path}");
     }
 
     /**
-     * Replace a string from a file.
+     * Build the class with the given name.
      *
-     * @param string $find
-     * @param string $replace
-     * @param string $file_path
-     *
-     * @return void
+     * @param  string  $name
+     * @return string
      */
-    protected function strReplaceFile(string $find, string $replace, string $file_path)
+    protected function buildClass($name)
     {
-        file_put_contents($file_path, str_replace($find, $replace, file_get_contents($file_path)));
+        $stub = parent::buildClass($name);
+
+        return str_replace(
+            ['Library'],
+            [$this->argument('library') ? ucfirst($this->argument('library')) : ucfirst(config('charts.default_library'))],
+            $stub
+        );
+    }
+
+    /**
+     * Get the default namespace for the class.
+     *
+     * @param  string  $rootNamespace
+     * @return string
+     */
+    protected function getDefaultNamespace($rootNamespace)
+    {
+        return $rootNamespace . '\Charts';
+    }
+
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getArguments()
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the chart file'],
+
+            ['library', InputArgument::OPTIONAL, 'Library of the chart'],
+        ];
     }
 }
