@@ -4,7 +4,6 @@ let {{ $chart->id }}_load = function () {
         @if ($chart->api_url)
             fetch("{!! $chart->api_url !!}")
                 .then(data => data.json())
-                .then(data => console.log(data))
                 .then(data => { {{ $chart->id }}_create(data) });
         @else
             {{ $chart->id }}_create({!! $chart->formatDatasets() !!})
