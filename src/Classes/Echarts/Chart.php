@@ -17,6 +17,13 @@ class Chart extends BaseChart
     public $dataset = Dataset::class;
 
     /**
+     * Store the theme for the chart
+     *
+     * @var string
+     */
+    public $theme = 'default';
+
+    /**
      * Initiates the Chartjs Line Chart.
      *
      * @return self

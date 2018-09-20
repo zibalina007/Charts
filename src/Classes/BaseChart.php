@@ -101,13 +101,6 @@ class BaseChart
     public $width = null;
 
     /**
-     * Store the theme for the chart (Echarts only for the moment)
-     *
-     * @var string
-     */
-    public $theme = 'default';
-
-    /**
      * Stores the available chart letters to create the ID.
      *
      * @var string
