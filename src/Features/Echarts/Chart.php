@@ -168,7 +168,7 @@ trait Chart
     }
 
     /**
-     * Set the chart theme
+     * Set the chart theme.
      *
      * @param string $theme
      *

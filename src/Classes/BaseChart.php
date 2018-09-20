@@ -118,7 +118,7 @@ class BaseChart
     /**
      * Adds a new dataset to the chart.
      *
-     * @param string $name
+     * @param string           $name
      * @param array|Collection $data
      */
     public function dataset(string $name, string $type, $data)
@@ -156,7 +156,7 @@ class BaseChart
      * Set the chart options.
      *
      * @param array|Collection $options
-     * @param bool $overwrite
+     * @param bool             $overwrite
      *
      * @return self
      */
@@ -403,7 +403,7 @@ class BaseChart
      * Formats the container options.
      *
      * @param string $type
-     * @param bool $maxIfNull
+     * @param bool   $maxIfNull
      *
      * @return string
      */

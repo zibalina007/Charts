@@ -17,7 +17,7 @@ class Chart extends BaseChart
     public $dataset = Dataset::class;
 
     /**
-     * Store the theme for the chart
+     * Store the theme for the chart.
      *
      * @var string
      */
