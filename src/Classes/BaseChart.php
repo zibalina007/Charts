@@ -265,20 +265,6 @@ class BaseChart
     }
 
     /**
-     * Set the chart theme
-     *
-     * @param string $theme
-     *
-     * @return self
-     */
-    public function theme(string $theme)
-    {
-        $this->theme = $theme;
-
-        return $this;
-    }
-
-    /**
      * Formats the type to be a correct output.
      *
      * @return string
