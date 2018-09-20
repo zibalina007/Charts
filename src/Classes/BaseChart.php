@@ -101,6 +101,13 @@ class BaseChart
     public $width = null;
 
     /**
+     * Store the theme for the chart (Echarts only for the moment)
+     *
+     * @var string
+     */
+    public $theme = 'default';
+
+    /**
      * Stores the available chart letters to create the ID.
      *
      * @var string
@@ -118,7 +125,7 @@ class BaseChart
     /**
      * Adds a new dataset to the chart.
      *
-     * @param string           $name
+     * @param string $name
      * @param array|Collection $data
      */
     public function dataset(string $name, string $type, $data)
@@ -156,7 +163,7 @@ class BaseChart
      * Set the chart options.
      *
      * @param array|Collection $options
-     * @param bool             $overwrite
+     * @param bool $overwrite
      *
      * @return self
      */
@@ -253,6 +260,20 @@ class BaseChart
     public function width(int $width)
     {
         $this->width = $width;
+
+        return $this;
+    }
+
+    /**
+     * Set the chart theme
+     *
+     * @param string $theme
+     *
+     * @return self
+     */
+    public function theme(string $theme)
+    {
+        $this->theme = $theme;
 
         return $this;
     }
@@ -403,7 +424,7 @@ class BaseChart
      * Formats the container options.
      *
      * @param string $type
-     * @param bool   $maxIfNull
+     * @param bool $maxIfNull
      *
      * @return string
      */
