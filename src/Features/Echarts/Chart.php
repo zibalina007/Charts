@@ -166,4 +166,18 @@ trait Chart
             ],
         ]);
     }
+
+    /**
+     * Set the chart theme.
+     *
+     * @param string $theme
+     *
+     * @return self
+     */
+    public function theme(string $theme)
+    {
+        $this->theme = $theme;
+
+        return $this;
+    }
 }
