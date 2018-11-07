@@ -36,7 +36,7 @@ class ChartsCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/stubs/chart.stub';
+        return __DIR__ . '/stubs/chart.stub';
     }
 
     /**
@@ -48,7 +48,12 @@ class ChartsCommand extends GeneratorCommand
     {
         $this->line('[Charts] Creating chart...');
 
-        parent::handle();
+        // Fallback for Laravel <= 5.4
+        if (is_callable('parent::handle')) {
+            parent::handle();
+        } else {
+            parent::fire();
+        }
 
         $name = $this->qualifyClass($this->getNameInput());
         $path = $this->getPath($name);
@@ -83,7 +88,7 @@ class ChartsCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Charts';
+        return $rootNamespace . '\Charts';
     }
 
     /**
