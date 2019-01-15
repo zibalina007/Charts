@@ -36,7 +36,7 @@ class ChartsCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/stubs/chart.stub';
+        return __DIR__ . '/stubs/chart.stub';
     }
 
     /**
@@ -48,12 +48,7 @@ class ChartsCommand extends GeneratorCommand
     {
         $this->line('[Charts] Creating chart...');
 
-        // Fallback for Laravel <= 5.4
-        if (is_callable('parent::handle')) {
-            parent::handle();
-        } else {
-            parent::fire();
-        }
+        $this->handleParentMethodCall();
 
         $name = $this->qualifyClass($this->getNameInput());
         $path = $this->getPath($name);
@@ -88,7 +83,7 @@ class ChartsCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Charts';
+        return $rootNamespace . '\Charts';
     }
 
     /**
@@ -103,5 +98,35 @@ class ChartsCommand extends GeneratorCommand
 
             ['library', InputArgument::OPTIONAL, 'Library of the chart'],
         ];
+    }
+
+    /**
+     * Calls the right parent method depending on laravel version.
+     * Adds support for Laravel v5.4.
+     *
+     * @return void
+     */
+    protected function handleParentMethodCall()
+    {
+        if (!is_callable('parent::handle')) {
+            return parent::fire();
+        }
+
+        parent::handle();
+    }
+
+    /**
+     * Qualifies the class name by delegating to the right parent method.
+     *
+     * @param string $name
+     * @return string
+     */
+    protected function qualifyClass($name)
+    {
+        if (!is_callable('parent::qualifyClass')) {
+            return parent::parseName($name);
+        }
+
+        return parent::qualifyClass($name);
     }
 }
