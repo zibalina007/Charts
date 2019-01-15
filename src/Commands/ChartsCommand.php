@@ -36,7 +36,7 @@ class ChartsCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/stubs/chart.stub';
+        return __DIR__.'/stubs/chart.stub';
     }
 
     /**
@@ -83,7 +83,7 @@ class ChartsCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Charts';
+        return $rootNamespace.'\Charts';
     }
 
     /**
@@ -119,6 +119,7 @@ class ChartsCommand extends GeneratorCommand
      * Qualifies the class name by delegating to the right parent method.
      *
      * @param string $name
+     *
      * @return string
      */
     protected function qualifyClass($name)
