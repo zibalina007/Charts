@@ -120,7 +120,7 @@ class BaseChart
      * @var array
      */
     public $scriptAttributes = [
-        "type" => "text/javascript"
+        'type' => 'text/javascript',
     ];
 
     /**
@@ -470,6 +470,7 @@ class BaseChart
      *
      * @param string $key
      * @param string $value
+     *
      * @return self
      */
     public function setScriptAttribute(string $key, string $value)
@@ -486,7 +487,7 @@ class BaseChart
      */
     public function displayScriptAttributes(): string
     {
-        $result = "";
+        $result = '';
         foreach ($this->scriptAttributes as $key => $value) {
             echo " {$key}=\"{$value}\"";
         }
