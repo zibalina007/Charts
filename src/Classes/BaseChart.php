@@ -409,7 +409,7 @@ class BaseChart
      *
      * @param string $api_url
      *
-     * @return void
+     * @return self
      */
     public function load(string $api_url)
     {
@@ -423,7 +423,7 @@ class BaseChart
      *
      * @param bool $loader
      *
-     * @return void
+     * @return self
      */
     public function loader(bool $loader)
     {
@@ -437,7 +437,7 @@ class BaseChart
      *
      * @param string $color
      *
-     * @return void
+     * @return self
      */
     public function loaderColor(string $color)
     {
@@ -449,7 +449,7 @@ class BaseChart
     /**
      * Alias for the formatDatasets() method.
      *
-     * @return void
+     * @return string
      */
     public function api()
     {
