@@ -176,8 +176,8 @@ class BaseChart
      */
     public function options($options, bool $overwrite = false)
     {
-        if(!empty($options['plugins'])){
-            $options['plugins'] = new Raw(trim(preg_replace('/\s\s+/', ' ',$options['plugins'])));
+        if (!empty($options['plugins'])) {
+            $options['plugins'] = new Raw(trim(preg_replace('/\s\s+/', ' ', $options['plugins'])));
         }
 
         if ($options instanceof Collection) {
@@ -191,6 +191,7 @@ class BaseChart
 
         return $this;
     }
+
     /**
      * Set the plugins options.
      *
@@ -199,7 +200,8 @@ class BaseChart
      *
      * @return self
      */
-    public function plugins($plugins,bool $overwrite = true){
+    public function plugins($plugins, bool $overwrite = true)
+    {
         if ($plugins instanceof Collection) {
             $plugins = $plugins->toArray();
         }
@@ -326,7 +328,7 @@ class BaseChart
         if (!$strict && count($this->options) === 0) {
             return '';
         }
-        
+
         $options = Encoder::encode($this->options);
 
         return $noBraces ? substr($options, 1, -1) : $options;
@@ -345,11 +347,11 @@ class BaseChart
             return '';
         }
 
-        $plugins = str_replace('"',"",Encoder::encode($this->plugins));
+        $plugins = str_replace('"', '', Encoder::encode($this->plugins));
 
         return $noBraces ? substr($plugins, 1, -1) : $plugins;
     }
-    
+
     /**
      * Use this to pass values to json without any modification
      * Useful for defining callbacks.
