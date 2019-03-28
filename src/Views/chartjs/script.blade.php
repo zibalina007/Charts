@@ -1,9 +1,9 @@
 
-@foreach ($chart->plugins as $plugin) 
+@foreach ($chart->plugins as $plugin)
     @include($chart->pluginsViews[$plugin]);
 @endforeach
 
-<script type="text/javascript">
+<script {!! $chart->displayScriptAttributes() !!}>
 var ctvChart = document.getElementById('{{ $chart->id }}').getContext('2d');
 function {{ $chart->id }}_create(data) {
     {{ $chart->id }}_rendered = true;

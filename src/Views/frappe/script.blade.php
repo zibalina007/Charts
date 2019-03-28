@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script {!! $chart->displayScriptAttributes() !!}>
     function {{ $chart->id }}_getType(data) {
         var special_datasets = {!! json_encode($chart->special_datasets) !!};
         for (var i = 0; i < special_datasets.length; i++) {

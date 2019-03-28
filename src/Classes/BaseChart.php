@@ -117,6 +117,15 @@ class BaseChart
     /**
      * Stores the available chart letters to create the ID.
      *
+     * @var array
+     */
+    public $scriptAttributes = [
+        "type" => "text/javascript"
+    ];
+
+    /**
+     * Stores the available chart letters to create the ID.
+     *
      * @var string
      */
     private $chartLetters = 'abcdefghijklmnopqrstuvwxyz';
@@ -454,6 +463,35 @@ class BaseChart
     public function api()
     {
         return $this->formatDatasets();
+    }
+
+    /**
+     * Sets an HTML attribute the the script tag of the chart.
+     *
+     * @param string $key
+     * @param string $value
+     * @return self
+     */
+    public function setScriptAttribute(string $key, string $value)
+    {
+        $this->scriptAttributes[$key] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Returns the string formatting of the script attributes.
+     *
+     * @return string
+     */
+    public function displayScriptAttributes(): string
+    {
+        $result = "";
+        foreach ($this->scriptAttributes as $key => $value) {
+            echo " {$key}=\"{$value}\"";
+        }
+
+        return $result;
     }
 
     /**
