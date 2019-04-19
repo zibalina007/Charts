@@ -25,5 +25,12 @@
             {!! $chart->formatOptions(false, true) !!}
         });
     }
+    @if ($chart->api_url)
+    let {{ $chart->id }}_refresh = function (data) {
+        fetch({{ $chart->id }}_api_url)
+            .then(data => data.json())
+            .then(data => { {{ $chart->id }}.update({labels: {!! $chart->formatLabels() !!}, datasets: data}); });
+    };
+    @endif
     @include('charts::init')
 </script>

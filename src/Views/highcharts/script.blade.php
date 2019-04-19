@@ -8,5 +8,12 @@
             {!! $chart->formatOptions(false, true) !!}
         });
     }
+    @if ($chart->api_url)
+    let {{ $chart->id }}_refresh = function (data) {
+        fetch({{ $chart->id }}_api_url)
+            .then(data => data.json())
+            .then(data => { {{ $chart->id }}.update({series: data}); {{$chart->id}}.redraw(); });
+    };
+    @endif
     @include('charts::init')
 </script>
