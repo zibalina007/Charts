@@ -7,6 +7,12 @@ assignees: ''
 
 ---
 
+**Required information**
+ - Charts Version [e.g. 6]
+ - Laravel Version [e.g. 5.8]
+ - PHP Version [e.g. 7.2]
+ - Frontend JS Library Used:  [e.g. Chart.js]
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
@@ -22,6 +28,9 @@ A clear and concise description of what you expected to happen.
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
+
+**Code To Reproduce**
+If applicable, add a code to reproduce the problem.
 
 **Desktop (please complete the following information):**
  - OS: [e.g. iOS]
