@@ -85,13 +85,16 @@ trait Dataset
     }
 
     /**
-     * Set the label of the dataset
+     * Set the label of the dataset.
+     *
      * @param $label string
+     *
      * @return self
      */
-    public function label($label){
+    public function label($label)
+    {
         return $this->options([
-            'label' => $label
+            'label' => $label,
         ]);
     }
 }
